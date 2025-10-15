@@ -1,0 +1,30 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{MyPackages}
+\usepackage{MyShortcuts}
+
+\begin{document}
+
+% Title and Table of Contents
+\title{Something about Nonsmooth Partial Differential Equations}
+\author{Max Stuthmann}
+\date{\today}
+\maketitle
+\tableofcontents
+
+% Sections
+\input{Sections/0_Abstract.tex}
+\newpage
+\input{Sections/1_Introduction.tex}
+
+% Appendix
+\newpage
+\renewcommand{\thesection}{\Alph{section}}
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\setcounter{section}{0}
+\bibliographystyle{plain}
+\bibliography{Literature}
+\newpage
+\listoffigures
+
+\end{document}

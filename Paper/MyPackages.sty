@@ -1,0 +1,71 @@
+\usepackage[utf8]{inputenc}
+\usepackage[top=2.5cm, bottom=2.5cm, right=2.5cm, left=2.5cm]{geometry}
+\usepackage[english]{babel} % English
+
+% Fonts and formatting
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\setlength{\emergencystretch}{1em}
+\usepackage{microtype} % better spacing
+
+
+% Math-stuff
+\usepackage{amsmath} % formulas
+\usepackage{amssymb} % symbols and fonts
+\usepackage{amsthm} % theorem's etc.
+\numberwithin{equation}{section} % Numbering of equations
+\usepackage{mathrsfs} % other fonts
+\usepackage{upgreek} % upvar greek letters
+\usepackage{amsfonts} % more...
+\usepackage{bm} % and more...
+\usepackage{siunitx}
+
+\usepackage{color} % colors
+\usepackage{xcolor} % more colors...
+\usepackage{tcolorbox}
+
+% Plots, Figures etc.
+\usepackage{pdfpages} % To input PDFs
+\usepackage{graphicx} % for pictures
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots} % Plots
+\usepgfplotslibrary{patchplots}
+\usepackage{matlab-prettifier} % Matlab-code
+\usepackage{tikz} % Tikz pics
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{intersections,calc}
+\usepackage{tikz-cd} % cd: commutative diagramms
+\usetikzlibrary{cd}
+\usetikzlibrary{patterns}
+
+% Setup for Matlab2Tikz
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\figureheight
+\newlength\figurewidth
+
+% List of figures
+\usepackage[nottoc,numbib]{tocbibind}
+\renewcommand{\listoffigures}{\begingroup
+    \tocsection
+    \tocfile{\listfigurename}{lof}
+    \endgroup}
+\usepackage[titles]{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% References
+\usepackage{bookmark}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Algorithms
+\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage{algpseudocode}
