@@ -1,0 +1,66 @@
+\section{Mathematical Framework}
+
+\subsection{Sobolev Spaces and the Trace Operator}
+
+In this subsection, we will make a brief excursion into selected topics in functional analysis, providing the necessary theory for the subsequent subsections. In classical analysis, derivatives are defined pointwise and require a certain level of smoothness. However, many functions of interest fall outside this framework. To extend the concept of differentiation to a broader class of functions, we can weaken what it means to {\em have a derivative}. The key idea is to characterize derivatives not by their pointwise behavior, but by how they act under integration against {\em test functions}. Using integration by parts, one can express the derivative of a smooth function in a form that remains meaningful even when the function itself is not differentiable in the classical sense. This leads naturally to the concept of weak derivatives, which allow us to treat integrable functions as {\em differentiable} in a generalized sense. We start by defining two important function spaces.
+
+
+\begin{definition}[Locally Integrable Functions]
+	The space $L_\mathrm{loc}^1 (\Omega)$ of all {\tt locally integrable} functions on $\Omega$ is defined as
+	\begin{equation*}
+		L_\mathrm{loc}^1 (\Omega):= \left\{f:\Omega\to\R\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
+	\end{equation*}
+\end{definition}
+\begin{definition}
+	The space $\cC^\infty_c(\Omega)$ contains all infinitely often differentiable functions with compact support in $\Omega$, i.e.\
+	\begin{equation*}
+		\cC^\infty_c(\Omega) = \left\{f\in\cC^\infty(\Omega)\;\middle|\;\supp(f)\subset\Omega\text{\em\enspace compact}\right\}
+	\end{equation*}
+	and $u\in\cC^\infty_c(\Omega)$ is called a {\tt test function}.
+
+\end{definition}
+
+With these functions in hand, we can now extend the classical concept of differentiability to the concept of {\em weak} differentiability.
+
+\begin{definition}[Weak Derivatives]\label{def:weakder}
+	Let $u\in L_\mathrm{loc}^1(\Omega)$ and $\alpha\in\N_0^d$. A function $g\in L_\mathrm{loc}^1(\Omega)$ is called {\tt weak derivative} of $u$ of order $\alpha$ if
+	\begin{equation*}
+		\int_\Omega u\,\partial^\alpha\varphi\;\dx = (-1)^{|\alpha|}\int_\Omega g\,\varphi\;\dx\quad\forall\varphi\in\cC^\infty_c(\Omega)
+	\end{equation*}
+	If such $g$ exists, it is unique up to null sets and we write $\partial^\alpha u = g$ and keep the notation the same as in the strong sense of derivatives.
+\end{definition}
+
+Of course, there are also spaces of weakly differentiable functions, named after the Soviet mathematician \textsc{Sergei Lvovich Sobolev} (1908--1989).
+
+\begin{definition}[Sobolev Spaces]
+	For $k\in\N_0$ and $1\le p\le \infty$ we define the {\tt Sobolev space} $W^{k,p}(\Omega)$ to be the space of every $L^p$-function whose weak derivatives up to order $k$ are also $L^p$-functions, i.e.\
+	\begin{equation*}
+		W^{k,p}(\Omega):= \left\{u\in L^p(\Omega)\;\middle|\;\partial^\alpha u\in L^p(\Omega)\;\forall |\alpha|\le k\right\}
+	\end{equation*}
+	and we equip it with the norm
+	\begin{equation*}
+		\|u\|_{W^{k,p}(\Omega)}:=\left(\sum_{|\alpha|\le k}\|\partial^\alpha u\|^p_{L^p(\Omega)}\right)^{1/p},\quad 1\le p<\infty
+	\end{equation*}
+	and
+	\begin{equation*}
+		\|u\|_{W^{k,\infty}(\Omega)}:=\max_{|\alpha|\le k}\|\partial^\alpha u\|_{L^\infty(\Omega)}.
+	\end{equation*}
+\end{definition}
+
+The special case $p=2$ provides us with a Hilbert space $H^k(\Omega):=W^{k,2}(\Omega)$ together with the inner product
+\begin{equation*}
+	(u,v)_{H^k(\Omega)} :=\sum_{|\alpha|\le k}\langle\partial^\alpha u,\,\partial^\alpha v\rangle_{L^2(\Omega)}
+\end{equation*}
+For the following purpose, we will have to consider the the space
+\begin{equation*}
+	H^1(\Omega) = \left\{ u\in L^2(\Omega)\;\middle|\; \nabla u\in L^2(\Omega;\R^d)\right\}
+\end{equation*}
+together with the induced norm
+\begin{equation*}
+	\|u\|_{H^1(\Omega)} = \left(\|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega;R^d)}\right)^{1/2}
+\end{equation*}
+where the second $L^2$--term is understood as
+\begin{equation*}
+	\|\nabla u\|_{L^2(\Omega;\R^d)} = \left(\int_\Omega|\nabla u(x)|^2\;\dx\right)^{1/2}.
+\end{equation*}
+

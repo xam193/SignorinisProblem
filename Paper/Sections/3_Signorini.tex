@@ -1,0 +1,73 @@
+\section{Signorini's Problem}
+
+
+\subsection{Physical and Geometric Setup of the Problem}
+
+
+
+
+Throughout the whole report, $\Omega\subset \R^d,\, d\in\{2,3\}$ denotes an open, bounded and connected {\em Lipschitz} domain. The later means, that the boundary $\Gamma:=\partial\Omega$ can locally be described as the graph of a Lipschitz continuous function. This ensures for example, that outward normal vectors $\mathrm{n}(x):\Gamma\to \R^d$ are well--defined almost everywhere. The boundary is decomposed into three pairwise disjoint parts
+\begin{equation*}
+	\Gamma = \overline{\Gamma_D}\mathbin{\dot\cup}\overline{\Gamma_N}\mathbin{\dot\cup}\overline{\Gamma_C}
+\end{equation*}
+which are assumed to be open in $\Gamma$ and where each part is subject to different boundary conditions. On $\Gamma_D$, we apply {\em homogeneous Dirichlet} boundary conditions. This forces the body to be {\em clamped} and this part, i.e.\ the displacement should not act on $\Gamma_D$,
+\begin{equation*}
+	\forall x\in\Gamma_D:\;x + u(x) = x \quad\Longrightarrow \quad\trace(u)|_{\Gamma_D} = 0.
+\end{equation*}
+The part $\Gamma_N$ may be subject to a \begin{tikzpicture}[scale=1.05, >=Latex, line cap=round, line join=round]
+		\definecolor{cD}{RGB}{220,50,47}
+		\definecolor{cN}{RGB}{38,139,210}
+		\definecolor{cC}{RGB}{42,161,152}
+		\coordinate (A) at (0.2,1.35);
+		\coordinate (B) at (6.0,1.35);
+		\coordinate (D) at (5.6,3.85);
+		\coordinate (E) at (1.0,3.65);
+		\path[fill=gray!10]
+		(A) .. controls (2.0,0.95) and (4.2,0.95) .. (B)
+		.. controls (6.55,2.05) and (6.25,3.15) .. (D)
+		.. controls (4.55,4.55) and (2.15,4.35) .. (E)
+		.. controls (0.25,3.05) and (0.05,2.05) .. cycle;
+
+		\draw[black!55, line width=0.9pt]
+		(A) .. controls (2.0,0.95) and (4.2,0.95) .. (B)
+		.. controls (6.55,2.05) and (6.25,3.15) .. (D)
+		.. controls (4.55,4.55) and (2.15,4.35) .. (E)
+		.. controls (0.25,3.05) and (0.05,2.05) .. cycle;
+		\draw[cC, very thick]
+		(A) .. controls (2.0,0.95) and (4.2,0.95) .. (B);
+		\draw[cN, very thick]
+		(B) .. controls (6.55,2.05) and (6.25,3.15) .. (D)
+		.. controls (4.55,4.55) and (2.15,4.35) .. (E);
+		\draw[cD, very thick]
+		(E) .. controls (0.25,3.05) and (0.05,2.05) .. (A);
+		\node at (3.1,2.45) {$\Omega$};
+		\node[cC] at (3.1,1.35) {$\Gamma_C$};
+		\node[cN] at (5.55,4.30) {$\Gamma_N$};
+		\node[cD] at (-0.35,2.55) {$\Gamma_D$};
+		\def\yF{1.024}
+		\draw[black, line width=0.9pt] (-0.6,\yF) -- (6.6,\yF);
+		\draw[pattern=north east lines] (-0.6,\yF) rectangle (6.6,\yF-0.80);
+		\node[below] at (3.0,\yF-0.80) {rigid foundation};
+	\end{tikzpicture}{\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ has positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
+
+
+\begin{figure}[ht]
+	\centering
+	\input{Figures/setup.tex}
+	\caption{2D Setup for Signorini's Problem.}
+\end{figure}
+
+\subsection{Strong Formulation}
+
+
+
+
+
+\subsection{Weak Formulation}
+\subsubsection{Admissible Displacements}
+\subsubsection{Energy Minimization}
+\subsubsection{Variational inequality as an optimality condition}
+\subsubsection{Existence and Uniqueness}
+\subsection{Mixed Formulation}
+\subsubsection{Mixed Weak Foram as Sattlepoint}
+\subsubsection{Well--posedness and inf--sup condition}
