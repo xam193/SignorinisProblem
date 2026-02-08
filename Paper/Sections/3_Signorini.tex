@@ -8,7 +8,7 @@ Under the action of external forces and possible contact with a rigid foundation
 In the {\em small--strain} framework, the deformation is described by the {\em displacement field}
 $u:\Omega\to\R^d$, and a material point $x\in\Omega$ is mapped to its deformed position
 \begin{equation*}
-	\varphi(x) := x' := x + u(x),\quad x\in\Omega.
+	\varphi(x) := x' := x + u(x),\quad x\in\overline{\Omega}.
 \end{equation*}
 The aim of Signorini's problem is to determine an {\em equilibrium} displacement $u$ under
 standard boundary conditions and {\em unilateral} contact constraints on the part of the boundary
@@ -22,63 +22,88 @@ which are assumed to be open in $\Gamma$ and where each part is subject to diffe
 \end{equation*}
 The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ has positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
 
-
-\begin{figure}[ht]
+\begin{figure}[!h]
 	\centering
 	\input{Figures/setup.tex}
-	\caption{2D Setup for Signorini's Problem.}
+	\caption{2D example of Signorini's problem before (left) and after displacement (right).}
 	\label{fig:setup}
 \end{figure}
 
-% Preamble:
-% \usepackage{tikz}
-% \usetikzlibrary{calc,patterns}
-\begin{figure}[!h]
-	\centering
-	\begin{tikzpicture}
-		\draw[draw=red, fill=lightgray, ultra thick, solid] (-1.00,7.00) parabola (-1.00,3.00);
-		\draw[draw=blue, fill=lightgray, ultra thick, solid] (-1.00,7.00) parabola (-5.00,7.00);
-		\draw[draw=blue, fill=lightgray, ultra thick, solid] (-5.00,7.00) parabola (-5.00,3.00);
-		\draw[draw=teal, fill=lightgray, ultra thick, solid] (-5.00,3.00) parabola (-1.00,3.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-3.00,3.00) parabola (-1.00,3.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-3.00,3.00) parabola (-3.00,2.50);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-3.00,2.50) parabola (-5.00,2.50);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-5.00,2.50) parabola (-6.00,2.50);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-6.00,2.50) parabola (-6.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-6.00,2.00) parabola (0.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (0.00,3.00) parabola (0.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (-1.00,3.00) parabola (0.00,3.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (3.00,2.50) parabola (3.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (3.00,2.00) parabola (9.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (9.00,3.00) parabola (9.00,2.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (9.00,3.00) parabola (6.00,3.00);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (6.00,3.00) parabola (6.00,2.50);
-		\draw[draw=black, fill=lightgray, ultra thick, solid] (6.00,2.50) parabola (3.00,2.50);
-		\draw[draw=red, fill=lightgray, ultra thick, solid] (8.00,3.00) parabola (8.00,7.00);
-		\draw[draw=blue, ultra thick, solid] (8.00,7.00) parabola (3.99,6.78);
-		\draw[draw=teal, ultra thick, solid] (5.00,2.50) parabola (6.00,3.00);
-		\draw[draw=teal, ultra thick, solid] (8.00,3.00) rectangle (6.00,3.00);
-		\draw[draw=teal, ultra thick, solid] (-1.00,3.00) rectangle (-3.00,3.00);
-		\draw[draw=teal, ultra thick, solid] (5.00,2.50) parabola (4.50,2.50);
-		\draw[draw=blue, ultra thick, solid] (4.50,2.50) parabola (3.99,6.78);
-	\end{tikzpicture}
-
-
-
-\end{figure}
-
-
-\subsection{Strong Formulation}
-
-
-
-
-
 \subsection{Weak Formulation}
-\subsubsection{Admissible Displacements}
+\subsubsection{Functional Setting and Admissible Displacements}
+We start by introducing the energy space and the admissible set of displacements.
+Homogeneous Dirichlet boundary conditions on $\Gamma_D$ are incorporated by
+\begin{equation*}
+	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \trace(v)=0 \text{ on }\Gamma_D\right\}.
+\end{equation*}
+Let $\gamma=\trace:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ denote the trace operator.
+For $v\in V$ we define the normal component of the boundary displacement on $\Gamma_C$ by
+\begin{equation*}
+	v_{\mathrm n} := (\gamma v)\cdot \mathrm n \quad \text{on }\Gamma_C,
+\end{equation*}
+where $\mathrm n$ is the outward unit normal on $\Gamma$. The unilateral nature of contact is expressed by the {\em nonpenetration} constraint. The rigid foundation is located on the exterior side of $\Gamma_C$ in direction of $\mathrm n$. Hence the body is not allowed to move across $\Gamma_C$ into the obstacle. In the small--strain setting this yields
+\begin{equation*}
+	u_{\mathrm n}\le 0 \quad \text{a.e.\ on }\Gamma_C.
+\end{equation*}
+This motivates the nonempty, closed and convex cone (\cite[Prop. 3.1]{book}) of admissible displacements
+\begin{equation*}
+	K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}\subset V.
+\end{equation*}
+On $V$, we define the symmetric, bilinear and continuous form
+\begin{equation*}
+	a(u,v):= \int_\Omega \sigma(u):\varepsilon(v)\;\dx,\quad u,v\in V
+\end{equation*}
+representing the {\em virtual work of internal forces} and the linear bounded functional
+\begin{equation*}
+	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot v\;\ds,\quad v\in V,\,f\in L^2(\Omega;\R^d),\, F\in L^2(\Gamma_N;\R^d).
+\end{equation*}
+with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary.
+
 \subsubsection{Energy Minimization}
+
+The total {\em mechanical energy} associated with the elastic body is given by the functional
+\begin{equation*}
+	\cJ(v):= \frac{1}{2}a(v,v)-L(v),\quad v\in V.
+\end{equation*}
+
+
+
 \subsubsection{Variational inequality as an optimality condition}
+\begin{proposition}
+	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex and let $\ell\in L^*$ be a linear and bounded functional. Furthermore, let $a:V\times V\to\R$ be a symmetric bilinear form that is {\em coercive} on $V$, i.e. there exists $\alpha >0$ such that
+	\begin{equation*}
+		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
+	\end{equation*}
+	Then $u\in K$ fulfills
+	\begin{equation}\label{eq:varineq}
+		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K
+	\end{equation}
+	if and only if $u\in K$ is a minimizer of the corresponding energy functional, i.e.
+	\begin{equation}\label{eq:energymin}
+		u\in \argmin_{v\in K}\cJ(v) := \argmin_{v\in K} \frac{1}{2}a(v,v)-\ell(v).
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Let $u\in K$ fulfill \eqref{eq:energymin} and let $v\in K$ be arbitrary. Since $K$ is convex,
+	\begin{equation*}
+		u_t:= u+t(v-u)\in K\quad\forall t\in[0,1].
+	\end{equation*}
+	Set $J(t):= \cJ(u_t)$. Then $J$ has a minimum at $t = 0$ since $u_0 = u$ minimizes $\cJ$. Thus we have $J^\prime(0^+)\ge 0$ and therefore
+	\begin{equation*}
+		J^\prime(t) =  a(u+t(v-u),v-u)-\ell(v-u)\quad\Longrightarrow\quad J^\prime(0) = a(u,v-u)-L(v-u)\ge 0.
+	\end{equation*}
+	Now assume that $u\in K$ fulfills \eqref{eq:varineq} and set $w:= v-u$ for some arbitrary $v\in K$. Then
+	\begin{equation*}
+		\cJ(v)-\cJ(u) = a(u,w)+\frac{1}{2}a(w,w)-L(w)\quad\text{and}\quad a(u,w)-L(w)\ge 0
+	\end{equation*}
+	which directly implies
+	\begin{equation*}
+		\cJ(v)-\cJ(u)\ge \frac{1}{2}a(w,w)\ge 0.
+	\end{equation*}
+	Therefore $\cJ(u)\le \cJ(v)$ for every $v\in K$ which makes $u\in K$ a minimizer of $\cJ$.
+\end{proof}
 \subsubsection{Existence and Uniqueness}
+\subsection{Strong Formulation}
 \subsection{Mixed Formulation}
 \subsubsection{Mixed Weak Foram as Sattlepoint}
 \subsubsection{Well--posedness and inf--sup condition}
