@@ -21,7 +21,6 @@ which are assumed to be open in $\Gamma$ and where each part is subject to diffe
 	\forall x\in\Gamma_D:\;x + u(x) = x \quad\Longrightarrow \quad\trace(u)|_{\Gamma_D} = 0.
 \end{equation*}
 The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ has positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
-
 \begin{figure}[!h]
 	\centering
 	\input{Figures/setup.tex}
@@ -30,12 +29,13 @@ The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which 
 \end{figure}
 
 \subsection{Weak Formulation}
-\subsubsection{Functional Setting and Admissible Displacements}
+
+\subsubsection{Admissible Displacements}
 We start by introducing the energy space and the admissible set of displacements.
 Homogeneous Dirichlet boundary conditions on $\Gamma_D$ are incorporated by
-\begin{equation*}
+\begin{equation}\label{eq:energyspace}
 	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \trace(v)=0 \text{ on }\Gamma_D\right\}.
-\end{equation*}
+\end{equation}
 Let $\gamma=\trace:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ denote the trace operator.
 For $v\in V$ we define the normal component of the boundary displacement on $\Gamma_C$ by
 \begin{equation*}
@@ -46,62 +46,138 @@ where $\mathrm n$ is the outward unit normal on $\Gamma$. The unilateral nature 
 	u_{\mathrm n}\le 0 \quad \text{a.e.\ on }\Gamma_C.
 \end{equation*}
 This motivates the nonempty, closed and convex cone (\cite[Prop. 3.1]{book}) of admissible displacements
-\begin{equation*}
+\begin{equation}\label{eq:admissible}
 	K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}\subset V.
+\end{equation}
+
+% \begin{proposition}[$K$ is a closed convex cone]
+% 	The set $K$ defined in \ref{eq:admissible} is a nonempty, closed and convex cone in $V$.\eop
+% \end{proposition}
+% \begin{proof}
+% 	$K$ is nonempty, since $0\in K$. Let $\lambda\in[0,\infty)$ and $v\in K\subset V$. Since $V$ is a vector space, we have $\lambda v\in V$. Furthermore,
+% 	\begin{equation*}
+% 		(\lambda v)_\mathrm{n} = \gamma(\lambda v)\cdot \mathrm{n} = (\lambda\gamma v)\cdot \mathrm{n} = \lambda(\gamma v\cdot n) = \lambda v_\mathrm{n}.
+% 	\end{equation*}
+% 	Since $v_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$ and $\lambda\ge 0$, we also have $\lambda v_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$, i.e.\ $\lambda v\in K$. Thus $K$ is a cone in $V$. Let $v,w\in K$ and $\theta\in[0,1]$ and set $u:= \theta v+(1-\theta)w\in V$. Then we have
+% 	\begin{equation*}
+% 		u_\mathrm{n} =(\gamma u)\cdot \mathrm{n} = (\theta\gamma v+(1-\theta)\gamma w)\cdot \mathrm{n} = \theta(\gamma v\cdot \mathrm{n})+(1-\theta)(\gamma w\cdot\mathrm{n}) = \theta v_\mathrm{n}+(1-\theta)w_\mathrm{n}
+% 	\end{equation*}
+% 	and $v_\mathrm{n},w_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$ and $\theta,(1-\theta)\ge 0$. Thus,
+% 	\begin{equation*}
+% 		\theta v_\mathrm{n}+(1-\theta)w_\mathrm{n}\le 0\quad\text{a.e.\ on }\Gamma_C,
+% 	\end{equation*}
+% 	i.e.\ $u\in K$, which makes $K$ convex.
+% \end{proof}
+
+\subsubsection{Small Strain Elasticity}
+
+We start by defining the {\em small strain tensor} for a displacement function $u\in H^1(\Omega;\R^d)$, which is similar to the symmetric part of square matrices but for the gradient $\nabla u$ of $u$ and through which the deformation of the body $\overline{\Omega}$ by $u$ is quantified.
+\begin{definition}[Small Strain Tensor]
+	The {\tt small strain tensor} $\varepsilon$ is defined by
+	\begin{equation*}
+		\varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right)\in L^2(\Omega;\mathrm{Sym}^2(\R^d)),\quad u\in H^1(\Omega;\R^d).
+	\end{equation*}
+\end{definition}
+We denote by $\mathrm{Sym}^2(\R^d)$ the space of symmetric second order tensors,
+\begin{equation*}
+	\mathrm{Sym}^2(\R^d)
+	:=\left\{ s\in \R^d\otimes \R^d \;\middle|\; s^\top = s \right\}\cong \left\{ S\in \R^{d\times d}\;\middle|\; S^\top=S \right\}.
 \end{equation*}
+For $s,t\in \mathrm{Sym}^2(\R^d)$ we write denote by
+\begin{equation*}
+	s:t:=\sum_{1\le i,j\le d} s_{ij}t_{ij}
+\end{equation*}
+If $A(x)$ is a fourth order tensor and $s\in \mathrm{Sym}^2(\R^d)$, we use the {\em double contraction}
+\begin{equation*}
+	(A(x):s)_{ij}:=\sum_{1\le k,l\le d} A_{ijkl}(x)s_{kl},
+	\quad
+	s:A(x):s:=\sum_{1\le i,j,k,l\le d} A_{ijkl}(x)s_{ij}s_{kl}.
+\end{equation*}
+In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $A$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $A$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body.
+\begin{definition}[Elasticity tensor field]
+	An {\tt elasticity tensor field} is a mapping
+	\begin{equation*}
+		A:\Omega\to \cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))
+	\end{equation*}
+	such that the coefficients satisfy the symmetries
+	\begin{equation*}
+		A_{ijkl}(x)=A_{jikl}(x)=A_{ijlk}(x)=A_{klij}(x),
+		\quad 1\le i,j,k,l\le d,
+	\end{equation*}
+	and the uniform ellipticity condition, i.e.\ there exists $\alpha_A>0$ such that for a.e.\ $x\in\Omega$
+	and for all $s\in \mathrm{Sym}^2(\R^d)$,
+	\begin{equation*}
+		s:A(x):s \ge \alpha_A\, (s:s).
+	\end{equation*}
+	Moreover, there exists $C_A>0$ such that
+	\begin{equation*}
+		|A_{ijkl}(x)|\le C_A \qquad \text{for a.e.\ }x\in\Omega,\ \ 1\le i,j,k,l\le d.
+	\end{equation*}
+\end{definition}
+
+The {\em internal} and {\em surface forces} in the body $\overline{\Omega}$ are described by the {\em Cauchy stress tensor}.
+
+\begin{definition}[Cauchy stress tensor]
+	Let $A$ be an elasticity tensor field. For $u\in H^1(\Omega;\R^d)$ we define the
+	\emph{(linear) Cauchy stress tensor} as the field $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$
+	given a.e.\ by
+	\begin{equation*}
+		\sigma(u)(x):=A(x):\varepsilon(u)(x).
+	\end{equation*}
+\end{definition}
 On $V$, we define the symmetric, bilinear and continuous form
 \begin{equation*}
 	a(u,v):= \int_\Omega \sigma(u):\varepsilon(v)\;\dx,\quad u,v\in V
 \end{equation*}
 representing the {\em virtual work of internal forces} and the linear bounded functional
 \begin{equation*}
-	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot v\;\ds,\quad v\in V,\,f\in L^2(\Omega;\R^d),\, F\in L^2(\Gamma_N;\R^d).
+	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot \gamma v\;\ds,\quad  v\in V,
 \end{equation*}
-with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary.
+with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}.
 
 \subsubsection{Energy Minimization}
 
-The total {\em mechanical energy} associated with the elastic body is given by the functional
-\begin{equation*}
-	\cJ(v):= \frac{1}{2}a(v,v)-L(v),\quad v\in V.
-\end{equation*}
+% The total {\em mechanical energy} associated with the elastic body is given by the functional
+% \begin{equation*}
+% 	\cJ(v):= \frac{1}{2}a(v,v)-\ell(v),\quad v\in V.
+% \end{equation*}
 
 
 
 \subsubsection{Variational inequality as an optimality condition}
-\begin{proposition}
-	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex and let $\ell\in L^*$ be a linear and bounded functional. Furthermore, let $a:V\times V\to\R$ be a symmetric bilinear form that is {\em coercive} on $V$, i.e. there exists $\alpha >0$ such that
-	\begin{equation*}
-		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
-	\end{equation*}
-	Then $u\in K$ fulfills
-	\begin{equation}\label{eq:varineq}
-		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K
-	\end{equation}
-	if and only if $u\in K$ is a minimizer of the corresponding energy functional, i.e.
-	\begin{equation}\label{eq:energymin}
-		u\in \argmin_{v\in K}\cJ(v) := \argmin_{v\in K} \frac{1}{2}a(v,v)-\ell(v).
-	\end{equation}
-\end{proposition}
-\begin{proof}
-	Let $u\in K$ fulfill \eqref{eq:energymin} and let $v\in K$ be arbitrary. Since $K$ is convex,
-	\begin{equation*}
-		u_t:= u+t(v-u)\in K\quad\forall t\in[0,1].
-	\end{equation*}
-	Set $J(t):= \cJ(u_t)$. Then $J$ has a minimum at $t = 0$ since $u_0 = u$ minimizes $\cJ$. Thus we have $J^\prime(0^+)\ge 0$ and therefore
-	\begin{equation*}
-		J^\prime(t) =  a(u+t(v-u),v-u)-\ell(v-u)\quad\Longrightarrow\quad J^\prime(0) = a(u,v-u)-L(v-u)\ge 0.
-	\end{equation*}
-	Now assume that $u\in K$ fulfills \eqref{eq:varineq} and set $w:= v-u$ for some arbitrary $v\in K$. Then
-	\begin{equation*}
-		\cJ(v)-\cJ(u) = a(u,w)+\frac{1}{2}a(w,w)-L(w)\quad\text{and}\quad a(u,w)-L(w)\ge 0
-	\end{equation*}
-	which directly implies
-	\begin{equation*}
-		\cJ(v)-\cJ(u)\ge \frac{1}{2}a(w,w)\ge 0.
-	\end{equation*}
-	Therefore $\cJ(u)\le \cJ(v)$ for every $v\in K$ which makes $u\in K$ a minimizer of $\cJ$.
-\end{proof}
+% \begin{proposition}
+% 	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex and let $\ell\in L^*$ be a linear and bounded functional. Furthermore, let $a:V\times V\to\R$ be a symmetric bilinear form that is {\em coercive} on $V$, i.e. there exists $\alpha >0$ such that
+% 	\begin{equation*}
+% 		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
+% 	\end{equation*}
+% 	Then $u\in K$ fulfills
+% 	\begin{equation}\label{eq:varineq}
+% 		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K
+% 	\end{equation}
+% 	if and only if $u\in K$ is a minimizer of the corresponding energy functional, i.e.
+% 	\begin{equation}\label{eq:energymin}
+% 		u\in \argmin_{v\in K}\cJ(v) := \argmin_{v\in K} \frac{1}{2}a(v,v)-\ell(v).
+% 	\end{equation}
+% \end{proposition}
+% \begin{proof}
+% 	Let $u\in K$ fulfill \eqref{eq:energymin} and let $v\in K$ be arbitrary. Since $K$ is convex,
+% 	\begin{equation*}
+% 		u_t:= u+t(v-u)\in K\quad\forall t\in[0,1].
+% 	\end{equation*}
+% 	Set $J(t):= \cJ(u_t)$. Then $J$ has a minimum at $t = 0$ since $u_0 = u$ minimizes $\cJ$. Thus we have $J^\prime(0^+)\ge 0$ and therefore
+% 	\begin{equation*}
+% 		J^\prime(t) =  a(u+t(v-u),v-u)-\ell(v-u)\quad\Longrightarrow\quad J^\prime(0) = a(u,v-u)-L(v-u)\ge 0.
+% 	\end{equation*}
+% 	Now assume that $u\in K$ fulfills \eqref{eq:varineq} and set $w:= v-u$ for some arbitrary $v\in K$. Then
+% 	\begin{equation*}
+% 		\cJ(v)-\cJ(u) = a(u,w)+\frac{1}{2}a(w,w)-L(w)\quad\text{and}\quad a(u,w)-L(w)\ge 0
+% 	\end{equation*}
+% 	which directly implies
+% 	\begin{equation*}
+% 		\cJ(v)-\cJ(u)\ge \frac{1}{2}a(w,w)\ge 0.
+% 	\end{equation*}
+% 	Therefore $\cJ(u)\le \cJ(v)$ for every $v\in K$ which makes $u\in K$ a minimizer of $\cJ$.
+% \end{proof}
 \subsubsection{Existence and Uniqueness}
 \subsection{Strong Formulation}
 \subsection{Mixed Formulation}

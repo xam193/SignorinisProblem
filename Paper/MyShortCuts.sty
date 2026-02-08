@@ -136,6 +136,34 @@
 \newtheorem*{claim}{Claim}
 \newtheorem{notation}{Notation}[section]
 
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% Ein gemeinsamer Stil für alle Theorem-Boxen
+\tcbset{
+    myThmBox/.style={
+            enhanced,
+            breakable,
+            colback=gray!8,      % light grey background
+            colframe=gray!60,    % Rahmenfarbe
+            boxrule=0.6pt,       % Rahmenstärke
+            arc=2mm,             % abgerundete Ecken (0mm = eckig)
+            left=1mm,right=1mm,top=1mm,bottom=1mm, % Innenabstand
+            before skip=10pt,
+            after skip=10pt,
+        }
+}
+
+% NACH deinen \newtheorem-Definitionen:
+\tcolorboxenvironment{theorem}{myThmBox}
+\tcolorboxenvironment{proposition}{myThmBox}
+\tcolorboxenvironment{definition}{myThmBox}
+\tcolorboxenvironment{lemma}{myThmBox}
+\tcolorboxenvironment{example}{myThmBox}
+\tcolorboxenvironment{corollary}{myThmBox}
+\tcolorboxenvironment{remark}{myThmBox}
+\tcolorboxenvironment{problem}{myThmBox}
+
 % End of ...
 \def\qed{\hfill{\rule{1.5ex}{1.5ex}}}
 \def\eop{\hfill{$\Box$}}
