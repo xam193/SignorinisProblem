@@ -20,7 +20,7 @@ which are assumed to be open in $\Gamma$ and where each part is subject to diffe
 \begin{equation*}
 	\forall x\in\Gamma_D:\;x + u(x) = x \quad\Longrightarrow \quad\trace(u)|_{\Gamma_D} = 0.
 \end{equation*}
-The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ has positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
+The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ and $\Gamma_D$ have positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
 \begin{figure}[!h]
 	\centering
 	\input{Figures/setup.tex}
@@ -94,7 +94,7 @@ If $A(x)$ is a fourth order tensor and $s\in \mathrm{Sym}^2(\R^d)$, we use the {
 	s:A(x):s:=\sum_{1\le i,j,k,l\le d} A_{ijkl}(x)s_{ij}s_{kl}.
 \end{equation*}
 In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $A$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $A$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body.
-\begin{definition}[Elasticity tensor field]
+\begin{definition}[Elasticity tensor field]\label{def:elastfield}
 	An {\tt elasticity tensor field} is a mapping
 	\begin{equation*}
 		A:\Omega\to \cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))
@@ -125,22 +125,209 @@ The {\em internal} and {\em surface forces} in the body $\overline{\Omega}$ are 
 		\sigma(u)(x):=A(x):\varepsilon(u)(x).
 	\end{equation*}
 \end{definition}
-On $V$, we define the symmetric, bilinear and continuous form
-\begin{equation*}
+On $V$, we define the symmetric bilinear form
+\begin{equation}\label{eq:symbil}
 	a(u,v):= \int_\Omega \sigma(u):\varepsilon(v)\;\dx,\quad u,v\in V
-\end{equation*}
+\end{equation}
 representing the {\em virtual work of internal forces} and the linear bounded functional
-\begin{equation*}
+\begin{equation}\label{eq:laodfunc}
 	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot \gamma v\;\ds,\quad  v\in V,
-\end{equation*}
-with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}.
+\end{equation}
+with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}. In the following, we want to prove standard properties of $a$ and $\ell$. For this, we will need the following inequality, which is a result of {\rm Korn's second inequality} (\cite[Theorem 3.3]{book}) and the {\em Peetre--Tartar} Lemma (\cite[Lemma~3.5]{book}).
+
+\begin{theorem}\label{th:korn}
+	Assuming $|\Gamma_D|>0$, there exists a constant $C_K>0$ such that
+	\begin{equation*}
+		\|v\|_{H^1(\Omega)} \le C_K\|\varepsilon(v)\|_{L^2(\Omega)}
+		\quad \forall v\in V.
+	\end{equation*}
+\end{theorem}
+
+\begin{corollary}\label{cor:normeq}
+	The norms $\|\varepsilon(\cdot)\|_{L^2(\Omega)}$ and $\|\cdot\|_{H^1(\Omega)}$ are equivalent on $V$ with
+	\begin{equation*}
+		\frac{1}{C_K}\|v\|_{H^1(\Omega)}\le \|\varepsilon(v)\|_{L^2(\Omega)}\le \|v\|_{H^1(\Omega)}\quad\forall v\in V.
+	\end{equation*}
+\end{corollary}
+\begin{proof}
+	The first inequality follows directly form Theorem \ref{th:korn}. Furthermore, we have
+	Furthermore, for all $v\in V$ we have
+	\begin{equation*}
+		|\varepsilon(v)(x)| = \left|\frac{1}{2}(\nabla v(x) +\nabla v^\top)\right|\le \frac{1}{2}(|\nabla v(x)|+|\nabla v(x)^\top|) = |\nabla v(x)|
+	\end{equation*}
+	and thus
+	\begin{equation*}
+		\|\varepsilon(v)\|_{L^2(\Omega)}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{L^2(\Omega)}^2\le \|v\|_{H^1(\Omega)}^2,
+	\end{equation*}
+	where the last inequality holds due to the definition
+	\begin{equation*}
+		\|v\|_{H^1(\Omega)}^2 = \|v\|_{L^2(\Omega)}^2 + \|\nabla v\|_{L^2(\Omega)}^2.
+	\end{equation*}
+\end{proof}
+
+\begin{lemma}
+	The symmetric bilinear form $a$ defined in \eqref{eq:symbil} is
+	\begin{itemize}
+		\item[i)] bounded, i.e.\ there exists $C_1<\infty$ such that
+		      \begin{equation*}
+			      |a(u,v)|\le C_1\|u\|_{H^1(\Omega)}\|v\|_{H^1(\Omega)}\quad \forall v,w\in V,
+		      \end{equation*}
+		\item[ii)] $V$-elliptic, i.e.\ there exist $C_2>0$ such that
+		      \begin{equation*}
+			      a(v,v)\ge C_A\|v\|_{H^1(\Omega)}^2\quad \forall v\in V\setminus\{0\}.
+		      \end{equation*}
+	\end{itemize}
+	Moreover, the linear functional $\ell$ defined in \eqref{eq:laodfunc} is bounded, i.e.\ there exists $C_3>0$ such that
+	\begin{equation*}
+		|\ell (v)|\le C_3\|v\|_{H^1(\Omega)}.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Let $v,w\in V$ be arbitrary. Then
+	\begin{equation*}
+		|a(v,w)|\le \|A\varepsilon(v)\|_{L^2(\Omega)}\|\varepsilon(w)\|_{L^2(\Omega)}
+	\end{equation*}
+	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_A>0$ such that
+	\begin{equation*}
+		\|A\varepsilon(v)\|_{L^2(\Omega)}\le C_A\|\varepsilon(v)\|_{L^2(\Omega)}.
+	\end{equation*}
+	Combining this with the second inequality form Corollary \ref{cor:normeq} we have
+	\begin{equation*}
+		|a(v,w)|\le C_A\|\varepsilon(v)\|_{L^2(\Omega)}\|\varepsilon(w)\|_{L^2(\Omega)}\le C_A\|v\|_{H^1(\Omega)}\|w\|_{H^1(\Omega)}.
+	\end{equation*}
+	The ellipticity of $a$ follows by
+	\begin{equation*}
+		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\|\varepsilon(v)\|^2_{L^2(\Omega)},
+	\end{equation*}
+	where $\alpha_A>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Corollary \ref{cor:normeq} finally yields
+	\begin{equation*}
+		a(v,v)\ge \alpha_A\|\varepsilon(v)\|_{L^2(\Omega)}^2\ge \alpha_A\left(\frac{1}{C_K}\|v\|_{H^1(\Omega)}\right)^2 = \frac{\alpha_A}{C_K^2}\|v\|_{H^1(\Omega)}^2.
+	\end{equation*}
+	Again by Cauchy--Schwarz inequality,
+	\begin{equation*}
+		|\ell(v)|\le \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)}+\|F\|_{L^2(\Gamma_N)}\|\gamma v\|_{L^2(\Gamma_N)}\quad \forall v\in V.
+	\end{equation*}
+	By the Trace Theorem \ref{th:tracetheorem} there exists $C_\mathrm{tr}>0$ such that
+	\begin{equation*}
+		\|\gamma v\|_{L^2(\Gamma_N)}\le \|\gamma v\|_{L^2(\Gamma)}\le \|\gamma v\|_{H^{1/2}(\Gamma)}\le C_\mathrm{tr} \|v\|_{H^1(\Omega)} \quad \forall v\in V.
+	\end{equation*}
+	Finally,
+	\begin{equation*}
+		|\ell(v)|\le \bigl(\|f\|_{L^2(\Omega)} + C_{\mathrm{tr}}\|F\|_{L^2(\Gamma_N)}\bigr)\|v\|_{H^1(\Omega)}.
+	\end{equation*}
+\end{proof}
 
 \subsubsection{Energy Minimization}
 
-% The total {\em mechanical energy} associated with the elastic body is given by the functional
-% \begin{equation*}
-% 	\cJ(v):= \frac{1}{2}a(v,v)-\ell(v),\quad v\in V.
-% \end{equation*}
+The total potential energy of the elastic body is given by the linear bounded functional
+\begin{equation}\label{eq:energyfunc}
+	\cJ(v):=\frac{1}{2}a(v,v)-\ell(v),\quad v\in V.
+\end{equation}
+In the presence of unilateral contact, the admissible displacements are restricted to the closed convex set $K\subset V$. We therefore consider the following constrained minimization problem.
+\begin{problem}[Signorini's Problem as Energy Minimization]\label{pr:signorini1}
+Find $u\in K$ such that
+\begin{equation*}
+	\cJ(u)=\min_{v\in K}\cJ(v).
+\end{equation*}
+\end{problem}
+
+We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. This consist of existence and uniqueness of a solution and continuous dependency of the solution on the load functional $\ell$. We start by {\em coercivity} and {\em weakly lower semicontinuity} of the functional $\cJ$ to be minimized over $K$
+
+\begin{proposition}[Weakly lower semicontinuity of $\cJ$ on $V$] The functional $\cJ$ defined in \eqref{eq:energyfunc} is weakly lower semicontinuous on $V$, i.e. if $v_n\rightharpoonup v$ in $V$, then
+	\begin{equation*}
+		\cJ(v)\le \liminf_{n\to \infty}\cJ(v_n).
+	\end{equation*}
+\end{proposition}
+\begin{proof}
+	% why is this a norm?
+	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ we define the norm
+	\begin{equation*}
+		\|s\|_A^2:=\int_\Omega s:A:s\;\dx,
+	\end{equation*}
+	such that $a(v,v) = \|\varepsilon(v)\|_A^2$. Furthermore, $v\mapsto \varepsilon(v)$ defines a linear and bounded operator $V\to L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Assuming that $v_n\rightharpoonup v$ in $V$, we have
+	\begin{equation*}
+		\varepsilon(v_n) \rightharpoonup \varepsilon(v)\quad \text{in } L^2(\Omega;\mathrm{Sym}^2(\R^d))
+	\end{equation*}
+	% why is every norm w.l.s.c.?
+	and noticing that every norm is weakly lower semicontinuous, we have
+	\begin{equation*}
+		a(v,v) = \|\varepsilon(v)\|_A^2\le \liminf_{n\to\infty}\|\varepsilon(v_n)\|_A^2 = \liminf_{n\to\infty} a(v_n,v_n).
+	\end{equation*}
+	Thus, we conclude
+	\begin{equation*}
+		\cJ(v) = \frac{1}{2}a(v,v)-\ell(v)\le \frac{1}{2}\liminf_{n\to\infty}a(v_n,v_n)-\lim_{n\to\infty}\ell(v_n) = \liminf_{n\to\infty}\cJ(v_n),
+	\end{equation*}
+	where $\ell(v_n)\to\ell(v)$ because $\ell\in V^*$.
+\end{proof}
+
+\begin{proposition}[Strict Convexity of $\cJ$]
+	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex on $V$.
+\end{proposition}
+\begin{proof}
+	For $u,v\in V$ and $t\in[0,1]$, we set $w_t:=(1-t)u+tv$. Then
+	\begin{equation*}
+		a(w_t,w_t) = (1-t)a(u,u)+ta(v,v)-t(1-t)a(u-v,u-v)
+	\end{equation*}
+	and
+	\begin{equation*}
+		\ell(w_t) = (1-t)\ell(u)+t\ell(v).
+	\end{equation*}
+	Together, we have
+	\begin{equation*}
+		\cJ(w_t) = (1-t)\cJ(u)+t\cJ(v)-\frac{1}{2}t(1-t)a(u-v,u-v).
+	\end{equation*}
+	If $u\neq v$ then $u-v\neq 0$ and thus by $V$-ellipticity of $a$ we have $a(u-v,u-v)>0$ and $t(1-t)>0$. This implies
+	\begin{equation*}
+		\cJ(w_t)<(1-t)\cJ(u)+t\cJ(v).
+	\end{equation*}
+\end{proof}
+
+% \begin{proposition}[Weak lower semicontinuity of $\cJ$ on $V$]
+% 	The functional $\cJ$ defined in \eqref{eq:energyfunc} is weakly lower semicontinuous on $V$, i.e.\
+% 	if $v_n\rightharpoonup v$ in $V$, then
+% 	\begin{equation*}
+% 		\cJ(v)\le \liminf_{n\to\infty}\cJ(v_n).
+% 	\end{equation*}
+% \end{proposition}
+% \begin{proof}
+% 	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ set
+% 	\begin{equation*}
+% 		\|s\|_A^2 := \int_\Omega s:A:s\,\dx.
+% 	\end{equation*}
+% 	By uniform ellipticity of $A$, $\|\cdot\|_A$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
+% 	equivalent to $\|\cdot\|_{L^2(\Omega)}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_A^2$.
+% 	The mapping $v\mapsto \varepsilon(v)$ is linear and bounded from $V$ to
+% 	$L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Hence, if $v_n\rightharpoonup v$ in $V$, then
+% 	\begin{equation*}
+% 		\varepsilon(v_n)\rightharpoonup \varepsilon(v)
+% 		\quad\text{in } L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+% 	\end{equation*}
+% 	Since norms are weakly lower semicontinuous, we obtain
+% 	\begin{equation*}
+% 		a(v,v)=\|\varepsilon(v)\|_A^2
+% 		\le \liminf_{n\to\infty}\|\varepsilon(v_n)\|_A^2
+% 		= \liminf_{n\to\infty} a(v_n,v_n).
+% 	\end{equation*}
+% 	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_n)\to \ell(v)$.
+% 	Therefore,
+% 	\begin{equation*}
+% 		\cJ(v)=\frac12 a(v,v)-\ell(v)
+% 		\le \frac12 \liminf_{n\to\infty} a(v_n,v_n) - \lim_{n\to\infty}\ell(v_n)
+% 		= \liminf_{n\to\infty}\cJ(v_n).
+% 	\end{equation*}
+% \end{proof}
+
+
+\begin{theorem}[Well-posedness of Problem \ref{pr:signorini1}]
+	There exists a unique minimizer $u\in K$ of $\cJ$ and it holds
+	\begin{equation*}
+		\cJ(v)-\cJ(u)\ge \frac{\alpha}{2}\|v-u\|_V^2
+		\quad \forall v\in K,
+	\end{equation*}
+	Consequently, Problem \ref{pr:signorini1} has a unique solution and error norms are controlled by energy differences.
+\end{theorem}
+
+
 
 
 
