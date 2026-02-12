@@ -34,7 +34,7 @@ The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which 
 We start by introducing the energy space and the admissible set of displacements.
 Homogeneous Dirichlet boundary conditions on $\Gamma_D$ are incorporated by
 \begin{equation}\label{eq:energyspace}
-	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \trace(v)=0 \text{ on }\Gamma_D\right\}.
+	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \trace(v)=0 \text{ on }\Gamma_D\right\}\subset H^1(\Omega;\R^d).
 \end{equation}
 Let $\gamma=\trace:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ denote the trace operator.
 For $v\in V$ we define the normal component of the boundary displacement on $\Gamma_C$ by
@@ -133,93 +133,84 @@ representing the {\em virtual work of internal forces} and the linear bounded fu
 \begin{equation}\label{eq:laodfunc}
 	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot \gamma v\;\ds,\quad  v\in V,
 \end{equation}
-with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}. In the following, we want to prove standard properties of $a$ and $\ell$. For this, we will need the following inequality, which is a result of {\rm Korn's second inequality} (\cite[Theorem 3.3]{book}) and the {\em Peetre--Tartar} Lemma (\cite[Lemma~3.5]{book}).
+with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}. In the following, we want to prove standard properties of $a$ and $\ell$. For this, we will need the following inequalities. The first inequality is a result of {\em Korn's second inequality} (\cite[Theorem 3.3]{book}) and the {\em Peetre--Tartar} Lemma~(\cite[Lemma~3.5]{book}). Therefore only the proof of the second one is given.
 
-\begin{theorem}\label{th:korn}
+\begin{lemma}\label{lem:korn}
 	Assuming $|\Gamma_D|>0$, there exists a constant $C_K>0$ such that
 	\begin{equation*}
-		\|v\|_{H^1(\Omega)} \le C_K\|\varepsilon(v)\|_{L^2(\Omega)}
-		\quad \forall v\in V.
+		\frac{1}{C_K}\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \quad \forall v\in V.
 	\end{equation*}
-\end{theorem}
-
-\begin{corollary}\label{cor:normeq}
-	The norms $\|\varepsilon(\cdot)\|_{L^2(\Omega)}$ and $\|\cdot\|_{H^1(\Omega)}$ are equivalent on $V$ with
-	\begin{equation*}
-		\frac{1}{C_K}\|v\|_{H^1(\Omega)}\le \|\varepsilon(v)\|_{L^2(\Omega)}\le \|v\|_{H^1(\Omega)}\quad\forall v\in V.
-	\end{equation*}
-\end{corollary}
+\end{lemma}
 \begin{proof}
-	The first inequality follows directly form Theorem \ref{th:korn}. Furthermore, we have
-	Furthermore, for all $v\in V$ we have
+	We prove the second inequality. For all $v\in V$ we have
 	\begin{equation*}
 		|\varepsilon(v)(x)| = \left|\frac{1}{2}(\nabla v(x) +\nabla v^\top)\right|\le \frac{1}{2}(|\nabla v(x)|+|\nabla v(x)^\top|) = |\nabla v(x)|
 	\end{equation*}
 	and thus
 	\begin{equation*}
-		\|\varepsilon(v)\|_{L^2(\Omega)}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{L^2(\Omega)}^2\le \|v\|_{H^1(\Omega)}^2,
+		\|\varepsilon(v)\|_{0,\Omega}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{0,\Omega}^2\le \|v\|_{1,\Omega}^2,
 	\end{equation*}
 	where the last inequality holds due to the definition
 	\begin{equation*}
-		\|v\|_{H^1(\Omega)}^2 = \|v\|_{L^2(\Omega)}^2 + \|\nabla v\|_{L^2(\Omega)}^2.
+		\|v\|_{1,\Omega}^2 = \|v\|_{0,\Omega}^2 + \|\nabla v\|_{0,\Omega}^2.
 	\end{equation*}
 \end{proof}
 
-\begin{lemma}
-	The symmetric bilinear form $a$ defined in \eqref{eq:symbil} is
+\begin{proposition}\label{pr:aproperties}
+	The symmetric bilinear form $a:V\times V\to \R$ defined in \eqref{eq:symbil} is
 	\begin{itemize}
-		\item[i)] bounded, i.e.\ there exists $C_1<\infty$ such that
+		\item[i)] {\em bounded}, i.e.\ for all $v,w\in V$ there exists $C_1<\infty$ such that
 		      \begin{equation*}
-			      |a(u,v)|\le C_1\|u\|_{H^1(\Omega)}\|v\|_{H^1(\Omega)}\quad \forall v,w\in V,
+			      |a(u,v)|\le C_1\|u\|_{1,\Omega}\|v\|_{1,\Omega}\quad \text{with}\quad C_1 = C_A,
 		      \end{equation*}
-		\item[ii)] $V$-elliptic, i.e.\ there exist $C_2>0$ such that
+		\item[ii)] $V${\em -elliptic}, i.e.\ for all $v\in V\setminus\{0\}$ there exist $C_2>0$ such that
 		      \begin{equation*}
-			      a(v,v)\ge C_A\|v\|_{H^1(\Omega)}^2\quad \forall v\in V\setminus\{0\}.
+			      a(v,v)\ge C_2\|v\|_{1,\Omega}^2\quad\text{with}\quad C_2 = \frac{\alpha_A}{C_K^2}.
 		      \end{equation*}
 	\end{itemize}
-	Moreover, the linear functional $\ell$ defined in \eqref{eq:laodfunc} is bounded, i.e.\ there exists $C_3>0$ such that
-	\begin{equation*}
-		|\ell (v)|\le C_3\|v\|_{H^1(\Omega)}.
-	\end{equation*}
-\end{lemma}
+	Moreover, the linear functional $\ell$ defined in \eqref{eq:laodfunc} is {\em bounded}, i.e.\ for all $v\in V$ there exists $C_3>0$ such that
+	\begin{equation}\label{eq:ellbound}
+		|\ell (v)|\le C_3\|v\|_{1,\Omega}\quad\text{with}\quad C_3 = \|f\|_{0,\Omega}+ C_\mathrm{tr}\|F\|_{0,\Gamma_N}.
+	\end{equation}
+\end{proposition}
 \begin{proof}
 	Let $v,w\in V$ be arbitrary. Then
 	\begin{equation*}
-		|a(v,w)|\le \|A\varepsilon(v)\|_{L^2(\Omega)}\|\varepsilon(w)\|_{L^2(\Omega)}
+		|a(v,w)|\le \|A:\varepsilon(v)\|_{0,\Omega}\|\varepsilon(w)\|_{0,\Omega}
 	\end{equation*}
 	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_A>0$ such that
 	\begin{equation*}
-		\|A\varepsilon(v)\|_{L^2(\Omega)}\le C_A\|\varepsilon(v)\|_{L^2(\Omega)}.
+		\|A:\varepsilon(v)\|_{0,\Omega}\le C_A\|\varepsilon(v)\|_{0,\Omega}.
 	\end{equation*}
-	Combining this with the second inequality form Corollary \ref{cor:normeq} we have
+	Combining this with the second inequality form Lemma \ref{lem:korn} we have
 	\begin{equation*}
-		|a(v,w)|\le C_A\|\varepsilon(v)\|_{L^2(\Omega)}\|\varepsilon(w)\|_{L^2(\Omega)}\le C_A\|v\|_{H^1(\Omega)}\|w\|_{H^1(\Omega)}.
+		|a(v,w)|\le C_A\|\varepsilon(v)\|_{0,\Omega}\|\varepsilon(w)\|_{0,\Omega}\le C_A\|v\|_{1,\Omega}\|w\|_{1,\Omega}.
 	\end{equation*}
 	The ellipticity of $a$ follows by
 	\begin{equation*}
-		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\|\varepsilon(v)\|^2_{L^2(\Omega)},
+		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\|\varepsilon(v)\|^2_{0,\Omega},
 	\end{equation*}
-	where $\alpha_A>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Corollary \ref{cor:normeq} finally yields
+	where $\alpha_A>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
 	\begin{equation*}
-		a(v,v)\ge \alpha_A\|\varepsilon(v)\|_{L^2(\Omega)}^2\ge \alpha_A\left(\frac{1}{C_K}\|v\|_{H^1(\Omega)}\right)^2 = \frac{\alpha_A}{C_K^2}\|v\|_{H^1(\Omega)}^2.
+		a(v,v)\ge \alpha_A\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_A\left(\frac{1}{C_K}\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_A}{C_K^2}\|v\|_{1,\Omega}^2.
 	\end{equation*}
 	Again by Cauchy--Schwarz inequality,
 	\begin{equation*}
-		|\ell(v)|\le \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)}+\|F\|_{L^2(\Gamma_N)}\|\gamma v\|_{L^2(\Gamma_N)}\quad \forall v\in V.
+		|\ell(v)|\le \|f\|_{0,\Omega}\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\|\gamma v\|_{0,\Gamma_N}\quad \forall v\in V.
 	\end{equation*}
 	By the Trace Theorem \ref{th:tracetheorem} there exists $C_\mathrm{tr}>0$ such that
 	\begin{equation*}
-		\|\gamma v\|_{L^2(\Gamma_N)}\le \|\gamma v\|_{L^2(\Gamma)}\le \|\gamma v\|_{H^{1/2}(\Gamma)}\le C_\mathrm{tr} \|v\|_{H^1(\Omega)} \quad \forall v\in V.
+		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr} \|v\|_{1,\Omega} \quad \forall v\in V.
 	\end{equation*}
 	Finally,
 	\begin{equation*}
-		|\ell(v)|\le \bigl(\|f\|_{L^2(\Omega)} + C_{\mathrm{tr}}\|F\|_{L^2(\Gamma_N)}\bigr)\|v\|_{H^1(\Omega)}.
+		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\quad \forall v\in V.
 	\end{equation*}
 \end{proof}
 
-\subsubsection{Energy Minimization}
+\subsubsection{Energy Minimization and Well-posedness}
 
-The total potential energy of the elastic body is given by the linear bounded functional
+The total potential energy of the elastic body is given by the quadratic functional
 \begin{equation}\label{eq:energyfunc}
 	\cJ(v):=\frac{1}{2}a(v,v)-\ell(v),\quad v\in V.
 \end{equation}
@@ -227,42 +218,15 @@ In the presence of unilateral contact, the admissible displacements are restrict
 \begin{problem}[Signorini's Problem as Energy Minimization]\label{pr:signorini1}
 Find $u\in K$ such that
 \begin{equation*}
-	\cJ(u)=\min_{v\in K}\cJ(v).
+	\cJ(u)=\min_{v\in K}\cJ(v) = \min_{v\in K}\frac{1}{2}a(v,v)-\ell(v).
 \end{equation*}
 \end{problem}
 
-We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. This consist of existence and uniqueness of a solution and continuous dependency of the solution on the load functional $\ell$. We start by {\em coercivity} and {\em weakly lower semicontinuity} of the functional $\cJ$ to be minimized over $K$
+We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. This consist of existence and uniqueness of a solution and continuous dependency of the solution on the load functional $\ell$. We start by the uniqueness, which follows directly by the strict convexity of $\cJ$ and the convexity of $K$.
 
-\begin{proposition}[Weakly lower semicontinuity of $\cJ$ on $V$] The functional $\cJ$ defined in \eqref{eq:energyfunc} is weakly lower semicontinuous on $V$, i.e. if $v_n\rightharpoonup v$ in $V$, then
-	\begin{equation*}
-		\cJ(v)\le \liminf_{n\to \infty}\cJ(v_n).
-	\end{equation*}
-\end{proposition}
-\begin{proof}
-	% why is this a norm?
-	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ we define the norm
-	\begin{equation*}
-		\|s\|_A^2:=\int_\Omega s:A:s\;\dx,
-	\end{equation*}
-	such that $a(v,v) = \|\varepsilon(v)\|_A^2$. Furthermore, $v\mapsto \varepsilon(v)$ defines a linear and bounded operator $V\to L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Assuming that $v_n\rightharpoonup v$ in $V$, we have
-	\begin{equation*}
-		\varepsilon(v_n) \rightharpoonup \varepsilon(v)\quad \text{in } L^2(\Omega;\mathrm{Sym}^2(\R^d))
-	\end{equation*}
-	% why is every norm w.l.s.c.?
-	and noticing that every norm is weakly lower semicontinuous, we have
-	\begin{equation*}
-		a(v,v) = \|\varepsilon(v)\|_A^2\le \liminf_{n\to\infty}\|\varepsilon(v_n)\|_A^2 = \liminf_{n\to\infty} a(v_n,v_n).
-	\end{equation*}
-	Thus, we conclude
-	\begin{equation*}
-		\cJ(v) = \frac{1}{2}a(v,v)-\ell(v)\le \frac{1}{2}\liminf_{n\to\infty}a(v_n,v_n)-\lim_{n\to\infty}\ell(v_n) = \liminf_{n\to\infty}\cJ(v_n),
-	\end{equation*}
-	where $\ell(v_n)\to\ell(v)$ because $\ell\in V^*$.
-\end{proof}
-
-\begin{proposition}[Strict Convexity of $\cJ$]
-	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex on $V$.
-\end{proposition}
+\begin{lemma}[Strict Convexity of $\cJ$]\label{lem:Jconvex}
+	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex.
+\end{lemma}
 \begin{proof}
 	For $u,v\in V$ and $t\in[0,1]$, we set $w_t:=(1-t)u+tv$. Then
 	\begin{equation*}
@@ -282,90 +246,184 @@ We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Th
 	\end{equation*}
 \end{proof}
 
-% \begin{proposition}[Weak lower semicontinuity of $\cJ$ on $V$]
-% 	The functional $\cJ$ defined in \eqref{eq:energyfunc} is weakly lower semicontinuous on $V$, i.e.\
-% 	if $v_n\rightharpoonup v$ in $V$, then
-% 	\begin{equation*}
-% 		\cJ(v)\le \liminf_{n\to\infty}\cJ(v_n).
-% 	\end{equation*}
-% \end{proposition}
-% \begin{proof}
-% 	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ set
-% 	\begin{equation*}
-% 		\|s\|_A^2 := \int_\Omega s:A:s\,\dx.
-% 	\end{equation*}
-% 	By uniform ellipticity of $A$, $\|\cdot\|_A$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
-% 	equivalent to $\|\cdot\|_{L^2(\Omega)}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_A^2$.
-% 	The mapping $v\mapsto \varepsilon(v)$ is linear and bounded from $V$ to
-% 	$L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Hence, if $v_n\rightharpoonup v$ in $V$, then
-% 	\begin{equation*}
-% 		\varepsilon(v_n)\rightharpoonup \varepsilon(v)
-% 		\quad\text{in } L^2(\Omega;\mathrm{Sym}^2(\R^d)).
-% 	\end{equation*}
-% 	Since norms are weakly lower semicontinuous, we obtain
-% 	\begin{equation*}
-% 		a(v,v)=\|\varepsilon(v)\|_A^2
-% 		\le \liminf_{n\to\infty}\|\varepsilon(v_n)\|_A^2
-% 		= \liminf_{n\to\infty} a(v_n,v_n).
-% 	\end{equation*}
-% 	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_n)\to \ell(v)$.
-% 	Therefore,
-% 	\begin{equation*}
-% 		\cJ(v)=\frac12 a(v,v)-\ell(v)
-% 		\le \frac12 \liminf_{n\to\infty} a(v_n,v_n) - \lim_{n\to\infty}\ell(v_n)
-% 		= \liminf_{n\to\infty}\cJ(v_n).
-% 	\end{equation*}
-% \end{proof}
-
-
-\begin{theorem}[Well-posedness of Problem \ref{pr:signorini1}]
-	There exists a unique minimizer $u\in K$ of $\cJ$ and it holds
+\begin{proposition}[Uniqueness of Minimizer of $\cJ$]\label{pr:Junique}
+	If there exists a minimizer of the functional $\cJ$ defined in \eqref{eq:energyfunc}, then it is unique.
+\end{proposition}
+\begin{proof}
+	Assume that there exist two minimizers $u_1,u_2\in K$ of $\cJ$ on $K$, i.e.
+	\begin{equation}\label{eq:u1u2min}
+		\cJ(u_1)=\min_{v\in K}\cJ(v)=\cJ(u_2).
+	\end{equation}
+	If $u_1=u_2$ there is nothing to show. Hence assume $u_1\neq u_2$.
+	Since $K$ is convex, for every $t\in(0,1)$ the convex combination
 	\begin{equation*}
-		\cJ(v)-\cJ(u)\ge \frac{\alpha}{2}\|v-u\|_V^2
-		\quad \forall v\in K,
+		w_t := (1-t)u_1+tu_2
 	\end{equation*}
-	Consequently, Problem \ref{pr:signorini1} has a unique solution and error norms are controlled by energy differences.
-\end{theorem}
+	belongs to $K$. By Lemma \ref{lem:Jconvex}, $\cJ$ is strictly convex and therefore we have
+	\begin{equation*}
+		\cJ(w_t) < (1-t)\cJ(u_1)+t\cJ(u_2)\quad \forall t\in(0,1).
+	\end{equation*}
+	Using \eqref{eq:u1u2min}, this yields
+	\begin{equation*}
+		\cJ(w_t) < (1-t)\min_{v\in K}\cJ(v)+t\min_{v\in K}\cJ(v)=\min_{v\in K}\cJ(v).
+	\end{equation*}
+	This contradicts the definition of the minimum, since $w_t\in K$.
+	Therefore the assumption $u_1\neq u_2$ is false and we conclude $u_1=u_2$.
+\end{proof}
+It remains to show the existence of at least one minimizer. For this, we verify {\em coercivity} and {\em weakly lower semicontinuity} of the functional $\cJ$. The proof requires the following lemma.
 
+\begin{lemma}[Weak lower semicontinuity of the norm]\label{lem:normwlsc}
+	Let $(X,\|\cdot\|_X)$ be a normed space. Then $\|\cdot\|_X:X\to \R_{\ge 0}$ is a weakly lower semicontinuous functional, i.e.\ if $x_j\rightharpoonup x$ in $X$, then
+	\begin{equation*}
+		\|x\|_X \le \liminf_{j\to\infty}\|x_j\|_X.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Let $J:X\to X^{**}$ be the canonical embedding defined by
+	\begin{equation*}
+		(Jx)(\varphi):=\varphi(x)\qquad \forall \varphi\in X^*.
+	\end{equation*}
+	By the Hahn--Banach theorem, $J$ is an isometry, i.e.\ $\|Jx\|_{X^{**}}=\|x\|_X$ for all $x\in X$.
+	Therefore,
+	\begin{equation*}
+		\|x\|_X
+		=\|Jx\|_{X^{**}}
+		=\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |(Jx)(\varphi)|
+		=\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |\varphi(x)|.
+	\end{equation*}
+	If $x_j\rightharpoonup x$ in $X$, then $\varphi(x_j)\to\varphi(x)$ for all $\varphi\in X^*$ and hence
+	\begin{equation*}
+		\|x\|_X
+		= \sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |\varphi(x)|
+		\le \liminf_{j\to\infty}\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}}|\varphi(x_j)|
+		= \liminf_{j\to\infty}\|x_j\|_X.
+	\end{equation*}
+\end{proof}
+
+\begin{lemma}[$\cJ$ is coercive and w.l.s.c.]\label{lem:Jcoercivewlsc}
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} is
+	\begin{itemize}
+		\item[i)]{\em coercive} on $V$, i.e.
+		      \begin{equation*}
+			      \cJ(v)\to\infty\quad\text{as}\quad\|v\|_{1,\Omega}\to\infty,
+		      \end{equation*}
+		\item[ii)] {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
+		      \begin{equation*}
+			      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
+		      \end{equation*}
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{-1,\Omega}\|v\|_{1,\Omega}$. Hence
+	\begin{equation*}
+		\cJ(v)=\frac12 a(v,v)-\ell(v)
+		\ge \frac{\alpha}{2}\|v\|_{1,\Omega}^2-\|\ell\|_{-1,\Omega}\|v\|_{1,\Omega}
+		\xrightarrow{ \ \|v\|_{1,\Omega}\to\infty \ }\infty.
+	\end{equation*}
+	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ set
+	\begin{equation*}
+		\|s\|_A^2 := \int_\Omega s:A:s\,\dx.
+	\end{equation*}
+	By uniform ellipticity of $A$, the map $\|\cdot\|_A$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
+	equivalent to $\|\cdot\|_{0,\Omega}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_A^2$.
+	The mapping $v\mapsto \varepsilon(v)$ is linear and bounded from $V$ to
+	$L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Hence, if $v_j\rightharpoonup v$ in $V$, then
+	\begin{equation*}
+		\varepsilon(v_j)\rightharpoonup \varepsilon(v)
+		\quad\text{in } L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+	\end{equation*}
+	Since norms are weakly lower semicontinuous by Lemma \ref{lem:normwlsc}, we obtain
+	\begin{equation*}
+		a(v,v)=\|\varepsilon(v)\|_A^2
+		\le \liminf_{j\to\infty}\|\varepsilon(v_j)\|_A^2
+		= \liminf_{j\to\infty} a(v_j,v_j).
+	\end{equation*}
+	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_j)\to \ell(v)$.
+	Therefore,
+	\begin{equation*}
+		\cJ(v)=\frac12 a(v,v)-\ell(v)
+		\le \frac12 \liminf_{j\to\infty} a(v_j,v_j) - \lim_{j\to\infty}\ell(v_j)
+		= \liminf_{j\to\infty}\cJ(v_j).
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}[Existence of Minimizer of $\cJ$]\label{pr:Jex}
+	The functional $\cJ$ defined in \ref{eq:energyfunc} has at least one minimizer $u\in K$.
+\end{proposition}
+\begin{proof}
+	Set
+	\begin{equation*}
+		M := \inf_{v\in K}\cJ(v)\in[-\infty,\infty).
+	\end{equation*}
+	Since $0\in K$ we have $M\le \cJ(0)=0$, hence $M$ is finite from above.
+	Let $\{v_j\}_{j\in\N}\subset K$ be a minimizing sequence, i.e.\
+	$\cJ(v_j)\to M$ as $j\to\infty$. By Lemma \ref{lem:Jcoercivewlsc} {\em i)}, $\cJ$ is coercive and thus, the sequence $\{v_j\}_{j\in\N}$ is bounded in $V$. Since $V$ is a Hilbert space, there exist a subsequence $\{v_{j_k}\}_{k\in\N}$ and some $u\in V$ such that
+	\begin{equation*}
+		v_{j_k} \rightharpoonup u \quad\text{in } V.
+	\end{equation*}
+	As $K\subset V$ is closed and convex, it is weakly closed in $V$. Hence $u\in K$. By Lemma \ref{lem:Jcoercivewlsc} {\em ii)}, $\cJ$ is weakly lower semicontinuity and thus we obtain
+	\begin{equation*}
+		\cJ(u)\le \liminf_{k\to\infty}\cJ(v_{j_k})=M=\inf_{v\in K}\cJ(v),
+	\end{equation*}
+	so $u$ is a minimizer of $\cJ$ on $K$.
+\end{proof}
+
+\begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]
+	The functional $\cJ$ defined in \ref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
+	\begin{equation}\label{eq:ustab}
+		\|u\|_{1,\Omega} \le \frac{2C_K^2}{\alpha_A}\left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right).
+	\end{equation}
+	Consequently, Problem \ref{pr:signorini1} has a unique stable solution.
+\end{corollary}
+\begin{proof}
+	By Proposition~\ref{pr:Jex} we have existence of a solution $u\in K$ to Problem~\ref{pr:signorini1} and by Proposition~\ref{pr:Junique} it is unique. It remains to prove the a-priori bound. Since $u$ is the unique minimizer, it holds
+	\begin{equation*}
+		\cJ(u)\le \cJ(0)=0\quad\Longrightarrow\quad \frac{1}{2}a(u,u)\le \ell(u).
+	\end{equation*}
+	By Proposition~\ref{pr:aproperties} {\em ii)} we have
+	\begin{equation*}
+		a(u,u)\ge \frac{\alpha_A}{C_K^2}\|u\|_{1,\Omega}^2
+	\end{equation*}
+	and thus
+	\begin{equation*}
+		\frac{\alpha_A}{2C_K^2}\|u\|_{1,\Omega}^2\le \frac{1}{2}a(u,u)\le |\ell(u)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}^2,
+	\end{equation*}
+	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
+\end{proof}
 
 
 
 
 \subsubsection{Variational inequality as an optimality condition}
-% \begin{proposition}
-% 	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex and let $\ell\in L^*$ be a linear and bounded functional. Furthermore, let $a:V\times V\to\R$ be a symmetric bilinear form that is {\em coercive} on $V$, i.e. there exists $\alpha >0$ such that
-% 	\begin{equation*}
-% 		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
-% 	\end{equation*}
-% 	Then $u\in K$ fulfills
-% 	\begin{equation}\label{eq:varineq}
-% 		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K
-% 	\end{equation}
-% 	if and only if $u\in K$ is a minimizer of the corresponding energy functional, i.e.
-% 	\begin{equation}\label{eq:energymin}
-% 		u\in \argmin_{v\in K}\cJ(v) := \argmin_{v\in K} \frac{1}{2}a(v,v)-\ell(v).
-% 	\end{equation}
-% \end{proposition}
-% \begin{proof}
-% 	Let $u\in K$ fulfill \eqref{eq:energymin} and let $v\in K$ be arbitrary. Since $K$ is convex,
-% 	\begin{equation*}
-% 		u_t:= u+t(v-u)\in K\quad\forall t\in[0,1].
-% 	\end{equation*}
-% 	Set $J(t):= \cJ(u_t)$. Then $J$ has a minimum at $t = 0$ since $u_0 = u$ minimizes $\cJ$. Thus we have $J^\prime(0^+)\ge 0$ and therefore
-% 	\begin{equation*}
-% 		J^\prime(t) =  a(u+t(v-u),v-u)-\ell(v-u)\quad\Longrightarrow\quad J^\prime(0) = a(u,v-u)-L(v-u)\ge 0.
-% 	\end{equation*}
-% 	Now assume that $u\in K$ fulfills \eqref{eq:varineq} and set $w:= v-u$ for some arbitrary $v\in K$. Then
-% 	\begin{equation*}
-% 		\cJ(v)-\cJ(u) = a(u,w)+\frac{1}{2}a(w,w)-L(w)\quad\text{and}\quad a(u,w)-L(w)\ge 0
-% 	\end{equation*}
-% 	which directly implies
-% 	\begin{equation*}
-% 		\cJ(v)-\cJ(u)\ge \frac{1}{2}a(w,w)\ge 0.
-% 	\end{equation*}
-% 	Therefore $\cJ(u)\le \cJ(v)$ for every $v\in K$ which makes $u\in K$ a minimizer of $\cJ$.
-% \end{proof}
-\subsubsection{Existence and Uniqueness}
+
+\begin{proposition}[Energy minimization and variational inequality]
+	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex, $\ell\in V'$ linear and bounded,
+	and let $a:V\times V\to\R$ be symmetric, continuous and coercive on $V$, i.e.\ there exists $\alpha>0$ such that
+	\begin{equation}
+		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
+	\end{equation}
+	Then $u\in K$ minimizes $\mathcal{J}(v)=\frac12 a(v,v)-\ell(v)$ over $K$ if and only if $u\in K$ satisfies
+	\begin{equation}\label{eq:VI}
+		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
+	\end{equation}
+\end{proposition}
+
+\begin{proof}
+	Assume $u\in K$ minimizes $\mathcal{J}$ and let $v\in K$. By convexity, $u_t:=u+t(v-u)\in K$ for all $t\in[0,1]$.
+	Set $\phi(t):=\mathcal{J}(u_t)$. Then $\phi$ attains a minimum at $t=0$, hence $\phi'(0^+)\ge 0$.
+	A direct computation yields
+	\begin{equation}
+		\phi'(t)=a(u+t(v-u),v-u)-\ell(v-u),
+	\end{equation}
+	and therefore $\phi'(0)=a(u,v-u)-\ell(v-u)\ge 0$, i.e.\ \eqref{eq:VI}.
+
+	Conversely, let $u\in K$ satisfy \eqref{eq:VI}. For arbitrary $v\in K$ set $w:=v-u$. Then
+	\begin{equation}
+		\mathcal{J}(v)-\mathcal{J}(u)=a(u,w)-\ell(w)+\frac12 a(w,w)\ge \frac12 a(w,w)\ge 0,
+	\end{equation}
+	which shows that $u$ is a minimizer of $\mathcal{J}$ on $K$.
+\end{proof}
+
 \subsection{Strong Formulation}
 \subsection{Mixed Formulation}
 \subsubsection{Mixed Weak Foram as Sattlepoint}
