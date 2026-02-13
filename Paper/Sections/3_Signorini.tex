@@ -85,13 +85,13 @@ We denote by $\mathrm{Sym}^2(\R^d)$ the space of symmetric second order tensors,
 \end{equation*}
 For $s,t\in \mathrm{Sym}^2(\R^d)$ we write denote by
 \begin{equation*}
-	s:t:=\sum_{1\le i,j\le d} s_{ij}t_{ij}
+	s:t:=\sum_{i = 1}^d \sum_{j = 1}^d s_{ij}\,t_{ij}
 \end{equation*}
 If $A(x)$ is a fourth order tensor and $s\in \mathrm{Sym}^2(\R^d)$, we use the {\em double contraction}
 \begin{equation*}
-	(A(x):s)_{ij}:=\sum_{1\le k,l\le d} A_{ijkl}(x)s_{kl},
+	(A(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d A_{ijkl}(x)s_{kl},
 	\quad
-	s:A(x):s:=\sum_{1\le i,j,k,l\le d} A_{ijkl}(x)s_{ij}s_{kl}.
+	s:A(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^dA_{ijkl}(x)s_{ij}s_{kl}.
 \end{equation*}
 In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $A$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $A$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body.
 \begin{definition}[Elasticity tensor field]\label{def:elastfield}
@@ -102,16 +102,15 @@ In linear elasticity, stresses are assumed to depend linearly on strains. The ma
 	such that the coefficients satisfy the symmetries
 	\begin{equation*}
 		A_{ijkl}(x)=A_{jikl}(x)=A_{ijlk}(x)=A_{klij}(x),
-		\quad 1\le i,j,k,l\le d,
+		\quad \forall 1\le i,j,k,l\le d,
 	\end{equation*}
 	and the uniform ellipticity condition, i.e.\ there exists $\alpha_A>0$ such that for a.e.\ $x\in\Omega$
-	and for all $s\in \mathrm{Sym}^2(\R^d)$,
 	\begin{equation*}
-		s:A(x):s \ge \alpha_A\, (s:s).
+		s:A(x):s \ge \alpha_A\, (s:s)\quad \forall s\in \mathrm{Sym}^2(\R^d).
 	\end{equation*}
-	Moreover, there exists $C_A>0$ such that
+	Moreover, there exists $C_A>0$ such that for a.e.\ $x\in\Omega$
 	\begin{equation*}
-		|A_{ijkl}(x)|\le C_A \qquad \text{for a.e.\ }x\in\Omega,\ \ 1\le i,j,k,l\le d.
+		|A_{ijkl}(x)|\le C_A \quad \forall 1\le i,j,k,l\le d.
 	\end{equation*}
 \end{definition}
 
@@ -133,12 +132,12 @@ representing the {\em virtual work of internal forces} and the linear bounded fu
 \begin{equation}\label{eq:laodfunc}
 	\ell(v):= \int_\Omega f\cdot v\;\dx  + \int_{\Gamma_N} F\cdot \gamma v\;\ds,\quad  v\in V,
 \end{equation}
-with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}. In the following, we want to prove standard properties of $a$ and $\ell$. For this, we will need the following inequalities. The first inequality is a result of {\em Korn's second inequality} (\cite[Theorem 3.3]{book}) and the {\em Peetre--Tartar} Lemma~(\cite[Lemma~3.5]{book}). Therefore only the proof of the second one is given.
+with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em surface loads} $F\in L^2(\Gamma_N;\R^d)$ on the Neumann boundary, representing the {\em virtual work of external forces}. In the following, we want to prove standard properties of $a$ and $\ell$. For this, we will need the following inequalities. The first inequality is a result of {\em Korn's second inequality} (\cite[Theorem 3.3]{book} and \cite[Section 3.5.2]{book}) and the {\em Peetre--Tartar} Lemma~(\cite[Lemma~3.5]{book}). Therefore only the proof of the second one is given.
 
 \begin{lemma}\label{lem:korn}
 	Assuming $|\Gamma_D|>0$, there exists a constant $C_K>0$ such that
 	\begin{equation*}
-		\frac{1}{C_K}\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \quad \forall v\in V.
+		C_K^{-1}\,\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \quad \forall v\in V.
 	\end{equation*}
 \end{lemma}
 \begin{proof}
@@ -161,50 +160,50 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 	\begin{itemize}
 		\item[i)] {\em bounded}, i.e.\ for all $v,w\in V$ there exists $C_1<\infty$ such that
 		      \begin{equation*}
-			      |a(u,v)|\le C_1\|u\|_{1,\Omega}\|v\|_{1,\Omega}\quad \text{with}\quad C_1 = C_A,
+			      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}\quad \text{with}\quad C_1 = C_A,
 		      \end{equation*}
 		\item[ii)] $V${\em -elliptic}, i.e.\ for all $v\in V\setminus\{0\}$ there exist $C_2>0$ such that
 		      \begin{equation*}
-			      a(v,v)\ge C_2\|v\|_{1,\Omega}^2\quad\text{with}\quad C_2 = \frac{\alpha_A}{C_K^2}.
+			      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2\quad\text{with}\quad C_2 = \frac{\alpha_A}{C_K^2}.
 		      \end{equation*}
 	\end{itemize}
 	Moreover, the linear functional $\ell$ defined in \eqref{eq:laodfunc} is {\em bounded}, i.e.\ for all $v\in V$ there exists $C_3>0$ such that
 	\begin{equation}\label{eq:ellbound}
-		|\ell (v)|\le C_3\|v\|_{1,\Omega}\quad\text{with}\quad C_3 = \|f\|_{0,\Omega}+ C_\mathrm{tr}\|F\|_{0,\Gamma_N}.
+		|\ell (v)|\le C_3\,\|v\|_{1,\Omega}\quad\text{with}\quad C_3 = \max\{1,C_\mathrm{tr}\}\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right).
 	\end{equation}
 \end{proposition}
 \begin{proof}
 	Let $v,w\in V$ be arbitrary. Then
 	\begin{equation*}
-		|a(v,w)|\le \|A:\varepsilon(v)\|_{0,\Omega}\|\varepsilon(w)\|_{0,\Omega}
+		|a(v,w)|\le \|A:\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}
 	\end{equation*}
 	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_A>0$ such that
 	\begin{equation*}
-		\|A:\varepsilon(v)\|_{0,\Omega}\le C_A\|\varepsilon(v)\|_{0,\Omega}.
+		\|A:\varepsilon(v)\|_{0,\Omega}\le C_A\,\|\varepsilon(v)\|_{0,\Omega}.
 	\end{equation*}
 	Combining this with the second inequality form Lemma \ref{lem:korn} we have
 	\begin{equation*}
-		|a(v,w)|\le C_A\|\varepsilon(v)\|_{0,\Omega}\|\varepsilon(w)\|_{0,\Omega}\le C_A\|v\|_{1,\Omega}\|w\|_{1,\Omega}.
+		|a(v,w)|\le C_A\,\|\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}\le C_A\,\|v\|_{1,\Omega}\,\|w\|_{1,\Omega}.
 	\end{equation*}
 	The ellipticity of $a$ follows by
 	\begin{equation*}
-		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\|\varepsilon(v)\|^2_{0,\Omega},
+		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\,\|\varepsilon(v)\|^2_{0,\Omega},
 	\end{equation*}
 	where $\alpha_A>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
 	\begin{equation*}
-		a(v,v)\ge \alpha_A\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_A\left(\frac{1}{C_K}\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_A}{C_K^2}\|v\|_{1,\Omega}^2.
+		a(v,v)\ge \alpha_A\,\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_A\,\left(C_K^{-1}\,\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_A}{C_K^2}\,\|v\|_{1,\Omega}^2.
 	\end{equation*}
 	Again by Cauchy--Schwarz inequality,
 	\begin{equation*}
-		|\ell(v)|\le \|f\|_{0,\Omega}\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\|\gamma v\|_{0,\Gamma_N}\quad \forall v\in V.
+		|\ell(v)|\le \|f\|_{0,\Omega}\,\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}\quad \forall v\in V.
 	\end{equation*}
 	By the Trace Theorem \ref{th:tracetheorem} there exists $C_\mathrm{tr}>0$ such that
 	\begin{equation*}
-		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr} \|v\|_{1,\Omega} \quad \forall v\in V.
+		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \quad \forall v\in V.
 	\end{equation*}
 	Finally,
 	\begin{equation*}
-		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\quad \forall v\in V.
+		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\,\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\le \max\{1,C_\mathrm{tr}\}\,\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)\quad \forall v\in V.
 	\end{equation*}
 \end{proof}
 
@@ -212,13 +211,13 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 
 The total potential energy of the elastic body is given by the quadratic functional
 \begin{equation}\label{eq:energyfunc}
-	\cJ(v):=\frac{1}{2}a(v,v)-\ell(v),\quad v\in V.
+	\cJ(v):=\frac{1}{2}\,a(v,v)-\ell(v),\quad v\in V.
 \end{equation}
 In the presence of unilateral contact, the admissible displacements are restricted to the closed convex set $K\subset V$. We therefore consider the following constrained minimization problem.
 \begin{problem}[Signorini's Problem as Energy Minimization]\label{pr:signorini1}
 Find $u\in K$ such that
 \begin{equation*}
-	\cJ(u)=\min_{v\in K}\cJ(v) = \min_{v\in K}\frac{1}{2}a(v,v)-\ell(v).
+	\cJ(u)=\min_{v\in K}\cJ(v) = \min_{v\in K}\,\frac{1}{2}\,a(v,v)-\ell(v).
 \end{equation*}
 \end{problem}
 
@@ -238,7 +237,7 @@ We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Th
 	\end{equation*}
 	Together, we have
 	\begin{equation*}
-		\cJ(w_t) = (1-t)\cJ(u)+t\cJ(v)-\frac{1}{2}t(1-t)a(u-v,u-v).
+		\cJ(w_t) = (1-t)\cJ(u)+t\cJ(v)-\frac{1}{2}\,t(1-t)a(u-v,u-v).
 	\end{equation*}
 	If $u\neq v$ then $u-v\neq 0$ and thus by $V$-ellipticity of $a$ we have $a(u-v,u-v)>0$ and $t(1-t)>0$. This implies
 	\begin{equation*}
@@ -281,7 +280,7 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \begin{proof}
 	Let $J:X\to X^{**}$ be the canonical embedding defined by
 	\begin{equation*}
-		(Jx)(\varphi):=\varphi(x)\qquad \forall \varphi\in X^*.
+		(Jx)(\varphi):=\varphi(x)\quad \forall \varphi\in X^*.
 	\end{equation*}
 	By the Hahn--Banach theorem, $J$ is an isometry, i.e.\ $\|Jx\|_{X^{**}}=\|x\|_X$ for all $x\in X$.
 	Therefore,
@@ -316,13 +315,13 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \begin{proof}
 	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{-1,\Omega}\|v\|_{1,\Omega}$. Hence
 	\begin{equation*}
-		\cJ(v)=\frac12 a(v,v)-\ell(v)
-		\ge \frac{\alpha}{2}\|v\|_{1,\Omega}^2-\|\ell\|_{-1,\Omega}\|v\|_{1,\Omega}
+		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
+		\ge \frac{\alpha}{2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{-1,\Omega}\,\|v\|_{1,\Omega}
 		\xrightarrow{ \ \|v\|_{1,\Omega}\to\infty \ }\infty.
 	\end{equation*}
 	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ set
 	\begin{equation*}
-		\|s\|_A^2 := \int_\Omega s:A:s\,\dx.
+		\|s\|_A^2 := \int_\Omega s:A:s\;\dx.
 	\end{equation*}
 	By uniform ellipticity of $A$, the map $\|\cdot\|_A$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
 	equivalent to $\|\cdot\|_{0,\Omega}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_A^2$.
@@ -341,8 +340,8 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_j)\to \ell(v)$.
 	Therefore,
 	\begin{equation*}
-		\cJ(v)=\frac12 a(v,v)-\ell(v)
-		\le \frac12 \liminf_{j\to\infty} a(v_j,v_j) - \lim_{j\to\infty}\ell(v_j)
+		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
+		\le \frac{1}{2}\,\liminf_{j\to\infty} a(v_j,v_j) - \lim_{j\to\infty}\ell(v_j)
 		= \liminf_{j\to\infty}\cJ(v_j).
 	\end{equation*}
 \end{proof}
@@ -368,63 +367,189 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	so $u$ is a minimizer of $\cJ$ on $K$.
 \end{proof}
 
-\begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]
+\begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]\label{cor:wellposed}
 	The functional $\cJ$ defined in \ref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
 	\begin{equation}\label{eq:ustab}
-		\|u\|_{1,\Omega} \le \frac{2C_K^2}{\alpha_A}\left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right).
+		\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_A}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
 	\end{equation}
 	Consequently, Problem \ref{pr:signorini1} has a unique stable solution.
 \end{corollary}
 \begin{proof}
 	By Proposition~\ref{pr:Jex} we have existence of a solution $u\in K$ to Problem~\ref{pr:signorini1} and by Proposition~\ref{pr:Junique} it is unique. It remains to prove the a-priori bound. Since $u$ is the unique minimizer, it holds
 	\begin{equation*}
-		\cJ(u)\le \cJ(0)=0\quad\Longrightarrow\quad \frac{1}{2}a(u,u)\le \ell(u).
+		\cJ(u)\le \cJ(0)=0\quad\Longrightarrow\quad \frac{1}{2}\,a(u,u)\le \ell(u).
 	\end{equation*}
 	By Proposition~\ref{pr:aproperties} {\em ii)} we have
 	\begin{equation*}
-		a(u,u)\ge \frac{\alpha_A}{C_K^2}\|u\|_{1,\Omega}^2
+		a(u,u)\ge \frac{\alpha_A}{C_K^2}\,\|u\|_{1,\Omega}^2
 	\end{equation*}
 	and thus
 	\begin{equation*}
-		\frac{\alpha_A}{2C_K^2}\|u\|_{1,\Omega}^2\le \frac{1}{2}a(u,u)\le |\ell(u)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}^2,
+		\frac{\alpha_A}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}^2,
 	\end{equation*}
 	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
 \end{proof}
 
-
-
-
 \subsubsection{Variational inequality as an optimality condition}
+Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike the weak formulation of conventional simple boundary value problems, here we do not end up with a variational equation, but with a variational inequality. This is derived by a first-order optimality condition on the functional $\cJ$.
 
-\begin{proposition}[Energy minimization and variational inequality]
-	Let $V$ be a real Hilbert space, $\emptyset\neq K\subset V$ closed and convex, $\ell\in V'$ linear and bounded,
-	and let $a:V\times V\to\R$ be symmetric, continuous and coercive on $V$, i.e.\ there exists $\alpha>0$ such that
-	\begin{equation}
-		a(v,v)\ge \alpha\|v\|_V^2\quad \forall v\in V.
+\begin{lemma}[Fréchet differentiability of $\cJ$]\label{lem:Jdiff}
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} is Fréchet differentiable on $V$. Its derivative at $u\in V$ is given by
+	\begin{equation}\label{eq:Jprime}
+		\cJ'(u)[h] = a(u,h)-\ell(h)\quad \forall h\in V.
 	\end{equation}
-	Then $u\in K$ minimizes $\mathcal{J}(v)=\frac12 a(v,v)-\ell(v)$ over $K$ if and only if $u\in K$ satisfies
-	\begin{equation}\label{eq:VI}
-		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
+\end{lemma}
+\begin{proof}
+	Let $u,h\in V$ and $t\in\R$. Using bilinearity of $a$ and linearity of $\ell$ we compute
+	\begin{equation*}
+		\cJ(u+th)-\cJ(u)
+		=\frac12\,\left(a(u+th,u+th)-a(u,u)\right)-t\ell(h)
+		= t\left(a(u,h)-\ell(h)\right)+\frac{t^2}{2}\,a(h,h).
+	\end{equation*}
+	Hence
+	\begin{equation*}
+		\frac{\cJ(u+th)-\cJ(u)-t(a(u,h)-\ell(h))}{\|th\|_{1,\Omega}}
+		=\frac{|t|}{2}\,\frac{|a(h,h)|}{\|h\|_{1,\Omega}}\le \frac{|t|}{2}\,C_A\,\|h\|_{1,\Omega}\xrightarrow{\ t\to 0 \ }0,
+	\end{equation*}
+	by boundedness of $a$ as proven in Proposition \ref{pr:aproperties}.
+\end{proof}
+
+\begin{proposition}[First-order optimality condition on convex sets]\label{pr:FOC}
+	A function $u\in K$ minimizes $\cJ$ over $K$ if and only if it satisfies the variational inequality
+	\begin{equation}\label{eq:firstorderopt}
+		\cJ^\prime(u)[v-u]\ge 0\quad\forall v\in K.
 	\end{equation}
 \end{proposition}
-
 \begin{proof}
-	Assume $u\in K$ minimizes $\mathcal{J}$ and let $v\in K$. By convexity, $u_t:=u+t(v-u)\in K$ for all $t\in[0,1]$.
-	Set $\phi(t):=\mathcal{J}(u_t)$. Then $\phi$ attains a minimum at $t=0$, hence $\phi'(0^+)\ge 0$.
-	A direct computation yields
-	\begin{equation}
-		\phi'(t)=a(u+t(v-u),v-u)-\ell(v-u),
-	\end{equation}
-	and therefore $\phi'(0)=a(u,v-u)-\ell(v-u)\ge 0$, i.e.\ \eqref{eq:VI}.
+	Assume first that $u\in K$ minimizes $\cJ$ over $K$ and let $v\in K$.
+	By convexity of $K$ we have $u+t(v-u)\in K$ for all $t\in[0,1]$.
+	Define $\phi(t):=\cJ(u+t(v-u))$. Then $\phi$ attains its minimum at $t=0$, hence $\phi'(0^+)\ge 0$.
+	Using the chain rule and Fréchet differentiability of $\cJ$ we obtain
+	\begin{equation*}
+		\phi'(0^+)=\cJ'(u)[v-u]\ge 0.
+	\end{equation*}
+	Conversely, assume \eqref{eq:firstorderopt}. Let $v\in K$ be arbitrary and set $h:=v-u$. By Taylor expansion of the quadratic functional $\cJ$ we have
+	\begin{equation*}
+		\cJ(u+h)-\cJ(u)=\cJ'(u)[h]+\frac12\,a(h,h).
+	\end{equation*}
+	By \eqref{eq:firstorderopt}, $\cJ'(u)[h]\ge 0$, and since $a(h,h)\ge 0$ we conclude $\cJ(v)\ge \cJ(u)$ for all $v\in K$. Hence $u$ is a minimizer over $K$.
+\end{proof}
 
-	Conversely, let $u\in K$ satisfy \eqref{eq:VI}. For arbitrary $v\in K$ set $w:=v-u$. Then
-	\begin{equation}
-		\mathcal{J}(v)-\mathcal{J}(u)=a(u,w)-\ell(w)+\frac12 a(w,w)\ge \frac12 a(w,w)\ge 0,
+Combining Lemma \ref{lem:Jdiff} and Proposition \ref{pr:FOC}, $u\in K$ solves Problem \ref{pr:signorini1} if and only if
+\begin{equation*}
+	\cJ^\prime(u)[v-u] = a(u,v-u)-\ell(v-u)\ge 0 \quad \forall v\in K.
+\end{equation*}
+This is the first weak formulation of Signorini's problem as a variational inequality.
+
+\begin{problem}[Weak Formulation of Signorini's Problem]\label{pr:signorini2}
+Find $u\in K$ such that
+\begin{equation*}
+	a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
+\end{equation*}
+\end{problem}
+
+Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} in the sense that each solution to the one of the problems is a solution to the other problem (Proposition \ref{pr:FOC}). The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another useful equivalent formulation is the following.
+
+\begin{problem}[Weak Formulation of Signorini's Problem]\label{pr:signorini3}
+Find $u\in K$ such that
+\begin{equation*}
+	\begin{cases}
+		a(u,u) = \ell(u), &                 \\[2pt]
+		a(u,v)\ge \ell(v) & \forall v\in K.
+	\end{cases}
+\end{equation*}
+\end{problem}
+
+\begin{proposition}[Equivalence of Problem \ref{pr:signorini2} and Problem \ref{pr:signorini3}] Any solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini3} and vise versa.
+\end{proposition}
+\begin{proof}
+	Let $u\in K$ solve Problem \ref{pr:signorini3}. Then
+	\begin{equation*}
+		a(u,v-u) = a(u,v)-a(u,u)  = a(u,v)-\ell(u)\ge \ell(v)-\ell(u) = \ell(v,u).
+	\end{equation*}
+	Assuming that $u\in K$ solves Problem \ref{pr:signorini2} and testing $v=0$
+	\begin{equation*}
+		a(u,-u)\ge \ell(-u)\quad\Longleftrightarrow\quad -a(u,u)\ge -\ell(u)\quad\Longleftrightarrow\quad a(u,u)\le \ell(u).
+	\end{equation*}
+	However, testing with $v=2u$ yields $a(u,u)\ge \ell(u)$ and thus $a(u,u) = \ell(u)$. Furthermore, Problem \ref{pr:signorini2} reads
+	\begin{equation*}
+		a(u,v-u) = a(u,v)-a(u,u)\ge \ell(v-u) = \ell(v)-\ell(u)\quad\Longrightarrow\quad a(u,v)\ge a(u,u)+\ell(v)-\ell(u).
+	\end{equation*}
+	Plugging in $a(u,u) = \ell(u)$ yields $a(u,v)\ge \ell(v)$.
+\end{proof}
+
+
+We close this section by providing another stability result on the dependency of solutions to varying source terms as input data.
+
+\begin{proposition}[Lipschitz dependency]\label{pr:lipschitz}
+	Let $f_1,f_2\in L^2(\Omega;\R^d)$ and $F_1,F_2\in L^2(\Gamma_N;\R^d)$ and let $\ell_i\in V'$
+	be the corresponding load functionals
+	\begin{equation*}
+		\ell_i(v)=\int_\Omega f_i\cdot v\;\dx+\int_{\Gamma_N}F_i\cdot \gamma v\;\ds,
+		\quad v\in V,\ i=1,2.
+	\end{equation*}
+	Let $u_i\in K$ be the corresponding (unique) minimizers of
+	\begin{equation*}
+		\cJ_i(v):=\frac{1}{2}\,a(v,v)-\ell_i(v)
+	\end{equation*}
+	over $K$. Then the solutions depend Lipschitz continuously on the data, i.e.
+	\begin{equation*}
+		\|u_1-u_2\|_{1,\Omega}
+		\le \frac{C_K^2}{\alpha_A}\,\|\ell_1-\ell_2\|_{-1,\Omega}
+		\le \frac{C_K^2\,\max\{1,C_{\mathrm{tr}}\}}{\alpha_A}\,\left(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\right).
+	\end{equation*}
+\end{proposition}
+\begin{proof}
+	Since $u_i\in K$ minimizes $\cJ_i$ over the closed convex set $K$ by Proposition \ref{pr:FOC}, it satisfies the first-order optimality condition
+	\begin{equation}\label{eq:VI_i}
+		a(u_i,v-u_i)\ge \ell_i(v-u_i)\quad \forall v\in K,\ i=1,2.
 	\end{equation}
-	which shows that $u$ is a minimizer of $\mathcal{J}$ on $K$.
+	Choose $v=u_2$ in \eqref{eq:VI_i} for $i=1$ and $v=u_1$ in \eqref{eq:VI_i} for $i=2$. This yields
+	\begin{align*}
+		a(u_1,u_2-u_1) & \ge \ell_1(u_2-u_1), \\
+		a(u_2,u_1-u_2) & \ge \ell_2(u_1-u_2).
+	\end{align*}
+	Adding both inequalities and using bilinearity of $a$ gives
+	\begin{equation*}
+		a(u_1-u_2,u_1-u_2)\le (\ell_1-\ell_2)(u_1-u_2).
+	\end{equation*}
+	By the $V$-ellipticity estimate from Proposition~\ref{pr:aproperties}~ii) we have
+	\begin{equation*}
+		a(w,w)\ge \frac{\alpha_A}{C_K^2}\,\|w\|_{1,\Omega}^2\quad \forall w\in V.
+	\end{equation*}
+	Applying this with $w=u_1-u_2$ and estimating the right-hand side by the dual norm
+	$\|\cdot\|_{-1,\Omega}$ yields
+	\begin{equation*}
+		\frac{\alpha_A}{C_K^2}\,\|u_1-u_2\|_{1,\Omega}^2
+		\le a(u_1-u_2,u_1-u_2)
+		\le \|\ell_1-\ell_2\|_{-1,\Omega}\,\|u_1-u_2\|_{1,\Omega}.
+	\end{equation*}
+	If $u_1=u_2$ there is nothing to show. Otherwise we divide by $\|u_1-u_2\|_{1,\Omega}$ and obtain
+	\begin{equation}\label{eq:lipschitz_dual}
+		\|u_1-u_2\|_{1,\Omega}\le \frac{C_K^2}{\alpha_A}\,\|\ell_1-\ell_2\|_{-1,\Omega}.
+	\end{equation}
+	It remains to bound $\|\ell_1-\ell_2\|_{-1,\Omega}$ in terms of $f_1-f_2$ and $F_1-F_2$.
+	Let $v\in V$ be arbitrary. By Cauchy--Schwarz,
+	\begin{align*}
+		|(\ell_1-\ell_2)(v)|
+		 & \le \|f_1-f_2\|_{0,\Omega}\,\|v\|_{0,\Omega}
+		+ \|F_1-F_2\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}.
+	\end{align*}
+	Using $\|v\|_{0,\Omega}\le \|v\|_{1,\Omega}$ and the trace estimate
+	$\|\gamma v\|_{0,\Gamma_N}\le C_{\mathrm{tr}}\,\|v\|_{1,\Omega}$ we obtain
+	\begin{equation*}
+		|(\ell_1-\ell_2)(v)|
+		\le \max\{1,C_{\mathrm{tr}}\}\left(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}.
+	\end{equation*}
+	Dividing by $\|v\|_{1,\Omega}$ and taking the supremum over $0\neq v\in V$ yields
+	\begin{equation*}
+		\|\ell_1-\ell_2\|_{-1,\Omega}
+		\le \max\{1,C_{\mathrm{tr}}\}\left(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\right)
+	\end{equation*}
+	Combining this with \eqref{eq:lipschitz_dual} gives the claim.
 \end{proof}
 
 \subsection{Strong Formulation}
 \subsection{Mixed Formulation}
-\subsubsection{Mixed Weak Foram as Sattlepoint}
+\subsubsection{Mixed Weak Formulation as a Sattlepoint Problem}
 \subsubsection{Well--posedness and inf--sup condition}
