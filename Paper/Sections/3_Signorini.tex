@@ -550,6 +550,52 @@ We close this section by providing another stability result on the dependency of
 \end{proof}
 
 \subsection{Strong Formulation}
+From the previous weak formulations of Signorini's problem, we know there exists a uniquely determined $u\in K$ that solves the problem. To derive a {\em strong} PDE formulation, we have to discuss what was $\sigma(u)\mathrm{n}$ means and in what sense the contact conditions on $\Gamma_C$ can be described as equalities and inequalities.
+
+\subsubsection{Additional regularity and meaning of boundary tractions}
+In the weak setting, the solution satisfies $u\in K\subset H^1(\Omega;\R^d)$. Hence
+$\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ and, by the constitutive law
+$\sigma(u)=A:\varepsilon(u)$, we obtain $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$.
+However, the strong equilibrium equation $-\diver\sigma(u)=f$ requires that $\diver\sigma(u)$
+is well-defined as an $L^2$-function. This motivates the additional regularity assumption
+\begin{equation}
+	\sigma(u)\in H(\diver;\Omega)
+	:=\left\{\tau\in L^2(\Omega;\R^{d\times d})\;\middle|\; \diver\tau\in L^2(\Omega;\R^d)\right\}.
+\end{equation}
+Under this assumption, $\sigma(u)$ possesses a divergence in $L^2(\Omega;\R^d)$, so that
+$-\diver\sigma(u)=f$ can be understood in $L^2(\Omega;\R^d)$. Moreover, the additional regularity $\sigma(u)\in H(\diver;\Omega)$ allows us to define the
+boundary traction $t(u):=\sigma(u)\mathrm n$ in a weak sense. More precisely, there exists a continuous normal trace operator
+\begin{equation}
+	\gamma_{\mathrm n}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d),
+	\qquad
+	\gamma_{\mathrm n}(\tau)=\tau\,\mathrm n,
+\end{equation}
+characterized by the Green identity
+\begin{equation}\label{eq:greenHdiv}
+	\langle \tau\,\mathrm n,\,\gamma v\rangle_{\Gamma}
+	= \int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	\quad
+	\forall v\in H^1(\Omega;\R^d),\ \tau\in H(\diver;\Omega),
+\end{equation}
+where $\langle\cdot,\cdot\rangle_\Gamma$ denotes the duality pairing of
+$H^{-1/2}(\Gamma;\R^d)\times H^{1/2}(\Gamma;\R^d)$. In particular, for $\tau=\sigma(u)$ this
+defines $t(u)=\sigma(u)\mathrm n\in H^{-1/2}(\Gamma;\R^d)$. If $\sigma(u)$ is symmetric, then
+$\sigma(u):\nabla v=\sigma(u):\varepsilon(v)$ and \eqref{eq:greenHdiv} can be rewritten as
+\begin{equation}
+	\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma
+	= \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega (\diver\sigma(u))\cdot v\;\dx
+	\quad \forall v\in H^1(\Omega;\R^d).
+\end{equation}
+
+
+
+
+\subsubsection{Traction operator and Green's identity}
+\subsubsection{Normal and tangential components on \texorpdfstring{$\Gamma_C$}{GammaC}}
+\subsubsection{Strong Signorini conditions on \texorpdfstring{$\Gamma_C$}{GammaC}}
+\subsubsection{Trace spaces and dual cones}
+\subsubsection{Complementarity in duality form and link to the mixed formulation}
+
 \subsection{Mixed Formulation}
 \subsubsection{Mixed Weak Formulation as a Sattlepoint Problem}
 \subsubsection{Well--posedness and inf--sup condition}
