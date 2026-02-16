@@ -553,44 +553,205 @@ We close this section by providing another stability result on the dependency of
 From the previous weak formulations of Signorini's problem, we know there exists a uniquely determined $u\in K$ that solves the problem. To derive a {\em strong} PDE formulation, we have to discuss what was $\sigma(u)\mathrm{n}$ means and in what sense the contact conditions on $\Gamma_C$ can be described as equalities and inequalities.
 
 \subsubsection{Additional regularity and meaning of boundary tractions}
-In the weak setting, the solution satisfies $u\in K\subset H^1(\Omega;\R^d)$. Hence
+
+In the weak setting, the solution only satisfies $u\in K\subset H^1(\Omega;\R^d)$. Consequently,
 $\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ and, by the constitutive law
 $\sigma(u)=A:\varepsilon(u)$, we obtain $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$.
-However, the strong equilibrium equation $-\diver\sigma(u)=f$ requires that $\diver\sigma(u)$
-is well-defined as an $L^2$-function. This motivates the additional regularity assumption
-\begin{equation}
-	\sigma(u)\in H(\diver;\Omega)
-	:=\left\{\tau\in L^2(\Omega;\R^{d\times d})\;\middle|\; \diver\tau\in L^2(\Omega;\R^d)\right\}.
+This regularity is sufficient to interpret the internal virtual work
+\begin{equation*}
+	a(u,v)=\int_\Omega \sigma(u):\varepsilon(v)\;\dx,
+\end{equation*}
+but it is not enough to write the equilibrium equation $-\diver\sigma(u)=f$ pointwise, since the divergence of an $L^2$--field is in general only defined in the sense of distributions.
+
+To formulate a strong equilibrium equation in $L^2(\Omega;\R^d)$ and to give a meaning to boundary tractions, we assume additional regularity of the stress in the space
+\begin{equation}\label{eq:Hdiv}
+	H(\diver;\Omega)
+	:=\left\{\tau\in L^2(\Omega;\R^{d\times d})\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\}.
 \end{equation}
-Under this assumption, $\sigma(u)$ possesses a divergence in $L^2(\Omega;\R^d)$, so that
-$-\diver\sigma(u)=f$ can be understood in $L^2(\Omega;\R^d)$. Moreover, the additional regularity $\sigma(u)\in H(\diver;\Omega)$ allows us to define the
-boundary traction $t(u):=\sigma(u)\mathrm n$ in a weak sense. More precisely, there exists a continuous normal trace operator
-\begin{equation}
-	\gamma_{\mathrm n}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d),
-	\qquad
-	\gamma_{\mathrm n}(\tau)=\tau\,\mathrm n,
+Here $\diver\tau$ is taken row-wise, i.e.\ $(\diver\tau)_i=\sum_{j=1}^d \partial_j \tau_{ij}$ in the distributional sense.
+If $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$, so the equilibrium equation
+\begin{equation*}
+	-\diver\sigma(u)=f
+\end{equation*}
+can be understood as an identity in $L^2(\Omega;\R^d)$.
+
+The same regularity is also exactly what is needed to define the boundary traction (surface force density) associated with $\tau$.
+Formally, for smooth $\tau$ one would write on $\Gamma$
+\begin{equation*}
+	\tau\,\mathrm{n}
+\end{equation*}
+where $\mathrm{n}:\Gamma\to\R^d$ is the outward unit normal and $\tau\,\mathrm{n}$ denotes the pointwise matrix--vector product, i.e.
+\begin{equation*}
+	(\tau\,\mathrm{n})_i = \sum_{j=1}^d \tau_{ij}\,\mathrm{n}_j.
+\end{equation*}
+However, for $\tau\in L^2(\Omega;\R^{d\times d})$ a pointwise boundary trace is not available, so $\tau\,\mathrm{n}$ cannot be defined as an $L^2(\Gamma)$--function in general.
+
+The correct replacement is a weak (distributional) boundary value. One starts from the classical integration by parts formula:
+if $\tau$ and $v$ are smooth, then
+\begin{equation}\label{eq:green_smooth}
+	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	= \int_\Gamma (\tau\,\mathrm{n})\cdot v\;\ds.
 \end{equation}
-characterized by the Green identity
+The key point is that the left-hand side still makes sense for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$,
+because $\tau\in L^2$ and $\nabla v\in L^2$ imply $\tau:\nabla v\in L^1$, and $\diver\tau\in L^2$ together with $v\in L^2$ implies $(\diver\tau)\cdot v\in L^1$.
+
+Therefore, for fixed $\tau\in H(\diver;\Omega)$ the map
+\begin{equation*}
+	H^1(\Omega;\R^d)\ni v \longmapsto
+	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+\end{equation*}
+defines a continuous linear functional. We now explain why it depends only on the boundary trace $\gamma v$.
+Recall that for Lipschitz domains the trace operator $\gamma:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ satisfies
+\begin{equation*}
+	\ker(\gamma)=H^1_0(\Omega;\R^d).
+\end{equation*}
+Let $w\in C_c^\infty(\Omega;\R^d)$. By the definition of the distributional divergence we have
+\begin{equation*}
+	\int_\Omega (\diver\tau)\cdot w\;\dx
+	= -\int_\Omega \tau:\nabla w\;\dx,
+\end{equation*}
+hence
+\begin{equation*}
+	\int_\Omega \tau:\nabla w\;\dx + \int_\Omega (\diver\tau)\cdot w\;\dx = 0.
+\end{equation*}
+Since $C_c^\infty(\Omega;\R^d)$ is dense in $H^1_0(\Omega;\R^d)$ and the map is continuous on $H^1(\Omega;\R^d)$,
+the same identity holds for all $w\in H^1_0(\Omega;\R^d)$:
+\begin{equation}\label{eq:F_vanishes_on_H10}
+	\int_\Omega \tau:\nabla w\;\dx + \int_\Omega (\diver\tau)\cdot w\;\dx = 0
+	\quad \forall w\in H^1_0(\Omega;\R^d).
+\end{equation}
+Consequently, if $v_1,v_2\in H^1(\Omega;\R^d)$ satisfy $\gamma v_1=\gamma v_2$, then $v_1-v_2\in H^1_0(\Omega;\R^d)$ and \eqref{eq:F_vanishes_on_H10} yields that both give the same value. Hence the functional depends only on $\gamma v\in H^{1/2}(\Gamma;\R^d)$.
+
+This yields a uniquely defined element of $H^{-1/2}(\Gamma;\R^d)$, denoted by $\gamma_{\mathrm{n}}(\tau)$, such that
 \begin{equation}\label{eq:greenHdiv}
-	\langle \tau\,\mathrm n,\,\gamma v\rangle_{\Gamma}
+	\langle \gamma_{\mathrm{n}}(\tau),\,\gamma v\rangle_{\Gamma}
 	= \int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
 	\quad
-	\forall v\in H^1(\Omega;\R^d),\ \tau\in H(\diver;\Omega),
+	\forall v\in H^1(\Omega;\R^d).
 \end{equation}
-where $\langle\cdot,\cdot\rangle_\Gamma$ denotes the duality pairing of
-$H^{-1/2}(\Gamma;\R^d)\times H^{1/2}(\Gamma;\R^d)$. In particular, for $\tau=\sigma(u)$ this
-defines $t(u)=\sigma(u)\mathrm n\in H^{-1/2}(\Gamma;\R^d)$. If $\sigma(u)$ is symmetric, then
-$\sigma(u):\nabla v=\sigma(u):\varepsilon(v)$ and \eqref{eq:greenHdiv} can be rewritten as
-\begin{equation}
-	\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma
-	= \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega (\diver\sigma(u))\cdot v\;\dx
-	\quad \forall v\in H^1(\Omega;\R^d).
+The linear operator $\gamma_{\mathrm{n}}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d)$ is called the normal trace operator.
+In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hence $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical boundary function $\tau\,\mathrm{n}$.
+For this reason one often writes suggestively
+\begin{equation*}
+	\gamma_{\mathrm{n}}(\tau)=\tau\,\mathrm{n}\in H^{-1/2}(\Gamma;\R^d).
+\end{equation*}
+Physically, $\tau\,\mathrm{n}$ is the traction vector (surface force density) exerted across the boundary with normal $\mathrm{n}$, and in particular $t(u):=\sigma(u)\mathrm{n}$ is the surface force induced by the stress field $\sigma(u)$.
+
+Finally, if $\tau$ is symmetric, then $\tau:\nabla v=\tau:\varepsilon(v)$ for all $v$, so \eqref{eq:greenHdiv} can be written in the symmetric form
+\begin{equation}\label{eq:greenHdiv_sym}
+	\langle \tau\,\mathrm{n},\,\gamma v\rangle_{\Gamma}
+	= \int_\Omega \tau:\varepsilon(v)\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	\quad
+	\forall v\in H^1(\Omega;\R^d).
 \end{equation}
+Applying this to $\tau=\sigma(u)$ (and assuming $\sigma(u)\in H(\diver;\Omega)$) provides the rigorous meaning of the boundary traction $\sigma(u)\mathrm{n}$ that will be needed in the strong Signorini conditions.
 
 
+\subsubsection{Additional regularity and meaning of boundary tractions}
+
+In the weak setting, the solution only satisfies $u\in K\subset H^1(\Omega;\R^d)$. Consequently,
+$\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ and, by the constitutive law
+$\sigma(u)=A:\varepsilon(u)$, we obtain $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$.
+This regularity is sufficient to interpret the internal virtual work
+\begin{equation*}
+	a(u,v)=\int_\Omega \sigma(u):\varepsilon(v)\;\dx,
+\end{equation*}
+but it is not enough to write the equilibrium equation $-\diver\sigma(u)=f$ as an identity in
+$L^2(\Omega;\R^d)$, since the divergence of an $L^2$--field is a priori only defined in the sense of
+distributions.
+
+To formulate a strong equilibrium equation in $L^2(\Omega;\R^d)$ and to give a meaning to boundary
+tractions, we assume additional regularity of the stress in the space
+\begin{equation}\label{eq:Hdiv}
+	H(\diver;\Omega)
+	:=\left\{\tau\in L^2(\Omega;\R^{d\times d})\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\}.
+\end{equation}
+Here $\diver\tau$ is taken row-wise, i.e.\ $(\diver\tau)_i=\sum_{j=1}^d \partial_j \tau_{ij}$ in the
+distributional sense. If $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$,
+so the equilibrium equation
+\begin{equation*}
+	-\diver\sigma(u)=f
+\end{equation*}
+can be understood as an identity in $L^2(\Omega;\R^d)$.
+
+The same regularity is also exactly what is needed to define the boundary traction (surface force
+density) associated with $\tau$. Formally, for smooth $\tau$ one would write on $\Gamma$
+\begin{equation*}
+	\tau\,\mathrm{n},
+\end{equation*}
+where $\mathrm{n}:\Gamma\to\R^d$ is the outward unit normal and $\tau\,\mathrm{n}$ denotes the pointwise
+matrix--vector product $(\tau\,\mathrm{n})_i=\sum_{j=1}^d \tau_{ij}\,\mathrm{n}_j$. However, for
+$\tau\in L^2(\Omega;\R^{d\times d})$ a pointwise boundary trace is not available, so $\tau\,\mathrm{n}$
+cannot be defined as an $L^2(\Gamma)$--function in general.
+
+One therefore starts from the classical integration by parts formula: if $\tau$ and $v$ are smooth, then
+\begin{equation}\label{eq:green_smooth}
+	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	= \int_\Gamma (\tau\,\mathrm{n})\cdot v\;\ds.
+\end{equation}
+The key point is that the left-hand side still makes sense for $\tau\in H(\diver;\Omega)$ and
+$v\in H^1(\Omega;\R^d)$, because $\tau\in L^2$ and $\nabla v\in L^2$ imply $\tau:\nabla v\in L^1$, and
+$\diver\tau\in L^2$ together with $v\in L^2$ implies $(\diver\tau)\cdot v\in L^1$. Hence, for fixed
+$\tau\in H(\diver;\Omega)$ the map
+\begin{equation}\label{eq:Ftau_def}
+	F_\tau(v)
+	:=\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx,
+	\qquad v\in H^1(\Omega;\R^d),
+\end{equation}
+defines a continuous linear functional on $H^1(\Omega;\R^d)$.
+
+The crucial observation is that $F_\tau$ depends only on the boundary trace $\gamma v$. Indeed, if
+$w\in H^1_0(\Omega;\R^d)$, then $\gamma w=0$, and we claim that
+\begin{equation}\label{eq:Ftau_vanishes_on_H10}
+	F_\tau(w)=0.
+\end{equation}
+To see this, take a sequence $(w_m)_{m\in\N}\subset C_c^\infty(\Omega;\R^d)$ with
+$w_m\to w$ in $H^1(\Omega;\R^d)$. For $w_m$ we may use the distributional definition of the divergence:
+since $\diver\tau\in L^2(\Omega;\R^d)$, we have for all $w_m\in C_c^\infty(\Omega;\R^d)$,
+\begin{equation*}
+	\int_\Omega (\diver\tau)\cdot w_m\;\dx = -\int_\Omega \tau:\nabla w_m\;\dx,
+\end{equation*}
+and therefore $F_\tau(w_m)=0$ for all $m$. Passing to the limit $m\to\infty$ using the continuity of
+$F_\tau$ on $H^1(\Omega;\R^d)$ yields \eqref{eq:Ftau_vanishes_on_H10}. Consequently, if
+$v_1,v_2\in H^1(\Omega;\R^d)$ satisfy $\gamma v_1=\gamma v_2$, then $v_1-v_2\in H^1_0(\Omega;\R^d)$ and
+thus $F_\tau(v_1)=F_\tau(v_2)$. This is exactly the statement that $F_\tau$ depends only on $\gamma v$.
+
+Since $\gamma:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ is continuous and $\ker(\gamma)=H^1_0(\Omega;\R^d)$,
+the previous argument implies that $F_\tau$ induces a well-defined continuous linear functional on the
+trace space $H^{1/2}(\Gamma;\R^d)$. Hence there exists a unique element
+$\gamma_{\mathrm{n}}(\tau)\in H^{-1/2}(\Gamma;\R^d)$ such that
+\begin{equation}\label{eq:greenHdiv}
+	\langle \gamma_{\mathrm{n}}(\tau),\,\gamma v\rangle_{\Gamma}
+	= \int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	\quad
+	\forall v\in H^1(\Omega;\R^d),
+\end{equation}
+where $\langle\cdot,\cdot\rangle_{\Gamma}$ denotes the duality pairing of
+$H^{-1/2}(\Gamma;\R^d)\times H^{1/2}(\Gamma;\R^d)$. The operator
+$\gamma_{\mathrm{n}}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d)$ is called the normal trace operator
+(see \cite[Lemma 3.1]{book}). In the smooth case, \eqref{eq:greenHdiv} reduces to
+\eqref{eq:green_smooth}, so $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical boundary function
+$\tau\,\mathrm{n}$. For this reason one often writes suggestively
+\begin{equation*}
+	\gamma_{\mathrm{n}}(\tau)=\tau\,\mathrm{n}\in H^{-1/2}(\Gamma;\R^d).
+\end{equation*}
+Physically, $\tau\,\mathrm{n}$ is the traction vector (surface force density) exerted across the boundary
+with outward normal $\mathrm{n}$, and in particular $t(u):=\sigma(u)\mathrm{n}$ is the surface force induced
+by the stress field $\sigma(u)$.
+
+Finally, if $\tau$ is symmetric, then $\tau:\nabla v=\tau:\varepsilon(v)$ for all $v$, so
+\eqref{eq:greenHdiv} can be written in the symmetric form
+\begin{equation}\label{eq:greenHdiv_sym}
+	\langle \tau\,\mathrm{n},\,\gamma v\rangle_{\Gamma}
+	= \int_\Omega \tau:\varepsilon(v)\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+	\quad
+	\forall v\in H^1(\Omega;\R^d).
+\end{equation}
+Applying this to $\tau=\sigma(u)$ (and assuming $\sigma(u)\in H(\diver;\Omega)$) provides the rigorous
+meaning of the boundary traction $\sigma(u)\mathrm{n}$ that will be needed in the strong Signorini
+conditions.
 
 
-\subsubsection{Traction operator and Green's identity}
 \subsubsection{Normal and tangential components on \texorpdfstring{$\Gamma_C$}{GammaC}}
 \subsubsection{Strong Signorini conditions on \texorpdfstring{$\Gamma_C$}{GammaC}}
 \subsubsection{Trace spaces and dual cones}
