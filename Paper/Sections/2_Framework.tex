@@ -1,71 +1,187 @@
 \section{Mathematical Framework}
 
-\subsection{Sobolev Spaces and the Trace Operator}
+\subsection{Distributional Derivatives}
 
-In this subsection, we will make a brief excursion into selected topics in functional analysis, providing the necessary theory for the subsequent subsections. In classical analysis, derivatives are defined pointwise and require a certain level of smoothness. However, many functions of interest fall outside this framework. To extend the concept of differentiation to a broader class of functions, we can weaken what it means to {\em have a derivative}. The key idea is to characterize derivatives not by their pointwise behavior, but by how they act under integration against {\em test functions}. Using integration by parts, one can express the derivative of a smooth function in a form that remains meaningful even when the function itself is not differentiable in the classical sense. This leads naturally to the concept of weak derivatives, which allow us to treat integrable functions as {\em differentiable} in a generalized sense. We start by defining two important function spaces.
+In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable open set with non-empty interior and let $m\ge 1$.
+\begin{definition}[Partial Derivative, Gradient, Jacobian and Divergence]
+	Let $f:\Omega\to\R$ and $F:\Omega\to\R^m$ be sufficiently regular.
+	\begin{itemize}
+		\item[i)] The {\tt partial derivative} of $f$ with respect to $\alpha\in\N_0^d$ is
+		      \begin{equation*}
+			      \Diff^\alpha f := \frac{\partial^{|\alpha|}f}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}:\Omega\to\R.
+		      \end{equation*}
 
+		\item[ii)] The {\tt gradient} of $u$ is
+		      \begin{equation*}
+			      \nabla f := \left(\frac{\partial f}{\partial x_1},\ldots,\frac{\partial f}{\partial x_d}\right)^\top:\Omega\to\R^d.
+		      \end{equation*}
+
+		\item[iii)] The {\tt Jacobian} (or derivative) of $F=(F_1,\ldots,F_m)^\top$ is
+		      \begin{equation*}
+			      \Diff F := \left(\frac{\partial F_j}{\partial x_k}\right)_{1\le j\le m}^{1\le k\le d}:\Omega\to\R^{m\times d}.
+		      \end{equation*}
+
+		\item[iv)] The {\tt divergence} of $F=(F_1,\ldots,F_m)^\top$ is
+		      \begin{equation*}
+			      \diver F := \sum_{j=1}^d \frac{\partial F_j}{\partial x_j}:\Omega\to\R.
+		      \end{equation*}
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[Spaces of Continuously Differentiable Functions]
+	We denote by $\cC^0(\Omega;\R^m)$ the space of continuous functions $f:\Omega\to\R^m$ and by
+	\begin{equation*}
+		\cC^k(\Omega;\R^m):= \left\{f\in \cC^0(\Omega;\R^m)\;\middle|\; |\alpha|\le k\;\Rightarrow\;\Diff^\alpha f\in\cC^0(\Omega;\R^m)\right\},\quad k\ge 0,
+	\end{equation*}
+	the space of such functions that are continuously differentiable up to order $k\ge 0$. Moreover,
+	\begin{equation*}
+		\cC^\infty(\Omega;\R^m) := \bigcap_{k\ge 0}\cC^k(\Omega;\R^m)
+	\end{equation*}
+	denotes the space of infinitely continuously differentiable functions.
+\end{definition}
+
+\begin{definition}[Test function]
+	The space $\cD(\Omega;\R^m)$ contains all infinitely often differentiable functions with compact support in $\Omega$, i.e.\
+	\begin{equation*}
+		\cD(\Omega;\R^m) = \left\{f\in\cC^\infty(\Omega;\R^m)\;\middle|\;\supp(f)\subset\Omega\text{\em\enspace compact}\right\}
+	\end{equation*}
+	For $m=1$, we abbreviate $\cD(\Omega):= \cD(\Omega;\R^1)$ and note that
+	\begin{equation*}
+		\cD(\Omega;\R^m) = (\cD(\Omega))^m,\quad \forall\,m\ge 1.
+	\end{equation*}
+	A function $f\in\cC^\infty_c(\Omega;\R^m)$ is called a {\tt test function}.
+\end{definition}
+
+\begin{definition}[Distribition]
+	A {\tt distribution} $T$ is a linear continuous functional on the test function space $\cD(\Omega)$, i.e. $T \in\cD^\prime(\Omega)$. For $m\ge 1$ we set
+	\begin{equation*}
+		\cD^\prime(\Omega;\R^m) := (\cD^\prime(\Omega))^m
+	\end{equation*}
+	and for $T=(T_1,\ldots,T_m)\in\cD'(\Omega;\R^m)$ and $\varphi=(\varphi_1,\ldots,\varphi_m)\in\cD(\Omega;\R^m)$ we use the duality pairing
+	\begin{equation*}
+		\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}[Partial derivatives of distributions]\label{def:distrpartialderivative}
+	Let $T\in\cD'(\Omega)$. For $\alpha\in\N_0^d$ we define the {\tt distributional partial derivative} $\Diff^\alpha T\in\cD'(\Omega)$ of $T$ by
+	\begin{equation*}
+		\langle \Diff^\alpha T,\,\varphi\rangle := (-1)^{|\alpha|}\,\langle T,\,\Diff^\alpha\varphi\rangle
+		\quad\forall\,\varphi\in\cD(\Omega).
+	\end{equation*}
+	If $T=(T_1,\ldots,T_m)\in\cD'(\Omega;\R^m)$, we set
+	\begin{equation*}
+		\Diff^\alpha T := (\Diff^\alpha T_1,\ldots,\Diff^\alpha T_m)\in\cD'(\Omega;\R^m).
+	\end{equation*}
+\end{definition}
 
 \begin{definition}[Locally Integrable Functions]
-	The space $L_\mathrm{loc}^1 (\Omega)$ of all {\tt locally integrable} functions on $\Omega$ is defined as
+	The space $L_\mathrm{loc}^1 (\Omega;\R^m)$ of all {\tt locally integrable} functions on $\Omega$ is defined as
 	\begin{equation*}
-		L_\mathrm{loc}^1 (\Omega):= \left\{f:\Omega\to\R\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
-	\end{equation*}
-\end{definition}
-\begin{definition}
-	The space $\cC^\infty_c(\Omega)$ contains all infinitely often differentiable functions with compact support in $\Omega$, i.e.\
-	\begin{equation*}
-		\cC^\infty_c(\Omega) = \left\{f\in\cC^\infty(\Omega)\;\middle|\;\supp(f)\subset\Omega\text{\em\enspace compact}\right\}
-	\end{equation*}
-	and $u\in\cC^\infty_c(\Omega)$ is called a {\tt test function}.
-
-\end{definition}
-
-With these functions in hand, we can now extend the classical concept of differentiability to the concept of {\em weak} differentiability.
-
-\begin{definition}[Weak Derivatives]\label{def:weakder}
-	Let $u\in L_\mathrm{loc}^1(\Omega)$ and $\alpha\in\N_0^d$. A function $g\in L_\mathrm{loc}^1(\Omega)$ is called {\tt weak derivative} of $u$ of order $\alpha$ if
-	\begin{equation*}
-		\int_\Omega u\,\partial^\alpha\varphi\;\dx = (-1)^{|\alpha|}\int_\Omega g\,\varphi\;\dx\quad\forall\varphi\in\cC^\infty_c(\Omega)
-	\end{equation*}
-	If such $g$ exists, it is unique up to null sets and we write $\partial^\alpha u = g$ and keep the notation the same as in the strong sense of derivatives.
-\end{definition}
-
-Of course, there are also spaces of weakly differentiable functions, named after the Soviet mathematician \textsc{Sergei Lvovich Sobolev} (1908--1989).
-
-\begin{definition}[Sobolev Spaces]
-	For $k\in\N_0$ and $1\le p\le \infty$ we define the {\tt Sobolev space} $W^{k,p}(\Omega)$ to be the space of every $L^p$-function whose weak derivatives up to order $k$ are also $L^p$-functions, i.e.\
-	\begin{equation*}
-		W^{k,p}(\Omega):= \left\{u\in L^p(\Omega)\;\middle|\;\partial^\alpha u\in L^p(\Omega)\;\forall |\alpha|\le k\right\}
-	\end{equation*}
-	and we equip it with the norm
-	\begin{equation*}
-		\|u\|_{W^{k,p}(\Omega)}:=\left(\sum_{|\alpha|\le k}\|\partial^\alpha u\|^p_{L^p(\Omega)}\right)^{1/p},\quad 1\le p<\infty
-	\end{equation*}
-	and
-	\begin{equation*}
-		\|u\|_{W^{k,\infty}(\Omega)}:=\max_{|\alpha|\le k}\|\partial^\alpha u\|_{L^\infty(\Omega)}.
+		L_\mathrm{loc}^1 (\Omega;\R^m):= \left\{f:\Omega\to\R^m\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K;\R^m)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
 	\end{equation*}
 \end{definition}
 
-The special case $p=2$ provides us with a Hilbert space $H^k(\Omega):=W^{k,2}(\Omega)$ together with the inner product
-\begin{equation*}
-	(u,v)_{H^k(\Omega)} :=\sum_{|\alpha|\le k}\langle\partial^\alpha u,\,\partial^\alpha v\rangle_{L^2(\Omega)}
-\end{equation*}
-For the following purpose, we will have to consider the the space
-\begin{equation*}
-	H^1(\Omega) = \left\{ u\in L^2(\Omega)\;\middle|\; \nabla u\in L^2(\Omega;\R^d)\right\}
-\end{equation*}
-together with the induced norm
-\begin{equation*}
-	\|u\|_{H^1(\Omega)} = \left(\|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega;R^d)}\right)^{1/2}
-\end{equation*}
-where the second $L^2$--term is understood as
-\begin{equation*}
-	\|\nabla u\|_{L^2(\Omega;\R^d)} = \left(\int_\Omega|\nabla u(x)|^2\;\dx\right)^{1/2}.
-\end{equation*}
+\begin{definition}[Regular Distribution]
+	A {\tt regular distribution} $T_f\in\cD^\prime(\Omega;\R^m)$ is one of the form
+	\begin{equation*}
+		\langle T_f,\,\varphi\rangle = \int_\Omega f\, \varphi\;\dx,\quad f\in L^1_\mathrm{loc}(\Omega;\R^m).
+	\end{equation*}
+	In particular, the map
+	\begin{equation*}
+		\cT: L^1_\mathrm{loc}(\Omega;\R^m)\to\cD^\prime(\Omega;\R^m),\quad f\mapsto T_f
+	\end{equation*}
+	is injective and $\im\cT\subset\cD^\prime(\Omega;\R^m)$ is the subspace of regular distributions.
+\end{definition}
+
+\begin{definition}[Distributional Gradient and Divergence]
+	Let $x = (x_1,\ldots, x_d)^\top\in\Omega$.
+	\begin{itemize}
+		\item[i)] The {\tt distributional gradient} of $T\in\cD^\prime(\Omega)$ is defined by
+		      \begin{equation*}
+			      \nabla T:= \left(\frac{\partial T}{\partial x_1},\ldots,\frac{\partial T}{\partial x_d}\right)\in\cD^\prime(\Omega;\R^d),
+		      \end{equation*}
+		      where each partial derivative $\partial T/\partial x_j,\,1\le j\le d$ is taken in the sense of Definition \ref{def:distrpartialderivative} and it holds that
+		      \begin{equation*}
+			      \langle\nabla T,\,\varphi\rangle = -\langle T,\,\diver\varphi\rangle\quad\forall\,\varphi\in \cD(\Omega;\R^d)
+		      \end{equation*}
+		\item[ii)] The {\tt distributional divergence} of $T\in\cD^\prime(\Omega;\R^d)$ is defined by
+		      \begin{equation*}
+			      \diver T:= \sum_{j = 1}^d\frac{\partial T_j}{\partial x_j}\in\cD^\prime(\Omega),\quad T = (T_1,\ldots, T_d).
+		      \end{equation*}
+		      where each partial derivative $\partial T_j/\partial x_j,\,1\le j\le d$ is taken in the sense of Definition \ref{def:distrpartialderivative} and it holds that
+		      \begin{equation*}
+			      \langle\diver ,\,\varphi\rangle = -\langle T,\,\nabla \varphi\rangle\quad\forall\,\varphi\in\cD(\Omega).
+		      \end{equation*}
+	\end{itemize}
+\end{definition}
+
+\subsection{Sobolev Spaces}
+Throughout, for $u,v:\Omega\to\R^m$ we denote by $u\cdot v$ the Euclidean inner product in $\R^m$ and by $|u|:=\sqrt{u\cdot u}$ the associated Euclidean norm.
+
+\begin{proposition}[$L^2$-Functions are Locally Integrable]
+	The space $L^2(\Omega;\R^m)$ of square-integrable functions on $\Omega$ is a subspace of $L^1_\mathrm{loc}(\Omega;\R^m)$. Consequently, every $f\in L^2(\Omega;\R^m)$ is infinitely differentiable in the sense of distributions.
+\end{proposition}
+\begin{proof}
+	Let $K\subset\Omega$ be compact and $f\in L^2(\Omega;\R^m)$. Then $f\in L^2(K;\R^m)$, i.e.\ $\|f\|_{L^2(K;\R^m)}<\infty$ and by Cauchy-Schwarz we have
+	\begin{equation*}
+		\|f\|_{L^1(K;\R^m)} = \int_K|f|\;\dx\le \left(\int_K|f|^2\;\dx\right)^{1/2}\left(\int_K 1^2\;\dx\right)^{1/2} = \|f\|_{L^2(K;\R^m)}|K|^{1/2}<\infty,
+	\end{equation*}
+	where $|\cdot|$ denotes the Lebesgue measure on $\R^d$.
+\end{proof}
+
+\begin{definition}[Sobolev Spaces of Integer Order]
+	Let $\Omega\subset\R^d$ be open, $m\ge 1$, $k\in\N_0$ and $1\le p<\infty$.
+	The {\tt Sobolev space} $W^{k,p}(\Omega;\R^m)$ is defined by
+	\begin{equation*}
+		W^{k,p}(\Omega;\R^m)
+		:=\left\{u\in L^p(\Omega;\R^m)\;\middle|\; \Diff^\alpha u\in L^p(\Omega;\R^m)\ \forall\,\alpha\in\N_0^d,\ |\alpha|\le k\right\},
+	\end{equation*}
+	where $\Diff^\alpha u$ is understood in the sense of distributions. We adopt the usual conventions $H^k(\Omega;\R^m):=W^{k,2}(\Omega;\R^m)$ and $H^0(\Omega;\R^m):= L^2(\Omega;\R^m)$ and denote by
+	\begin{equation*}
+		(u,\,v)_{0,\Omega}:= (u,\, v)_{L^2(\Omega)} = \int_\Omega u\cdot v\;\dx,\quad u,v\in H^0(\Omega;\R^d).
+	\end{equation*}
+	the $L^2$-product and analogously the $L^2$-norm by
+	\begin{equation*}
+		\|u\|_{0,\Omega}:= \|u\|_{L^2(\Omega)} = \left(\int_\Omega |u|^2\;\dx \right)^{1/2},\quad u\in H^0(\Omega;\R^d).
+	\end{equation*}
+\end{definition}
+
+\begin{proposition}[$H^k(\Omega;\R^m)$ is a Hillbert space]
+	The Sobolev space $H^k(\Omega;\R^m)$ together with the inner product
+	\begin{equation*}
+		(u,\, v)_{k,\Omega}:= \sum_{|\alpha|\le k}(\Diff^\alpha u,\, \Diff^\alpha v)_{0,\Omega},\quad u,v\in H^k(\Omega;\R^m)
+	\end{equation*}
+	is a Hilbert space and it induces the norm
+	\begin{equation*}
+		\|u\|_{k,\Omega} = \left(\sum_{|\alpha|\le k}\|\Diff^\alpha u\|_{0,\Omega}^2\right)^{1/2}<\infty,\quad u\in H^k(\Omega;\R^m).
+	\end{equation*}\eop
+\end{proposition}
+
+\begin{definition}[Sobolev Spaces of Fractional Order]\label{def:fractionalsobolev}
+	For $1\le p<\infty$ and $\theta\in(0,1)$ set
+	\begin{equation*}
+		|u|_{\theta,p,\Omega}:= \left(\int_\Omega\int_\Omega \frac{|u(x)-u(y)|^p}{|x-y|^{d+p\theta}}\;\dx\;\dy\right)^{1/p},\quad u\in W^{k,p}(\Omega;\R^m).
+	\end{equation*}
+	The {\tt Sobolev space} of order $s = k+\theta \in\R_{>0}\setminus\N,\, k\in \N_0$ is defined by
+	\begin{equation*}
+		W^{s,p}(\Omega;\R^m):= \left\{u\in W^{k,p}(\Omega;\R^m)\;\middle|\;|\Diff^\alpha u|_{\theta,p,\Omega}<\infty,\;|\alpha|= k\right\}.
+	\end{equation*}
+	We adopt the usual convention $H^s(\Omega;\R^m):= W^{s,2}(\Omega;\R^m)$.
+\end{definition}
+
+\begin{proposition}[$H^s(\Omega;\R^m)$ is a Banach space]
+	The Sobolev space $H^s(\Omega;\R^m)$ defined in Definition \ref{def:fractionalsobolev} together with the norm
+	\begin{equation*}
+		\|u\|_{s,\Omega}:= \left(\|u\|_{k,\Omega}^2+\sum_{|\alpha|=k} |\Diff^\alpha u|^2_{0,2,\Omega}\right)^{1/2},\quad u\in H^s(\Omega;\R^m)
+	\end{equation*}
+	is a Banach space.\eop
+\end{proposition}
+
+
 
 \begin{theorem}[Trace Theorem]\label{th:tracetheorem}
-	
+
 \end{theorem}
 
 

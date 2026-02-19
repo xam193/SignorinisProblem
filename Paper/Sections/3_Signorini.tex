@@ -214,7 +214,7 @@ The total potential energy of the elastic body is given by the quadratic functio
 	\cJ(v):=\frac{1}{2}\,a(v,v)-\ell(v),\quad v\in V.
 \end{equation}
 In the presence of unilateral contact, the admissible displacements are restricted to the closed convex set $K\subset V$. We therefore consider the following constrained minimization problem.
-\begin{problem}[Signorini's Problem as Energy Minimization]\label{pr:signorini1}
+\begin{problem}[Signorini's Problem -- Energy Minimization]\label{pr:signorini1}
 Find $u\in K$ such that
 \begin{equation*}
 	\cJ(u)=\min_{v\in K}\cJ(v) = \min_{v\in K}\,\frac{1}{2}\,a(v,v)-\ell(v).
@@ -441,7 +441,7 @@ Combining Lemma \ref{lem:Jdiff} and Proposition \ref{pr:FOC}, $u\in K$ solves Pr
 \end{equation*}
 This is the first weak formulation of Signorini's problem as a variational inequality.
 
-\begin{problem}[Weak Formulation of Signorini's Problem]\label{pr:signorini2}
+\begin{problem}[Signorini's Problem -- Weak Formulation]\label{pr:signorini2}
 Find $u\in K$ such that
 \begin{equation*}
 	a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
@@ -450,7 +450,7 @@ Find $u\in K$ such that
 
 Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} in the sense that each solution to the one of the problems is a solution to the other problem (Proposition \ref{pr:FOC}). The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another useful equivalent formulation is the following.
 
-\begin{problem}[Weak Formulation of Signorini's Problem]\label{pr:signorini3}
+\begin{problem}[Signorini's Problem -- Weak Formulation]\label{pr:signorini3}
 Find $u\in K$ such that
 \begin{equation*}
 	\begin{cases}
@@ -553,7 +553,7 @@ We close this section by providing another stability result on the dependency of
 From the previous weak formulations of Signorini's problem, we know there exists a uniquely determined $u\in K$ that solves the problem. To derive a {\em strong} PDE formulation, we have to discuss what was $\sigma(u)\mathrm{n}$ means and in what sense the contact conditions on $\Gamma_C$ can be described as equalities and inequalities.
 
 
-\subsubsection{Additional regularity and meaning of boundary tractions}
+\subsubsection{Stress Regularity and Boundary Tractions}
 
 In the weak setting, the solution only satisfies $u\in K\subset H^1(\Omega;\R^d)$., i.e.\ $\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ and, by $\sigma(u)=A:\varepsilon(u)$, we obtain $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$.
 This regularity is sufficient to interpret the internal virtual work
@@ -625,6 +625,52 @@ Applying this to $\tau=\sigma(u)$ and assuming $\sigma(u)\in H(\diver;\Omega)$ p
 which will be needed in the strong Signorini conditions.
 
 \subsubsection{A Hybrid Formulation}
+\begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
+Find $u\in K$ such that
+\begin{equation*}
+	\begin{cases}
+		-\diver\sigma(u) = f                                                                                   & \text{a.e.\ in }\Omega, \\[7pt]
+		\langle \sigma(u)\mathrm{n}, \gamma u\rangle_\Gamma = \displaystyle\int_{\Gamma_N}F\cdot\gamma u\;\dx, &                         \\[10pt]
+		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\dx  & \forall v\in K.
+	\end{cases}
+\end{equation*}
+\end{problem}
+
+We close this section by showing, that the hybrid formulation above is equivalent to the previous weak formulations in Problem \ref{pr:signorini2} in order to prove that it is indeed a valid formulation of the Signorini problem.
+
+\begin{proposition}[Equivalence of Hybrid and Weak Formulation]
+	Every solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini4} and vise versa.
+\end{proposition}
+\begin{proof}
+	Let $u\in K$ solve Problem \ref{pr:signorini2}, i.e.\ it holds
+	\begin{equation}\label{eq:weakineq}
+		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
+	\end{equation}
+	We take a test function $\varphi\in\cC_c^\infty(\Omega;\R^d)$ such that $\gamma\varphi = 0$ on $\Gamma$ and $u\pm t\varphi\in K$ for sufficiently small $t>0$. Testing $v:=u\pm t\varphi$ in \eqref{eq:weakineq} yields
+	\begin{equation}\label{eq:equality}
+		a(u,\pm t\varphi)\ge \ell(\pm t\varphi)\quad\Longrightarrow\quad\begin{cases}
+			a(u,\varphi)\ge\ell(\varphi), \\
+			a(u,\varphi)\le\ell(\varphi),
+		\end{cases}\quad \Longrightarrow \quad a(u,\varphi) = \ell(\varphi).
+	\end{equation}
+	for all $\varphi\in\cC_c^\infty(\Omega;\R^d)$. Furthermore since $\gamma\varphi = 0$, we have
+	\begin{equation*}
+		\int_{\Gamma_N} F\cdot\gamma\varphi\;\ds  = 0\quad\Longrightarrow\quad \ell(\varphi) = \int_\Omega f\cdot \varphi\;\dx = \langle f,\varphi\rangle_{0,\Omega}.
+	\end{equation*}
+	and with the symmetry $\sigma(u)^\top = \sigma(u)$,
+	\begin{equation*}
+		a(u,\varphi)=\int_\Omega \sigma(u):\varepsilon(\varphi)\;\dx  = \int_\Omega\sigma(u):\nabla \varphi\;\dx = \langle -\diver\sigma(u),\varphi\rangle_{-1,1,\Omega}.
+	\end{equation*}
+	Here $\langle\cdot,\cdot\rangle_{-1,1,\Omega}$ denotes the duality pairing between
+	$H^{-1}(\Omega;\mathbb{R}^d)$ and $H_0^1(\Omega;\mathbb{R}^d)$. Since $\sigma(u)\in L^2(\Omega;\mathbb{R}^{d\times d})$, the right-hand side defines a bounded linear functional on $H_0^1(\Omega;\mathbb{R}^d)$ by Cauchy--Schwarz, hence $-\operatorname{div}\sigma(u)\in H^{-1}(\Omega;\mathbb{R}^d)$. For $\varphi\in C_c^\infty(\Omega;\mathbb{R}^d)$ this coincides with the distributional definition of the divergence.
+\end{proof}
+
+\subsubsection{Normal/Tangential Splitting and Contact Trace Spaces}
+
+\subsubsection{KKT Contact Conditions}
+
+\subsubsection{Classical Strong From under Additinal Regularity}
+
 
 \subsection{Mixed Formulation}
 \subsubsection{Mixed Weak Formulation as a Sattlepoint Problem}
