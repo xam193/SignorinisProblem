@@ -2,9 +2,9 @@
 
 \subsection{Distributional Derivatives}
 
-In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable open set with non-empty interior and let $m\ge 1$.
+In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable open set with non-empty interior and let $m\ge 1$. For the sake of completeness, we begin with the definitions of the classic derivation terms, which should already be familiar to the reader.
 \begin{definition}[Partial Derivative, Gradient, Jacobian and Divergence]
-	Let $f:\Omega\to\R$ and $F:\Omega\to\R^m$ be sufficiently regular.
+	Let $f:\Omega\to\R$ and $F:\Omega\to\R^m$ be sufficiently regular maps.
 	\begin{itemize}
 		\item[i)] The {\tt partial derivative} of $f$ with respect to $\alpha\in\N_0^d$ is
 		      \begin{equation*}
@@ -16,17 +16,19 @@ In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable 
 			      \nabla f := \left(\frac{\partial f}{\partial x_1},\ldots,\frac{\partial f}{\partial x_d}\right)^\top:\Omega\to\R^d.
 		      \end{equation*}
 
-		\item[iii)] The {\tt Jacobian} (or derivative) of $F=(F_1,\ldots,F_m)^\top$ is
+		\item[iii)] The {\tt Jacobian} of $F=(F_1,\ldots,F_m)^\top$ is
 		      \begin{equation*}
 			      \Diff F := \left(\frac{\partial F_j}{\partial x_k}\right)_{1\le j\le m}^{1\le k\le d}:\Omega\to\R^{m\times d}.
 		      \end{equation*}
 
 		\item[iv)] The {\tt divergence} of $F=(F_1,\ldots,F_m)^\top$ is
 		      \begin{equation*}
-			      \diver F := \sum_{j=1}^d \frac{\partial F_j}{\partial x_j}:\Omega\to\R.
+			      \diver F := \sum_{j=1}^m \frac{\partial F_j}{\partial x_j}:\Omega\to\R.
 		      \end{equation*}
 	\end{itemize}
 \end{definition}
+
+We collect continuous functions with continuous partial derivatives of the same degree in the following well-known function spaces.
 
 \begin{definition}[Spaces of Continuously Differentiable Functions]
 	We denote by $\cC^0(\Omega;\R^m)$ the space of continuous functions $f:\Omega\to\R^m$ and by
@@ -40,7 +42,9 @@ In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable 
 	denotes the space of infinitely continuously differentiable functions.
 \end{definition}
 
-\begin{definition}[Test function]
+A particular subspace of $\cC^\infty(\Omega;\R^m)$ is of particular interest to us and the concept of distributional derivatives. This is the space of {\em test functions}.
+
+\begin{definition}[Test Function]
 	The space $\cD(\Omega;\R^m)$ contains all infinitely often differentiable functions with compact support in $\Omega$, i.e.\
 	\begin{equation*}
 		\cD(\Omega;\R^m) = \left\{f\in\cC^\infty(\Omega;\R^m)\;\middle|\;\supp(f)\subset\Omega\text{\em\enspace compact}\right\}
@@ -49,7 +53,7 @@ In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable 
 	\begin{equation*}
 		\cD(\Omega;\R^m) = (\cD(\Omega))^m,\quad \forall\,m\ge 1.
 	\end{equation*}
-	A function $f\in\cC^\infty_c(\Omega;\R^m)$ is called a {\tt test function}.
+	A function $f\in\cD(\Omega;\R^m)$ is called a {\tt test function}.
 \end{definition}
 
 \begin{definition}[Distribition]
@@ -75,25 +79,6 @@ In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable 
 	\end{equation*}
 \end{definition}
 
-\begin{definition}[Locally Integrable Functions]
-	The space $L_\mathrm{loc}^1 (\Omega;\R^m)$ of all {\tt locally integrable} functions on $\Omega$ is defined as
-	\begin{equation*}
-		L_\mathrm{loc}^1 (\Omega;\R^m):= \left\{f:\Omega\to\R^m\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K;\R^m)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
-	\end{equation*}
-\end{definition}
-
-\begin{definition}[Regular Distribution]
-	A {\tt regular distribution} $T_f\in\cD^\prime(\Omega;\R^m)$ is one of the form
-	\begin{equation*}
-		\langle T_f,\,\varphi\rangle = \int_\Omega f\, \varphi\;\dx,\quad f\in L^1_\mathrm{loc}(\Omega;\R^m).
-	\end{equation*}
-	In particular, the map
-	\begin{equation*}
-		\cT: L^1_\mathrm{loc}(\Omega;\R^m)\to\cD^\prime(\Omega;\R^m),\quad f\mapsto T_f
-	\end{equation*}
-	is injective and $\im\cT\subset\cD^\prime(\Omega;\R^m)$ is the subspace of regular distributions.
-\end{definition}
-
 \begin{definition}[Distributional Gradient and Divergence]
 	Let $x = (x_1,\ldots, x_d)^\top\in\Omega$.
 	\begin{itemize}
@@ -111,9 +96,50 @@ In the following let $\Omega\subset\R^d,\, d\ge 1$ denote a Lebesgue measurable 
 		      \end{equation*}
 		      where each partial derivative $\partial T_j/\partial x_j,\,1\le j\le d$ is taken in the sense of Definition \ref{def:distrpartialderivative} and it holds that
 		      \begin{equation*}
-			      \langle\diver ,\,\varphi\rangle = -\langle T,\,\nabla \varphi\rangle\quad\forall\,\varphi\in\cD(\Omega).
+			      \langle\diver T,\,\varphi\rangle = -\langle T,\,\nabla \varphi\rangle\quad\forall\,\varphi\in\cD(\Omega).
 		      \end{equation*}
 	\end{itemize}
+\end{definition}
+
+\begin{remark}[Componentwise extension to matrix-valued fields]
+	All definitions above extend componentwise to finite-dimensional target spaces. In particular, we identify
+	\begin{equation*}
+		\mathbb{R}^{m\times n}\cong \mathbb{R}^{mn},
+	\end{equation*}
+	and set
+	\begin{equation*}
+		\mathcal{D}'(\Omega;\mathbb{R}^{m\times n}) := (\mathcal{D}'(\Omega))^{m\times n},
+		\qquad
+		\partial^\alpha T := (\partial^\alpha T_{ij})_{i,j}.
+	\end{equation*}
+	For tensor fields $\tau=(\tau_{ij})_{i,j=1}^d$ we use the row-wise divergence
+	\begin{equation*}
+		\operatorname{div}\tau := \left(\sum_{j=1}^d \partial_j \tau_{ij}\right)_{i=1}^d
+	\end{equation*}
+	(in the classical or distributional sense, depending on regularity). Moreover, for $A,B\in\mathbb{R}^{d\times d}$ we write
+	\begin{equation*}
+		A:B := \sum_{i,j=1}^d A_{ij}B_{ij}
+	\end{equation*}
+	for the Frobenius inner product.
+\end{remark}
+
+\begin{definition}[Locally Integrable Functions]
+	The space $L_\mathrm{loc}^1 (\Omega;\R^m)$ of all {\tt locally integrable} functions on $\Omega$ is defined as
+	\begin{equation*}
+		L_\mathrm{loc}^1 (\Omega;\R^m):= \left\{f:\Omega\to\R^m\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K;\R^m)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}[Regular Distribution]
+	A {\tt regular distribution} $T_f\in\cD^\prime(\Omega;\R^m)$ is one of the form
+	\begin{equation*}
+		\langle T_f,\,\varphi\rangle = \int_\Omega f\, \varphi\;\dx,\quad f\in L^1_\mathrm{loc}(\Omega;\R^m).
+	\end{equation*}
+	In particular, the map
+	\begin{equation*}
+		\cT: L^1_\mathrm{loc}(\Omega;\R^m)\to\cD^\prime(\Omega;\R^m),\quad f\mapsto T_f
+	\end{equation*}
+	is injective and $\im\cT\subset\cD^\prime(\Omega;\R^m)$ is the subspace of regular distributions.
 \end{definition}
 
 \subsection{Sobolev Spaces}
@@ -137,7 +163,7 @@ Throughout, for $u,v:\Omega\to\R^m$ we denote by $u\cdot v$ the Euclidean inner 
 		W^{k,p}(\Omega;\R^m)
 		:=\left\{u\in L^p(\Omega;\R^m)\;\middle|\; \Diff^\alpha u\in L^p(\Omega;\R^m)\ \forall\,\alpha\in\N_0^d,\ |\alpha|\le k\right\},
 	\end{equation*}
-	where $\Diff^\alpha u$ is understood in the sense of distributions. We adopt the usual conventions $H^k(\Omega;\R^m):=W^{k,2}(\Omega;\R^m)$ and $H^0(\Omega;\R^m):= L^2(\Omega;\R^m)$ and denote by
+	where $\Diff^\alpha u$ is understood in the sense of distributions. We adopt the usual conventions $H^k(\Omega;\R^m):=W^{k,2}(\Omega;\R^m)$ and $H^0(\Omega;\R^m):= L^2(\Omega;\R^m)$ and we denote the corresponding dual space by $H^{-k}(\Omega;\R^m)$. Finally, we denote by
 	\begin{equation*}
 		(u,\,v)_{0,\Omega}:= (u,\, v)_{L^2(\Omega)} = \int_\Omega u\cdot v\;\dx,\quad u,v\in H^0(\Omega;\R^d).
 	\end{equation*}
@@ -167,7 +193,7 @@ Throughout, for $u,v:\Omega\to\R^m$ we denote by $u\cdot v$ the Euclidean inner 
 	\begin{equation*}
 		W^{s,p}(\Omega;\R^m):= \left\{u\in W^{k,p}(\Omega;\R^m)\;\middle|\;|\Diff^\alpha u|_{\theta,p,\Omega}<\infty,\;|\alpha|= k\right\}.
 	\end{equation*}
-	We adopt the usual convention $H^s(\Omega;\R^m):= W^{s,2}(\Omega;\R^m)$.
+	We adopt the usual convention $H^s(\Omega;\R^m):= W^{s,2}(\Omega;\R^m)$. The corresponding dual space is denoted by $H^{-s}(\Omega;\R^m)$.
 \end{definition}
 
 \begin{proposition}[$H^s(\Omega;\R^m)$ is a Banach space]

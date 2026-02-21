@@ -460,7 +460,7 @@ Find $u\in K$ such that
 \end{equation*}
 \end{problem}
 
-\begin{proposition}[Equivalence of Problem \ref{pr:signorini2} and Problem \ref{pr:signorini3}] Any solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini3} and vise versa.
+\begin{proposition}[Equivalence of Problem \ref{pr:signorini2} and Problem \ref{pr:signorini3}]\label{pr:equivalence23} Any solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini3} and vice versa.
 \end{proposition}
 \begin{proof}
 	Let $u\in K$ solve Problem \ref{pr:signorini3}. Then
@@ -612,16 +612,16 @@ $\tau\,\mathrm{n}$. For this reason we write suggestively
 Physically, $\tau\,\mathrm{n}$ is the traction vector (or surface force density) exerted across the boundary
 with outward normal $\mathrm{n}$, and in particular $t(u):=\sigma(u)\mathrm{n}$ is the surface force induced
 by the stress field $\sigma(u)$. Finally, since $\tau$ is symmetric, $\tau:\nabla v=\tau:\varepsilon(v)$ for all $v$, so \eqref{eq:greenHdiv} can be written in the symmetric form
-\begin{equation}\label{eq:greenHdiv_sym}
+\begin{equation*}
 	\langle \tau\,\mathrm{n},\,\gamma v\rangle_{\Gamma}
 	= \int_\Omega \tau:\varepsilon(v)\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
 	\quad
 	\forall (v,\tau)\in H^1(\Omega;\R^d)\times H(\diver;\Omega).
-\end{equation}
-Applying this to $\tau=\sigma(u)$ and assuming $\sigma(u)\in H(\diver;\Omega)$ provides
-\begin{equation*}
-	\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega (\diver\sigma(u))\cdot v\;\dx\quad \forall v\in H^1(\Omega;\R^d).
 \end{equation*}
+Applying this to $\tau=\sigma(u)$ and assuming $\sigma(u)\in H(\diver;\Omega)$ provides
+\begin{equation}\label{eq:green}
+	\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega (\diver\sigma(u))\cdot v\;\dx\quad \forall v\in H^1(\Omega;\R^d).
+\end{equation}
 which will be needed in the strong Signorini conditions.
 
 \subsubsection{A Hybrid Formulation}
@@ -639,30 +639,80 @@ Find $u\in K$ such that
 We close this section by showing, that the hybrid formulation above is equivalent to the previous weak formulations in Problem \ref{pr:signorini2} in order to prove that it is indeed a valid formulation of the Signorini problem.
 
 \begin{proposition}[Equivalence of Hybrid and Weak Formulation]
-	Every solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini4} and vise versa.
+	Every solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini4} and vice versa.
 \end{proposition}
 \begin{proof}
 	Let $u\in K$ solve Problem \ref{pr:signorini2}, i.e.\ it holds
 	\begin{equation}\label{eq:weakineq}
 		a(u,v-u)\ge \ell(v-u)\quad \forall v\in K.
 	\end{equation}
-	We take a test function $\varphi\in\cC_c^\infty(\Omega;\R^d)$ such that $\gamma\varphi = 0$ on $\Gamma$ and $u\pm t\varphi\in K$ for sufficiently small $t>0$. Testing $v:=u\pm t\varphi$ in \eqref{eq:weakineq} yields
+	We take a test function $\varphi\in\cD(\Omega;\R^d)$. Then $\gamma\varphi = 0$ on $\Gamma$ and $u\pm t\varphi\in K$ for all $t>0$. Testing $v:=u\pm t\varphi$ in \eqref{eq:weakineq} yields
 	\begin{equation}\label{eq:equality}
 		a(u,\pm t\varphi)\ge \ell(\pm t\varphi)\quad\Longrightarrow\quad\begin{cases}
 			a(u,\varphi)\ge\ell(\varphi), \\
 			a(u,\varphi)\le\ell(\varphi),
 		\end{cases}\quad \Longrightarrow \quad a(u,\varphi) = \ell(\varphi).
 	\end{equation}
-	for all $\varphi\in\cC_c^\infty(\Omega;\R^d)$. Furthermore since $\gamma\varphi = 0$, we have
+	for all $\varphi\in\cD(\Omega;\R^d)$. Furthermore since $\gamma\varphi = 0$, we have
 	\begin{equation*}
-		\int_{\Gamma_N} F\cdot\gamma\varphi\;\ds  = 0\quad\Longrightarrow\quad \ell(\varphi) = \int_\Omega f\cdot \varphi\;\dx = \langle f,\varphi\rangle_{0,\Omega}.
+		\int_{\Gamma_N} F\cdot\gamma\varphi\;\ds  = 0\quad\Longrightarrow\quad \ell(\varphi) = \int_\Omega f\cdot \varphi\;\dx
 	\end{equation*}
 	and with the symmetry $\sigma(u)^\top = \sigma(u)$,
 	\begin{equation*}
-		a(u,\varphi)=\int_\Omega \sigma(u):\varepsilon(\varphi)\;\dx  = \int_\Omega\sigma(u):\nabla \varphi\;\dx = \langle -\diver\sigma(u),\varphi\rangle_{-1,1,\Omega}.
+		a(u,\varphi)=\int_\Omega \sigma(u):\varepsilon(\varphi)\;\dx  = \int_\Omega\sigma(u):\nabla \varphi\;\dx.
 	\end{equation*}
-	Here $\langle\cdot,\cdot\rangle_{-1,1,\Omega}$ denotes the duality pairing between
-	$H^{-1}(\Omega;\mathbb{R}^d)$ and $H_0^1(\Omega;\mathbb{R}^d)$. Since $\sigma(u)\in L^2(\Omega;\mathbb{R}^{d\times d})$, the right-hand side defines a bounded linear functional on $H_0^1(\Omega;\mathbb{R}^d)$ by Cauchy--Schwarz, hence $-\operatorname{div}\sigma(u)\in H^{-1}(\Omega;\mathbb{R}^d)$. For $\varphi\in C_c^\infty(\Omega;\mathbb{R}^d)$ this coincides with the distributional definition of the divergence.
+	Hence, for all $\varphi\in\cD(\Omega;\R^d)$, we obtain that \eqref{eq:equality} reads
+	\begin{equation*}
+		\int_\Omega \sigma(u):\nabla\varphi\;\dx
+		=
+		\int_\Omega f\cdot\varphi\;\dx.
+	\end{equation*}
+	Interpreting $\sigma(u)$ and $f$ as regular distributions, and using the distributional divergence of matrix-valued distributions, this is equivalent to
+	\begin{equation*}
+		\langle -\diver\sigma(u),\varphi\rangle
+		=
+		\langle f,\varphi\rangle
+		\quad \forall \varphi\in\cD(\Omega;\R^d).
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+		-\diver\sigma(u)=f
+		\quad\text{in }\cD'(\Omega;\R^d).
+	\end{equation*}
+	If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$ and both sides are regular distributions. By injectivity of the embedding $\cT:L^1_{\mathrm{loc}}(\Omega;\R^d)\to\cD'(\Omega;\R^d)$, it follows that
+	\begin{equation}\label{eq:innerae}
+		-\diver\sigma(u)=f
+		\quad\text{a.e. in }\Omega.
+	\end{equation}
+	This is the first condition in Problem \ref{pr:signorini4}. Now let $v\in K$ be arbitrary and set $w:=v-u$. Then by \eqref{eq:green} and \eqref{eq:innerae} we have
+	\begin{equation}\label{eq:equality2}
+		a(u,w) = -\int_\Omega\diver\sigma(u)\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma.
+	\end{equation}
+	On the other hand, by \eqref{eq:weakineq} we have
+	\begin{equation*}
+		a(u,w)\ge\ell(w) = \int_\Omega f\cdot w\;\dx +\int_{\Gamma_N}F\cdot\gamma w\;\ds
+	\end{equation*}
+	which by subtracting $\langle f,\, w\rangle$ yields
+	\begin{equation*}
+		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_{\Gamma_N} F\cdot\gamma v\;\ds\quad\forall v\in K.
+	\end{equation*}
+	This is the second condition in Problem \ref{pr:signorini4}. By Proposition \ref{pr:equivalence23} the condition \eqref{eq:weakineq} implies $a(u,u) = \ell(u)$ and $a(u,v)\ge \ell(v)$ for all $v\in K$. Again, with \eqref{eq:green} and \eqref{eq:innerae}, we have
+	\begin{equation*}
+		a(u,u) = \int_\Omega f\cdot u\;\dx +\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma\quad\text{and}\quad \ell(u) = \int_\Omega f\cdot u\;\dx +\int_{\Gamma_N} F\cdot\gamma u\;\ds
+	\end{equation*}
+	and thus by $a(u,u) = \ell(u)$ and subtracting $\langle f,\, u\rangle$,
+	\begin{equation*}
+		\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma = \int_{\Gamma_N} F\cdot\gamma u\;\ds.
+	\end{equation*}
+	This is the third condition in Problem \ref{pr:signorini4}.Now we assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ be arbitrary and $w:= v-u$. Subtracting the boundary conditions in Problem \ref{pr:signorini4} yields
+	\begin{equation*}
+		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma-\langle\sigma(u),\,\gamma u\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot(\gamma v-\gamma u)\;\dx = \int_{\Gamma_N}F\cdot\gamma w\;\ds.
+	\end{equation*}
+	With \eqref{eq:equality2} is holds
+	\begin{equation*}
+		a(v,w) = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_\Omega f\cdot w\;\dx + \int_{\Gamma_N}F\cdot\gamma w\;\ds = \ell(w) = \ell(v-u).
+	\end{equation*}
+	This is exactly Problem \ref{pr:signorini2}.
 \end{proof}
 
 \subsubsection{Normal/Tangential Splitting and Contact Trace Spaces}
