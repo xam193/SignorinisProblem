@@ -18,7 +18,7 @@ that may touch the rigid foundation. Throughout the whole report, $\Omega\subset
 \end{equation*}
 which are assumed to be open in $\Gamma$ and where each part is subject to different boundary conditions to model different physical interactions (See Figure \ref{fig:setup}). On $\Gamma_D$, we apply {\em homogeneous Dirichlet} boundary conditions. This forces the body to be {\em clamped} and this part, i.e.\ the displacement should not act on $\Gamma_D$,
 \begin{equation*}
-	\forall x\in\Gamma_D:\;x + u(x) = x \qquad\Longrightarrow \qquad\trace(u)|_{\Gamma_D} = 0.
+	\forall x\in\Gamma_D:\;x + u(x) = x \qquad\Longrightarrow \qquad(\gamma u)|_{\Gamma_D} = 0.
 \end{equation*}
 The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary. We assume that $\Gamma_C$ and $\Gamma_D$ have positive $(d-1)$--Lebesgue measure. The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral} contact through {\em nonpenetration} and {\em complementarity}.
 \begin{figure}[!h]
@@ -34,13 +34,12 @@ The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which 
 We start by introducing the energy space and the admissible set of displacements.
 Homogeneous Dirichlet boundary conditions on $\Gamma_D$ are incorporated by
 \begin{equation}\label{eq:energyspace}
-	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \trace(v)=0 \text{ on }\Gamma_D\right\}\subset H^1(\Omega;\R^d).
+	V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; \gamma v=0 \text{ on }\Gamma_D\right\}\subset H^1(\Omega;\R^d).
 \end{equation}
-Let $\gamma=\trace:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ denote the trace operator.
 For $v\in V$ we define the normal component of the boundary displacement on $\Gamma_C$ by
-\begin{equation*}
+\begin{equation}\label{eq:usualnormal}
 	v_{\mathrm n} := (\gamma v)\cdot \mathrm n \qquad \text{on }\Gamma_C,
-\end{equation*}
+\end{equation}
 where $\mathrm n$ is the outward unit normal on $\Gamma$. The unilateral nature of contact is expressed by the {\em nonpenetration} constraint. The rigid foundation is located on the exterior side of $\Gamma_C$ in direction of $\mathrm n$. Hence the body is not allowed to move across $\Gamma_C$ into the obstacle. In the small--strain setting this yields
 \begin{equation*}
 	u_{\mathrm n}\le 0 \qquad \text{a.e.\ on }\Gamma_C.
@@ -73,55 +72,40 @@ This motivates the nonempty, closed and convex cone (\cite[Prop. 3.1]{book}) of 
 
 We start by defining the {\em small strain tensor} for a displacement function $u\in H^1(\Omega;\R^d)$, which is similar to the symmetric part of square matrices but for the gradient $\nabla u$ of $u$ and through which the deformation of the body $\overline{\Omega}$ by $u$ is quantified.
 \begin{definition}[Small Strain Tensor]
-	The {\tt small strain tensor} $\varepsilon$ is defined by
+	The {\tt (small) strain tensor} $\varepsilon$ is defined by
 	\begin{equation*}
-		\varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right)\in L^2(\Omega;\mathrm{Sym}^2(\R^d)),\qquad u\in H^1(\Omega;\R^d).
+		\varepsilon:H^1(\Omega;\R^d)\to L^2(\Omega;\mathrm{Sym}^2(\R^d)),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
 	\end{equation*}
 \end{definition}
-We denote by $\mathrm{Sym}^2(\R^d)$ the space of symmetric second order tensors,
-\begin{equation*}
-	\mathrm{Sym}^2(\R^d)
-	:=\left\{ s\in \R^d\otimes \R^d \;\middle|\; s^\top = s \right\}\cong \left\{ S\in \R^{d\times d}\;\middle|\; S^\top=S \right\}.
-\end{equation*}
-For $s,t\in \mathrm{Sym}^2(\R^d)$ we write denote by
-\begin{equation*}
-	s:t:=\sum_{i = 1}^d \sum_{j = 1}^d s_{ij}\,t_{ij}
-\end{equation*}
-If $A(x)$ is a fourth order tensor and $s\in \mathrm{Sym}^2(\R^d)$, we use the {\em double contraction}
-\begin{equation*}
-	(A(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d A_{ijkl}(x)s_{kl},
-	\qquad
-	s:A(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^dA_{ijkl}(x)s_{ij}s_{kl}.
-\end{equation*}
-In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $A$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $A$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body.
+In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $\cA$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $\cA$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body.
 \begin{definition}[Elasticity tensor field]\label{def:elastfield}
-	An {\tt elasticity tensor field} is a mapping
+	An {\tt elasticity tensor field} is a fourth order tensor
 	\begin{equation*}
-		A:\Omega\to \cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))
+		\cA:\Omega\to \cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))
 	\end{equation*}
 	such that the coefficients satisfy the symmetries
 	\begin{equation*}
-		A_{ijkl}(x)=A_{jikl}(x)=A_{ijlk}(x)=A_{klij}(x),
-		\qquad \forall 1\le i,j,k,l\le d,
+		\cA_{ijkl}(x)=\cA_{jikl}(x)=\cA_{ijlk}(x)=\cA_{klij}(x),
+		\qquad \forall\,1\le i,j,k,l\le d,
 	\end{equation*}
-	and the uniform ellipticity condition, i.e.\ there exists $\alpha_A>0$ such that for a.e.\ $x\in\Omega$
+	and the uniform ellipticity condition, i.e.\ there exists $\alpha_\cA>0$ such that for a.e.\ $x\in\Omega$
 	\begin{equation*}
-		s:A(x):s \ge \alpha_A\, (s:s)\qquad \forall s\in \mathrm{Sym}^2(\R^d).
+		s:\cA(x):s \ge \alpha_\cA\, (s:s)\qquad \forall\,s\in \mathrm{Sym}^2(\R^d).
 	\end{equation*}
-	Moreover, there exists $C_A>0$ such that for a.e.\ $x\in\Omega$
+	Moreover, there exists $C_\cA>0$ such that for a.e.\ $x\in\Omega$
 	\begin{equation*}
-		|A_{ijkl}(x)|\le C_A \qquad \forall 1\le i,j,k,l\le d.
+		|\cA_{ijkl}(x)|\le C_\cA \qquad \forall\,1\le i,j,k,l\le d.
 	\end{equation*}
 \end{definition}
 
 The {\em internal} and {\em surface forces} in the body $\overline{\Omega}$ are described by the {\em Cauchy stress tensor}.
 
 \begin{definition}[Cauchy stress tensor]
-	Let $A$ be an elasticity tensor field. For $u\in H^1(\Omega;\R^d)$ we define the
-	\emph{(linear) Cauchy stress tensor} as the field $\sigma(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$
+	Let $\cA$ be an elasticity tensor field. We define the
+		{\em (linear) Cauchy stress tensor} by
 	given a.e.\ by
 	\begin{equation*}
-		\sigma(u)(x):=A(x):\varepsilon(u)(x).
+		\sigma: H^1(\Omega;\R^d)\to L^2(\Omega;\mathrm{Sym}^2(\R^d)),\qquad u\mapsto \cA : \varepsilon(u).
 	\end{equation*}
 \end{definition}
 On $V$, we define the symmetric bilinear form
@@ -137,7 +121,7 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 \begin{lemma}\label{lem:korn}
 	Assuming $|\Gamma_D|>0$, there exists a constant $C_K>0$ such that
 	\begin{equation*}
-		C_K^{-1}\,\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \qquad \forall v\in V.
+		C_K^{-1}\,\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \qquad \forall\, v\in V.
 	\end{equation*}
 \end{lemma}
 \begin{proof}
@@ -149,7 +133,7 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 	\begin{equation*}
 		\|\varepsilon(v)\|_{0,\Omega}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{0,\Omega}^2\le \|v\|_{1,\Omega}^2,
 	\end{equation*}
-	where the last inequality holds due to the definition
+	where the last inequality holds due to
 	\begin{equation*}
 		\|v\|_{1,\Omega}^2 = \|v\|_{0,\Omega}^2 + \|\nabla v\|_{0,\Omega}^2.
 	\end{equation*}
@@ -160,11 +144,11 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 	\begin{itemize}
 		\item[i)] {\em bounded}, i.e.\ for all $v,w\in V$ there exists $C_1<\infty$ such that
 		      \begin{equation*}
-			      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}\qquad \text{with}\qquad C_1 = C_A,
+			      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}\qquad \text{with}\qquad C_1 = C_\cA,
 		      \end{equation*}
 		\item[ii)] $V${\em -elliptic}, i.e.\ for all $v\in V\setminus\{0\}$ there exist $C_2>0$ such that
 		      \begin{equation*}
-			      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2\qquad\text{with}\qquad C_2 = \frac{\alpha_A}{C_K^2}.
+			      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2\qquad\text{with}\qquad C_2 = \frac{\alpha_\cA}{C_K^2}.
 		      \end{equation*}
 	\end{itemize}
 	Moreover, the linear functional $\ell$ defined in \eqref{eq:laodfunc} is {\em bounded}, i.e.\ for all $v\in V$ there exists $C_3>0$ such that
@@ -175,35 +159,35 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 \begin{proof}
 	Let $v,w\in V$ be arbitrary. Then
 	\begin{equation*}
-		|a(v,w)|\le \|A:\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}
+		|a(v,w)|\le \|\cA:\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}
 	\end{equation*}
-	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_A>0$ such that
+	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_\cA>0$ such that
 	\begin{equation*}
-		\|A:\varepsilon(v)\|_{0,\Omega}\le C_A\,\|\varepsilon(v)\|_{0,\Omega}.
+		\|\cA:\varepsilon(v)\|_{0,\Omega}\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}.
 	\end{equation*}
 	Combining this with the second inequality form Lemma \ref{lem:korn} we have
 	\begin{equation*}
-		|a(v,w)|\le C_A\,\|\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}\le C_A\,\|v\|_{1,\Omega}\,\|w\|_{1,\Omega}.
+		|a(v,w)|\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}\le C_\cA\,\|v\|_{1,\Omega}\,\|w\|_{1,\Omega}.
 	\end{equation*}
 	The ellipticity of $a$ follows by
 	\begin{equation*}
-		a(v,v) = \int_\Omega \varepsilon(v):A:\varepsilon(v)\;\dx \ge \alpha_A\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_A\,\|\varepsilon(v)\|^2_{0,\Omega},
+		a(v,v) = \int_\Omega \varepsilon(v):\cA:\varepsilon(v)\;\dx \ge \alpha_\cA\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_\cA\,\|\varepsilon(v)\|^2_{0,\Omega},
 	\end{equation*}
-	where $\alpha_A>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
+	where $\alpha_\cA>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
 	\begin{equation*}
-		a(v,v)\ge \alpha_A\,\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_A\,\left(C_K^{-1}\,\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_A}{C_K^2}\,\|v\|_{1,\Omega}^2.
+		a(v,v)\ge \alpha_\cA\,\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_\cA\,\left(C_K^{-1}\,\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_\cA}{C_K^2}\,\|v\|_{1,\Omega}^2.
 	\end{equation*}
 	Again by Cauchy--Schwarz inequality,
 	\begin{equation*}
-		|\ell(v)|\le \|f\|_{0,\Omega}\,\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}\qquad \forall v\in V.
+		|\ell(v)|\le \|f\|_{0,\Omega}\,\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}\qquad \forall\, v\in V.
 	\end{equation*}
 	By the Trace Theorem \ref{th:tracetheorem} there exists $C_\mathrm{tr}>0$ such that
 	\begin{equation*}
-		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall v\in V.
+		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall\, v\in V.
 	\end{equation*}
 	Finally,
 	\begin{equation*}
-		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\,\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\le \max\{1,C_\mathrm{tr}\}\,\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\qquad \forall v\in V.
+		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\,\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\le \max\{1,C_\mathrm{tr}\}\,\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\qquad \forall\, v\in V.
 	\end{equation*}
 \end{proof}
 
@@ -260,7 +244,7 @@ We now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Th
 	\end{equation*}
 	belongs to $K$. By Lemma \ref{lem:Jconvex}, $\cJ$ is strictly convex and therefore we have
 	\begin{equation*}
-		\cJ(w_t) < (1-t)\cJ(u_1)+t\cJ(u_2)\qquad \forall t\in(0,1).
+		\cJ(w_t) < (1-t)\cJ(u_1)+t\cJ(u_2)\qquad \forall\, t\in(0,1).
 	\end{equation*}
 	Using \eqref{eq:u1u2min}, this yields
 	\begin{equation*}
@@ -280,7 +264,7 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \begin{proof}
 	Let $J:X\to X^{**}$ be the canonical embedding defined by
 	\begin{equation*}
-		(Jx)(\varphi):=\varphi(x)\qquad \forall \varphi\in X^*.
+		(Jx)(\varphi):=\varphi(x)\qquad \forall\, \varphi\in X^*.
 	\end{equation*}
 	By the Hahn--Banach theorem, $J$ is an isometry, i.e.\ $\|Jx\|_{X^{**}}=\|x\|_X$ for all $x\in X$.
 	Therefore,
@@ -321,10 +305,10 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	\end{equation*}
 	For $s\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ set
 	\begin{equation*}
-		\|s\|_A^2 := \int_\Omega s:A:s\;\dx.
+		\|s\|_\cA^2 := \int_\Omega s:\cA:s\;\dx.
 	\end{equation*}
-	By uniform ellipticity of $A$, the map $\|\cdot\|_A$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
-	equivalent to $\|\cdot\|_{0,\Omega}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_A^2$.
+	By uniform ellipticity of $\cA$, the map $\|\cdot\|_\cA$ defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$
+	equivalent to $\|\cdot\|_{0,\Omega}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_\cA^2$.
 	The mapping $v\mapsto \varepsilon(v)$ is linear and bounded from $V$ to
 	$L^2(\Omega;\mathrm{Sym}^2(\R^d))$. Hence, if $v_j\rightharpoonup v$ in $V$, then
 	\begin{equation*}
@@ -333,8 +317,8 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	\end{equation*}
 	Since norms are weakly lower semicontinuous by Lemma \ref{lem:normwlsc}, we obtain
 	\begin{equation*}
-		a(v,v)=\|\varepsilon(v)\|_A^2
-		\le \liminf_{j\to\infty}\|\varepsilon(v_j)\|_A^2
+		a(v,v)=\|\varepsilon(v)\|_\cA^2
+		\le \liminf_{j\to\infty}\|\varepsilon(v_j)\|_\cA^2
 		= \liminf_{j\to\infty} a(v_j,v_j).
 	\end{equation*}
 	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_j)\to \ell(v)$.
@@ -370,7 +354,7 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]\label{cor:wellposed}
 	The functional $\cJ$ defined in \ref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
 	\begin{equation}\label{eq:ustab}
-		\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_A}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
+		\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\cA}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
 	\end{equation}
 	Consequently, Problem \ref{pr:signorini1} has a unique stable solution.
 \end{corollary}
@@ -381,11 +365,11 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	\end{equation*}
 	By Proposition~\ref{pr:aproperties} {\em ii)} we have
 	\begin{equation*}
-		a(u,u)\ge \frac{\alpha_A}{C_K^2}\,\|u\|_{1,\Omega}^2
+		a(u,u)\ge \frac{\alpha_\cA}{C_K^2}\,\|u\|_{1,\Omega}^2
 	\end{equation*}
 	and thus
 	\begin{equation*}
-		\frac{\alpha_A}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega},
+		\frac{\alpha_\cA}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega},
 	\end{equation*}
 	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
 \end{proof}
@@ -396,7 +380,7 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 \begin{lemma}[Fréchet differentiability of $\cJ$]\label{lem:Jdiff}
 	The functional $\cJ$ defined in \eqref{eq:energyfunc} is Fréchet differentiable on $V$. Its derivative at $u\in V$ is given by
 	\begin{equation}\label{eq:Jprime}
-		\cJ'(u)[h] = a(u,h)-\ell(h)\qquad \forall h\in V.
+		\cJ'(u)[h] = a(u,h)-\ell(h)\qquad \forall\, h\in V.
 	\end{equation}
 \end{lemma}
 \begin{proof}
@@ -409,7 +393,7 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 	Hence
 	\begin{equation*}
 		\frac{\cJ(u+th)-\cJ(u)-t(a(u,h)-\ell(h))}{\|th\|_{1,\Omega}}
-		=\frac{|t|}{2}\,\frac{|a(h,h)|}{\|h\|_{1,\Omega}}\le \frac{|t|}{2}\,C_A\,\|h\|_{1,\Omega}\xrightarrow{\ t\to 0 \ }0,
+		=\frac{|t|}{2}\,\frac{|a(h,h)|}{\|h\|_{1,\Omega}}\le \frac{|t|}{2}\,C_\cA\,\|h\|_{1,\Omega}\xrightarrow{\ t\to 0 \ }0,
 	\end{equation*}
 	by boundedness of $a$ as proven in Proposition \ref{pr:aproperties}.
 \end{proof}
@@ -417,7 +401,7 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 \begin{proposition}[First-order optimality condition on convex sets]\label{pr:FOC}
 	A function $u\in K$ minimizes $\cJ$ over $K$ if and only if it satisfies the variational inequality
 	\begin{equation}\label{eq:firstorderopt}
-		\cJ^\prime(u)[v-u]\ge 0\qquad\forall v\in K.
+		\cJ^\prime(u)[v-u]\ge 0\qquad\forall\, v\in K.
 	\end{equation}
 \end{proposition}
 \begin{proof}
@@ -437,14 +421,14 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 
 Combining Lemma \ref{lem:Jdiff} and Proposition \ref{pr:FOC}, $u\in K$ solves Problem \ref{pr:signorini1} if and only if
 \begin{equation*}
-	\cJ^\prime(u)[v-u] = a(u,v-u)-\ell(v-u)\ge 0 \qquad \forall v\in K.
+	\cJ^\prime(u)[v-u] = a(u,v-u)-\ell(v-u)\ge 0 \qquad \forall\, v\in K.
 \end{equation*}
 This is the first weak formulation of Signorini's problem as a variational inequality.
 
 \begin{problem}[Signorini's Problem -- Weak Formulation]\label{pr:signorini2}
 Find $u\in K$ such that
 \begin{equation*}
-	a(u,v-u)\ge \ell(v-u)\qquad \forall v\in K.
+	a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K.
 \end{equation*}
 \end{problem}
 
@@ -455,7 +439,7 @@ Find $u\in K$ such that
 \begin{equation*}
 	\begin{cases}
 		a(u,u) = \ell(u), &                 \\[2pt]
-		a(u,v)\ge \ell(v) & \forall v\in K.
+		a(u,v)\ge \ell(v) & \forall\, v\in K.
 	\end{cases}
 \end{equation*}
 \end{problem}
@@ -495,14 +479,14 @@ We close this section by providing another stability result on the dependency of
 	over $K$. Then the solutions depend Lipschitz continuously on the data, i.e.
 	\begin{equation*}
 		\|u_1-u_2\|_{1,\Omega}
-		\le \frac{C_K^2}{\alpha_A}\,\|\ell_1-\ell_2\|_{-1,\Omega}
-		\le \frac{C_K^2\,\max\{1,C_{\mathrm{tr}}\}}{\alpha_A}\,\left(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\right).
+		\le \frac{C_K^2}{\alpha_\cA}\,\|\ell_1-\ell_2\|_{-1,\Omega}
+		\le \frac{C_K^2\,\max\{1,C_{\mathrm{tr}}\}}{\alpha_\cA}\,\left(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\right).
 	\end{equation*}
 \end{proposition}
 \begin{proof}
 	Since $u_i\in K$ minimizes $\cJ_i$ over the closed convex set $K$ by Proposition \ref{pr:FOC}, it satisfies the first-order optimality condition
 	\begin{equation}\label{eq:VI_i}
-		a(u_i,v-u_i)\ge \ell_i(v-u_i)\qquad \forall v\in K,\ i=1,2.
+		a(u_i,v-u_i)\ge \ell_i(v-u_i)\qquad \forall\, v\in K,\ i=1,2.
 	\end{equation}
 	Choose $v=u_2$ in \eqref{eq:VI_i} for $i=1$ and $v=u_1$ in \eqref{eq:VI_i} for $i=2$. This yields
 	\begin{align*}
@@ -515,18 +499,18 @@ We close this section by providing another stability result on the dependency of
 	\end{equation*}
 	By the $V$-ellipticity estimate from Proposition~\ref{pr:aproperties}~ii) we have
 	\begin{equation*}
-		a(w,w)\ge \frac{\alpha_A}{C_K^2}\,\|w\|_{1,\Omega}^2\qquad \forall w\in V.
+		a(w,w)\ge \frac{\alpha_\cA}{C_K^2}\,\|w\|_{1,\Omega}^2\qquad \forall\, w\in V.
 	\end{equation*}
 	Applying this with $w=u_1-u_2$ and estimating the right-hand side by the dual norm
 	$\|\cdot\|_{-1,\Omega}$ yields
 	\begin{equation*}
-		\frac{\alpha_A}{C_K^2}\,\|u_1-u_2\|_{1,\Omega}^2
+		\frac{\alpha_\cA}{C_K^2}\,\|u_1-u_2\|_{1,\Omega}^2
 		\le a(u_1-u_2,u_1-u_2)
 		\le \|\ell_1-\ell_2\|_{-1,\Omega}\,\|u_1-u_2\|_{1,\Omega}.
 	\end{equation*}
 	If $u_1=u_2$ there is nothing to show. Otherwise we divide by $\|u_1-u_2\|_{1,\Omega}$ and obtain
 	\begin{equation}\label{eq:lipschitz_dual}
-		\|u_1-u_2\|_{1,\Omega}\le \frac{C_K^2}{\alpha_A}\,\|\ell_1-\ell_2\|_{-1,\Omega}.
+		\|u_1-u_2\|_{1,\Omega}\le \frac{C_K^2}{\alpha_\cA}\,\|\ell_1-\ell_2\|_{-1,\Omega}.
 	\end{equation}
 	It remains to bound $\|\ell_1-\ell_2\|_{-1,\Omega}$ in terms of $f_1-f_2$ and $F_1-F_2$.
 	Let $v\in V$ be arbitrary. By Cauchy--Schwarz,
@@ -560,50 +544,89 @@ This regularity is sufficient to interpret the internal virtual work
 \begin{equation*}
 	a(u,v)=\int_\Omega \sigma(u):\varepsilon(v)\;\dx,
 \end{equation*}
-but it is not enough to write the equilibrium equation $-\diver\sigma(u)=f$ as an identity in
-$L^2(\Omega;\R^d)$, since the divergence of an $L^2$--field is only defined in the sense of
-distributions. To formulate a strong equilibrium equation in $L^2(\Omega;\R^d)$ and to give a meaning to {\em boundary
-		tractions}, we assume additional regularity of the stress,
-\begin{equation}\label{eq:Hdiv}
-	\sigma(u)\in H(\diver;\Omega)
-	:=\left\{\tau\in L^2(\Omega;\R^{d\times d})\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\}.
-\end{equation}
-Here $\diver\tau$ is taken row-wise, i.e.
+but it is not enough to write the equilibrium equation
 \begin{equation*}
-	(\diver\tau)_i=\sum_{j=1}^d \partial_j \tau_{ij}
+	-\diver\sigma(u)=f
 \end{equation*}
-in the distributional sense. If $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$,
-so the equilibrium equation is well--defined. The same regularity is also exactly what is needed to define the boundary traction (or surface force density) associated with $\tau$. Formally, for smooth $\tau$ one would write
-\begin{equation*}
-	\tau\,\mathrm{n}\qquad\text{on }\Gamma,
-\end{equation*}
-where $\mathrm{n}:\Gamma\to\R^d$ is the outward unit normal and $\tau\,\mathrm{n}$ denotes the pointwise
-matrix--vector product. However, for $\tau\in L^2(\Omega;\R^{d\times d})$ a pointwise boundary trace is not available, so $\tau\,\mathrm{n}$ cannot be defined as an $L^2(\Gamma)$--function in general. One therefore starts from the classical integration by parts formula. If $\tau$ and $v$ are smooth, then
-\begin{equation}\label{eq:green_smooth}
-	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
-	= \int_\Gamma (\tau\,\mathrm{n})\cdot v\;\ds.
-\end{equation}
+as an identity in $L^2(\Omega;\R^d)$, since the divergence of an $L^2$--field is only defined in the sense of
+distributions. To formulate a strong equilibrium equation in $L^2(\Omega;\R^d)$ and to give a meaning to {\em boundary tractions}, we assume additional regularity of the stress, $\sigma(u)\in H(\diver;\Omega)$.
+This means that $\diver\sigma(u)\in L^2(\Omega;\R^d)$, so the equilibrium equation is well--defined. The same regularity is also exactly what is needed to define the boundary traction (or surface force density) associated with $\tau$. Formally, for smooth $\tau$ one would write $\tau\,\mathrm{n}$ on $\Gamma$ where $\mathrm{n}:\Gamma\to\R^d$ is the outward unit normal and $\tau\,\mathrm{n}$ denotes the pointwise
+matrix-vector product as earlier in \eqref{eq:usualnormal}. However, for $\tau\in L^2(\Omega;\R^{d\times d})$ a pointwise boundary trace is not available, so $\tau\,\mathrm{n}$ cannot be defined as an $L^2$-function on $\Gamma$ in general. One therefore starts from the classical integration by parts formula.
+\begin{proposition}[Integration by Parts]
+	If $\tau\in C^1(\overline{\Omega};\mathbb{R}^{d\times d})$ and $v\in C^1(\overline{\Omega};\mathbb{R}^d)$, then
+	\begin{equation}\label{eq:green_smooth}
+		\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\operatorname{div}\tau)\cdot v\;\dx
+		= \int_\Gamma (\tau\,\mathrm{n})\cdot v\;\ds.
+	\end{equation}
+\end{proposition}
 The key point now is that the left-hand side still makes sense for $\tau\in H(\diver;\Omega)$ and
-$v\in H^1(\Omega;\R^d)$. Hence, for fixed $\tau\in H(\diver;\Omega)$ the map
-\begin{equation*}
+$v\in H^1(\Omega;\R^d)$ by understanding the differential operators in the weak sense. Hence, for some fixed $\tau\in H(\diver;\Omega)$ the map
+\begin{equation}\label{eq:Ftau}
 	F_\tau(v) :=\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx,
 	\qquad v\in H^1(\Omega;\R^d),
-\end{equation*}
-defines a continuous linear functional on $H^1(\Omega;\R^d)$. The crucial observation is that $F_\tau$ depends only on the boundary trace $\gamma v$. Indeed, if $w\in H^1_0(\Omega;\R^d)$, then $\gamma w=0$, and we claim that $F_\tau(w)=0$. To see this, we take a sequence $(w_m)_{m\in\N}\subset C_c^\infty(\Omega;\R^d)$ with
-$w_m\to w$ in $H^1(\Omega;\R^d)$. Since $\diver\tau\in L^2(\Omega;\R^d)$, we have for all $w_m\in C_c^\infty(\Omega;\R^d)$, that
-\begin{equation*}
-	\int_\Omega (\diver\tau)\cdot w_m\;\dx = -\int_\Omega \tau:\nabla w_m\;\dx,
-\end{equation*}
-and therefore $F_\tau(w_m)=0$ for all $m\in\N$. Passing to the limit $m\to\infty$ using the continuity of
-$F_\tau$ on $H^1(\Omega;\R^d)$ yields $F_\tau(w)=0$. Consequently, if $v_1,v_2\in H^1(\Omega;\R^d)$ satisfy $\gamma v_1=\gamma v_2$, then $v_1-v_2\in H^1_0(\Omega;\R^d)$ and thus $F_\tau(v_1)=F_\tau(v_2)$. This is exactly the statement that $F_\tau$ depends only on $\gamma v$. Since $\gamma:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ is continuous and $\ker(\gamma)=H^1_0(\Omega;\R^d)$, the previous argument implies that $F_\tau$ induces a well-defined continuous linear functional on the trace space $H^{1/2}(\Gamma;\R^d)$. Hence there exists a unique element
+\end{equation}
+defines a continuous linear functional on $H^1(\Omega;\R^d)$. The crucial observation is that $F_\tau$ depends only on the boundary trace $\gamma v$.
+
+\begin{proposition}[Dependence of $F_\tau$ on the Trace]\label{pr:Ftau_depends_on_trace}
+	The functional $F_\tau$ define in \eqref{eq:Ftau} vanished on $H_0^1(\Omega;\R^d)$, i.e.
+	\begin{equation*}
+		F_\tau(w)=0
+		\qquad\forall\,w\in H^1_0(\Omega;\R^d).
+	\end{equation*}
+	Consequently, $F_\tau$ depends only on the trace $\gamma v$ in the sense that
+	\begin{equation*}
+		\gamma v_1=\gamma v_2
+		\quad\Longrightarrow\quad
+		F_\tau(v_1)=F_\tau(v_2)
+		\qquad\forall\,v_1,v_2\in H^1(\Omega;\R^d).
+	\end{equation*}
+\end{proposition}
+
+\begin{proof}
+	Let $w\in H^1_0(\Omega;\R^d)$. By density, there exists a sequence $(w_m)_{m\in\N}\subset C_c^\infty(\Omega;\R^d)$ such that
+	\begin{equation*}
+		w_m\to w
+		\qquad\text{in }H^1(\Omega;\R^d).
+	\end{equation*}
+	Since $\tau\in H(\diver;\Omega)$, we have for every $m\in\N$ that
+	\begin{equation*}
+		\int_\Omega (\diver\tau)\cdot w_m\;\dx
+		=
+		-\int_\Omega \tau:\nabla w_m\;\dx,
+	\end{equation*}
+	and therefore
+	\begin{equation*}
+		F_\tau(w_m)=0
+		\qquad\forall\,m\in\N.
+	\end{equation*}
+	Passing to the limit $m\to\infty$ and using the continuity of $F_\tau$ on $H^1(\Omega;\R^d)$ yields
+	\begin{equation*}
+		F_\tau(w)=\lim_{m\to\infty}F_\tau(w_m)=0.
+	\end{equation*}
+	Hence $F_\tau$ vanishes on $H^1_0(\Omega;\R^d)$. Now let $v_1,v_2\in H^1(\Omega;\R^d)$ satisfy $\gamma v_1=\gamma v_2$. Then
+	\begin{equation*}
+		\gamma(v_1-v_2)=0.
+	\end{equation*}
+	By the characterization $\ker(\gamma)=H^1_0(\Omega;\R^d)$, we obtain $v_1-v_2\in H^1_0(\Omega;\R^d)$. Therefore,
+	\begin{equation*}
+		F_\tau(v_1)-F_\tau(v_2)
+		=
+		F_\tau(v_1-v_2)
+		=
+		0,
+	\end{equation*}
+	which proves the claim.
+\end{proof}
+
+Since $\gamma:H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)$ is continuous and $\ker(\gamma)=H^1_0(\Omega;\R^d)$, Proposition \ref{pr:Ftau_depends_on_trace} implies that $F_\tau$ induces a well-defined continuous linear functional on the trace space $H^{1/2}(\Gamma;\R^d)$. Hence there exists a unique element
 $\gamma_{\mathrm{n}}(\tau)\in H^{-1/2}(\Gamma;\R^d)$ such that
 \begin{equation}\label{eq:greenHdiv}
 	\langle \gamma_{\mathrm{n}}(\tau),\,\gamma v\rangle_{\Gamma}
 	= \int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
 	\qquad
-	\forall v\in H^1(\Omega;\R^d),
+	\forall\, v\in H^1(\Omega;\R^d).
 \end{equation}
-where $\langle\cdot,\cdot\rangle_{\Gamma}$ denotes the duality pairing of $H^{-1/2}(\Gamma;\R^d)\times H^{1/2}(\Gamma;\R^d)$. The operator $\gamma_{\mathrm{n}}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d)$ is called the {\em normal trace operator} (see \cite[Lemma 3.1]{book}). In the smooth case, \eqref{eq:greenHdiv} reduces to
+The operator $\gamma_{\mathrm{n}}:H(\diver;\Omega)\to H^{-1/2}(\Gamma;\R^d)$ is called the {\em normal trace operator} (see \cite[Lemma~3.1]{book}). In the smooth case, \eqref{eq:greenHdiv} reduces to
 \eqref{eq:green_smooth}, so $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical boundary function
 $\tau\,\mathrm{n}$. For this reason we write suggestively
 \begin{equation*}
@@ -611,27 +634,27 @@ $\tau\,\mathrm{n}$. For this reason we write suggestively
 \end{equation*}
 Physically, $\tau\,\mathrm{n}$ is the traction vector (or surface force density) exerted across the boundary
 with outward normal $\mathrm{n}$, and in particular $t(u):=\sigma(u)\mathrm{n}$ is the surface force induced
-by the stress field $\sigma(u)$. Finally, since $\tau$ is symmetric, $\tau:\nabla v=\tau:\varepsilon(v)$ for all $v$, so \eqref{eq:greenHdiv} can be written in the symmetric form
+by the stress field $\sigma(u)$. Finally, since $\tau$ is symmetric, $\tau:\nabla v=\tau:\varepsilon(v)$ for all $v\in H^1(\Omega;\R^d)$, so \eqref{eq:greenHdiv} can be written in the symmetric form
 \begin{equation*}
 	\langle \tau\,\mathrm{n},\,\gamma v\rangle_{\Gamma}
 	= \int_\Omega \tau:\varepsilon(v)\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
 	\qquad
-	\forall (v,\tau)\in H^1(\Omega;\R^d)\times H(\diver;\Omega).
+	\forall\, (v,\tau)\in H^1(\Omega;\R^d)\times H(\diver;\Omega).
 \end{equation*}
-Applying this to $\tau=\sigma(u)$ and assuming $\sigma(u)\in H(\diver;\Omega)$ provides
+Applying this to $\tau=\sigma(u)\in H(\diver;\Omega)$ provides
 \begin{equation}\label{eq:green}
-	\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega (\diver\sigma(u))\cdot v\;\dx\qquad \forall v\in H^1(\Omega;\R^d).
+	\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx + \int_\Omega \diver\sigma(u)\cdot v\;\dx\qquad \forall\, v\in H^1(\Omega;\R^d).
 \end{equation}
 which will be needed in the strong Signorini conditions.
 
 \subsubsection{A Hybrid Formulation}
 \begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
-Find $u\in K$ such that
+For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that
 \begin{equation*}
 	\begin{cases}
 		-\diver\sigma(u) = f                                                                                   & \text{a.e.\ in }\Omega, \\[7pt]
 		\langle \sigma(u)\mathrm{n}, \gamma u\rangle_\Gamma = \displaystyle\int_{\Gamma_N}F\cdot\gamma u\;\dx, &                         \\[10pt]
-		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\dx  & \forall v\in K.
+		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\dx  & \forall\, v\in K.
 	\end{cases}
 \end{equation*}
 \end{problem}
@@ -644,7 +667,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 \begin{proof}
 	Let $u\in K$ solve Problem \ref{pr:signorini2}, i.e.\ it holds
 	\begin{equation}\label{eq:weakineq}
-		a(u,v-u)\ge \ell(v-u)\qquad \forall v\in K.
+		a(u,v-u)\ge \ell(v-u)\qquad \forall \,v\in K.
 	\end{equation}
 	We take a test function $\varphi\in\cD(\Omega;\R^d)$. Then $\gamma\varphi = 0$ on $\Gamma$ and $u\pm t\varphi\in K$ for all $t>0$. Testing $v:=u\pm t\varphi$ in \eqref{eq:weakineq} yields
 	\begin{equation}\label{eq:equality}
@@ -672,14 +695,14 @@ We close this section by showing, that the hybrid formulation above is equivalen
 		\langle -\diver\sigma(u),\varphi\rangle
 		=
 		\langle f,\varphi\rangle
-		\qquad \forall \varphi\in\cD(\Omega;\R^d).
+		\qquad \forall \,\varphi\in\cD(\Omega;\R^d).
 	\end{equation*}
 	Therefore,
 	\begin{equation*}
 		-\diver\sigma(u)=f
 		\qquad\text{in }\cD'(\Omega;\R^d).
 	\end{equation*}
-	If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$ and both sides are regular distributions. By injectivity of the embedding $\cT:L^1_{\mathrm{loc}}(\Omega;\R^d)\to\cD'(\Omega;\R^d)$, it follows that
+	If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$. By injectivity of the embedding $L^1_{\mathrm{loc}}(\Omega;\R^d)\hookrightarrow\cD'(\Omega;\R^d)$, it follows that
 	\begin{equation}\label{eq:innerae}
 		-\diver\sigma(u)=f
 		\qquad\text{a.e. in }\Omega.
@@ -694,9 +717,9 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\end{equation*}
 	which by subtracting $\langle f,\, w\rangle$ yields
 	\begin{equation*}
-		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_{\Gamma_N} F\cdot\gamma v\;\ds\qquad\forall v\in K.
+		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_{\Gamma_N} F\cdot\gamma w\;\ds\qquad\forall \,v\in K.
 	\end{equation*}
-	This is the second condition in Problem \ref{pr:signorini4}. By Proposition \ref{pr:equivalence23} the condition \eqref{eq:weakineq} implies $a(u,u) = \ell(u)$ and $a(u,v)\ge \ell(v)$ for all $v\in K$. Again, with \eqref{eq:green} and \eqref{eq:innerae}, we have
+	This is the third condition in Problem \ref{pr:signorini4}. By Proposition \ref{pr:equivalence23} the condition \eqref{eq:weakineq} implies $a(u,u) = \ell(u)$ and $a(u,v)\ge \ell(v)$ for all $v\in K$. Again, with \eqref{eq:green} and \eqref{eq:innerae}, we have
 	\begin{equation*}
 		a(u,u) = \int_\Omega f\cdot u\;\dx +\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma\qquad\text{and}\qquad \ell(u) = \int_\Omega f\cdot u\;\dx +\int_{\Gamma_N} F\cdot\gamma u\;\ds
 	\end{equation*}
@@ -704,24 +727,233 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\begin{equation*}
 		\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma = \int_{\Gamma_N} F\cdot\gamma u\;\ds.
 	\end{equation*}
-	This is the third condition in Problem \ref{pr:signorini4}.Now we assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ be arbitrary and $w:= v-u$. Subtracting the boundary conditions in Problem \ref{pr:signorini4} yields
+	This is the second condition in Problem \ref{pr:signorini4}. Now we assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ be arbitrary and $w:= v-u$. Subtracting the boundary conditions in Problem \ref{pr:signorini4} yields
 	\begin{equation*}
-		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma-\langle\sigma(u),\,\gamma u\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot(\gamma v-\gamma u)\;\dx = \int_{\Gamma_N}F\cdot\gamma w\;\ds.
+		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma-\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot(\gamma v-\gamma u)\;\ds = \int_{\Gamma_N}F\cdot\gamma w\;\ds.
 	\end{equation*}
 	With \eqref{eq:equality2} is holds
 	\begin{equation*}
-		a(v,w) = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_\Omega f\cdot w\;\dx + \int_{\Gamma_N}F\cdot\gamma w\;\ds = \ell(w) = \ell(v-u).
+		a(u,w) = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_\Omega f\cdot w\;\dx + \int_{\Gamma_N}F\cdot\gamma w\;\ds = \ell(w) = \ell(v-u).
 	\end{equation*}
 	This is exactly Problem \ref{pr:signorini2}.
 \end{proof}
 
 \subsubsection{Normal/Tangential Splitting and Contact Trace Spaces}
+The hybrid formulation derived above still encodes the contact interaction through a single boundary traction functional acting on traces. In order to recover the Signorini contact conditions on $\Gamma_C$ in a meaningful weak sense, we now split traces and tractions into normal and tangential components and introduce the corresponding trace spaces on the contact boundary. Recall that for $v\in V$, the trace $\gamma v|_{\Gamma_C}$ is well-defined. We define the contact trace space by
+\begin{equation*}
+	W_C := \left\{\gamma v|_{\Gamma_C}\; \middle|\; v\in V\right\}\subset H^{1/2}(\Gamma_C;\R^d).
+\end{equation*}
+For $w\in W_C$, we define its normal and tangential components by
+\begin{equation*}
+	w_\mathrm{n} := w\cdot \mathrm n,
+	\qquad
+	w_t := w - (w\cdot \mathrm n)\mathrm n.
+\end{equation*}
+Accordingly, we introduce the normal and tangential trace spaces
+\begin{equation*}
+	W_{C,\mathrm{n}} := \left\{w\cdot \mathrm n\; \middle|\; w\in W_C\right\},
+	\qquad
+	W_{C,t} := \left\{w\in W_C\; \middle|\; w\cdot \mathrm n = 0\right\}.
+\end{equation*}
+Hence every $w\in W_C$ admits the decomposition
+\begin{equation*}
+	w = w_\mathrm{n}\mathrm n + w_t\in W_{C,\mathrm{n}}\,\mathrm{n}\oplus W_{C,t}
+\end{equation*}
+We endow $W_C$, $W_{C,\mathrm{n}}$ and $W_{C,t}$ with the quotient norms induced by $V$, namely
+\begin{equation}\label{eq:norm_WC}
+	\|w\|_{W_C}
+	:=
+	\inf\left\{\|v\|_{1,\Omega}\; \middle|\; v\in V,\ \gamma v|_{\Gamma_C}=w\right\},
+	\qquad w\in W_C,
+\end{equation}
+and
+\begin{equation}\label{eq:norm_WCn}
+	\|\eta\|_{W_{C,\mathrm{n}}}
+	:=
+	\inf\left\{\|v\|_{1,\Omega}\; \middle|\; v\in V,\ (\gamma v|_{\Gamma_C})\cdot \mathrm n=\eta\right\},
+	\qquad \eta\in W_{C,\mathrm{n}},
+\end{equation}
+and
+\begin{equation}\label{eq:norm_WCt}
+	\|\zeta\|_{W_{C,t}}
+	:=
+	\inf\left\{\|v\|_{1,\Omega}\; \middle|\; v\in V,\ (\gamma v|_{\Gamma_C})_t=\zeta\right\},
+	\qquad \zeta\in W_{C,t}.
+\end{equation}
+We denote by $W_C'$, $W_{C,\mathrm{n}}^\prime$ and $W_{C,t}^\prime$ the corresponding dual spaces, equipped with the operator norms. Their duality pairings are denoted by $\langle \cdot,\cdot\rangle_C$. Whenever no confusion can arise, we use the same notation $\langle\cdot,\cdot\rangle_C$ for the pairings on
+$W_C^\prime\times W_C$, $W_{C,\mathrm{n}}^\prime\times W_{C,\mathrm{n}}$ and $W_{C,t}^\prime\times W_{C,t}$. In the hybrid formulation, the boundary traction on $\Gamma_C$ is understood as a bounded linear functional on $W_C$.
+Hence, for a contact traction $\tau\in W_C^\prime$, one can define normal and tangential components
+\begin{equation}\label{eq:traction_split_dual}
+	\tau_\mathrm{n}\in W_{C,\mathrm{n}}^\prime,
+	\qquad
+	\tau_t\in W_{C,t}^\prime,
+\end{equation}
+such that, for every $w\in W_C$ with decomposition $w=w_\mathrm{n}\mathrm n+w_t$,
+\begin{equation}\label{eq:dual_split_pairing}
+	\langle \tau,w\rangle_C
+	=
+	\langle \tau_\mathrm{n},w_\mathrm{n}\rangle_C
+	+
+	\langle \tau_t,w_t\rangle_C.
+\end{equation}
+To express the Signorini contact condition on the normal component in dual form, we introduce the cone of admissible normal traces
+\begin{equation}\label{eq:cone_WCn_minus}
+	W_{C,\mathrm{n}}^-
+	:=
+	\left\{\eta\in W_{C,\mathrm{n}}\; \middle|\; \eta\le 0 \text{ a.e.\ on }\Gamma_C\right\},
+\end{equation}
+and its dual cone of weakly nonpositive normal contact forces
+\begin{equation}\label{eq:def_LambdaC}
+	\Lambda_C
+	:=
+	\left\{\lambda\in W_{C,\mathrm{n}}'\; \middle|\; \langle \lambda,\eta\rangle_C \ge 0 \quad \forall\,\eta\in W_{C,\mathrm{n}}^-\right\}.
+\end{equation}
+With these notations, the boundary inequality in the hybrid formulation can be decomposed into normal and tangential contributions on $\Gamma_C$.
+This allows us to state the frictionless Signorini contact conditions as a KKT-type system in the dual spaces $W_{C,\mathrm{n}}'$ and $W_{C,t}'$.
 
 \subsubsection{KKT Contact Conditions}
 
+Under the assumption of having no Neumann boundary part, $|\Gamma_N|$, we can make a strong formulation of Signorini's Problem. We denote the boundary stress by
+\begin{equation*}
+	\sigma(u)\mathrm{n} = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)
+\end{equation*}
+
+\begin{problem}[Signorini's Problem -- Strong Formulation]\label{pr:signorini5}
+For given $f\in L^2(\Omega;\R^d)$, find $u\in V$ such that
+\begin{equation*}
+	\begin{cases}
+		-\diver \sigma(u) = f & \text{a.e.\ in }\Omega,   \\[3pt]
+		\sigma_t(u) = 0       & \text{in }W_{C,t}^\prime, \\[3pt]
+		u_\mathrm{n}\le 0     & \text{a.e.\ on }\Gamma_C, \\[3pt]
+		\sigma_\mathrm{n}(u)\in\Lambda_C                  \\[3pt]
+		\langle\sigma_\mathrm{n},\, u_\mathrm{n}\rangle_{\Gamma_C} = 0,
+	\end{cases}
+\end{equation*}
+\end{problem}
+
+\begin{proposition}[Equivalence of Strong and Weak Formulation]
+	Suppose that $|\Gamma_N|= 0$. Then every solution to Problem \ref{pr:signorini5} is also a solution to Problem \ref{pr:signorini2} and vice versa.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
 \subsubsection{Classical Strong From under Additinal Regularity}
+Finally, under higher regularity assumptions on $u$, we can formulate Signorini's problem in a natural strong way. Here $|\Gamma_N|>0$ is allowed.
+\newpage
+\begin{problem}[Signorini's Problem -- Strong Formulation]\label{pr:signorini6}
+For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$ find $u\in H^s(\Omega;\R^d)$ with $s>3/2$ such that the small strain elasticity equations
+\begin{equation*}
+	\begin{cases}
+		-\diver\sigma(u) = f           & \text{in }\Omega,   \\[3pt]
+		\sigma(u) = \cA:\varepsilon(u) & \text{in }\Omega,   \\[3pt]
+		u = 0                          & \text{on }\Gamma_D, \\[3pt]
+		\sigma(u)\mathrm{n} = F        & \text{on }\Gamma_N,
+	\end{cases}
+\end{equation*}
+and the contact conditions
+\begin{equation*}
+	\begin{cases}
+		u_\mathrm{n}\le 0             & \text{on }\Gamma_C, \\[3pt]
+		\sigma_\mathrm{n}(u)\le 0     & \text{on }\Gamma_C, \\[3pt]
+		\sigma_n(u)\,u_\mathrm{n} = 0 & \text{on }\Gamma_C, \\[3pt]
+		\sigma_t(u) = 0               & \text{on }\Gamma_C,
+	\end{cases}
+\end{equation*}
+hold.
+\end{problem}
+
+\begin{proposition}Equivalence of Strong and Weak Formulation
+	If $u\in H^s(\Omega;\R^d)$ with $s>3/2$ is a solution to Problem \ref{pr:signorini6}, then it is also a solution to Problem \ref{pr:signorini2} and vice versa.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
 
 
 \subsection{Mixed Formulation}
-\subsubsection{Mixed Weak Formulation as a Sattlepoint Problem}
+
+In the primal setting, Signorini's problem is posed as a variational inequality on the convex set $K\subset V$.
+In the mixed approach we introduce an additional unknown $\lambda$ on the contact boundary, which represents the weak normal contact traction.
+This leads to a saddle-point structure in the variables $(u,\lambda)$, where the nonpenetration constraint is encoded by the cone condition $\lambda\in\Lambda_C$.
+
+\subsubsection{Mixed Weak Formulation as a Saddlepoint Problem}
+
+We keep the energy functional 
+\begin{equation*}
+	\cJ(v)=\frac12 a(v,v)-\ell(v),\qquad v\in V
+\end{equation*}
+from \eqref{eq:energyfunc} and use the normal trace space $W_{C,\mathrm n}$ and the dual cone $\Lambda_C\subset W_{C,\mathrm n}'$ introduced in \eqref{eq:def_LambdaC}. For $v\in V$ and $\lambda\in W_{C,\mathrm n}'$ we define the coupling form
+\begin{equation}\label{eq:def_b_mixed}
+	b(v,\lambda):=\left\langle \lambda,\,(\gamma v|_{\Gamma_C})\cdot \mathrm n\right\rangle_C.
+\end{equation}
+We then introduce the Lagrangian on $V\times\Lambda_C$ by
+\begin{equation}\label{eq:def_Lagrangian_mixed}
+	\cL(v,\lambda):=\cJ(v)-b(v,\lambda).
+\end{equation}
+
+\begin{problem}[Signorini's Problem -- Mixed weak formulation]\label{pr:signorini_mixed}
+Find $(u,\lambda)\in V\times \Lambda_C$ such that
+
+\begin{equation*}
+	\begin{cases}
+		a(u,v)-b(v,\lambda)=\ell(v)& \forall\,v\in V,\\[3pt]
+		b(u,\mu-\lambda)\ge 0& \forall\,\mu\in \Lambda_C.
+	\end{cases}
+\end{equation*}
+\end{problem}
+
+The first condition \eqref{eq:mixed_eq1} corresponds to bulk equilibrium with an additional boundary reaction term encoded by $\lambda$.
+The second condition \eqref{eq:mixed_eq2} is a variational inequality on the cone $\Lambda_C$ and represents the complementarity structure of frictionless contact.
+
+\begin{remark}[Saddlepoint property]\label{rem:saddlepoint_property}
+A pair $(u,\lambda)\in V\times\Lambda_C$ solves Problem~\ref{pr:signorini_mixed} if and only if it satisfies the saddlepoint inequality
+\begin{equation}\label{eq:saddlepoint}
+	\cL(u,\mu)\le \cL(u,\lambda)\le \cL(v,\lambda)\quad \forall \,(v,\mu)\in V\times\Lambda_C.
+\end{equation}
+\end{remark}
+
+
 \subsubsection{Well--posedness and inf--sup condition}
+
+We briefly explain the role of the inf--sup condition for the coupling form $b(\cdot,\cdot)$ in \eqref{eq:def_b_mixed}. 
+Define the operators $A:V\to V'$ and $B:V\to W_{C,\mathrm n}$ by
+\begin{equation}\label{eq:def_operators_AB}
+	(Au)(v):=a(u,v),\quad Bv:= (\gamma v|_{\Gamma_C})\cdot \mathrm n.
+\end{equation}
+Then \eqref{eq:mixed_eq1} can be written as
+\begin{equation}\label{eq:first_equation_operator}
+	Au-B^*\lambda=\ell \quad \text{in }V',
+\end{equation}
+where $B^*:W_{C,\mathrm n}'\to V'$ is the adjoint operator given by
+\begin{equation}\label{eq:def_B_adjoint_mixed}
+	(B^*\lambda)(v)=b(v,\lambda)\quad \forall\, v\in V.
+\end{equation}
+
+In the purely linear saddlepoint setting (without the cone constraint $\lambda\in\Lambda_C$), well--posedness of the block system is governed by the inf--sup condition
+\begin{equation}\label{eq:inf_sup_mixed}
+	\inf_{\lambda\in W_{C,\mathrm n}'\setminus\{0\}}
+	\sup_{v\in V\setminus\{0\}}
+	\frac{b(v,\lambda)}{\|v\|_{1,\Omega}\,\|\lambda\|_{W_{C,\mathrm n}'}}
+	\ge \beta>0.
+\end{equation}
+Equivalently, \eqref{eq:inf_sup_mixed} can be written as
+\begin{equation}\label{eq:inf_sup_equiv}
+	\|B^*\lambda\|_{V'}\ge \beta\,\|\lambda\|_{W_{C,\mathrm n}'}\quad \forall\, \lambda\in W_{C,\mathrm n}'.
+\end{equation}
+This expresses stability of the coupling between $u$ and $\lambda$ and, in particular, implies uniqueness of the multiplier once $u$ is fixed.
+
+\begin{proposition}[Uniqueness of the multiplier]\label{prop:unique_multiplier}
+Assume that \eqref{eq:inf_sup_mixed} holds. 
+If $(u,\lambda_1)$ and $(u,\lambda_2)$ satisfy \eqref{eq:mixed_eq1} with the same $u\in V$, then $\lambda_1=\lambda_2$ in $W_{C,\mathrm n}'$.
+\end{proposition}
+\begin{proof}
+Subtracting \eqref{eq:mixed_eq1} for $\lambda_1$ and $\lambda_2$ yields
+\begin{equation}\label{eq:bdiff_zero}
+	b(v,\lambda_1-\lambda_2)=0\quad \forall\, v\in V.
+\end{equation}
+Hence $(B^*(\lambda_1-\lambda_2))(v)=0$ for all $v\in V$, i.e. $B^*(\lambda_1-\lambda_2)=0$ in $V'$. 
+Using \eqref{eq:inf_sup_equiv} gives $\lambda_1-\lambda_2=0$.
+\end{proof}
+
+Finally, note that well--posedness of the mixed Signorini formulation also follows from its equivalence to the primal (or hybrid) formulation established earlier.  Nevertheless, the inf--sup viewpoint is useful since it explains the saddle-point structure and the stability of the multiplier.

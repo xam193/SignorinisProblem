@@ -40,10 +40,7 @@ Even assuming the reader is already familiar with the concept of $L^p$-spaces, t
 		u:\Omega\to\R^m\text{\em\enspace measurable }\;\middle|\; \int_\Omega |u|^p\;\dx<\infty
 		\right\}\Big/\sim,
 	\end{equation*}
-	where $u\sim v$ if and only if $u=v$ almost everywhere in $\Omega$. For some equivalence class $[u]\in L^p(\Omega;\R^m)$ we take an arbitrary representative and write $u = [u]$. If $m = 1$, we abbreviate $L^p(\Omega):= L^p(\Omega;\R^1)$ and note that
-	\begin{equation*}
-		L^p(\Omega;\R^m) = (L^p(\Omega))^m,\qquad \forall\,m\ge 1.
-	\end{equation*}
+	where $u\sim v$ if and only if $u=v$ almost everywhere in $\Omega$. For some equivalence class $[u]\in L^p(\Omega;\R^m)$ we take an arbitrary representative and write $u = [u]$. If $m = 1$, we abbreviate $L^p(\Omega):= L^p(\Omega;\R^1)$.
 	Moreover, we equip $L^p(\Omega;\R^m)$ with the norm
 	\begin{equation*}
 		\|u\|_{0,p,\Omega} := \left(\int_\Omega |u|^p\;\dx\right)^{1/p},\qquad u\in L^p(\Omega;\R^m).
@@ -277,7 +274,7 @@ In a later subsection, we will identify locally integrable functions with regula
 
 \subsection{Regular Distributions \& Weak Derivatives}
 
-The distributional framework introduced above becomes particularly useful once distributions are induced by locally integrable functions. These so-called regular distributions provide the link between generalized differentiation and the weak derivatives used later in Sobolev spaces and variational formulations. From now on let $X$ denote one of the spaces $\R^m,\,m\ge 1$ or $\mathrm{Sym}^2(\R^d)\,d\ge 2$ to save some writing work and recall that $(\cdot,\,\cdot)_{0,\Omega}$ denotes the inner product on each of the spaces $L^2(\Omega;X)$ as introduced in Proposition \ref{pr:L2hilbert}. On $X$ we use the notation of $(\cdot,\,\cdot)_X$ as the inner product on $X$, i.e.\ Euclidean and Frobenius, respectively, as stated in Section~\ref{sec:SVM}.
+The distributional framework introduced above becomes particularly useful once distributions are induced by locally integrable functions. These so-called regular distributions provide the link between generalized differentiation and the weak derivatives used later in Sobolev spaces and variational formulations. From now on let $X$ denote one of the spaces $\R^m,\,m\ge 1$ or $\mathrm{Sym}^2(\R^d)\,d\ge 2$ to save some writing work and recall that $(\cdot,\,\cdot)_{0,\Omega}$ denotes the inner product on each of the spaces $L^2(\Omega;X)$ as introduced in Proposition \ref{pr:L2hilbert}. On $X$ we use the notation of $(\cdot,\,\cdot)_X$ as the inner product, i.e.\ Euclidean or Frobenius, respectively, as stated in Section~\ref{sec:SVM}.
 
 \begin{definition}[Regular and Singular Distributions]
 	A {\tt regular distribution} is a distribution $T_f\in\cD^\prime(\Omega;X)$ induced by a locally integrable function $f\in L^1_{\loc}(\Omega;X)$ by
@@ -494,7 +491,7 @@ Before defining Sobolev spaces, we connect the previously introduced distributio
 \end{lemma}
 
 \begin{proposition}[$L^p$-Functions are Locally Integrable]\label{pr:Lp_locally_integrable}
-	It holds that $L^p(\Omega;X)\subset L^1_\loc(\Omega;X)$ for all $1\le p<\infty$. In particular, every $f\in L^p(\Omega;X)$ induces a regular distribution $T_f\in\cD^\prime(\Omega;X)$ and admits distributional derivatives of arbitrary order.
+	It holds that $L^p(\Omega;X)\subset L^1_\loc(\Omega;X)$ for all $1\le p<\infty$. In particular, every function$f\in L^p(\Omega;X)$ induces a regular distribution $T_f\in\cD^\prime(\Omega;X)$ and admits distributional derivatives of arbitrary order.
 \end{proposition}
 
 \begin{proof}
@@ -583,6 +580,7 @@ After the integer-order spaces $W^{k,p}(\Omega;\R^m)$, we also need Sobolev spac
 	whenever the right-hand side is finite.
 \end{definition}
 
+The quantity $|u|_{\theta,p,\Omega}$ is only a semi-norm, since it vanishes on constant functions. Combined with an $L^p$-term, however, it yields a genuine norm.
 
 \begin{definition}[Sobolev Spaces of Fractional Order]\label{def:fractionalsobolev}
 	Let $m\ge 1$, $1\le p<\infty$, and let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. The {\tt Sobolev space} of fractional order $s$ is defined by
@@ -597,7 +595,7 @@ After the integer-order spaces $W^{k,p}(\Omega;\R^m)$, we also need Sobolev spac
 	\begin{equation*}
 		H^s(\Omega;\R^m):=W^{s,2}(\Omega;\R^m).
 	\end{equation*}
-	Moreover, we define the fractional Sobolev seminorm
+	Moreover, we define the fractional Sobolev semi-norm
 	\begin{equation*}
 		|u|_{s,p,\Omega}
 		:=
@@ -617,7 +615,7 @@ After the integer-order spaces $W^{k,p}(\Omega;\R^m)$, we also need Sobolev spac
 	\end{equation*}
 \end{definition}
 
-The quantity $|u|_{\theta,p,\Omega}$ is only a semi-norm, since it vanishes on constant functions. Combined with an $L^p$-term, however, it yields a genuine norm. For general non-integer order $s=k+\theta$, one applies this semi-norm to all weak derivatives of order $k$. As before, the Hilbert case $p=2$ is of particular importance for the subsequent variational analysis. In particular, the case $s=1/2$ will later arise naturally in connection with trace operators and boundary spaces.
+ For general non-integer order $s=k+\theta$, one applies this semi-norm to all weak derivatives of order $k$. As before, the Hilbert case $p=2$ is of particular importance for the subsequent variational analysis. In particular, the case $s=1/2$ will later arise naturally in connection with trace operators and boundary spaces.
 
 \begin{proposition}[$H^s(\Omega;\R^m)$ is a Hilbert Space]
 	Let $m\ge 1$ and let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. Then $H^s(\Omega;\R^m)$ is a Hilbert space with inner product
@@ -632,7 +630,7 @@ The quantity $|u|_{\theta,p,\Omega}$ is only a semi-norm, since it vanishes on c
 		{|x-y|^{d+2\theta}}\;\dx\;\dy
 	\end{equation*}
 	for $u,v\in H^s(\Omega;\R^m)$. The induced norm is
-	\begin{equation*}
+	\begin{equation}\label{eq:slobodeckijnorm}
 		\|u\|_{s,\Omega}
 		=
 		\left(
@@ -641,12 +639,12 @@ The quantity $|u|_{\theta,p,\Omega}$ is only a semi-norm, since it vanishes on c
 		\sum_{|\alpha|=k} |\Diff^\alpha u|_{\theta,2,\Omega}^2
 		\right)^{1/2},
 		\qquad u\in H^s(\Omega;\R^m).
-	\end{equation*}
+	\end{equation}
 \end{proposition}
 
 \subsection{Trace Operators \& Boundary Spaces}
 
-In variational formulations, boundary conditions and boundary forces are imposed on traces of bulk functions. For functions in $H^1(\Omega;\R^m)$, pointwise boundary values are in general not defined. The trace theorem provides a canonical replacement: a continuous linear trace operator taking values in a fractional-order Sobolev space on the boundary. Throughout this subsection, we assume that $\Omega\subset\R^d$ is a bounded Lipschitz domain and write $\Gamma:=\partial\Omega$.
+In variational formulations, boundary conditions and boundary forces are imposed on traces of bulk functions. For functions in $H^1(\Omega;\R^m)$, pointwise boundary values are in general not defined. The trace theorem (see \cite[Theorem 2.6]{book}) provides a canonical replacement by a continuous linear trace operator taking values in a fractional-order Sobolev space on the boundary. Throughout this subsection, we assume that $\Omega\subset\R^d$ is a bounded Lipschitz domain and write $\Gamma:=\partial\Omega$.
 
 \begin{theorem}[Trace Theorem]\label{th:tracetheorem}
 	Let $m\ge 1$. There exists a unique linear continuous operator
@@ -655,7 +653,7 @@ In variational formulations, boundary conditions and boundary forces are imposed
 	\end{equation*}
 	which coincides with the classical restriction on sufficiently regular functions. Moreover, there exists a constant $C_{\mathrm{tr}}>0$ such that
 	\begin{equation*}
-		\|\gamma u\|_{1/2,\Gamma}\le C_{\mathrm{tr}}\|u\|_{1,\Omega}
+		\|\gamma u\|_{\tfrac12,\Gamma}\le C_{\mathrm{tr}}\|u\|_{1,\Omega}
 		\qquad\forall\,u\in H^1(\Omega;\R^m).
 	\end{equation*}
 	Furthermore, $\gamma$ is surjective and admits a linear continuous right inverse
@@ -673,34 +671,32 @@ In variational formulations, boundary conditions and boundary forces are imposed
 The trace theorem motivates the following definition of boundary spaces.
 
 \begin{definition}[Boundary Sobolev Space of Order $1/2$]
-	Let $m\ge 1$. We define
+	We define equip the space
 	\begin{equation*}
-		H^{1/2}(\Gamma;\R^m):=\gamma\big(H^1(\Omega;\R^m)\big).
+		H^{1/2}(\Gamma;\R^m)=\gamma\big(H^1(\Omega;\R^m)\big).
 	\end{equation*}
-	For $g\in H^{1/2}(\Gamma;\R^m)$, we equip this space with the quotient norm
-	\begin{equation*}
+	with the quotient norm
+	\begin{equation}\label{eq:quotientnorm}
 		\|g\|_{\tfrac12,\Gamma}
 		:=
-		\inf\left\{\|u\|_{1,\Omega}\;\middle|\;u\in H^1(\Omega;\R^m),\ \gamma u=g\right\}.
-	\end{equation*}
-	If $m=1$, we abbreviate $H^{1/2}(\Gamma):=H^{1/2}(\Gamma;\R^1)$.
+		\inf\left\{\|u\|_{1,\Omega}\;\middle|\;u\in H^1(\Omega;\R^m),\ \gamma u=g\right\},\qquad g\in H^{1/2}(\Gamma;\R^d)
+	\end{equation}
 \end{definition}
 
+Notice, how the notation of \eqref{eq:quotientnorm} and \eqref{eq:slobodeckijnorm} coincide, which is due to equivalency of both of these norms on $H^{1/2}(\Gamma;\R^m)$ (see \cite[Proposition 2.14]{book}). Theorem \ref{th:tracetheorem} therefore holds for both of these norms and if used later on, we will opt for the second option.
+
 \begin{definition}[Dual Boundary Space]
-	Let $m\ge 1$. The dual boundary space of order $-1/2$ is defined by
+	The dual boundary space of order $-1/2$ is defined by
 	\begin{equation*}
 		H^{-1/2}(\Gamma;\R^m):=\big(H^{1/2}(\Gamma;\R^m)\big)^\prime.
 	\end{equation*}
-	For $\lambda\in H^{-1/2}(\Gamma;\R^m)$ and $g\in H^{1/2}(\Gamma;\R^m)$, we denote the duality pairing by
-	\begin{equation*}
-		\langle \lambda,\,g\rangle_{\Gamma}.
-	\end{equation*}
+	For $\lambda\in H^{-1/2}(\Gamma;\R^m)$ and $g\in H^{1/2}(\Gamma;\R^m)$, we denote the duality pairing by $\langle \lambda,\,g\rangle_{\Gamma}$.
 \end{definition}
 
 In applications, boundary conditions are often prescribed only on a measurable boundary part $\Gamma_0\subset\Gamma$. We therefore also use trace spaces on boundary parts.
 
 \begin{definition}[Trace Spaces on Boundary Parts]
-	Let $\Gamma_0\subset\Gamma$ be measurable and $m\ge 1$.
+	Let $\Gamma_0\subset\Gamma$ be measurable.
 	We define
 	\begin{equation*}
 		H^{1/2}(\Gamma_0;\R^m)
@@ -717,7 +713,7 @@ In applications, boundary conditions are often prescribed only on a measurable b
 \end{definition}
 
 \begin{definition}[Dual Boundary Space on Boundary Parts]
-	Let $\Gamma_0\subset\Gamma$ be measurable and $m\ge 1$. We define
+	Let $\Gamma_0\subset\Gamma$ be measurable. We define
 	\begin{equation*}
 		H^{-1/2}(\Gamma_0;\R^m):=\big(H^{1/2}(\Gamma_0;\R^m)\big)^\prime,
 	\end{equation*}
