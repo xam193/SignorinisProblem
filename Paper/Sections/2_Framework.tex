@@ -77,7 +77,7 @@ For later purpose, we also need to consider the subspace of locally integrable f
 
 \subsection{Test Functions \& Distributional Derivatives}
 
-Before introducing Sobolev spaces, we first formalize a weak notion of differentiation. The reason is that the functions arising in variational formulations of boundary value problems are typically not smooth enough to admit classical derivatives in the pointwise sense. Nevertheless, one still wants to differentiate such functions in a meaningful way, at least under an integral sign. The key observation is that in integration by parts, derivatives can be shifted from an unknown function to a smooth test function with compact support. This suggests defining derivatives indirectly through their action on test functions. The resulting objects are distributions, and distributional derivatives extend classical derivatives whenever the latter exist. We begin recalling basic notations of spaces of continuously differentiable functions, test functions and distributions. For a sufficiently regular function $u:\Omega\to \R$ and a multi-index $\alpha\in\N^d_0$, we denote by
+Before introducing Sobolev spaces, we first formalize a weak notion of differentiation. The reason is that the functions arising in variational formulations of boundary value problems are typically not smooth enough to admit classical derivatives in the pointwise sense. Nevertheless, one still wants to differentiate such functions in a meaningful way, at least under an integral sign. The key observation is that in integration by parts, derivatives can be shifted from an unknown function to a smooth test function with compact support. This suggests defining derivatives indirectly through their action on test functions. The resulting objects are distributions, and distributional derivatives extend classical derivatives whenever the latter exist. For a sufficiently regular function $u:\Omega\to \R$ and a multi-index $\alpha\in\N^d_0$, we denote by
 \begin{equation*}
 	\Diff^\alpha u := \frac{\partial^{|\alpha|}u}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}:\Omega\to\R.
 \end{equation*}
@@ -96,41 +96,63 @@ If a sufficiently matrix-valued filed $A = (A_{jk})_{1\le j\le m}^{1\le k\le d}\
 	\left(\sum_{k=1}^d \frac{\partial A_{jk}}{\partial x_k}\right)_{1\le j\le m}
 	:\Omega\to\R^m.
 \end{equation*}
-We also collect continuous functions $f:\Omega\to X$ with continuous partial derivatives of the same order $0\le k<\infty$ in the well-known function spaces $\cC^k(\Omega;X)$, where $f\in\cC^k(\Omega;X)$ if and only if $|\alpha|\le k$ implies that the partial derivatives of order $\alpha$ of each component of $f$ is continuous or in other words belongs to $\cC^0(\Omega)$. For $X = \R^m,\,m\ge 1$ this means
-\begin{equation*}
-	\Diff^\alpha (f)_j\in \cC^0(\Omega)\qquad\forall\,1\le j\le m,\,|\alpha|\le k
-\end{equation*}
-and for $X = \R^{m\times n},\, m,n\ge 2$ this means
-\begin{equation*}
-	\Diff^\alpha (f)_{jk}\in \cC^0(\Omega)\qquad\forall\,1\le j\le m,\,1\le k\le n,\,|\alpha|\le k
-\end{equation*}
-Furthermore, the space of infinitely infinitely continuously differentiable functions $f:\Omega\to X$ is defined as
-\begin{equation*}
-	\cC^\infty(\Omega;X):= \bigcap_{k\in \N_0}\cC^k(\Omega;X).
-\end{equation*}
-The space of infinitely often continuously differentiable functions with compact support, also called test functions, is denoted by
-\begin{equation*}
-	\cD(\Omega;X) = \left\{\varphi\in\cC^\infty(\Omega;X)\;\middle|\;\supp(\varphi)\subset\Omega\text{ compact}\right\}.
-\end{equation*}
-The corresponding space of distributions is now a continuous linear operator $T:\cD(\Omega;X)\to X$ and we collect them in the space $\cD^\prime(\Omega;X)$. For $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$, we denote the duality pairing by $\langle T,\,\varphi\rangle$. For $T=(T_1,\ldots,T_m)\in\cD^\prime(\Omega;\R^m)$ and $\varphi=(\varphi_1,\ldots,\varphi_m)\in\cD(\Omega;\R^m)$, we use the duality pairing
-\begin{equation*}
-	\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle
-\end{equation*}
-and for
-\begin{equation*}
-	T=(T_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD^\prime(\Omega;\R^{m\times n}),\qquad\varphi=(\varphi_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD(\Omega;\R^{m\times n}),
-\end{equation*}
-we use the duality pairing
-\begin{equation*}
-	\langle T,\,\varphi\rangle := \sum_{j=1}^m\sum_{k=1}^n\langle T_{jk},\,\varphi_{jk}\rangle.
-\end{equation*}
-The derivative $\Diff^\alpha T\in\cD^\prime(\Omega)$ of a distribution $T\in\cD^\prime(\Omega)$ with respect to $\alpha\in\N_0^d$ is defined via 
-\begin{equation*}
-	\langle \Diff^\alpha T,\,\varphi\rangle
-		:=
-		(-1)^{|\alpha|}\,\langle T,\,\Diff^\alpha\varphi\rangle,
-		\qquad \forall\,\varphi\in\cD(\Omega).
-\end{equation*}
+We collect continuous functions with continuous partial derivatives of the same order in the following well-known function spaces.
+
+\begin{definition}[Spaces of Continuously Differentiable Functions]
+	We denote by $\cC^0(\Omega)$ the space of continuous functions $u:\Omega\to\R$ and define $\cC^0(\Omega;\R^m):= (\cC^0(\Omega;\R))^m$ as the space of continuous functions $F:\Omega\to\R^m$. The space of {\tt continuously differentiable} functions $F:\Omega\to\R^m$ up to order $0\le k<\infty$ then is
+	\begin{equation*}
+		\cC^k(\Omega;\R^m):=\left\{ F\in\cC^0(\Omega;\R^m)\;\middle|\; |\alpha|\le k\;\Rightarrow\;\Diff^\alpha (F)_j\in\cC^0(\Omega)\;\forall\,1\le j\le m\right\},
+	\end{equation*}
+	where $(F)_j:\Omega\to\R$ denotes the $j$-th component of $F:\Omega\to\R^m$. Furthermore,
+	\begin{equation*}
+		\cC^k(\Omega;\R^{m\times n}) := (\cC^k(\Omega;\R^m))^n,\qquad \forall\,0\le k<\infty.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}[Spaces of Infinitely Differentiable Functions]
+	The space of {\tt infinitely continuously differentiable} functions $f:\Omega\to X$ is defined as
+	\begin{equation*}
+		\cC^\infty(\Omega;X):= \bigcap_{k\in \N_0}\cC^k(\Omega;X).
+	\end{equation*}
+\end{definition}
+
+Again, the above definitions may be extended to functions on $\Gamma_0\subset\Gamma$. A particular subspace of $\cC^\infty(\Omega;X)$ is of special interest to us and the concept of distributional derivatives. This is the space of infinitely often continuously differentiable functions with compact support, also called {\em test functions}.
+
+\begin{definition}[Test Functions]
+	The space $\cD(\Omega;X)$ contains all infinitely often continuously differentiable functions with compact support in $\Omega$, i.e.\
+	\begin{equation*}
+		\cD(\Omega;X) = \left\{\varphi\in\cC^\infty(\Omega;X)\;\middle|\;\supp(\varphi)\subset\Omega\text{\em\enspace compact}\right\}
+	\end{equation*}
+	A function $\cD(\Omega;X)$ is called a {\tt test function}.
+\end{definition}
+
+The space of test functions allows us to encode differentiation through integration by parts. This leads to distributions, which extend classical derivatives to nonsmooth functions and, more generally, to generalized functions.
+
+\begin{definition}[Distributions]
+	The space of scalar-valued {\tt distributions} on $\Omega$ is the topological dual space
+	\begin{equation*}
+		\cD^\prime(\Omega):=\left(\cD(\Omega)\right)^\prime.
+	\end{equation*}
+	Thus, a scalar-valued distribution is a linear continuous functional $T:\cD(\Omega)\to\R$.
+	For $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$, we denote the duality pairing by $\langle T,\,\varphi\rangle$. For $m\ge 1$, we define the space of vector-valued distributions componentwise by
+	\begin{equation*}
+		\cD^\prime(\Omega;\R^m):=\left(\cD^\prime(\Omega)\right)^m.
+	\end{equation*}
+	For $T=(T_1,\ldots,T_m)\in\cD^\prime(\Omega;\R^m)$ and $\varphi=(\varphi_1,\ldots,\varphi_m)\in\cD(\Omega;\R^m)$, we use the duality pairing
+	\begin{equation*}
+		\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle.
+	\end{equation*}
+	Analogously, the space $\cD^\prime(\Omega;\R^{m\times n})$ is defined componentwise, and for
+	\begin{equation*}
+		T=(T_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD^\prime(\Omega;\R^{m\times n}),\qquad\varphi=(\varphi_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD(\Omega;\R^{m\times n}),
+	\end{equation*}
+	we use the duality pairing
+	\begin{equation*}
+		\langle T,\,\varphi\rangle := \sum_{j=1}^m\sum_{k=1}^n\langle T_{jk},\,\varphi_{jk}\rangle.
+	\end{equation*}
+\end{definition}
+
+Finally, we can define derivatives on such functionals.
 
 \begin{definition}[Distributional Derivative]
 	Let $T\in\cD^\prime(\Omega)$ and $\alpha\in\N_0^d$. The {\tt distributional derivative} $\Diff^\alpha T\in\cD^\prime(\Omega)$ is defined by

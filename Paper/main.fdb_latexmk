@@ -1,19 +1,19 @@
 # Fdb version 4
-["bibtex main"] 1772123297.0886 "main.aux" "main.bbl" "main" 1772123300.21397 0
+["bibtex main"] 1772123515.57593 "main.aux" "main.bbl" "main" 1772123518.70063 0
   "./Literature.bib" 1770996139 634 0a348ad0cef5d940dd393fa14390df8b ""
   "c:/texlive/2024/texmf-dist/bibtex/bst/base/plain.bst" 1733627016 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1772123299 21255 cf9090d97c856fcc14e9d005d44a6321 "pdflatex"
+  "main.aux" 1772123517 21258 cd6aadbd4b4ef07145507acccc8ef7c7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1772123297.36336 "c:/Users/MaxSt/SignorinisProblem/Paper/main.tex" "main.pdf" "main" 1772123300.21438 0
+["pdflatex"] 1772123515.85169 "c:/Users/MaxSt/SignorinisProblem/Paper/main.tex" "main.pdf" "main" 1772123518.70107 0
   "Figures/setup.tex" 1770996139 2797 f14a415404a6deb625938540942e9614 ""
   "MyPackages.sty" 1771451649 1944 5525674e0d17951b4f41abc05699a4d2 ""
   "MyShortCuts.sty" 1771889476 5330 9d47fef9141392ff0851707ed5827403 ""
   "Sections/0_Abstract.tex" 1770996139 67 4722649a283365c098c83a924b3b9c16 ""
   "Sections/1_Introduction.tex" 1770996139 73 07692fdf898a298d6752475c35273e50 ""
-  "Sections/2_Framework.tex" 1772123258 36120 75585bf3ff70c71ccc092d714b42e339 ""
+  "Sections/2_Framework.tex" 1772123506 37195 d213455f02dc001314054c96173f46f5 ""
   "Sections/3_Signorini.tex" 1772113460 52846 763e1dd4f861abff504c029bf742ae84 ""
   "Sections/4_Outlook.tex" 1770996139 17 be4ee0ca27bf88cbd359df9a716dbb31 ""
   "c:/Users/MaxSt/SignorinisProblem/Paper/main.tex" 1771032169 689 918d84e484077b10fd21dfd85244cc00 ""
@@ -359,11 +359,11 @@
   "c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1733630646 5521760 8d14e9f23704d5fbe9a015e30cb48126 ""
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1733630407 3343615 decdcd80842f97da81f0548ab4e1dfe1 ""
   "c:/texlive/2024/texmf.cnf" 1733630283 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1772123299 21255 cf9090d97c856fcc14e9d005d44a6321 "pdflatex"
-  "main.bbl" 1772123297 302 30c4c41111b11b6a62c954edb1bce0e4 "bibtex main"
-  "main.lof" 1772123299 188 452f443dc80ea6d2b16bcd45787a2ba7 "pdflatex"
+  "main.aux" 1772123517 21258 cd6aadbd4b4ef07145507acccc8ef7c7 "pdflatex"
+  "main.bbl" 1772123515 302 30c4c41111b11b6a62c954edb1bce0e4 "bibtex main"
+  "main.lof" 1772123517 188 c42f2cb308c73a7fd6be5f404def5fcf "pdflatex"
   "main.tex" 1771032169 689 918d84e484077b10fd21dfd85244cc00 ""
-  "main.toc" 1772123299 2634 1b53f67832cf6b78698feebfb0075acf "pdflatex"
+  "main.toc" 1772123517 2635 411b480219e9e268b96a6b81eb5c85d7 "pdflatex"
   (generated)
   "main.aux"
   "main.lof"
