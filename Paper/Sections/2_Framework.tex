@@ -28,199 +28,109 @@ Furthermore, if $\cA:\Omega\to\cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))$ is
 	\qquad
 	s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
 \end{equation*}
-\subsection{\texorpdfstring{$L^p$}{Lp}-Spaces}
-Even assuming the reader is already familiar with the concept of $L^p$-spaces, the definitions and notations are listed below. We begin with the $L^p$-spaces on $\Omega$ as spaces of equivalence classes of $p$-integrable functions whose difference vanishes almost everywhere on $\Omega$. Although this is the most correct way to define $L^p$-spaces, we will subsequently always assume an actual function by choosing an arbitrary representative of a class. The assumed measure on $\Omega$ here is the Lebesgue measure in $\R^d$. We omit the case $p = \infty$.
+In the remaining subsections of the mathematical framework section, we will denote by $X$ one the the spaces $\R^m$ with $m\ge 1$ or a space of real matrices $R^{n\times m},\, n,m\ge 2$ and talk about functions $u\to X$. This also covers functions with values in $\mathrm{Sym}^2(\R^d)$, which will be interesting for the main part of this report, where also $n = m = d$. The inner product on $X$ is denoted by $(\cdot,\,\cdot)_X$, i.e. Euclidean in the vector-valued and Frobenius in the matrix-valued case. When writing $(f,\,g)_X$ for functions $f,g:\Omega\to X$ or $f,g:\Gamma_0\to X$ for a relatively open boundary part $\Gamma_0$, the inner product is still assumed to be a scalar-valued function on $\Omega$ or $\Gamma_0$ without using the notation $(f(x),\, g(x))_X:\Omega\to \R$. If necessary, the target space will be explicitly specified. Finally, if $X = \R$, a space $\cX(\Omega;X)$ of functions $f:\Omega\to X$ is always abbreviated by $\cX(\Omega)$. The same notation is applied to functions on $\Gamma_0$.
 
-\begin{definition}[$L^p$-Spaces]\label{sec:Lpspaces}
-	Let $m\ge 1$ and $1\le p<\infty$. We define
+
+
+\subsection{\texorpdfstring{$L^p$}{Lp}-Spaces}\label{sec:Lpspaces}
+We assume that the reader is familiar with the basic concept of $L^p$-spaces, but will nevertheless provide a brief introduction to establish the notations used here. We omit the case $p=\infty$, since it is not needed here. $L^p$-spaces on $\Omega$ are spaces of equivalence classes of $p$-integrable functions whose difference vanishes almost everywhere on $\Omega$. Although this is the most correct way to define $L^p$-spaces, we will subsequently always assume an actual function by choosing an arbitrary representative of a class. The assumed measure on $\Omega$ here is the Lebesgue measure in $\R^d$. We record this in the following definition.
+
+\begin{definition}[$L^p$-Spaces]\label{def:Lpspaces}
+	Let $1\le p<\infty$. The space of {\tt $p$-integrable} functions on $\Omega$ is defined as
 	\begin{equation*}
-		L^p(\Omega;\R^m)
-		:=
-		\left\{
-		u:\Omega\to\R^m\text{\em\enspace measurable }\;\middle|\; \int_\Omega |u|^p\;\dx<\infty
-		\right\}\Big/\sim,
+		L^p(\Omega;X):= \left\{ f:\Omega\to\R^m\text{\em\enspace measurable }\;\middle|\;\int_\Omega|f|^p\;\dx<\infty\right\}\Big/\sim,
 	\end{equation*}
-	where $u\sim v$ if and only if $u=v$ almost everywhere in $\Omega$. For some equivalence class $[u]\in L^p(\Omega;\R^m)$ we take an arbitrary representative and write $u = [u]$. If $m = 1$, we abbreviate $L^p(\Omega):= L^p(\Omega;\R^1)$.
-	Moreover, we equip $L^p(\Omega;\R^m)$ with the norm
-	\begin{equation*}
-		\|u\|_{0,p,\Omega} := \left(\int_\Omega |u|^p\;\dx\right)^{1/p},\qquad u\in L^p(\Omega;\R^m).
-	\end{equation*}
+	where $f\sim g$ if and only if $f 0 g$ almost everywhere (short a.e.) in $\Omega$. For some equivalence class $[f]\in L^p(\Omega;X)$ we choose an arbitrary representative and write $f = [f]$. Moreover, we equip $L^p(\Omega;X)$ with the norm
+	\begin{equation}\label{eq:Lpnorm}
+		\|f\|_{0,p,\Omega} := \left(\int_\Omega |f|^p\;\dx\right)^{1/p},\qquad u\in L^p(\Omega;X).
+	\end{equation}
 \end{definition}
 
-The notation $\|\cdot\|_{0,p,\Omega}$ will be more clear after Sobolev spaces are introduced. Next, it is necessary to define these spaces for boundary parts of $\Omega$ as well. This is done analogously, with the difference that we now consider a surface or boundary integral and accordingly also the Lebesgue measure on $\R^{d-1}$.
+The notation $\|\cdot\|_{0,p,\Omega}$ will be more clear after Sobolev spaces are introduced as $L^p(\Omega;X)$ is exactly the Sobolev space of zero order. Of course, the space $L^p(\Gamma_0;X)$ of $p$-integrable functions on measurable and relatively open boundary parts $\Gamma_0\subset\Gamma$ is defined analogously with the difference, that here the surface measure is used and the integral \eqref{eq:Lpnorm} is taken over $\Gamma_0$, i.e.
+\begin{equation*}
+	\|g\|_{0,p,\Gamma_0}:= \left(\int_{\Gamma_0}|g|^p\;\ds\right)^{1/p},\qquad g\in L^p(\Gamma_0;X).
+\end{equation*}
+The particular case $p=2$ is of special interest, since it forms a Hilbert space.
 
-\begin{definition}[$L^p$-Spaces on Boundary Parts]
-	Assume that $\Omega$ is a bounded Lipschitz domain and let $\Gamma_0\subset\Gamma$ be measurable with respect to the surface measure on $\Gamma$. For $m\ge 1$ and $1\le p<\infty$, we define
+\begin{proposition}[$L^2$ is a Hilbert space]
+	The space $L^2(\Omega;X)$ together with the inner product
 	\begin{equation*}
-		L^p(\Gamma_0;\R^m)
-		:=
-		\left\{
-		g:\Gamma_0\to\R^m \text{\em\enspace  measurable }
-		\;\middle|\;
-		\int_{\Gamma_0}|g|^p\;\ds<\infty
-		\right\}\Big/\sim,
-	\end{equation*}
-	where $g\sim h$ if and only if $g = h$ almost everywhere on $\Gamma_0$. For some equivalence class $[g]\in L^p(\Gamma_0;\R^m)$ we take an arbitrary representative and write $g = [g]$. If $m = 1$, we abbreviate $L^p(\Gamma_0):= L^p(\Gamma_0;\R^1)$. Moreover, we equip $L^p(\Gamma_0;\R^m)$ with the norm
-	\begin{equation*}
-		\|g\|_{0,p,\Gamma_0}:= \int_{\Gamma_0} |g|^p\;\dx,\qquad g\in L^p(\Gamma_0;\R^m).
-	\end{equation*}
-\end{definition}
-
-Moreover, we also need an $L^p$-notation for matrix-valued fields $A:\Omega\to\mathrm{Sym}^2(\R^d)$.
-
-\begin{definition}[$L^p$-Spaces for Matrix-Valued Fields]
-	Let $1\le p<\infty$. We define
-	\begin{equation*}
-		L^p(\Omega;\mathrm{Sym}^2(\R^d)):=\left\{ A:\Omega\to\mathrm{Sym}^2(\R^d)\text{\em\enspace measurable}\;\middle|\; \int_\Omega |A|^p\;\dx<\infty\right\}\Big/\sim,
-	\end{equation*}
-	where $A\sim B$ if and only if $A = B$ almost everywhere on $\Omega$. For some equivalence class $[A]\in L^p(\Omega;\mathrm{Sym}^2(\R^d))$, we take an arbitrary representative and write $A=[A]$. Moreover, we equip $L^p(\Omega;\mathrm{Sym}^2(\R^d))$ with the norm
-	\begin{equation*}
-		\|A\|_{0,p,\Omega}:=\int_\Omega |A|^p\;\dx,\qquad A\in L^p(\Omega;\mathrm{Sym}^2(\R^d)).
-	\end{equation*}
-\end{definition}
-
-Finally, one particular $L^p$-space is of special interest because it is the only one that, together with its classical inner product, defines a Hilbert space. This is the case $p=2$. We record this fact in the following proposition and simultaneously introduce a meaningful notation for its inner product and its norm.
-
-\begin{proposition}[$L^2$ is a Hilbert Space]\label{pr:L2hilbert}
-	For every $m\ge 1$, the space $L^2(\Omega;\R^m)$ is a Hilbert space with inner product
-	\begin{equation*}
-		(u,\,v)_{0,\Omega}
-		:=
-		\int_\Omega u\cdot v\;\dx
-		\qquad u,v\in L^2(\Omega;\R^m),
-	\end{equation*}
-	and the induced norm is $\|u\|_{0,\Omega}:= \|u\|_{0,2,\Omega} = (u,u)_{0,\Omega}^{1/2}$. If $\Omega$ is a bounded Lipschitz domain and $\Gamma_0\subset\Gamma$ is measurable, $L^2(\Gamma_0,\R^m)$ is a Hilbert space and for $g,h\in L^2(\Gamma_0,\R^m)$ we analogously write
-	\begin{equation*}
-		(g,\,h)_{0,\Gamma_0}
-		:=
-		\int_{\Gamma_0} g\cdot h\;\ds,
-		\qquad
-		\|g\|_{0,\Gamma_0}
-		:=
-		\|g\|_{0,2,\Gamma_0} = (g,\,g)_{0,\Gamma_0}^{1/2}.
-	\end{equation*}
-	Moreover, $L^2(\Omega;\mathrm{Sym}^2(\R^d))$ together with the inner product
-	\begin{equation*}
-		(A,\,B)_{0,\Omega}:= \int_\Omega A:B\;\dx,\qquad A,B\in L^2(\Omega;\mathrm{Sym}^2(\R^d))
+		(f,\,g)_{0,\Omega}:= \int_\Omega (f,\, g)_X\;\dx,\qquad f,g\in L^2(\Omega;X)
 	\end{equation*}
 	is a Hilbert space and the induced norm is
 	\begin{equation*}
-		\|A\|_{0,\Omega}:= \|A\|_{0,2,\Omega} = (A,\,A)_{0,\Omega}^{1/2}.
+		\|f\|_{0,\Omega}:=\|f\|_{0,2,\Omega} = \left(\int_\Omega |f|^2\;\dx \right)^{1/2},\qquad f\in L^2(\Omega;X).
 	\end{equation*}
+	The same holds for $L^2(\Gamma_0;X)$ respectively.
 \end{proposition}
 
-For later purpose, we also need to consider the subspace of locally integrable functions on $\Omega$.
+For later purpose, we also need to consider the subspace of locally integrable functions on $\Omega$. Again, on $\Gamma_0$ the same definition can be applied with respect to the surface measure.
 
 \begin{definition}[Locally Integrable Functions]
 	The space of {\tt locally integrable} functions on $\Omega$ is defined as
 	\begin{equation*}
-		L_\loc^1 (\Omega;\R^m):= \left\{u:\Omega\to\R^m\text{\em\enspace measurable}\;\middle|\;u|_K\in L^1(K;\R^m)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
+		L_\loc^1(\Omega;X): = \left\{f:\Omega\to X\text{\em\enspace measurable}\;\middle|\;f|_K\in L^1(K;X)\;\forall K\subset\Omega,\,K\textit{\em\enspace compact}\right\}.
 	\end{equation*}
-	For $m=1$, we denote $L_\loc^1(\Omega):=L_\loc^1(\Omega;\R^1)$ and the space $L^1_\loc(\Omega;\mathrm{Sym}^2(\R^d))$ is defined analogously.
 \end{definition}
+
+
 
 \subsection{Test Functions \& Distributional Derivatives}
 
-Before introducing Sobolev spaces, we first formalize a weak notion of differentiation. The reason is that the functions arising in variational formulations of boundary value problems are typically not smooth enough to admit classical derivatives in the pointwise sense. Nevertheless, one still wants to differentiate such functions in a meaningful way, at least under an integral sign. The key observation is that in integration by parts, derivatives can be shifted from an unknown function to a smooth test function with compact support. This suggests defining derivatives indirectly through their action on test functions. The resulting objects are distributions, and distributional derivatives extend classical derivatives whenever the latter exist. For the sake of completeness, we begin with the definitions of the classic notions of differentiation, which should already be familiar to the reader.
-\begin{definition}[Partial Derivative, Gradient, Jacobian and Divergence]\label{def:classicaldiffs}
-	Let $u:\Omega\to\R$ and $F:\Omega\to\R^m$ and $A:\Omega\to \R^{m\times d}$ be sufficiently regular maps.
-	\begin{itemize}
-		\item[i)] The {\tt partial derivative} of $u$ with respect to $\alpha\in\N_0^d$ is
-		      \begin{equation*}
-			      \Diff^\alpha u := \frac{\partial^{|\alpha|}u}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}:\Omega\to\R.
-		      \end{equation*}
-
-		\item[ii)] The {\tt gradient} of $u$ is
-		      \begin{equation*}
-			      \nabla u := \left(\frac{\partial u}{\partial x_1},\ldots,\frac{\partial u}{\partial x_d}\right)^\top:\Omega\to\R^d.
-		      \end{equation*}
-
-		\item[iii)] The {\tt Jacobian} of $F=(F_1,\ldots,F_m)^\top$ is
-		      \begin{equation*}
-			      \Diff F := \left(\frac{\partial F_j}{\partial x_k}\right)_{1\le j\le m}^{1\le k\le d}:\Omega\to\R^{m\times d}.
-		      \end{equation*}
-
-		\item[iv)] For $m = d$, the {\tt divergence} of $F=(F_1,\ldots,F_d)^\top$ is
-		      \begin{equation*}
-			      \diver F := \sum_{j=1}^d \frac{\partial F_j}{\partial x_j}:\Omega\to\R.
-		      \end{equation*}
-
-		\item[v)] The {\tt divergence} of $A = (A_{jk})_{1\le j\le m}^{1\le k\le d}$ is
-		      \begin{equation*}
-			      \diver A
-			      :=
-			      \left(\sum_{k=1}^d \frac{\partial A_{jk}}{\partial x_k}\right)_{1\le j\le m}
-			      :\Omega\to\R^m.
-		      \end{equation*}
-	\end{itemize}
-\end{definition}
-
-We collect continuous functions with continuous partial derivatives of the same order in the following well-known function spaces.
-
-\begin{definition}[Spaces of Continuously Differentiable Functions]
-	We denote by $\cC^0(\Omega;\R^m)$ the space of continuous functions $u:\Omega\to\R^m$ and by
-	\begin{equation*}
-		\cC^k(\Omega;\R^m):= \left\{u\in \cC^0(\Omega;\R^m)\;\middle|\; |\alpha|\le k\;\Rightarrow\;\Diff^\alpha u\in\cC^0(\Omega;\R^m)\right\},\qquad k\ge 0,
-	\end{equation*}
-	the space of such functions that are continuously differentiable up to order $k\ge 0$. Moreover,
-	\begin{equation*}
-		\cC^\infty(\Omega;\R^m) := \bigcap_{k\ge 0}\cC^k(\Omega;\R^m)
-	\end{equation*}
-	denotes the space of infinitely continuously differentiable functions. For $m=1$, we abbreviate
-	\begin{equation*}
-		\cC^k(\Omega):= \cC^k(\Omega;\R^1),\qquad \forall\,0\le k\le \infty
-	\end{equation*}
-	and note that
-	\begin{equation*}
-		\cC^k(\Omega;\R^m) = (\cC^k(\Omega))^m,\quad\forall\,0\le k\le\infty,\, m\ge 1.
-	\end{equation*}
-	Finally, for $0\le k\le\infty$, we define
-	\begin{equation*}
-		\cC^k(\Omega;\mathrm{Sym}^2(\R^d)):= \left\{ A=(A_{ij})_{i,j=1}^d:\Omega\to\mathrm{Sym}^2(\R^d)\;\middle|\; A_{ij}\in \cC^k(\Omega)\;\forall 1\le i,j\le d\right\}.
-	\end{equation*}
-\end{definition}
-
-A particular subspace of the $k=\infty$ case is of special interest to us and the concept of distributional derivatives. This is the space of infinitely often continuously differentiable functions with compact support, also called {\em test functions}.
-
-\begin{definition}[Test Function]\label{def:testfunctions}
-	The space $\cD(\Omega;\R^m)$ contains all infinitely often continuously differentiable functions with compact support in $\Omega$, i.e.\
-	\begin{equation*}
-		\cD(\Omega;\R^m) = \left\{\varphi\in\cC^\infty(\Omega;\R^m)\;\middle|\;\supp(\varphi)\subset\Omega\text{\em\enspace compact}\right\}
-	\end{equation*}
-	For $m=1$, we abbreviate $\cD(\Omega):= \cD(\Omega;\R^1)$ and note that
-	\begin{equation*}
-		\cD(\Omega;\R^m) = (\cD(\Omega))^m,\qquad \forall\,m\ge 1.
-	\end{equation*}
-	The space $\cD(\Omega;\mathrm{Sym}^2(\R^d))$ is defined analogously and functions of these spaces are called {\tt test functions}.
-\end{definition}
-The space of test functions allows us to encode differentiation through integration by parts.
-This leads to distributions, which extend classical derivatives to nonsmooth functions and, more generally, to generalized functions.
-\begin{definition}[Distributions]
-	The space of scalar-valued {\tt distributions} on $\Omega$ is the topological dual space
-	\begin{equation*}
-		\cD^\prime(\Omega):=\left(\cD(\Omega)\right)^\prime.
-	\end{equation*}
-	Thus, a scalar-valued distribution is a linear continuous functional $T:\cD(\Omega)\to\R$.
-	For $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$, we denote the duality pairing by $\langle T,\,\varphi\rangle$. For $m\ge 1$, we define the space of vector-valued distributions componentwise by
-	\begin{equation*}
-		\cD^\prime(\Omega;\R^m):=\left(\cD^\prime(\Omega)\right)^m.
-	\end{equation*}
-	For $T=(T_1,\ldots,T_m)\in\cD^\prime(\Omega;\R^m)$ and $\varphi=(\varphi_1,\ldots,\varphi_m)\in\cD(\Omega;\R^m)$, we use the duality pairing
-	\begin{equation*}
-		\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle.
-	\end{equation*}
-
-	Analogously, the space $\cD^\prime(\Omega;\mathrm{Sym}^2(\R^d))$ is defined componentwise, and for
-	\begin{equation*}
-		T=(T_{jk})_{j,k=1}^d\in\cD^\prime(\Omega;\mathrm{Sym}^2(\R^d)),
-		\qquad
-		\varphi=(\varphi_{jk})_{j,k=1}^d\in\cD(\Omega;\mathrm{Sym}^2(\R^d)),
-	\end{equation*}
-	we use the duality pairing
-	\begin{equation*}
-		\langle T,\,\varphi\rangle := \sum_{j=1}^d\sum_{k=1}^{d}\langle T_{jk},\,\varphi_{jk}\rangle.
-	\end{equation*}
-\end{definition}
+Before introducing Sobolev spaces, we first formalize a weak notion of differentiation. The reason is that the functions arising in variational formulations of boundary value problems are typically not smooth enough to admit classical derivatives in the pointwise sense. Nevertheless, one still wants to differentiate such functions in a meaningful way, at least under an integral sign. The key observation is that in integration by parts, derivatives can be shifted from an unknown function to a smooth test function with compact support. This suggests defining derivatives indirectly through their action on test functions. The resulting objects are distributions, and distributional derivatives extend classical derivatives whenever the latter exist. We begin recalling basic notations of spaces of continuously differentiable functions, test functions and distributions. For a sufficiently regular function $u:\Omega\to \R$ and a multi-index $\alpha\in\N^d_0$, we denote by
+\begin{equation*}
+	\Diff^\alpha u := \frac{\partial^{|\alpha|}u}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}:\Omega\to\R.
+\end{equation*}
+its partial derivative with respect to $\alpha$. The gradient of $u$ is
+\begin{equation*}
+	\nabla u := \left(\frac{\partial u}{\partial x_1},\ldots,\frac{\partial u}{\partial x_d}\right)^\top:\Omega\to\R^d.
+\end{equation*}
+The divergence of a sufficiently regular field $F = (F_1,\ldots,F_d)^\top: \Omega\to\R^d$ is the scalar-valued function
+\begin{equation*}
+	\diver F := \sum_{j=1}^d \frac{\partial F_j}{\partial x_j}:\Omega\to\R.
+\end{equation*}
+If a sufficiently matrix-valued filed $A = (A_{jk})_{1\le j\le m}^{1\le k\le d}\to \R^{m\times d}$ appears, the divergence is
+\begin{equation*}
+	\diver A
+	:=
+	\left(\sum_{k=1}^d \frac{\partial A_{jk}}{\partial x_k}\right)_{1\le j\le m}
+	:\Omega\to\R^m.
+\end{equation*}
+We also collect continuous functions $f:\Omega\to X$ with continuous partial derivatives of the same order $0\le k<\infty$ in the well-known function spaces $\cC^k(\Omega;X)$, where $f\in\cC^k(\Omega;X)$ if and only if $|\alpha|\le k$ implies that the partial derivatives of order $\alpha$ of each component of $f$ is continuous or in other words belongs to $\cC^0(\Omega)$. For $X = \R^m,\,m\ge 1$ this means
+\begin{equation*}
+	\Diff^\alpha (f)_j\in \cC^0(\Omega)\qquad\forall\,1\le j\le m,\,|\alpha|\le k
+\end{equation*}
+and for $X = \R^{m\times n},\, m,n\ge 2$ this means
+\begin{equation*}
+	\Diff^\alpha (f)_{jk}\in \cC^0(\Omega)\qquad\forall\,1\le j\le m,\,1\le k\le n,\,|\alpha|\le k
+\end{equation*}
+Furthermore, the space of infinitely infinitely continuously differentiable functions $f:\Omega\to X$ is defined as
+\begin{equation*}
+	\cC^\infty(\Omega;X):= \bigcap_{k\in \N_0}\cC^k(\Omega;X).
+\end{equation*}
+The space of infinitely often continuously differentiable functions with compact support, also called test functions, is denoted by
+\begin{equation*}
+	\cD(\Omega;X) = \left\{\varphi\in\cC^\infty(\Omega;X)\;\middle|\;\supp(\varphi)\subset\Omega\text{ compact}\right\}.
+\end{equation*}
+The corresponding space of distributions is now a continuous linear operator $T:\cD(\Omega;X)\to X$ and we collect them in the space $\cD^\prime(\Omega;X)$. For $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$, we denote the duality pairing by $\langle T,\,\varphi\rangle$. For $T=(T_1,\ldots,T_m)\in\cD^\prime(\Omega;\R^m)$ and $\varphi=(\varphi_1,\ldots,\varphi_m)\in\cD(\Omega;\R^m)$, we use the duality pairing
+\begin{equation*}
+	\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle
+\end{equation*}
+and for
+\begin{equation*}
+	T=(T_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD^\prime(\Omega;\R^{m\times n}),\qquad\varphi=(\varphi_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD(\Omega;\R^{m\times n}),
+\end{equation*}
+we use the duality pairing
+\begin{equation*}
+	\langle T,\,\varphi\rangle := \sum_{j=1}^m\sum_{k=1}^n\langle T_{jk},\,\varphi_{jk}\rangle.
+\end{equation*}
+The derivative $\Diff^\alpha T\in\cD^\prime(\Omega)$ of a distribution $T\in\cD^\prime(\Omega)$ with respect to $\alpha\in\N_0^d$ is defined via 
+\begin{equation*}
+	\langle \Diff^\alpha T,\,\varphi\rangle
+		:=
+		(-1)^{|\alpha|}\,\langle T,\,\Diff^\alpha\varphi\rangle,
+		\qquad \forall\,\varphi\in\cD(\Omega).
+\end{equation*}
 
 \begin{definition}[Distributional Derivative]
 	Let $T\in\cD^\prime(\Omega)$ and $\alpha\in\N_0^d$. The {\tt distributional derivative} $\Diff^\alpha T\in\cD^\prime(\Omega)$ is defined by
@@ -235,9 +145,9 @@ This leads to distributions, which extend classical derivatives to nonsmooth fun
 	\begin{equation*}
 		\Diff^\alpha T := (\Diff^\alpha T_1,\ldots,\Diff^\alpha T_m)\in\cD^\prime(\Omega;\R^m).
 	\end{equation*}
-	Analogously, for $T=(T_{jk})_{j,k=1}^d\in\cD^\prime(\Omega;\mathrm{Sym}^2(\R^d))$, we define
+	Analogously, for $T=(T_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD^\prime(\Omega;\R^{m\times n})$, we define
 	\begin{equation*}
-		\Diff^\alpha T := (\Diff^\alpha T_{jk})_{j,k=1}^d\in\cD^\prime(\Omega;\mathrm{Sym}^2(\R^d)).
+		\Diff^\alpha T := (\Diff^\alpha T_{jk})_{1\le j\le m}^{1\le k\le n}\in\cD^\prime(\Omega;\R^{m\times n}).
 	\end{equation*}
 \end{definition}
 
@@ -245,43 +155,42 @@ Using the componentwise definition of distributional derivatives, we can now ext
 \begin{equation*}
 	e_k := (0,\ldots,0,1,0,\ldots,0)^\top,
 \end{equation*}
-where the entry $1$ is in the $k$-th position. Then $\Diff^{e_k}$ in the distributional sense corresponds to the first-order derivative in the $x_k$-direction.
+where the entry $1$ is in the $k$-th position. Then $\Diff^{e_k}$ in the distributional sense corresponds to the first-order derivative in the $x_k$-direction. We thus write $\partial_{x_k} = \Diff^{e_k}$.
 
 \begin{definition}[Distributional Gradient, Jacobian and Divergence]
-	Let $T\in\cD^\prime(\Omega)$ and $U\in\cD^\prime(\Omega;\R^m)$ and $\Sigma\in\cD^\prime(\Omega;\mathrm{Sym}^2(\R^d))$.
+	Let $T\in\cD^\prime(\Omega)$ and $U\in\cD^\prime(\Omega;\R^m)$ and $\Sigma\in\cD^\prime(\Omega;\R^{m\times n})$.
 	\begin{itemize}
 		\item[i)] The {\tt distributional gradient} of $T$ is
 		      \begin{equation*}
-			      \nabla T:= \left(\Diff^{e_1}T,\ldots,\Diff^{e_d}T\right)^\top \in \cD^\prime(\Omega;\R^d).
+			      \nabla T:= \left(\partial_{x_1}T,\ldots,\partial_{x_d}T\right)^\top \in \cD^\prime(\Omega;\R^d).
 		      \end{equation*}
 		\item[ii)] The {\tt distributional Jacobian} of $U = (U_1,\ldots, U_m)^\top$ is
 		      \begin{equation*}
-			      \Diff U := \left(\Diff^{e_k}  U_j\right)_{1\le j\le m}^{1\le k\le d}\in\cD^\prime(\Omega;\R^{m\times d}).
+			      \Diff U := \left(\partial_{x_k}  U_j\right)_{1\le j\le m}^{1\le k\le d}\in\cD^\prime(\Omega;\R^{m\times d}).
 		      \end{equation*}
 		\item[iii)] For $d = m$, the {\tt distributional divergence} of $U =(U_1,\ldots, U_d)^\top$ is
 		      \begin{equation*}
-			      \diver U:= \sum_{k = 1}^d\Diff^{e_k} U_k\in\cD^\prime(\Omega).
+			      \diver U:= \sum_{k = 1}^d\partial_{x_k} U_k\in\cD^\prime(\Omega).
 		      \end{equation*}
 		\item[iv)] The {\tt distributional divergence} of $\Sigma = (\Sigma_{jk})_{j,k = 1}^d$ is
 		      \begin{equation*}
-			      \diver \Sigma:= \left(\sum_{k=1}^d\Diff^{e_k}\Sigma_{jk}\right)_{1\le j\le d}\in \cD^\prime(\Omega;\R^d).
+			      \diver \Sigma:= \left(\sum_{k=1}^d\partial_{x_k}\Sigma_{jk}\right)_{1\le j\le d}\in \cD^\prime(\Omega;\R^d).
 		      \end{equation*}
 	\end{itemize}
 \end{definition}
 
-At this stage, the above definitions are purely distributional and do not require any pointwise differentiability.
-In a later subsection, we will identify locally integrable functions with regular distributions and show that weak derivatives are precisely those distributional derivatives that are again induced by functions.
+At this stage, the above definitions are purely distributional and do not require any pointwise differentiability. In the next subsection, we will identify locally integrable functions with regular distributions and show that weak derivatives are precisely those distributional derivatives that are again induced by functions.
 
 \subsection{Regular Distributions \& Weak Derivatives}
 
-The distributional framework introduced above becomes particularly useful once distributions are induced by locally integrable functions. These so-called regular distributions provide the link between generalized differentiation and the weak derivatives used later in Sobolev spaces and variational formulations. From now on let $X$ denote one of the spaces $\R^m,\,m\ge 1$ or $\mathrm{Sym}^2(\R^d)\,d\ge 2$ to save some writing work and recall that $(\cdot,\,\cdot)_{0,\Omega}$ denotes the inner product on each of the spaces $L^2(\Omega;X)$ as introduced in Proposition \ref{pr:L2hilbert}. On $X$ we use the notation of $(\cdot,\,\cdot)_X$ as the inner product, i.e.\ Euclidean or Frobenius, respectively, as stated in Section~\ref{sec:SVM}.
+The distributional framework introduced above becomes particularly useful once distributions are induced by locally integrable functions. These so-called regular distributions provide the link between generalized differentiation and the weak derivatives used later in Sobolev spaces and variational formulations.
 
 \begin{definition}[Regular and Singular Distributions]
 	A {\tt regular distribution} is a distribution $T_f\in\cD^\prime(\Omega;X)$ induced by a locally integrable function $f\in L^1_{\loc}(\Omega;X)$ by
 	\begin{equation*}
 		\langle T_f,\,\varphi\rangle := \int_\Omega (f,\,\varphi)_X\;\dx ,\qquad \forall\,\varphi\in\cD(\Omega;X).
 	\end{equation*}
-	In particular, $L^1_\loc(\Omega;X)$ is embedded into $\cD^\prime(\Omega;X)$ via $f\mapsto T_f$ and its image is the space of regular distributions. Distributions that are not regular are called {\tt singular}.
+	In particular, $L^1_\loc(\Omega;X)$ is embedded into $\cD^\prime(\Omega;X)$ via $f\mapsto T_f$ and its image is the space of regular distributions. Distributions that are not regular are called {\tt singular distributions}.
 \end{definition}
 
 The concept of distributional derivatives applied to regular distributions is exactly the concept of weak derivatives.
@@ -316,7 +225,7 @@ The concept of distributional derivatives applied to regular distributions is ex
 \end{proof}
 
 \begin{proposition}[Differential Operators on Regular Distributions]\label{pr:ops_regular_distributions}
-	Let $u\in L^1_\loc(\Omega)$ and $F \in L^1_\loc(\Omega;\R^d)$ and $A \in L^1_\loc(\Omega;\mathrm{Sym}^2(\R^d))$.
+	Let $u\in L^1_\loc(\Omega)$ and $F \in L^1_\loc(\Omega;\R^d)$ and $A \in L^1_\loc(\Omega;\R^{m\times n})$.
 
 	\begin{itemize}
 		\item[i)] For every $\varphi\in\cD(\Omega;\R^d)$,
@@ -356,15 +265,15 @@ The concept of distributional derivatives applied to regular distributions is ex
 	\begin{equation*}
 		\langle \nabla T_u,\,\varphi\rangle
 		=
-		\sum_{k=1}^d \langle \Diff^{e_k}T_u,\,\varphi_k\rangle.
+		\sum_{k=1}^d \langle \partial_{x_k}T_u,\,\varphi_k\rangle.
 	\end{equation*}
 	Using the definition of the distributional derivative, this yields
 	\begin{equation*}
 		\langle \nabla T_u,\,\varphi\rangle
 		=
-		-\sum_{k=1}^d \langle T_u,\,\Diff^{e_k}\varphi_k\rangle
+		-\sum_{k=1}^d \langle T_u,\,\partial_{x_k}\varphi_k\rangle
 		=
-		-\left\langle T_u,\,\sum_{k=1}^d \Diff^{e_k}\varphi_k\right\rangle
+		-\left\langle T_u,\,\sum_{k=1}^d \partial_{x_k}\varphi_k\right\rangle
 		=
 		-\langle T_u,\,\diver\varphi\rangle.
 	\end{equation*}
@@ -374,20 +283,20 @@ The concept of distributional derivatives applied to regular distributions is ex
 		=
 		-\int_\Omega u\,\diver\varphi\;\dx.
 	\end{equation*}
-	Now assume that the weak gradient $\nabla u$ exists in $L^1_\loc(\Omega;\R^d)$. Then each weak derivative $\Diff^{e_k}u$ exists in $L^1_\loc(\Omega)$, and by the definition of weak derivative we have
+	Now assume that the weak gradient $\nabla u$ exists in $L^1_\loc(\Omega;\R^d)$. Then each weak derivative $\partial_{x_k}u$ exists in $L^1_\loc(\Omega)$, and by the definition of weak derivative we have
 	\begin{equation*}
-		\langle \Diff^{e_k}T_u,\,\psi\rangle
+		\langle\partial_{x_k}T_u,\,\psi\rangle
 		=
-		\langle T_{\Diff^{e_k}u},\,\psi\rangle
+		\langle T_{\partial_{x_k}u},\,\psi\rangle
 		\qquad \forall\,\psi\in\cD(\Omega),\quad 1\le k\le d.
 	\end{equation*}
 	Hence
 	\begin{equation*}
 		\nabla T_u
 		=
-		\left(\Diff^{e_1}T_u,\ldots,\Diff^{e_d}T_u\right)^\top
+		\left(\partial_{x_1}T_u,\ldots,\partial_{x_d}T_u\right)^\top
 		=
-		\left(T_{\Diff^{e_1}u},\ldots,T_{\Diff^{e_d}u}\right)^\top
+		\left(T_{\partial_{x_1}u},\ldots,T_{\partial_{x_d}u}\right)^\top
 		=
 		T_{\nabla u}
 		\qquad\text{in }\cD^\prime(\Omega;\R^d).
@@ -396,9 +305,9 @@ The concept of distributional derivatives applied to regular distributions is ex
 	\begin{equation*}
 		\langle \diver T_F,\,\varphi\rangle
 		=
-		\sum_{k=1}^d \langle \Diff^{e_k}(T_F)_k,\,\varphi\rangle
+		\sum_{k=1}^d \langle \partial_{x_k}(T_F)_k,\,\varphi\rangle
 		=
-		-\sum_{k=1}^d \langle (T_F)_k,\,\Diff^{e_k}\varphi\rangle.
+		-\sum_{k=1}^d \langle (T_F)_k,\,\partial_{x_k}\varphi\rangle.
 	\end{equation*}
 	By the componentwise pairing, this is
 	\begin{equation*}
@@ -434,19 +343,19 @@ The concept of distributional derivatives applied to regular distributions is ex
 	\begin{equation*}
 		\langle \diver T_A,\,\varphi\rangle
 		=
-		\sum_{j=1}^d \left\langle \sum_{k=1}^d \Diff^{e_k}(T_A)_{jk},\,\varphi_j\right\rangle.
+		\sum_{j=1}^d \left\langle \sum_{k=1}^d \partial_{x_k}(T_A)_{jk},\,\varphi_j\right\rangle.
 	\end{equation*}
 	Using the definition of the distributional derivative, we get
 	\begin{equation*}
 		\langle \diver T_A,\,\varphi\rangle
 		=
-		-\sum_{j=1}^d\sum_{k=1}^d \langle (T_A)_{jk},\,\Diff^{e_k}\varphi_j\rangle.
+		-\sum_{j=1}^d\sum_{k=1}^d \langle (T_A)_{jk},\,\partial_{x_k}\varphi_j\rangle.
 	\end{equation*}
 	Since $T_A$ is induced by $A$, this becomes
 	\begin{equation*}
 		\langle \diver T_A,\,\varphi\rangle
 		=
-		-\sum_{j=1}^d\sum_{k=1}^d \int_\Omega A_{jk}\,\Diff^{e_k}\varphi_j\;\dx
+		-\sum_{j=1}^d\sum_{k=1}^d \int_\Omega A_{jk}\,\partial_{x_k}\varphi_j\;\dx
 		=
 		-\int_\Omega A:\Diff\varphi\;\dx.
 	\end{equation*}
@@ -615,7 +524,7 @@ The quantity $|u|_{\theta,p,\Omega}$ is only a semi-norm, since it vanishes on c
 	\end{equation*}
 \end{definition}
 
- For general non-integer order $s=k+\theta$, one applies this semi-norm to all weak derivatives of order $k$. As before, the Hilbert case $p=2$ is of particular importance for the subsequent variational analysis. In particular, the case $s=1/2$ will later arise naturally in connection with trace operators and boundary spaces.
+For general non-integer order $s=k+\theta$, one applies this semi-norm to all weak derivatives of order $k$. As before, the Hilbert case $p=2$ is of particular importance for the subsequent variational analysis. In particular, the case $s=1/2$ will later arise naturally in connection with trace operators and boundary spaces.
 
 \begin{proposition}[$H^s(\Omega;\R^m)$ is a Hilbert Space]
 	Let $m\ge 1$ and let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. Then $H^s(\Omega;\R^m)$ is a Hilbert space with inner product
