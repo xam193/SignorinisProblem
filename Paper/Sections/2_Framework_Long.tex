@@ -90,7 +90,6 @@ Unfortunately this does not cover the case of matrix-valued fields $A:\Omega\to 
 	\diver A := \left(\sum_{k=1}^d \frac{\partial A_{jk}}{\partial x_k}\right)_{1\le j\le m}
 	:\Omega\to\R^m.
 \end{equation*}
-
 We collect continuous functions with continuous partial derivatives of the same order in the following well-known function spaces.
 
 \begin{definition}[Spaces of Continuously Differentiable Functions]
@@ -348,16 +347,7 @@ By Proposition~\ref{pr:L2_locally_integrable}, every $f\in L^2(\Omega;X)$ can be
 	\langle T_f,\,\varphi\rangle = \int_\Omega f\cdot\varphi\;\dx,
 	\qquad \forall\,\varphi\in\cD(\Omega;X).
 \end{equation*}
-In the following, we will use this identification implicitly whenever no confusion can arise. Moreover, since $\varphi\in\cD(\Omega;X)$ has compact support, we have $\varphi\in L^2(\Omega;X)$ and therefore
-\begin{equation*}
-	\langle T_f,\,\varphi\rangle
-	=
-	\int_\Omega f\cdot\varphi\;\dx
-	=
-	(f,\,\varphi)_{0,\Omega},
-	\qquad f\in L^2(\Omega;X),\ \varphi\in\cD(\Omega;X).
-\end{equation*}
-Thus, on test functions, the duality pairing of the regular distribution $T_f$ coincides with the $L^2$-inner product. In the Sobolev setting, we therefore use the terms distributional derivative and weak derivative interchangeably whenever the derivative is represented by an $L^2$-function.
+In the following, we will use this identification implicitly whenever no confusion can arise. Moreover, since $\varphi\in\cD(\Omega;X)$ has compact support, we have $\varphi\in L^2(\Omega;X)$ and therefore $\langle T_f,\,\varphi\rangle = (f,\,\varphi)_{0,\Omega}$. Thus, on test functions, the duality pairing of the regular distribution $T_f$ coincides with the $L^2$-inner product. In the Sobolev setting, we therefore use the terms distributional derivative and weak derivative interchangeably whenever the derivative is represented by an $L^2$-function.
 
 \begin{definition}[Sobolev Spaces of Integer Order]
 	Let $k\in\N_0$. The {\tt Sobolev space} $H^k(\Omega;X)$ is defined by
@@ -411,16 +401,7 @@ The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on con
 		u\in H^k(\Omega;X)\;\middle|\; |\Diff^\alpha u|_{\theta,\Omega}<\infty \ \forall\,\alpha\in\N_0^d,\ |\alpha|=k
 		\right\},
 	\end{equation*}
-	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we define the fractional Sobolev semi-norm
-	\begin{equation*}
-		|u|_{s,\Omega}
-		:=
-		\left(
-		\sum_{|\alpha|=k} |\Diff^\alpha u|_{\theta,\Omega}^2
-		\right)^{1/2},
-		\qquad u\in H^s(\Omega;X),
-	\end{equation*}
-	and equip $H^s(\Omega;X)$ with the norm
+	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we equip $H^s(\Omega;X)$ with the norm
 	\begin{equation*}
 		\|u\|_{s,\Omega}
 		:=
@@ -522,7 +503,7 @@ With this definition, $\gamma:H^1(\Omega;X)\to H^{1/2}(\Gamma;X)$ is continuous 
 	The corresponding duality pairings are denoted by $\langle\cdot,\,\cdot\rangle_\Gamma$ and $\langle\cdot,\,\cdot\rangle_{\Gamma_0}$, respectively.
 \end{definition}
 
-\subsection{$H(\diver;\Omega)$ and Normal Traces}
+\subsection{$H(\diver;\Omega)$ and Normal Traces}\label{subsec:Hdiv}
 
 In elasticity, stress fields are (typically symmetric) matrix-valued functions. While $\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ is sufficient to interpret volume integrals of the form
 \begin{equation*}
@@ -561,7 +542,14 @@ The key point is that the left-hand side of \eqref{eq:green_smooth} still makes 
 	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx,
 	\qquad v\in H^1(\Omega;\R^d).
 \end{equation}
-By Cauchy--Schwarz, $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$.
+By Cauchy--Schwarz,
+\begin{equation*}
+	|F_\tau(v)|
+	\le
+	\left(\|\tau\|_{0,\Omega}+\|\diver\tau\|_{0,\Omega}\right)\,\|v\|_{1,\Omega}
+	\qquad\forall\,v\in H^1(\Omega;\R^d),
+\end{equation*}
+i.e.\ $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$.
 
 \begin{proposition}[Dependence of $F_\tau$ on the Trace]\label{pr:Ftau_depends_on_trace}
 	Let $\tau\in H(\diver;\Omega)$. Then $F_\tau$ vanishes on $H^1_0(\Omega;\R^d)$, i.e.
