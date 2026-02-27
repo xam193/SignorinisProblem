@@ -1,0 +1,112 @@
+\section{Mathematical Framework}
+This section introduces the basic notation used throughout the mathematical framework and the later analysis of Signorini's problem. Our goal is to fix a consistent language for bulk quantities, boundary quantities, and tensor-valued fields before introducing weak derivatives and Sobolev spaces. Unless stated otherwise, let $\Omega\subset\R^d,\,d\ge 1$, be a nonempty open set. Whenever trace operators or boundary spaces are used, we additionally assume that $\Omega$ is a bounded Lipschitz domain (see e.g.\ \cite[Section 2.3]{book}) and write $\Gamma:=\partial\Omega$.
+
+\subsection{Scalars, Vectors and Matrices}\label{sec:SVM}
+The purpose of this subsection is mainly to introduce the notation used throughout this report. For $m,n\ge 1$, we write $\R^{m\times n}$ for the space of real $m\times n$ matrices and for vectors $u,v\in\R^m$, we denote by
+\begin{equation*}
+	u\cdot v := \sum_{j=1}^m u_j\,v_j,
+	\qquad
+	|u| := \sqrt{u\cdot u}
+\end{equation*}
+the Euclidean inner product and norm. For matrices $A,B\in\R^{m\times n}$, we use the Frobenius product
+\begin{equation*}
+	A:B := \sum_{j=1}^m\sum_{k=1}^n A_{jk}B_{jk},
+	\qquad
+	|A| := \sqrt{A:A}.
+\end{equation*}
+The space $\mathrm{Sym}^2(\R^d)$ of symmetric second order tensors is
+\begin{equation*}
+	\mathrm{Sym}^2(\R^d):= \left\{ s\in\R^d\otimes\R^d\;\middle|\; s^\top = s\right\}.
+\end{equation*}
+We will interpret these tensors as symmetric matrices in $\R^{d\times d}$ in the canonical basis of $\R^d$. Indeed,
+\begin{equation*}
+	\mathrm{Sym}^2(\R^d)\cong \left\{S\in\R^{d\times d}\;\middle|\; S^\top = S\right\}.
+\end{equation*}
+Furthermore, if $\cA:\Omega\to\cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))$ is a fourth order tensor and $s\in\mathrm{Sym}^2(\R^d)$, we use the {\em double contraction}
+\begin{equation*}
+	(\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)s_{kl},
+	\qquad
+	s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
+\end{equation*}
+In the remaining subsections of the mathematical framework section, we will denote by $X$ one the the spaces $\R^m$ with $m\ge 1$ or a space of real matrices $R^{n\times m},\, n,m\ge 2$ and talk about functions $u\to X$. This also covers functions with values in $\mathrm{Sym}^2(\R^d)$, which will be interesting for the main part of this report, where also $n = m = d$. The inner product on $X$ is denoted by $(\cdot,\,\cdot)_X$, i.e. Euclidean in the vector-valued and Frobenius in the matrix-valued case. When writing $(f,\,g)_X$ for functions $f,g:\Omega\to X$ or $f,g:\Gamma_0\to X$ for a relatively open boundary part $\Gamma_0$, the inner product is still assumed to be a scalar-valued function on $\Omega$ or $\Gamma_0$ without using the notation $(f(x),\, g(x))_X:\Omega\to \R$. If necessary, the target space will be explicitly specified. Finally, if $X = \R$, a space $\cX(\Omega;X)$ of functions $f:\Omega\to X$ is always abbreviated by $\cX(\Omega)$. The same notation is applied to functions on $\Gamma_0$.
+
+\subsection{Distributional Derivatives}
+We begin by fixing the basic notations for $L^p$-spaces and spaces of continuously differentiable functions, as well as test functions and distributions. On the space $L^p(\Omega;X)$ of $p$-integrable function $f:\Omega\to X$, we denote the norm by
+\begin{equation*}
+	\|f\|_{0,p,\Omega}:= \int_\Omega |f|^p\;\dx,\qquad f\in L^p(\Omega;X),\, 1\le p<\infty
+\end{equation*}
+and for the Hilbert space case $p = 2$, the inner product is denoted by
+\begin{equation*}
+	(f,\, g)_{0,\Omega}:= \int_\Omega (f,\, g)_X\;\dx,\qquad f,g\in L^2(\Omega;X).
+\end{equation*}
+Indeed, the induced norm is $\|\cdot\|_{0,\Omega} = \|\cdot\|_{0,2,\Omega}$. The space of locally integrable functions is denoted by $L^1(\Omega;X)$. A function $f:\Omega\to X$ is locally integrable on $\Omega$ if and only if $f|_K\in L^1(K;\Omega)$ for every compact subset $K\subset \Omega$. For $0\le k\le \infty$. The space of continuously differentiable functions $f:\Omega\to X$ up to order $|\alpha|\le k$ is denoted by $\cC^k(\Omega;X)$, where the differentiability condition is understood componentwise. If the support $\supp\varphi\subset \Omega$ of a function $\varphi\in\cC^\infty(\Omega;X)$ is compact, it is referred to as a test function and we collect them in the space $\cD(\Omega;X)$. Distributions are linear continuous operators $\cD(\Omega)\to X$, i.e.\ the space of scalar-valued distributions is the topological dual space $\cD^\prime(\Omega):= (\cD(\Omega))^\prime$ and we define
+\begin{equation*}
+	\cD^\prime(\Omega;\R^m):= (\cD^\prime(\Omega))^m\quad\text{and}\quad\cD^\prime(\Omega;\R^{m\times n}) := (\cD^\prime(\Omega;\R^m))^n
+\end{equation*}
+componentwise. This means a distribution $T\in\cD^\prime(\Omega;X)$ is a linear continuous operator $T:\cD(\Omega)\to X$ with and its distributional derivative $\Diff^\alpha T\in\cD^\prime(\Omega;X)$ with respect to $\alpha\in\N_0^d$ is defined via
+\begin{equation*}
+	\langle D^\alpha T,\,\varphi\rangle : = (-1)^{|\alpha|}\,\langle T,\Diff^\alpha\varphi\rangle,\qquad \forall\,\varphi\in\cD(\Omega;X),
+\end{equation*}
+where $\Diff^\alpha\varphi$ is understood in the classical sense and where $\langle T,\,\varphi\rangle$ is the duality pairing for $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$ which for vector-valued distributions and test functions is defined via
+\begin{equation*}
+	\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle,\qquad (T,\varphi)\in\cD^\prime(\Omega;\R^m)\times\cD(\Omega;\R^m)
+\end{equation*}
+and for matrix-valued distributions and test functions is defined via
+\begin{equation*}
+	\langle T,\,\varphi\rangle := \sum_{j=1}^m\sum_{k=1}^n\langle T_{jk},\,\varphi_{jk}\rangle,\qquad (T,\varphi)\in\cD^\prime(\Omega;\R^{m\times n})\times\cD(\Omega;\R^{m\times n}).
+\end{equation*}
+Using the componentwise definition of distributional derivatives, we can extend the classical differential operators to distributions. For $1\le k\le d$, let $e_k\in\N_0^d$ denote the $k$-th unit multi-index,
+\begin{equation*}
+	e_k := (0,\ldots,0,1,0,\ldots,0)^\top,
+\end{equation*}
+where the entry $1$ is in the $k$-th position. Then $\Diff^{e_k}$ in the distributional sense corresponds to the first-order derivative in the $x_k$-direction. We thus write $\partial_{x_k} = \Diff^{e_k}$. For $T\in\cD^\prime(\Omega)$ the distributional gradient then is
+\begin{equation*}
+	\nabla T := (\partial_{x_1}T,\ldots,\partial_{x_d}T)^\top \in \cD^\prime(\Omega;\R^d),
+\end{equation*}
+For a vector-valued distribution $T\in\cD^\prime(\Omega;\R^d)$, the divergence is
+\begin{equation*}
+	\diver T := \sum_{k=1}^d \partial_{x_k} T_k \in \cD^\prime(\Omega)
+\end{equation*}
+and a matrix-valued distribution $T\in\cD^\prime(\Omega;\R^{m\times d})$ has the divergence
+\begin{equation*}
+	\diver T := \left(\sum_{k=1}^d \partial_{x_k} T_{jk}\right)_{1\le j\le m}
+	\in \cD^\prime(\Omega;\R^m)
+\end{equation*}
+
+\subsection{Weak Derivatives}
+
+Here, we recall the concept of weak derivatives. This is exactly the concept of distributional derivatives applied to regular distributions. A regular distribution is a distribution $T_f\in\cD^\prime(\Omega;X)$ induced by a locally integrable function $f\in L^1_\loc(\Omega;X)$ via
+\begin{equation*}
+	\langle T_f,\,\varphi\rangle := \int_\Omega (f,\,\varphi)_X\;\dx ,\qquad \forall\,\varphi\in\cD(\Omega;X).
+\end{equation*}
+In particular, $L^1_\loc(\Omega;X)$ is embedded into $\cD^\prime(\Omega;X)$ via $f\mapsto T_f$ and its image is the space of regular distributions. Since $L^2(\Omega;X)\subset L^1_\loc(\Omega;X)$, we can understand $L^2$-functions as regular distributions as well and thus, have a concept of differentiation for such functions. The duality pairing of distributions with test functions then coincides with the $L^2$-product and the distributional derivative $\Diff^\alpha f$ of $f\in L^2(\Omega;X)$ with respect to $\alpha\in\N_0^d$ is therefore given through
+\begin{equation*}
+	(\Diff^\alpha f,\, \varphi)_{0,\Omega} = \int_\Omega (\Diff^\alpha f,\,\varphi)_X\;\dx = (-1)^{|\alpha|}\int_\Omega (f,\,\Diff^\alpha\varphi)_X\;\dx = (-1)^{|\alpha|}\,(f,\Diff^\alpha\varphi)_{0,\Omega}
+\end{equation*}
+for all $\varphi\in\cD(\Omega;X)$, where $\Diff^\alpha\varphi$ is understood in the classical sense. The usual differential operators can now accordingly accordingly formulated. For $u\in L^2(\Omega)$, the gradient of $T_u\in\cD^\prime(\Omega)$ is
+\begin{equation*}
+	\langle \nabla T_u,\, \varphi\rangle = -\langle T_u,\,\diver \varphi\rangle = -\int_\Omega u\,\diver\varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega;R^d),
+\end{equation*}
+where $\diver \varphi$ is understood in the classical sense. If the weak gradient $\nabla u$ exists in $L^2(\Omega;\R^d)$ it holds that
+\begin{equation*}
+	\nabla T_u = T_{\nabla u}\qquad\text{in }\cD^\prime(\Omega;\R^d).
+\end{equation*}
+For $F\in L^2(\Omega;\R^d)$, the divergence of $T_F\in\cD^\prime(\Omega;\R^d)$ is
+\begin{equation*}
+	\langle\diver T_F,\,\varphi\rangle = -\langle T_F,\,\nabla\varphi\rangle = -\int_\Omega F\cdot \nabla \varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega),
+\end{equation*}
+where $\nabla \varphi$ is understood in the classical sense. If in addition the weak divergence $\diver F$ exists in $L^2(\Omega)$, then
+\begin{equation*}
+	\diver T_F = T_{\diver F}\qquad\text{in }\cD^\prime(\Omega).
+\end{equation*}
+For $A\in L^2(\Omega;\R^{m\times n})$, the divergence of $T_A\in\cD^\prime(\Omega;\R^{m\times n})$ is
+\begin{equation*}
+	\langle \diver T_A,\,\varphi\rangle = -\langle T_A,\, \Diff\varphi\rangle
+	= -\int_\Omega A:\Diff \varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega;R^d),
+\end{equation*}
+where $\Diff\varphi$ is the classical Jacobian of $\varphi$. If the weak divergence $\diver A$ exists in $L^2(\Omega;\R^d)$, then
+\begin{equation*}
+	\diver T_A = T_{\diver A}\qquad\text{in }\cD^\prime(\Omega;\R^d).
+\end{equation*}
+
+\subsection{Sobolev Spaces of Integer Order}
