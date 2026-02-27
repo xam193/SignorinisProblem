@@ -637,6 +637,20 @@ This identity will be the key tool in the derivation of the strong Signorini con
 
 
 \subsubsection{A Hybrid Formulation}
+
+The weak formulation in Problem \ref{pr:signorini2} encodes the equilibrium equation and the contact conditions only implicitly through the variational inequality. Under the additional stress regularity $\sigma(u)\in H(\diver;\Omega)$, these conditions can be separated into a bulk equation in $\Omega$ and boundary relations involving the traction $\sigma(u)\mathrm n$. This leads to the following hybrid formulation, which may be viewed as an intermediate form between the weak variational inequality and the strong Signorini conditions in the later subsections.
+
+\begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
+For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
+\begin{equation*}
+	\begin{cases}
+		-\diver\sigma(u) = f                                                                                  & \text{a.e.\ in }\Omega, \\[6pt]
+		\langle \sigma(u)\mathrm{n}, \gamma u\rangle_\Gamma = \displaystyle\int_{\Gamma_N}F\cdot\gamma u\;\ds,                          \\[10pt]
+		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\ds & \forall\, v\in K.
+	\end{cases}
+\end{equation*}
+\end{problem}
+
 \begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
 For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that
 \begin{equation*}
@@ -649,6 +663,139 @@ For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ s
 \end{problem}
 
 We close this section by showing, that the hybrid formulation above is equivalent to the previous weak formulations in Problem \ref{pr:signorini2} in order to prove that it is indeed a valid formulation of the Signorini problem.
+
+\begin{proposition}[Equivalence of hybrid and weak formulation]
+	Assume that $\sigma(u)\in H(\diver;\Omega)$. Then $u\in K$ solves Problem \ref{pr:signorini2} if and only if it solves Problem \ref{pr:signorini4}.
+\end{proposition}
+\begin{proof}
+	Assume first that $u\in K$ solves Problem \ref{pr:signorini2}, i.e.
+	\begin{equation}\label{eq:weakineq_hybrid}
+		a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K.
+	\end{equation}
+	Let $\varphi\in\mathcal D(\Omega;\R^d)$. Since $\gamma\varphi=0$ on $\Gamma$, we have $u\pm t\varphi\in K$ for all sufficiently small $t>0$. Testing \eqref{eq:weakineq_hybrid} with $v=u\pm t\varphi$ yields
+	\begin{equation*}
+		a(u,\varphi)=\ell(\varphi).
+	\end{equation*}
+	Because $\varphi$ has compact support in $\Omega$, the boundary term in $\ell(\varphi)$ vanishes, and thus
+	\begin{equation*}
+		a(u,\varphi)=\int_\Omega f\cdot \varphi\;\dx.
+	\end{equation*}
+	Moreover, since $\sigma(u)$ is symmetric,
+	\begin{equation*}
+		a(u,\varphi)=\int_\Omega \sigma(u):\varepsilon(\varphi)\;\dx
+		=\int_\Omega \sigma(u):\nabla\varphi\;\dx.
+	\end{equation*}
+	By definition of the distributional divergence, this means
+	\begin{equation*}
+		\langle-\diver\sigma(u),\varphi\rangle
+		=
+		\int_\Omega \sigma(u):\nabla\varphi\;\dx
+		=
+		\int_\Omega f\cdot\varphi\;\dx
+		=
+		\langle f,\varphi\rangle
+		\qquad \forall\,\varphi\in\mathcal D(\Omega;\R^d).
+	\end{equation*}
+	Hence,
+	\begin{equation*}
+		-\diver\sigma(u)=f
+		\qquad\text{in }\mathcal D'(\Omega;\R^d).
+	\end{equation*}
+	Since $\sigma(u)\in H(\diver;\Omega)$, we have $\diver\sigma(u)\in L^2(\Omega;\R^d)$, and therefore
+	\begin{equation}\label{eq:bulk_hybrid}
+		-\diver\sigma(u)=f
+		\qquad\text{a.e.\ in }\Omega.
+	\end{equation}
+	This proves the first condition in Problem \ref{pr:signorini4}.
+
+	Next, let $v\in K$ and set $w:=v-u$. By \eqref{eq:green_sigma} and \eqref{eq:bulk_hybrid},
+	\begin{equation*}
+		a(u,w)
+		=
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		-\int_\Omega \diver\sigma(u)\cdot w\;\dx
+		=
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		+\int_\Omega f\cdot w\;\dx.
+	\end{equation*}
+	On the other hand, \eqref{eq:weakineq_hybrid} gives
+	\begin{equation*}
+		a(u,w)\ge \ell(w)=\int_\Omega f\cdot w\;\dx+\int_{\Gamma_N}F\cdot\gamma w\;\ds.
+	\end{equation*}
+	Subtracting the volume term yields
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		\ge
+		\int_{\Gamma_N}F\cdot\gamma w\;\ds,
+	\end{equation*}
+	i.e.
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		-
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		\ge
+		\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
+		\qquad \forall\, v\in K.
+	\end{equation*}
+	It remains to prove the equality for $u$. Since $0\in K$ and $2u\in K$, testing \eqref{eq:weakineq_hybrid} with $v=0$ and $v=2u$ gives
+	\begin{equation*}
+		a(u,u)=\ell(u).
+	\end{equation*}
+	Applying \eqref{eq:green_sigma} with $v=u$ and using \eqref{eq:bulk_hybrid}, we obtain
+	\begin{equation*}
+		a(u,u)
+		=
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		+\int_\Omega f\cdot u\;\dx.
+	\end{equation*}
+	Together with
+	\begin{equation*}
+		\ell(u)=\int_\Omega f\cdot u\;\dx+\int_{\Gamma_N}F\cdot\gamma u\;\ds,
+	\end{equation*}
+	this yields
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		=
+		\int_{\Gamma_N}F\cdot\gamma u\;\ds.
+	\end{equation*}
+	Consequently,
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		\ge
+		\int_{\Gamma_N}F\cdot\gamma v\;\ds
+		\qquad \forall\, v\in K.
+	\end{equation*}
+	Thus $u$ solves Problem \ref{pr:signorini4}.
+
+	Conversely, assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ and set $w:=v-u$. Using \eqref{eq:green_sigma} and the bulk equation $-\diver\sigma(u)=f$, we get
+	\begin{equation*}
+		a(u,w)
+		=
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		+\int_\Omega f\cdot w\;\dx.
+	\end{equation*}
+	Moreover, subtracting the second condition in Problem \ref{pr:signorini4} from the third one yields
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		\ge
+		\int_{\Gamma_N}F\cdot\gamma w\;\ds.
+	\end{equation*}
+	Hence
+	\begin{equation*}
+		a(u,w)
+		\ge
+		\int_\Omega f\cdot w\;\dx+\int_{\Gamma_N}F\cdot\gamma w\;\ds
+		=
+		\ell(w)
+		=
+		\ell(v-u).
+	\end{equation*}
+	Since $w=v-u$, this is exactly
+	\begin{equation*}
+		a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K,
+	\end{equation*}
+	i.e.\ $u$ solves Problem \ref{pr:signorini2}$.$
+\end{proof}
 
 \begin{proposition}[Equivalence of Hybrid and Weak Formulation]
 	Every solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini4} and vice versa.
