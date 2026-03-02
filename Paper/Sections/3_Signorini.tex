@@ -204,7 +204,7 @@ with {\em volume force density} $f\in L^2(\Omega;\R^d)$ on the body and {\em sur
 	\end{equation*}
 	By the Trace Theorem \ref{thm:trace} there exists $C_\mathrm{tr}>0$ such that
 	\begin{equation*}
-		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall\, v\in V.
+		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall\, v\in V.
 	\end{equation*}
 	Finally,
 	\begin{equation*}
@@ -633,7 +633,7 @@ In particular, if $\sigma(u)\in H(\diver;\Omega)$, then
 	\qquad
 	\forall\, v\in H^1(\Omega;\R^d).
 \end{equation}
-This identity will be the key tool in the derivation of the strong Signorini conditions.
+This identity will be used in the derivation of the strong Signorini conditions.
 
 
 \subsubsection{A Hybrid Formulation}
@@ -642,24 +642,19 @@ The weak formulation in Problem \ref{pr:signorini2} encodes the equilibrium equa
 
 \begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
 For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
-\begin{equation*}
-	\begin{cases}
-		-\diver\sigma(u) = f                                                                                  & \text{a.e.\ in }\Omega, \\[6pt]
-		\langle \sigma(u)\mathrm{n}, \gamma u\rangle_\Gamma = \displaystyle\int_{\Gamma_N}F\cdot\gamma u\;\ds,                          \\[10pt]
-		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\ds & \forall\, v\in K.
-	\end{cases}
-\end{equation*}
-\end{problem}
-
-\begin{problem}[Signorini's Problem -- Hybrid Formulation]\label{pr:signorini4}
-For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that
-\begin{equation*}
-	\begin{cases}
-		-\diver\sigma(u) = f                                                                                   & \text{a.e.\ in }\Omega, \\[7pt]
-		\langle \sigma(u)\mathrm{n}, \gamma u\rangle_\Gamma = \displaystyle\int_{\Gamma_N}F\cdot\gamma u\;\dx, &                         \\[10pt]
-		\langle\sigma(u)\mathrm{n},\gamma v\rangle_\Gamma\ge \displaystyle\int_{\Gamma_N} F\cdot\gamma v\;\dx  & \forall\, v\in K.
-	\end{cases}
-\end{equation*}
+\begin{subequations}\label{eq:hybrid}
+	\begin{empheq}[left=\empheqlbrace]{alignat=2}
+		-\diver\sigma(u) &= f
+		&\qquad& \text{a.e.\ in }\Omega, \label{eq:hybrid_bulk}\\
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		&= \mathrlap{\int_{\Gamma_N} F\cdot \gamma u\;\ds,}
+		&& \label{eq:hybrid_eq}\\
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		&\ge \int_{\Gamma_N} F\cdot \gamma v\;\ds
+		&\qquad& \forall\, v\in K.
+		\label{eq:hybrid_ineq}
+	\end{empheq}
+\end{subequations}
 \end{problem}
 
 We close this section by showing, that the hybrid formulation above is equivalent to the previous weak formulations in Problem \ref{pr:signorini2} in order to prove that it is indeed a valid formulation of the Signorini problem.
@@ -701,14 +696,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 		-\diver\sigma(u)=f
 		\qquad\text{in }\mathcal D'(\Omega;\R^d).
 	\end{equation*}
-	Since $\sigma(u)\in H(\diver;\Omega)$, we have $\diver\sigma(u)\in L^2(\Omega;\R^d)$, and therefore
-	\begin{equation}\label{eq:bulk_hybrid}
-		-\diver\sigma(u)=f
-		\qquad\text{a.e.\ in }\Omega.
-	\end{equation}
-	This proves the first condition in Problem \ref{pr:signorini4}.
-
-	Next, let $v\in K$ and set $w:=v-u$. By \eqref{eq:green_sigma} and \eqref{eq:bulk_hybrid},
+	Since $\sigma(u)\in H(\diver;\Omega)$, we have $\diver\sigma(u)\in L^2(\Omega;\R^d)$, and therefore \eqref{eq:hybrid_bulk} holds. Next, let $v\in K$ and set $w:=v-u$. By \eqref{eq:green_sigma} and \eqref{eq:hybrid_bulk},
 	\begin{equation*}
 		a(u,w)
 		=
@@ -737,11 +725,11 @@ We close this section by showing, that the hybrid formulation above is equivalen
 		\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
 		\qquad \forall\, v\in K.
 	\end{equation*}
-	It remains to prove the equality for $u$. Since $0\in K$ and $2u\in K$, testing \eqref{eq:weakineq_hybrid} with $v=0$ and $v=2u$ gives
+	It remains to prove \eqref{eq:hybrid_eq}. Since $0\in K$ and $2u\in K$, testing \eqref{eq:weakineq_hybrid} with $v=0$ and $v=2u$ gives
 	\begin{equation*}
 		a(u,u)=\ell(u).
 	\end{equation*}
-	Applying \eqref{eq:green_sigma} with $v=u$ and using \eqref{eq:bulk_hybrid}, we obtain
+	Applying \eqref{eq:green_sigma} with $v=u$ and using \eqref{eq:hybrid_bulk}, we obtain
 	\begin{equation*}
 		a(u,u)
 		=
@@ -752,29 +740,21 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\begin{equation*}
 		\ell(u)=\int_\Omega f\cdot u\;\dx+\int_{\Gamma_N}F\cdot\gamma u\;\ds,
 	\end{equation*}
-	this yields
-	\begin{equation*}
-		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
-		=
-		\int_{\Gamma_N}F\cdot\gamma u\;\ds.
-	\end{equation*}
-	Consequently,
+	this yields \eqref{eq:hybrid_eq}. Consequently, the previous inequality becomes
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
 		\ge
 		\int_{\Gamma_N}F\cdot\gamma v\;\ds
-		\qquad \forall\, v\in K.
+		\qquad \forall\, v\in K,
 	\end{equation*}
-	Thus $u$ solves Problem \ref{pr:signorini4}.
-
-	Conversely, assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ and set $w:=v-u$. Using \eqref{eq:green_sigma} and the bulk equation $-\diver\sigma(u)=f$, we get
+	which is exactly \eqref{eq:hybrid_ineq}. Thus $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ and set $w:=v-u$. Using \eqref{eq:green_sigma} and \eqref{eq:hybrid_bulk}, we get
 	\begin{equation*}
 		a(u,w)
 		=
 		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
 		+\int_\Omega f\cdot w\;\dx.
 	\end{equation*}
-	Moreover, subtracting the second condition in Problem \ref{pr:signorini4} from the third one yields
+	Moreover, subtracting \eqref{eq:hybrid_eq} from \eqref{eq:hybrid_ineq} yields
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
 		\ge
@@ -794,85 +774,9 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\begin{equation*}
 		a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K,
 	\end{equation*}
-	i.e.\ $u$ solves Problem \ref{pr:signorini2}$.$
+	i.e.\ $u$ solves Problem \ref{pr:signorini2}.
 \end{proof}
 
-\begin{proposition}[Equivalence of Hybrid and Weak Formulation]
-	Every solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini4} and vice versa.
-\end{proposition}
-\begin{proof}
-	Let $u\in K$ solve Problem \ref{pr:signorini2}, i.e.\ it holds
-	\begin{equation}\label{eq:weakineq}
-		a(u,v-u)\ge \ell(v-u)\qquad \forall \,v\in K.
-	\end{equation}
-	We take a test function $\varphi\in\cD(\Omega;\R^d)$. Then $\gamma\varphi = 0$ on $\Gamma$ and $u\pm t\varphi\in K$ for all $t>0$. Testing $v:=u\pm t\varphi$ in \eqref{eq:weakineq} yields
-	\begin{equation}\label{eq:equality}
-		a(u,\pm t\varphi)\ge \ell(\pm t\varphi)\qquad\Longrightarrow\qquad\begin{cases}
-			a(u,\varphi)\ge\ell(\varphi), \\
-			a(u,\varphi)\le\ell(\varphi),
-		\end{cases}\qquad \Longrightarrow \qquad a(u,\varphi) = \ell(\varphi).
-	\end{equation}
-	for all $\varphi\in\cD(\Omega;\R^d)$. Furthermore since $\gamma\varphi = 0$, we have
-	\begin{equation*}
-		\int_{\Gamma_N} F\cdot\gamma\varphi\;\ds  = 0\qquad\Longrightarrow\qquad \ell(\varphi) = \int_\Omega f\cdot \varphi\;\dx
-	\end{equation*}
-	and with the symmetry $\sigma(u)^\top = \sigma(u)$,
-	\begin{equation*}
-		a(u,\varphi)=\int_\Omega \sigma(u):\varepsilon(\varphi)\;\dx  = \int_\Omega\sigma(u):\nabla \varphi\;\dx.
-	\end{equation*}
-	Hence, for all $\varphi\in\cD(\Omega;\R^d)$, we obtain that \eqref{eq:equality} reads
-	\begin{equation*}
-		\int_\Omega \sigma(u):\nabla\varphi\;\dx
-		=
-		\int_\Omega f\cdot\varphi\;\dx.
-	\end{equation*}
-	Interpreting $\sigma(u)$ and $f$ as regular distributions, and using the distributional divergence of matrix-valued distributions, this is equivalent to
-	\begin{equation*}
-		\langle -\diver\sigma(u),\varphi\rangle
-		=
-		\langle f,\varphi\rangle
-		\qquad \forall \,\varphi\in\cD(\Omega;\R^d).
-	\end{equation*}
-	Therefore,
-	\begin{equation*}
-		-\diver\sigma(u)=f
-		\qquad\text{in }\cD'(\Omega;\R^d).
-	\end{equation*}
-	If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then $\diver\sigma(u)\in L^2(\Omega;\R^d)$. By injectivity of the embedding $L^1_{\mathrm{loc}}(\Omega;\R^d)\hookrightarrow\cD'(\Omega;\R^d)$, it follows that
-	\begin{equation}\label{eq:innerae}
-		-\diver\sigma(u)=f
-		\qquad\text{a.e. in }\Omega.
-	\end{equation}
-	This is the first condition in Problem \ref{pr:signorini4}. Now let $v\in K$ be arbitrary and set $w:=v-u$. Then by \eqref{eq:green} and \eqref{eq:innerae} we have
-	\begin{equation}\label{eq:equality2}
-		a(u,w) = -\int_\Omega\diver\sigma(u)\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma.
-	\end{equation}
-	On the other hand, by \eqref{eq:weakineq} we have
-	\begin{equation*}
-		a(u,w)\ge\ell(w) = \int_\Omega f\cdot w\;\dx +\int_{\Gamma_N}F\cdot\gamma w\;\ds
-	\end{equation*}
-	which by subtracting $\langle f,\, w\rangle$ yields
-	\begin{equation*}
-		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_{\Gamma_N} F\cdot\gamma w\;\ds\qquad\forall \,v\in K.
-	\end{equation*}
-	This is the third condition in Problem \ref{pr:signorini4}. By Proposition \ref{pr:equivalence23} the condition \eqref{eq:weakineq} implies $a(u,u) = \ell(u)$ and $a(u,v)\ge \ell(v)$ for all $v\in K$. Again, with \eqref{eq:green} and \eqref{eq:innerae}, we have
-	\begin{equation*}
-		a(u,u) = \int_\Omega f\cdot u\;\dx +\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma\qquad\text{and}\qquad \ell(u) = \int_\Omega f\cdot u\;\dx +\int_{\Gamma_N} F\cdot\gamma u\;\ds
-	\end{equation*}
-	and thus by $a(u,u) = \ell(u)$ and subtracting $\langle f,\, u\rangle$,
-	\begin{equation*}
-		\langle\sigma(u)\mathrm{n},\gamma u\rangle_\Gamma = \int_{\Gamma_N} F\cdot\gamma u\;\ds.
-	\end{equation*}
-	This is the second condition in Problem \ref{pr:signorini4}. Now we assume that $u\in K$ solves Problem \ref{pr:signorini4}. Let $v\in K$ be arbitrary and $w:= v-u$. Subtracting the boundary conditions in Problem \ref{pr:signorini4} yields
-	\begin{equation*}
-		\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma-\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot(\gamma v-\gamma u)\;\ds = \int_{\Gamma_N}F\cdot\gamma w\;\ds.
-	\end{equation*}
-	With \eqref{eq:equality2} is holds
-	\begin{equation*}
-		a(u,w) = \int_\Omega f\cdot w\;\dx +\langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma\ge \int_\Omega f\cdot w\;\dx + \int_{\Gamma_N}F\cdot\gamma w\;\ds = \ell(w) = \ell(v-u).
-	\end{equation*}
-	This is exactly Problem \ref{pr:signorini2}.
-\end{proof}
 
 \subsubsection{Normal/Tangential Splitting and Contact Trace Spaces}
 The hybrid formulation derived above still encodes the contact interaction through a single boundary traction functional acting on traces. In order to recover the Signorini contact conditions on $\Gamma_C$ in a meaningful weak sense, we now split traces and tractions into normal and tangential components and introduce the corresponding trace spaces on the contact boundary. Recall that for $v\in V$, the trace $\gamma v|_{\Gamma_C}$ is well-defined. We define the contact trace space by
@@ -916,21 +820,21 @@ and
 	\inf\left\{\|v\|_{1,\Omega}\; \middle|\; v\in V,\ (\gamma v|_{\Gamma_C})_t=\zeta\right\},
 	\qquad \zeta\in W_{C,t}.
 \end{equation}
-We denote by $W_C'$, $W_{C,\mathrm{n}}^\prime$ and $W_{C,t}^\prime$ the corresponding dual spaces, equipped with the operator norms. Their duality pairings are denoted by $\langle \cdot,\cdot\rangle_C$. Whenever no confusion can arise, we use the same notation $\langle\cdot,\cdot\rangle_C$ for the pairings on
+We denote by $W_C'$, $W_{C,\mathrm{n}}^\prime$ and $W_{C,t}^\prime$ the corresponding dual spaces, equipped with the operator norms. Their duality pairings are denoted by $\langle \cdot,\cdot\rangle_{\Gamma_C}$. Whenever no confusion can arise, we use the same notation $\langle\cdot,\cdot\rangle_{\Gamma_C}$ for the pairings on
 $W_C^\prime\times W_C$, $W_{C,\mathrm{n}}^\prime\times W_{C,\mathrm{n}}$ and $W_{C,t}^\prime\times W_{C,t}$. In the hybrid formulation, the boundary traction on $\Gamma_C$ is understood as a bounded linear functional on $W_C$.
 Hence, for a contact traction $\tau\in W_C^\prime$, one can define normal and tangential components
 \begin{equation}\label{eq:traction_split_dual}
-	\tau_\mathrm{n}\in W_{C,\mathrm{n}}^\prime,
-	\qquad
+	\tau_\mathrm{n}\in W_{C,\mathrm{n}}^\prime
+	\quad\text{and}\quad
 	\tau_t\in W_{C,t}^\prime,
 \end{equation}
 such that, for every $w\in W_C$ with decomposition $w=w_\mathrm{n}\mathrm n+w_t$,
 \begin{equation}\label{eq:dual_split_pairing}
-	\langle \tau,w\rangle_C
+	\langle \tau,w\rangle_{\Gamma_C}
 	=
-	\langle \tau_\mathrm{n},w_\mathrm{n}\rangle_C
+	\langle \tau_\mathrm{n},w_\mathrm{n}\rangle_{\Gamma_C}
 	+
-	\langle \tau_t,w_t\rangle_C.
+	\langle \tau_t,w_t\rangle_{\Gamma_C}.
 \end{equation}
 To express the Signorini contact condition on the normal component in dual form, we introduce the cone of admissible normal traces
 \begin{equation}\label{eq:cone_WCn_minus}
@@ -942,70 +846,345 @@ and its dual cone of weakly nonpositive normal contact forces
 \begin{equation}\label{eq:def_LambdaC}
 	\Lambda_C
 	:=
-	\left\{\lambda\in W_{C,\mathrm{n}}'\; \middle|\; \langle \lambda,\eta\rangle_C \ge 0 \quad \forall\,\eta\in W_{C,\mathrm{n}}^-\right\}.
+	\left\{\lambda\in W_{C,\mathrm{n}}'\; \middle|\; \langle \lambda,\eta\rangle_{\Gamma_C} \ge 0 \quad \forall\,\eta\in W_{C,\mathrm{n}}^-\right\}.
 \end{equation}
 With these notations, the boundary inequality in the hybrid formulation can be decomposed into normal and tangential contributions on $\Gamma_C$.
-This allows us to state the frictionless Signorini contact conditions as a KKT-type system in the dual spaces $W_{C,\mathrm{n}}'$ and $W_{C,t}'$.
+This allows us to state the Signorini contact conditions as a KKT-type system in the dual spaces $W_{C,\mathrm{n}}'$ and $W_{C,t}'$.
 
 \subsubsection{KKT Contact Conditions}
 
 Under the assumption of having no Neumann boundary part, $|\Gamma_N|$, we can make a strong formulation of Signorini's Problem. We denote the boundary stress by
 \begin{equation*}
-	\sigma(u)\mathrm{n} = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)
+	\sigma(u)\mathrm{n} = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u).
 \end{equation*}
 
 \begin{problem}[Signorini's Problem -- Strong Formulation]\label{pr:signorini5}
 For given $f\in L^2(\Omega;\R^d)$, find $u\in V$ such that
-\begin{equation*}
-	\begin{cases}
-		-\diver \sigma(u) = f & \text{a.e.\ in }\Omega,   \\[3pt]
-		\sigma_t(u) = 0       & \text{in }W_{C,t}^\prime, \\[3pt]
-		u_\mathrm{n}\le 0     & \text{a.e.\ on }\Gamma_C, \\[3pt]
-		\sigma_\mathrm{n}(u)\in\Lambda_C                  \\[3pt]
-		\langle\sigma_\mathrm{n},\, u_\mathrm{n}\rangle_{\Gamma_C} = 0,
-	\end{cases}
-\end{equation*}
+\begin{subequations}\label{eq:strong}
+	\begin{empheq}[left=\empheqlbrace]{alignat=2}
+		-\diver \sigma(u) &= f
+		&\qquad& \text{a.e.\ in }\Omega, \label{eq:strong_bulk}\\
+		\sigma_t(u) &= 0
+		&\qquad& \text{in }W_{C,t}^\prime, \label{eq:strong_tangential}\\
+		u_\mathrm{n} &\le 0
+		&\qquad& \text{a.e.\ on }\Gamma_C, \label{eq:strong_nonpen}\\
+		\sigma_\mathrm{n}(u) &\in \Lambda_C,
+		&& \label{eq:strong_lambda}\\
+		\langle\sigma_\mathrm{n}(u),\, u_\mathrm{n}\rangle_{\Gamma_C} &= 0.
+		&& \label{eq:strong_comp}
+	\end{empheq}
+\end{subequations}
 \end{problem}
 
 \begin{proposition}[Equivalence of Strong and Weak Formulation]
-	Suppose that $|\Gamma_N|= 0$. Then every solution to Problem \ref{pr:signorini5} is also a solution to Problem \ref{pr:signorini2} and vice versa.
+	Suppose that $|\Gamma_N|= 0$. Then every solution to Problem \ref{pr:signorini5} is also a solution to Problem \ref{pr:signorini4} and vice versa.
 \end{proposition}
 \begin{proof}
-
+	We prove directly the equivalence between Problems \ref{pr:signorini4} and \ref{pr:signorini5}. Assume first that $u\in V$ solves Problem \ref{pr:signorini5}. Since $u\in V$, we have
+	\begin{equation*}
+		\sigma(u)=\mathcal A:\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+	\end{equation*}
+	Moreover, \eqref{eq:strong_bulk} yields
+	\begin{equation*}
+		\diver\sigma(u)=-f\in L^2(\Omega;\R^d).
+	\end{equation*}
+	Hence $\sigma(u)\in H(\diver;\Omega)$. In particular, \eqref{eq:hybrid_bulk} holds. Now let $v\in K$. Since $|\Gamma_N|=0$ and $\gamma v=0$ on $\Gamma_D$, we have
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		=
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_{\Gamma_C}.
+	\end{equation*}
+	Using the decomposition into normal and tangential components, we get
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_{\Gamma_C}
+		=
+		\langle \sigma_\mathrm n(u),v_\mathrm n\rangle_{\Gamma_C}
+		+
+		\langle \sigma_t(u),v_t\rangle_{\Gamma_C}.
+	\end{equation*}
+	By \eqref{eq:strong_tangential}, the second term vanishes. Therefore,
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		=
+		\langle \sigma_\mathrm n(u),v_\mathrm n\rangle_{\Gamma_C}.
+	\end{equation*}
+	Since $v\in K$, we have $v_\mathrm n\le 0$ a.e.\ on $\Gamma_C$, and by \eqref{eq:strong_lambda} we know that $\sigma_\mathrm n(u)\in\Lambda_C$. Hence
+	\begin{equation*}
+		\langle \sigma_\mathrm n(u),v_\mathrm n\rangle_{\Gamma_C}\ge 0,
+	\end{equation*}
+	which proves \eqref{eq:hybrid_ineq}, because $|\Gamma_N|=0$. Taking $v=u$ and using \eqref{eq:strong_comp}, we similarly obtain
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		=
+		\langle \sigma_\mathrm n(u),u_\mathrm n\rangle_{\Gamma_C}
+		=0,
+	\end{equation*}
+	which is exactly \eqref{eq:hybrid_eq}. Thus $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u\in K$ solves Problem \ref{pr:signorini4}. Then $u\in V$, and \eqref{eq:strong_nonpen} is already contained in the definition of $K$. Moreover, \eqref{eq:hybrid_bulk} is exactly \eqref{eq:strong_bulk}. We next prove \eqref{eq:strong_tangential}. Let $w_t\in W_{C,t}$. By definition of $W_{C,t}$, there exists $w\in V$ such that
+	\begin{equation*}
+		\gamma w|_{\Gamma_C}=w_t
+		\qquad\text{and}\qquad
+		w_\mathrm n=0.
+	\end{equation*}
+	Since $u\in K$ and $w_\mathrm n=0$, we have $u\pm w\in K$. Hence \eqref{eq:hybrid_ineq} applied to $v=u+w$ and $v=u-w$, together with \eqref{eq:hybrid_eq}, yields
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma\ge 0
+		\qquad\text{and}\qquad
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma\le 0.
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma=0.
+	\end{equation*}
+	Again using $|\Gamma_N|=0$ and $\gamma w=0$ on $\Gamma_D$, we obtain
+	\begin{equation*}
+		0=\langle \sigma(u)\mathrm n,\gamma w\rangle_{\Gamma_C}
+		=\langle \sigma_\mathrm n(u),w_\mathrm n\rangle_{\Gamma_C}
+		+\langle \sigma_t(u),w_t\rangle_{\Gamma_C}
+		=\langle \sigma_t(u),w_t\rangle_{\Gamma_C}.
+	\end{equation*}
+	Since $w_t\in W_{C,t}$ was arbitrary, this proves \eqref{eq:strong_tangential}. We now prove \eqref{eq:strong_lambda}. Let $\eta\in W_C$ satisfy $\eta\le 0$ a.e.\ on $\Gamma_C$. By definition of $W_C$, there exists $v\in V$ such that $v_\mathrm n=\eta$. Because $\eta\le 0$, we have $v\in K$. Hence \eqref{eq:hybrid_ineq} gives
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma\ge 0.
+	\end{equation*}
+	Using $|\Gamma_N|=0$, $\gamma v=0$ on $\Gamma_D$, and \eqref{eq:strong_tangential}, we infer
+	\begin{equation*}
+		0\le \langle \sigma(u)\mathrm n,\gamma v\rangle_{\Gamma_C}
+		=\langle \sigma_\mathrm n(u),v_\mathrm n\rangle_{\Gamma_C}
+		+\langle \sigma_t(u),v_t\rangle_{\Gamma_C}
+		=\langle \sigma_\mathrm n(u),\eta\rangle_{\Gamma_C}.
+	\end{equation*}
+	This proves $\sigma_\mathrm n(u)\in\Lambda_C$, i.e.\ \eqref{eq:strong_lambda}. Finally, \eqref{eq:hybrid_eq}, together with $|\Gamma_N|=0$, $\gamma u=0$ on $\Gamma_D$, and \eqref{eq:strong_tangential}, yields
+	\begin{equation*}
+		0=\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		=\langle \sigma(u)\mathrm n,\gamma u\rangle_{\Gamma_C}
+		=\langle \sigma_\mathrm n(u),u_\mathrm n\rangle_{\Gamma_C}
+		+\langle \sigma_t(u),u_t\rangle_{\Gamma_C}
+		=\langle \sigma_\mathrm n(u),u_\mathrm n\rangle_{\Gamma_C},
+	\end{equation*}
+	which is exactly \eqref{eq:strong_comp}. Hence $u$ solves Problem \ref{pr:signorini5}.
 \end{proof}
 
-\subsubsection{Classical Strong From under Additinal Regularity}
+\subsubsection{Classical Strong Form under Additional Regularity}
+
 Finally, under higher regularity assumptions on $u$, we can formulate Signorini's problem in a natural strong way. Here $|\Gamma_N|>0$ is allowed.
-\newpage
-\begin{problem}[Signorini's Problem -- Strong Formulation]\label{pr:signorini6}
+\begin{problem}[Signorini's Problem -- Classical Strong Formulation]\label{pr:signorini6}
 For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$ find $u\in H^s(\Omega;\R^d)$ with $s>3/2$ such that the small strain elasticity equations
-\begin{equation*}
-	\begin{cases}
-		-\diver\sigma(u) = f           & \text{in }\Omega,   \\[3pt]
-		\sigma(u) = \cA:\varepsilon(u) & \text{in }\Omega,   \\[3pt]
-		u = 0                          & \text{on }\Gamma_D, \\[3pt]
-		\sigma(u)\mathrm{n} = F        & \text{on }\Gamma_N,
-	\end{cases}
-\end{equation*}
+\begin{subequations}\label{eq:strong_classical}
+	\begin{empheq}[left=\empheqlbrace]{alignat=2}
+		-\diver\sigma(u) &= f
+		&\qquad& \text{in }\Omega, \label{eq:strong_classical_bulk}\\
+		\sigma(u) &= \mathcal A:\varepsilon(u)
+		&\qquad& \text{in }\Omega, \label{eq:strong_classical_constitutive}\\
+		u &= 0
+		&\qquad& \text{on }\Gamma_D, \label{eq:strong_classical_dirichlet}\\
+		\sigma(u)\mathrm n &= F
+		&\qquad& \text{on }\Gamma_N, \label{eq:strong_classical_neumann}
+	\end{empheq}
+\end{subequations}
 and the contact conditions
-\begin{equation*}
-	\begin{cases}
-		u_\mathrm{n}\le 0             & \text{on }\Gamma_C, \\[3pt]
-		\sigma_\mathrm{n}(u)\le 0     & \text{on }\Gamma_C, \\[3pt]
-		\sigma_n(u)\,u_\mathrm{n} = 0 & \text{on }\Gamma_C, \\[3pt]
-		\sigma_t(u) = 0               & \text{on }\Gamma_C,
-	\end{cases}
-\end{equation*}
+\begin{subequations}\label{eq:strong_contact}
+	\begin{empheq}[left=\empheqlbrace]{alignat=2}
+		u_\mathrm{n} &\le 0
+		&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_nonpen}\\
+		\sigma_\mathrm{n}(u) &\le 0
+		&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_sigma_n}\\
+		\sigma_\mathrm{n}(u)\,u_\mathrm{n} &= 0
+		&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_comp}\\
+		\sigma_t(u) &= 0
+		&\qquad& \text{on }\Gamma_C \label{eq:strong_contact_tangential}
+	\end{empheq}
+\end{subequations}
 hold.
 \end{problem}
 
-\begin{proposition}Equivalence of Strong and Weak Formulation
-	If $u\in H^s(\Omega;\R^d)$ with $s>3/2$ is a solution to Problem \ref{pr:signorini6}, then it is also a solution to Problem \ref{pr:signorini2} and vice versa.
-\end{proposition}
-\begin{proof}
 
+To prove equivalence to one of the previous formulations, we need the following Lemma.
+
+\begin{lemma}[Localized boundary liftings]\label{lem:locboundlift}
+	Assume the boundary decomposition is sufficiently regular. Then the following hold:
+	\begin{itemize}
+		\item[(i)] For every $g_N\in H^{1/2}(\Gamma_N;\R^d)$ there exists $w\in V$ such that
+		      \begin{equation*}
+			      \gamma w=g_N \text{ on }\Gamma_N,
+			      \qquad
+			      \gamma w=0 \text{ on }\Gamma_C.
+		      \end{equation*}
+		\item[(ii)] For every $\zeta\in W_{C,t}$ there exists $w\in V$ such that
+		      \begin{equation*}
+			      \gamma w=0 \text{ on }\Gamma_N,
+			      \qquad
+			      w_\mathrm{n}=0,\quad w_t=\zeta \text{ on }\Gamma_C.
+		      \end{equation*}
+		\item[(iii)] For every $\eta\in W_{C,\mathrm{n}}$ there exists $w\in V$ such that
+		      \begin{equation*}
+			      \gamma w=0 \text{ on }\Gamma_N,
+			      \qquad
+			      w_t=0,\quad w_\mathrm{n}=\eta \text{ on }\Gamma_C.
+		      \end{equation*}
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	For (i), let $g_N\in H^{1/2}(\Gamma_N;\R^d)$ and define the boundary datum
+	\begin{equation*}
+		\widetilde g :=
+		\begin{cases}
+			g_N & \text{on }\Gamma_N,             \\
+			0   & \text{on }\Gamma_C\cup\Gamma_D.
+		\end{cases}
+	\end{equation*}
+	By the assumed regularity of the boundary decomposition, we have $\widetilde g\in H^{1/2}(\Gamma;\R^d)$. Hence, by the trace theorem and the existence of a continuous right inverse of the trace operator, there exists $w\in H^1(\Omega;\R^d)$ such that
+	\begin{equation*}
+		\gamma w=\widetilde g \qquad \text{on }\Gamma.
+	\end{equation*}
+	Since $\widetilde g=0$ on $\Gamma_D$, we have $w\in V$. Moreover,
+	\begin{equation*}
+		\gamma w=g_N \text{ on }\Gamma_N,
+		\qquad
+		\gamma w=0 \text{ on }\Gamma_C.
+	\end{equation*}
+	This proves (i). For (ii), let $\zeta\in W_{C,t}$. By definition of $W_{C,t}$, there exists $v\in V$ such that
+	\begin{equation*}
+		(\gamma v|_{\Gamma_C})_\mathrm n=0,
+		\qquad
+		(\gamma v|_{\Gamma_C})_t=\zeta.
+	\end{equation*}
+	Set $g_N:=\gamma v|_{\Gamma_N}$. By (i), there exists $z\in V$ such that
+	\begin{equation*}
+		\gamma z=g_N \text{ on }\Gamma_N,
+		\qquad
+		\gamma z=0 \text{ on }\Gamma_C.
+	\end{equation*}
+	Then $w:=v-z\in V$ satisfies
+	\begin{equation*}
+		\gamma w=0 \text{ on }\Gamma_N,
+		\qquad
+		w_\mathrm n=0,\quad w_t=\zeta \text{ on }\Gamma_C.
+	\end{equation*}
+	This proves (ii). For (iii), let $\eta\in W_{C,\mathrm n}$. By definition of $W_{C,\mathrm n}$, there exists $v\in V$ such that
+	\begin{equation*}
+		(\gamma v|_{\Gamma_C})_\mathrm n=\eta.
+	\end{equation*}
+	Set $\zeta:=(\gamma v|_{\Gamma_C})_t\in W_{C,t}$. By (ii), there exists $z\in V$ such that
+	\begin{equation*}
+		\gamma z=0 \text{ on }\Gamma_N,
+		\qquad
+		z_\mathrm n=0,\quad z_t=\zeta \text{ on }\Gamma_C.
+	\end{equation*}
+	Then $\widetilde v:=v-z\in V$ satisfies
+	\begin{equation*}
+		\widetilde v_\mathrm n=\eta,
+		\qquad
+		\widetilde v_t=0
+		\qquad \text{on }\Gamma_C.
+	\end{equation*}
+	Now set $g_N:=\gamma \widetilde v|_{\Gamma_N}$. Applying (i) once more, we find $y\in V$ such that
+	\begin{equation*}
+		\gamma y=g_N \text{ on }\Gamma_N,
+		\qquad
+		\gamma y=0 \text{ on }\Gamma_C.
+	\end{equation*}
+	Hence $w:=\widetilde v-y\in V$ satisfies
+	\begin{equation*}
+		\gamma w=0 \text{ on }\Gamma_N,
+		\qquad
+		w_t=0,\quad w_\mathrm n=\eta \text{ on }\Gamma_C.
+	\end{equation*}
+	This proves (iii).
 \end{proof}
 
+\begin{proposition}[Equivalence of classical strong and hybrid formulation]
+	Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves Problem \ref{pr:signorini6} if and only if it solves Problem \ref{pr:signorini4}.
+\end{proposition}
+\begin{proof}
+	The assumption $u\in H^s(\Omega;\R^d)$ with $s>3/2$ ensures that the trace $\gamma u$ is well-defined with sufficient regularity to interpret the boundary conditions in Problem \ref{pr:signorini6} in the classical sense. Assume first that $u$ solves Problem \ref{pr:signorini6}. By
+	\eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}, we have $u\in K$.
+	Moreover, \eqref{eq:strong_classical_bulk} and \eqref{eq:strong_classical_constitutive} imply $\sigma(u)\in H(\diver;\Omega)$, and \eqref{eq:hybrid_bulk} is exactly \eqref{eq:strong_classical_bulk}. Using \eqref{eq:strong_classical_neumann}, \eqref{eq:strong_contact_tangential}, and \eqref{eq:strong_contact_comp}, we obtain
+	\begin{align*}
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		 & =
+		\int_{\Gamma_N} F\cdot \gamma u\;\ds
+		+\int_{\Gamma_C}\sigma(u)\mathrm n\cdot \gamma u\;\ds \\
+		 & =
+		\int_{\Gamma_N} F\cdot \gamma u\;\ds
+		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,u_\mathrm n\;\ds
+		+\int_{\Gamma_C}\sigma_t(u)\cdot u_t\;\ds             \\
+		 & =
+		\int_{\Gamma_N} F\cdot \gamma u\;\ds,
+	\end{align*}
+	which proves \eqref{eq:hybrid_eq}. Let now $v\in K$. Arguing in the same way and using additionally \eqref{eq:strong_contact_sigma_n}, we get
+	\begin{align*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		 & =
+		\int_{\Gamma_N} F\cdot \gamma v\;\ds
+		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,v_\mathrm n\;\ds
+		+\int_{\Gamma_C}\sigma_t(u)\cdot v_t\;\ds \\
+		 & =
+		\int_{\Gamma_N} F\cdot \gamma v\;\ds
+		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,v_\mathrm n\;\ds.
+	\end{align*}
+	Since \eqref{eq:strong_contact_sigma_n} and $v\in K$ imply $\sigma_\mathrm n(u)\le 0$ and $v_\mathrm n\le 0$ on $\Gamma_C$, we conclude
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+		\ge
+		\int_{\Gamma_N} F\cdot \gamma v\;\ds,
+	\end{equation*}
+	i.e.\ \eqref{eq:hybrid_ineq}. Thus $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u$ solves Problem \ref{pr:signorini4}. Then \eqref{eq:hybrid_bulk} gives \eqref{eq:strong_classical_bulk}, while \eqref{eq:strong_classical_constitutive} holds by definition of $\sigma(u)$. Since $u\in K\subset V$, we also obtain \eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}. To prove \eqref{eq:strong_classical_neumann}, let $g_N\in H^{1/2}(\Gamma_N;\R^d)$ and choose $w\in V$ as in Lemma \ref{lem:locboundlift}(i), i.e.
+	\begin{equation*}
+		\gamma w=g_N \text{ on }\Gamma_N,
+		\qquad
+		\gamma w=0 \text{ on }\Gamma_C.
+	\end{equation*}
+	Then $u\pm w\in K$. Applying \eqref{eq:hybrid_ineq} with $v=u+w$ and $v=u-w$, and using \eqref{eq:hybrid_eq}, we obtain
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		=
+		\int_{\Gamma_N} F\cdot \gamma w\;\ds.
+	\end{equation*}
+	Since $\gamma w=0$ on $\Gamma_C$, this yields
+	\begin{equation*}
+		\int_{\Gamma_N} (\sigma(u)\mathrm n-F)\cdot g_N\;\ds=0
+		\qquad \forall\, g_N\in H^{1/2}(\Gamma_N;\R^d),
+	\end{equation*}
+	and hence \eqref{eq:strong_classical_neumann}. To prove \eqref{eq:strong_contact_tangential}, let $\zeta\in W_{C,t}$ and choose $w\in V$ according to Lemma \ref{lem:locboundlift}(ii), i.e.
+	\begin{equation*}
+		\gamma w=0 \text{ on }\Gamma_N,
+		\qquad
+		w_\mathrm n=0,\quad w_t=\zeta \text{ on }\Gamma_C.
+	\end{equation*}
+	Again $u\pm w\in K$, and the same argument using \eqref{eq:hybrid_ineq} and \eqref{eq:hybrid_eq} gives
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma=0.
+	\end{equation*}
+	Together with \eqref{eq:strong_classical_neumann}, this implies
+	\begin{equation*}
+		0=\int_{\Gamma_C}\sigma(u)\mathrm n\cdot \gamma w\;\ds
+		=\int_{\Gamma_C}\sigma_t(u)\cdot \zeta\;\ds
+		\qquad \forall\, \zeta\in W_{C,t},
+	\end{equation*}
+	hence \eqref{eq:strong_contact_tangential}. To prove \eqref{eq:strong_contact_sigma_n}, let $\eta\in W_{C,\mathrm n}$ satisfy $\eta\le 0$ on $\Gamma_C$, and choose $w\in V$ as in Lemma \ref{lem:locboundlift}(iii), i.e.
+	\begin{equation*}
+		\gamma w=0 \text{ on }\Gamma_N,
+		\qquad
+		w_t=0,\quad w_\mathrm n=\eta \text{ on }\Gamma_C.
+	\end{equation*}
+	Then $u+w\in K$. Applying \eqref{eq:hybrid_ineq} with $v=u+w$, and using \eqref{eq:hybrid_eq}, \eqref{eq:strong_classical_neumann}, and \eqref{eq:strong_contact_tangential}, we obtain
+	\begin{equation*}
+		0\le \int_{\Gamma_C}\sigma_\mathrm n(u)\,\eta\;\ds
+		\qquad \forall\, \eta\in W_{C,\mathrm n},\ \eta\le 0.
+	\end{equation*}
+	Hence \eqref{eq:strong_contact_sigma_n} holds. Finally, \eqref{eq:hybrid_eq}, together with \eqref{eq:strong_classical_neumann} and \eqref{eq:strong_contact_tangential}, yields
+	\begin{equation*}
+		0
+		=
+		\int_{\Gamma_C}\sigma_\mathrm n(u)\,u_\mathrm n\;\ds.
+	\end{equation*}
+	Using \eqref{eq:strong_contact_sigma_n} and \eqref{eq:strong_contact_nonpen}, we conclude
+	\begin{equation*}
+		\sigma_\mathrm n(u)\,u_\mathrm n=0
+		\qquad\text{on }\Gamma_C,
+	\end{equation*}
+	i.e.\ \eqref{eq:strong_contact_comp}. Therefore $u$ solves Problem \ref{pr:signorini6}.
+\end{proof}
 
 \subsection{Mixed Formulation}
 
@@ -1021,7 +1200,7 @@ We keep the energy functional
 \end{equation*}
 from \eqref{eq:energyfunc} and use the normal trace space $W_{C,\mathrm n}$ and the dual cone $\Lambda_C\subset W_{C,\mathrm n}'$ introduced in \eqref{eq:def_LambdaC}. For $v\in V$ and $\lambda\in W_{C,\mathrm n}'$ we define the coupling form
 \begin{equation}\label{eq:def_b_mixed}
-	b(v,\lambda):=\left\langle \lambda,\,(\gamma v|_{\Gamma_C})\cdot \mathrm n\right\rangle_C.
+	b(v,\lambda):=\left\langle \lambda,\,(\gamma v|_{\Gamma_C})\cdot \mathrm n\right\rangle_{\Gamma_C}.
 \end{equation}
 We then introduce the Lagrangian on $V\times\Lambda_C$ by
 \begin{equation}\label{eq:def_Lagrangian_mixed}

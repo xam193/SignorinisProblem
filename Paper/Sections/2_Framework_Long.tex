@@ -429,65 +429,95 @@ The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on con
 	\eop
 \end{proposition}
 
-\subsection{Trace Operators \& Boundary Spaces}
-In variational formulations, boundary conditions are imposed on traces of bulk functions. For $u\in H^1(\Omega;X)$, pointwise boundary values are in general not defined. The trace theorem provides a canonical replacement. In this subsection, we assume that $\Omega\subset\R^d$ is a bounded Lipschitz domain and write $\Gamma:=\partial\Omega$. For Lipschitz boundaries, the outward unit normal $\mathrm{n}:\Gamma\to\R^d$ exists $\ds$-almost everywhere.
+\subsection{Trace Operators and Boundary Spaces}
+In this subsection, we assume that $\Omega\subset\R^d$ is a bounded Lipschitz domain and write $\Gamma:=\partial\Omega$. We start with the following definition.
 
-\begin{theorem}[Trace Theorem]\label{thm:trace}
-	Let $X=\R^m$ with $m\ge 1$. There exists a unique linear continuous operator
+\begin{definition}[Classical Trace on Smooth Functions]
+	We define the {\tt classical trace operator}
 	\begin{equation*}
-		\gamma:H^1(\Omega;X)\to L^2(\Gamma;X)
+		\gamma_0:\cC^\infty(\overline{\Omega};X)\to L^2(\Gamma;X),
+		\qquad
+		\gamma_0 u:=u|_\Gamma
 	\end{equation*}
-	which coincides with the classical restriction on $C^\infty(\overline{\Omega};X)$. Moreover, there exists $C_{\tr}>0$ such that
+	on the space
 	\begin{equation*}
-		\|\gamma u\|_{0,\Gamma}\le C_{\tr}\|u\|_{1,\Omega}
-		\qquad\forall\,u\in H^1(\Omega;X).
-	\end{equation*}
-
-\end{theorem}
-
-\begin{definition}[Trace Space]\label{def:HhalfGamma}
-	We define the trace space of order $1/2$ by
-	\begin{equation*}
-		H^{1/2}(\Gamma;X):=\gamma\big(H^1(\Omega;X)\big)\subset L^2(\Gamma;X),
-	\end{equation*}
-	equipped with the quotient norm
-	\begin{equation*}
-		\|g\|_{1/2,\Gamma}
+		\cC^\infty(\overline{\Omega};X)
 		:=
-		\inf\left\{\|u\|_{1,\Omega}\;\middle|\;u\in H^1(\Omega;X),\ \gamma u=g\right\}.
-	\end{equation*}
-	Furthermore, we define
-	\begin{equation*}
-		H_0^1(\Omega;X):= \ker(\gamma).
+		\left\{u|_{\overline{\Omega}}\;\middle|\;u\in \cC^\infty(U;X)\text{\em\enspace for some open neighborhood }U\supset\overline{\Omega}\right\}.
 	\end{equation*}
 \end{definition}
 
-With this definition, $\gamma:H^1(\Omega;X)\to H^{1/2}(\Gamma;X)$ is continuous and surjective.
+In variational formulations, boundary conditions are imposed on traces of bulk functions. For $u\in H^s(\Omega;X)$, pointwise boundary values are in general not defined. The trace theorem provides a canonical replacement.
 
-\begin{definition}[Trace Spaces on Boundary Parts]\label{def:trace_parts}
-	Let $\Gamma_0\subset\Gamma$ be relatively open. We define
+\begin{definition}[Boundary Sobolev Spaces]\label{def:boundary_sobolev}
+	Let $s>1/2$. We define
 	\begin{equation*}
-		H^{1/2}(\Gamma_0;X)
+		H^{s-1/2}(\Gamma;X):=\gamma_0\big(\cC^\infty(\overline{\Omega};X)\big)
+	\end{equation*}
+	equipped with the norm
+	\begin{equation*}
+		\|g\|_{s-\tfrac12,\Gamma}
 		:=
-		\left\{ g:\Gamma_0\to X\;\middle|\;\exists\,\widetilde g\in H^{1/2}(\Gamma;X)\text{ with }\widetilde g|_{\Gamma_0}=g\right\},
+		\inf\left\{
+		\|u\|_{s,\Omega}
+		\;\middle|\;
+		u\in \cC^\infty(\overline{\Omega};X),\ \gamma_0 u=g
+		\right\}.
+	\end{equation*}
+	The underlying set is the same for different values of $s>1/2$, but it is equipped with different norms.
+\end{definition}
+\begin{theorem}[Trace Theorem]\label{thm:trace}
+	Let $1/2< s\le 1$. Then the classical trace operator $\gamma_0$ extends uniquely to a continuous surjective linear operator
+	\begin{equation*}
+		\gamma:H^s(\Omega;X)\to H^{s-1/2}(\Gamma;X).
+	\end{equation*}
+	In particular, there exists a constant $C_{\tr,s}>0$ such that
+	\begin{equation*}
+		\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr,s}\|u\|_{s,\Omega}
+		\qquad\forall\,u\in H^s(\Omega;X).
+	\end{equation*}
+	In the special case $s=1$, one has
+	\begin{equation*}
+		\ker(\gamma)=\overline{\cD(\Omega;X)}^{\|\cdot\|_{1,\Omega}}=:H_0^1(\Omega;X).
+	\end{equation*}
+\end{theorem}
+In the particularly important case $s=1$, the trace space $H^{1/2}(\Gamma;X)$ is precisely the set of boundary values attained by $H^1(\Omega;X)$-functions. Since $H^{1/2}(\Gamma;X)\subset L^2(\Gamma;X)$, the trace $\gamma u$ may be viewed as an $L^2$-boundary function, while its natural norm is the quotient norm induced by $H^1(\Omega;X)$.  We want to formulate similar definitions on boundary parts $\Gamma_0\subset\Gamma$ and have a notion for their topological dual spaces.
+
+\begin{definition}[Boundary Spaces on Boundary Parts]
+	Let $\Gamma_0\subset\Gamma$ be relatively open and let $s>1/2$. We define
+	\begin{equation*}
+		H^{s-1/2}(\Gamma_0;X)
+		:=
+		\left\{g:\Gamma_0\to X\;\middle|\;\exists\,\widetilde g\in H^{s-1/2}(\Gamma;X)\text{\em\enspace with }\widetilde g|_{\Gamma_0}=g\right\},
 	\end{equation*}
 	with norm
 	\begin{equation*}
-		\|g\|_{1/2,\Gamma_0}
+		\|g\|_{s-\tfrac12,\Gamma_0}
 		:=
-		\inf\left\{\|\widetilde g\|_{1/2,\Gamma}\;\middle|\;\widetilde g\in H^{1/2}(\Gamma;X),\ \widetilde g|_{\Gamma_0}=g\right\}.
+		\inf\left\{
+		\|\widetilde g\|_{s-\tfrac12,\Gamma}
+		\;\middle|\;
+		\widetilde g\in H^{s-1/2}(\Gamma;X),\ \widetilde g|_{\Gamma_0}=g
+		\right\}.
 	\end{equation*}
-
 	Moreover, we define
 	\begin{equation*}
-		H^{1/2}_{00}(\Gamma_0;X)
+		H^{s-1/2}_{00}(\Gamma_0;X)
 		:=
-		\left\{ g\in H^{1/2}(\Gamma_0;X)\;\middle|\;\widetilde g\in H^{1/2}(\Gamma;X)\right\},
+		\left\{g\in H^{s-1/2}(\Gamma_0;X)\;\middle|\;\mathrm{Ext}_0(g)\in H^{s-1/2}(\Gamma;X)\right\},
 	\end{equation*}
-	where $\widetilde g$ denotes the zero extension to $\Gamma$, i.e.\ $\widetilde g=g$ on $\Gamma_0$ and $\widetilde g=0$ on $\Gamma\setminus\Gamma_0$.
-	We equip $H^{1/2}_{00}(\Gamma_0;X)$ with the norm
+	where $\mathrm{Ext}_0(g)$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$, i.e.
 	\begin{equation*}
-		\|g\|_{1/2,00,\Gamma_0}:=\|\widetilde g\|_{1/2,\Gamma}.
+		\mathrm{Ext}_0 (g)(x)
+		=
+		\begin{cases}
+			g(x), & x\in\Gamma_0,                \\
+			0,    & x\in\Gamma\setminus\Gamma_0.
+		\end{cases}
+	\end{equation*}
+	We equip $H^{s-1/2}_{00}(\Gamma_0;X)$ with the norm
+	\begin{equation*}
+		\|g\|_{s-\tfrac12,00,\Gamma_0}:=\|\mathrm{Ext}_0(g)\|_{s-\tfrac12,\Gamma}.
 	\end{equation*}
 \end{definition}
 
@@ -503,9 +533,59 @@ With this definition, $\gamma:H^1(\Omega;X)\to H^{1/2}(\Gamma;X)$ is continuous 
 	The corresponding duality pairings are denoted by $\langle\cdot,\,\cdot\rangle_\Gamma$ and $\langle\cdot,\,\cdot\rangle_{\Gamma_0}$, respectively.
 \end{definition}
 
-\subsection{$H(\diver;\Omega)$ and Normal Traces}\label{subsec:Hdiv}
+\begin{theorem}[Lifting Operator]\label{thm:lifting}
+	Let $\Omega\subset\R^d$ be a bounded Lipschitz domain and let $\Gamma_0\subset\Gamma$ be relatively open.
 
-In elasticity, stress fields are (typically symmetric) matrix-valued functions. While $\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ is sufficient to interpret volume integrals of the form
+	\begin{itemize}
+		\item[i)] There exists a bounded linear operator
+		      \begin{equation*}
+			      \cL_\Gamma:H^{1/2}(\Gamma;\R^d)\to H^1(\Omega;\R^d)
+		      \end{equation*}
+		      such that
+		      \begin{equation*}
+			      \gamma(\cL_\Gamma g)=g
+			      \qquad\forall\,g\in H^{1/2}(\Gamma;\R^d),
+		      \end{equation*}
+		      and
+		      \begin{equation*}
+			      \|\cL_\Gamma g\|_{1,\Omega}\le C\|g\|_{1/2,\Gamma}.
+		      \end{equation*}
+
+		\item[ii)] There exists a bounded linear operator
+		      \begin{equation*}
+			      \cL_{\Gamma_0}:H^{1/2}_{00}(\Gamma_0;\R^d)\to H^1(\Omega;\R^d)
+		      \end{equation*}
+		      such that for every $g\in H^{1/2}_{00}(\Gamma_0;\R^d)$,
+		      \begin{equation*}
+			      \gamma(\cL_{\Gamma_0}g)|_{\Gamma_0}=g
+			      \qquad\text{and}\qquad
+			      \gamma(\cL_{\Gamma_0}g)=0\ \text{on }\Gamma\setminus\Gamma_0,
+		      \end{equation*}
+		      and
+		      \begin{equation*}
+			      \|\cL_{\Gamma_0}g\|_{1,\Omega}\le C\|g\|_{H^{1/2}_{00}(\Gamma_0)}.
+		      \end{equation*}
+	\end{itemize}
+\end{theorem}
+
+\begin{proposition}[Classical Boundary Trace of More Regular Stress Fields]\label{pr:classical_stress_trace}
+	Let $r>\frac12$ and let $\tau\in H^r(\Omega;\R^{d\times d})$. Then
+	\begin{equation*}
+		\gamma\tau\in H^{r-1/2}(\Gamma;\R^{d\times d}).
+	\end{equation*}
+	In particular, if $\mathrm n$ denotes the outward unit normal on $\Gamma$, then
+	\begin{equation*}
+		(\gamma\tau)\mathrm n \in H^{r-1/2}(\Gamma;\R^d).
+	\end{equation*}
+	Therefore, if $r-1/2\ge 0$, then
+	\begin{equation*}
+		(\gamma\tau)\mathrm n\in L^2(\Gamma;\R^d).
+	\end{equation*}
+\end{proposition}
+
+\subsection{\texorpdfstring{$H(\diver;\Omega)$}{Hdiv} and Normal Traces}\label{subsec:Hdiv}
+
+In elasticity, stress fields are (typically symmetric) matrix-valued functions. While the assumption $\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ is sufficient to interpret volume integrals of the form
 \begin{equation*}
 	\int_\Omega \tau:\nabla v\;\dx,
 \end{equation*}
@@ -527,7 +607,7 @@ makes sense as an element of $L^2(\Gamma)$ (and later on boundary parts such as 
 
 For smooth fields one has the classical Green identity. Here $\mathrm n:\Gamma\to\R^d$ denotes the outward unit normal, which exists $\ds$-almost everywhere on Lipschitz boundaries.
 
-\begin{proposition}[Integration by Parts for Smooth Fields]\label{pr:green_smooth}
+\begin{proposition}[Integration by Parts]\label{pr:green_smooth}
 	If $\tau\in C^1(\overline{\Omega};\R^{d\times d})$ and $v\in C^1(\overline{\Omega};\R^d)$, then
 	\begin{equation}\label{eq:green_smooth}
 		\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
@@ -601,6 +681,12 @@ i.e.\ $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$.
 	which proves the claim.
 \end{proof}
 
+By Proposition~\ref{pr:Ftau_depends_on_trace}, the functional $F_\tau$ depends only on the trace $\gamma v$. Hence the map
+\begin{equation*}
+	\gamma v \mapsto F_\tau(v)
+\end{equation*}
+defines a well-defined continuous linear functional on $H^{1/2}(\Gamma;\R^d)$. By Definition~\ref{def:dual_trace_spaces}, there therefore exists a unique element of $H^{-1/2}(\Gamma;\R^d)$ representing this functional.
+
 \begin{definition}[Normal Trace / Boundary Traction]\label{def:normal_trace}
 	Let $\tau\in H(\diver;\Omega)$. The {\tt normal trace} (or boundary traction) of $\tau$ is the unique element
 	\begin{equation*}
@@ -614,7 +700,7 @@ i.e.\ $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$.
 		\qquad\forall\,v\in H^1(\Omega;\R^d).
 	\end{equation}
 \end{definition}
-In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hence $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical traction $\tau\,\mathrm n$. We also define the equivalent concept on a boundary part $\Gamma_0\subset\Gamma$.
+In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hence $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical traction $\tau\,\mathrm n$. We also define the equivalent concept on a boundary part $\Gamma_0\subset\Gamma$. Using the zero extension from Definition~\ref{def:boundary_sobolev}, one obtains in the same way a well-defined functional on $H^{1/2}_{00}(\Gamma_0;\R^d)$.
 
 \begin{definition}[Normal Trace on a Boundary Part]\label{def:normal_trace_part}
 	Let $\Gamma_0\subset\Gamma$ be relatively open and let $\tau\in H(\diver;\Omega)$. The normal trace on $\Gamma_0$ is defined as the unique element
@@ -625,9 +711,9 @@ In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hen
 	\begin{equation*}
 		\langle \gamma_{\mathrm{n},\Gamma_0}(\tau),\,g\rangle_{\Gamma_0}
 		:=
-		\langle \gamma_{\mathrm{n}}(\tau),\,\widetilde g\rangle_{\Gamma},
+		\langle \gamma_{\mathrm{n}}(\tau),\,\mathrm{Ext}_0 (g)\rangle_{\Gamma},
 		\qquad g\in H^{1/2}_{00}(\Gamma_0;\R^d),
 	\end{equation*}
-	where $\widetilde g$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$.
+	where $\mathrm{Ext}_0 (g)$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$.
 \end{definition}
 
