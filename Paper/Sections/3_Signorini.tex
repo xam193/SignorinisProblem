@@ -1024,166 +1024,273 @@ To prove equivalence to one of the previous formulations, we need the following 
 	\end{itemize}
 \end{lemma}
 \begin{proof}
-	For (i), let $g_N\in H^{1/2}(\Gamma_N;\R^d)$ and define the boundary datum
+	We repeatedly use the lifting operator on boundary parts provided by the trace and lifting theory from the mathematical framework. For (i), let $g_N\in H^{1/2}(\Gamma_N;\R^d)$. By the regularity assumption on the boundary decomposition, its zero extension
 	\begin{equation*}
-		\widetilde g :=
+		\mathrm{Ext}_0(g_N)
+		:=
 		\begin{cases}
-			g_N & \text{on }\Gamma_N,             \\
-			0   & \text{on }\Gamma_C\cup\Gamma_D.
+			g_N & \text{on }\Gamma_N,                \\
+			0   & \text{on }\Gamma\setminus\Gamma_N,
 		\end{cases}
 	\end{equation*}
-	By the assumed regularity of the boundary decomposition, we have $\widetilde g\in H^{1/2}(\Gamma;\R^d)$. Hence, by the trace theorem and the existence of a continuous right inverse of the trace operator, there exists $w\in H^1(\Omega;\R^d)$ such that
-	\begin{equation*}
-		\gamma w=\widetilde g \qquad \text{on }\Gamma.
-	\end{equation*}
-	Since $\widetilde g=0$ on $\Gamma_D$, we have $w\in V$. Moreover,
+	belongs to $H^{1/2}(\Gamma;\R^d)$. Let $w\in H^1(\Omega;\R^d)$ be a lifting of $\mathrm{Ext}_0(g_N)$, i.e. $\gamma w=\mathrm{Ext}_0(g_N)$ on $\Gamma$. Then, by construction,
 	\begin{equation*}
 		\gamma w=g_N \text{ on }\Gamma_N,
 		\qquad
-		\gamma w=0 \text{ on }\Gamma_C.
+		\gamma w=0 \text{ on }\Gamma_C,
 	\end{equation*}
-	This proves (i). For (ii), let $\zeta\in W_{C,t}$. By definition of $W_{C,t}$, there exists $v\in V$ such that
+	and also $\gamma w=0$ on $\Gamma_D$. Hence $w\in V$. This proves (i). For (ii), let $\zeta\in W_{C,t}$. By definition of $W_{C,t}$, $\zeta$ is a tangential trace on $\Gamma_C$, hence
 	\begin{equation*}
-		(\gamma v|_{\Gamma_C})_\mathrm n=0,
-		\qquad
-		(\gamma v|_{\Gamma_C})_t=\zeta.
+		\zeta\in H^{1/2}_{00}(\Gamma_C;\R^d)
+		\qquad\text{and}\qquad
+		\zeta\cdot \mathrm n=0 \text{ on }\Gamma_C.
 	\end{equation*}
-	Set $g_N:=\gamma v|_{\Gamma_N}$. By (i), there exists $z\in V$ such that
+	Let $\mathrm{Ext}_0(\zeta)$ denote the zero extension of $\zeta$ from $\Gamma_C$ to $\Gamma$, and let $w\in H^1(\Omega;\R^d)$ be a lifting such that $\gamma w=\mathrm{Ext}_0(\zeta)$ on $\Gamma$. Then $\gamma w = 0$ on $\Gamma_N$ and on $\Gamma_C$ we have $\gamma w = \zeta$. Since $\zeta$ is tangential, it follows that
 	\begin{equation*}
-		\gamma z=g_N \text{ on }\Gamma_N,
-		\qquad
-		\gamma z=0 \text{ on }\Gamma_C.
+		w_{\mathrm n}
+		=
+		(\gamma w)\cdot \mathrm n
+		=
+		\zeta\cdot \mathrm n
+		=
+		0
+		\qquad\text{on }\Gamma_C.
 	\end{equation*}
-	Then $w:=v-z\in V$ satisfies
+	Moreover,
 	\begin{equation*}
-		\gamma w=0 \text{ on }\Gamma_N,
-		\qquad
-		w_\mathrm n=0,\quad w_t=\zeta \text{ on }\Gamma_C.
+		w_t
+		=
+		\gamma w-w_{\mathrm n}\mathrm n
+		=
+		\zeta
+		\qquad\text{on }\Gamma_C.
 	\end{equation*}
-	This proves (ii). For (iii), let $\eta\in W_{C,\mathrm n}$. By definition of $W_{C,\mathrm n}$, there exists $v\in V$ such that
+	Finally, $\gamma w=0$ on $\Gamma_D$, so $w\in V$. This proves (ii). For (iii), let $\eta\in W_{C,\mathrm n}$. Then the vector-valued boundary function $g:=\eta\,\mathrm n$ belongs to $W_C\subset H^{1/2}_{00}(\Gamma_C;\R^d)$. Let $\mathrm{Ext}_0(g)$ denote its zero extension from $\Gamma_C$ to $\Gamma$, and let $w\in H^1(\Omega;\R^d)$ be a lifting such that $\gamma w = \mathrm{Ext}_0(g)$ on $\Gamma$. Then $\gamma 2 = 0$ on $\Gamma_N$ and on $\Gamma_C$ we have $\gamma w=\eta\,\mathrm n$. Hence
 	\begin{equation*}
-		(\gamma v|_{\Gamma_C})_\mathrm n=\eta.
+		w_{\mathrm n}
+		=
+		(\gamma w)\cdot \mathrm n
+		=
+		(\eta\,\mathrm n)\cdot \mathrm n
+		=
+		\eta
+		\qquad\text{on }\Gamma_C,
 	\end{equation*}
-	Set $\zeta:=(\gamma v|_{\Gamma_C})_t\in W_{C,t}$. By (ii), there exists $z\in V$ such that
+	while
 	\begin{equation*}
-		\gamma z=0 \text{ on }\Gamma_N,
-		\qquad
-		z_\mathrm n=0,\quad z_t=\zeta \text{ on }\Gamma_C.
+		w_t
+		=
+		\gamma w-w_{\mathrm n}\mathrm n
+		=
+		\eta\,\mathrm n-\eta\,\mathrm n
+		=
+		0
+		\qquad\text{on }\Gamma_C.
 	\end{equation*}
-	Then $\widetilde v:=v-z\in V$ satisfies
-	\begin{equation*}
-		\widetilde v_\mathrm n=\eta,
-		\qquad
-		\widetilde v_t=0
-		\qquad \text{on }\Gamma_C.
-	\end{equation*}
-	Now set $g_N:=\gamma \widetilde v|_{\Gamma_N}$. Applying (i) once more, we find $y\in V$ such that
-	\begin{equation*}
-		\gamma y=g_N \text{ on }\Gamma_N,
-		\qquad
-		\gamma y=0 \text{ on }\Gamma_C.
-	\end{equation*}
-	Hence $w:=\widetilde v-y\in V$ satisfies
-	\begin{equation*}
-		\gamma w=0 \text{ on }\Gamma_N,
-		\qquad
-		w_t=0,\quad w_\mathrm n=\eta \text{ on }\Gamma_C.
-	\end{equation*}
-	This proves (iii).
+	Again, $\gamma w=0$ on $\Gamma_D$, so $w\in V$. This proves (iii).
 \end{proof}
 
 \begin{proposition}[Equivalence of classical strong and hybrid formulation]
 	Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves Problem \ref{pr:signorini6} if and only if it solves Problem \ref{pr:signorini4}.
 \end{proposition}
 \begin{proof}
-	The assumption $u\in H^s(\Omega;\R^d)$ with $s>3/2$ ensures that the trace $\gamma u$ is well-defined with sufficient regularity to interpret the boundary conditions in Problem \ref{pr:signorini6} in the classical sense. Assume first that $u$ solves Problem \ref{pr:signorini6}. By
-	\eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}, we have $u\in K$.
-	Moreover, \eqref{eq:strong_classical_bulk} and \eqref{eq:strong_classical_constitutive} imply $\sigma(u)\in H(\diver;\Omega)$, and \eqref{eq:hybrid_bulk} is exactly \eqref{eq:strong_classical_bulk}. Using \eqref{eq:strong_classical_neumann}, \eqref{eq:strong_contact_tangential}, and \eqref{eq:strong_contact_comp}, we obtain
-	\begin{align*}
-		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
-		 & =
-		\int_{\Gamma_N} F\cdot \gamma u\;\ds
-		+\int_{\Gamma_C}\sigma(u)\mathrm n\cdot \gamma u\;\ds \\
-		 & =
-		\int_{\Gamma_N} F\cdot \gamma u\;\ds
-		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,u_\mathrm n\;\ds
-		+\int_{\Gamma_C}\sigma_t(u)\cdot u_t\;\ds             \\
-		 & =
-		\int_{\Gamma_N} F\cdot \gamma u\;\ds,
-	\end{align*}
-	which proves \eqref{eq:hybrid_eq}. Let now $v\in K$. Arguing in the same way and using additionally \eqref{eq:strong_contact_sigma_n}, we get
-	\begin{align*}
-		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
-		 & =
-		\int_{\Gamma_N} F\cdot \gamma v\;\ds
-		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,v_\mathrm n\;\ds
-		+\int_{\Gamma_C}\sigma_t(u)\cdot v_t\;\ds \\
-		 & =
-		\int_{\Gamma_N} F\cdot \gamma v\;\ds
-		+\int_{\Gamma_C}\sigma_\mathrm n(u)\,v_\mathrm n\;\ds.
-	\end{align*}
-	Since \eqref{eq:strong_contact_sigma_n} and $v\in K$ imply $\sigma_\mathrm n(u)\le 0$ and $v_\mathrm n\le 0$ on $\Gamma_C$, we conclude
+	The additional regularity $u\in H^s(\Omega;\R^d)$ with $s>3/2$ is used precisely to interpret the boundary conditions in Problem \ref{pr:signorini6} in the classical sense. Indeed, by the trace theorem,
 	\begin{equation*}
-		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
-		\ge
-		\int_{\Gamma_N} F\cdot \gamma v\;\ds,
+		\gamma u\in H^{s-1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d),
 	\end{equation*}
-	i.e.\ \eqref{eq:hybrid_ineq}. Thus $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u$ solves Problem \ref{pr:signorini4}. Then \eqref{eq:hybrid_bulk} gives \eqref{eq:strong_classical_bulk}, while \eqref{eq:strong_classical_constitutive} holds by definition of $\sigma(u)$. Since $u\in K\subset V$, we also obtain \eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}. To prove \eqref{eq:strong_classical_neumann}, let $g_N\in H^{1/2}(\Gamma_N;\R^d)$ and choose $w\in V$ as in Lemma \ref{lem:locboundlift}(i), i.e.
+	and therefore the normal and tangential components
+	\begin{equation*}
+		u_{\mathrm n}:=(\gamma u)\cdot \mathrm n,
+		\qquad
+		u_t:=\gamma u-u_{\mathrm n}\mathrm n
+	\end{equation*}
+	are $L^2$-functions on $\Gamma_C$. In particular, the contact conditions in Problem \ref{pr:signorini6} are genuine almost-everywhere conditions on $\Gamma_C$. Assume first that $u$ solves Problem \ref{pr:signorini6}. Since $-\diver \sigma(u) = f$ almost everywhere in $\Omega$, the Green formula yields
+	\begin{equation*}
+		\int_\Omega \sigma(u):\varepsilon(v)\;\dx
+		=
+		\int_\Omega f\cdot v\;\dx
+		+
+		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma\qquad \forall\, v\in H^1(\Omega;\R^d).
+	\end{equation*}
+	Because in the present regularity regime the boundary traction is a classical boundary function, the duality pairing can be written as a boundary integral. Hence
+	\begin{equation*}
+		a(u,v)
+		=
+		\int_\Omega f\cdot v\;\dx
+		+
+		\int_{\Gamma_N} \sigma(u)\mathrm n\cdot \gamma v\;\ds
+		+
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma v\;\ds.
+	\end{equation*}
+	Using the Neumann condition in Problem \ref{pr:signorini6}, this becomes
+	\begin{equation*}
+		a(u,v)
+		=
+		\int_\Omega f\cdot v\;\dx
+		+
+		\int_{\Gamma_N} F\cdot \gamma v\;\ds
+		+
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma v\;\ds.
+	\end{equation*}
+	Let now $v\in K$. On $\Gamma_C$, we decompose
+	\begin{equation*}
+		\sigma(u)\mathrm n\cdot \gamma v
+		=
+		\sigma_{\mathrm n}(u)\,v_{\mathrm n}
+		+
+		\sigma_t(u)\cdot v_t.
+	\end{equation*}
+	By the classical Signorini conditions \eqref{eq:strong_contact_nonpen},\eqref{eq:strong_contact_sigma_n} and \eqref{eq:strong_contact_tangential},
+	\begin{equation*}
+		\sigma_t(u)=0,
+		\qquad
+		\sigma_{\mathrm n}(u)\le 0,
+		\qquad
+		v_{\mathrm n}\le 0 \quad\text{a.e. on }\Gamma_C,
+	\end{equation*}
+	and therefore
+	\begin{equation*}
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma v\;\ds
+		=
+		\int_{\Gamma_C} \sigma_{\mathrm n}(u)\,v_{\mathrm n}\;\ds
+		\ge 0.
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		a(u,v)
+		\ge
+		\int_\Omega f\cdot v\;\dx
+		+
+		\int_{\Gamma_N} F\cdot \gamma v\;\ds
+		=
+		\ell(v)
+		\qquad\forall\,v\in K.
+	\end{equation*}
+	This is exactly the hybrid inequality \eqref{eq:hybrid_ineq}. To prove the hybrid equality \eqref{eq:hybrid_eq}, we take $v=u$. Then we have
+	\begin{equation*}
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma u\;\ds
+		=
+		\int_{\Gamma_C} \sigma_{\mathrm n}(u)\,u_{\mathrm n}\;\ds
+		+
+		\int_{\Gamma_C} \sigma_t(u)\cdot u_t\;\ds.
+	\end{equation*}
+	Again by the classical Signorini conditions \eqref{eq:strong_contact_tangential} and \eqref{eq:strong_contact_comp},
+	\begin{equation*}
+		\sigma_t(u)=0
+		\qquad\text{and}\qquad
+		\sigma_{\mathrm n}(u)\,u_{\mathrm n}=0
+		\quad\text{a.e. on }\Gamma_C,
+	\end{equation*}
+	and thus
+	\begin{equation*}
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma u\;\ds=0.
+	\end{equation*}
+	Hence
+	\begin{equation*}
+		a(u,u)
+		=
+		\int_\Omega f\cdot u\;\dx
+		+
+		\int_{\Gamma_N} F\cdot \gamma u\;\ds
+		=
+		\ell(u),
+	\end{equation*}
+	which is the hybrid equality \eqref{eq:hybrid_eq}. Therefore $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u$ solves Problem \ref{pr:signorini4}. The bulk equation
+	\begin{equation*}
+		-\diver\sigma(u)=f
+		\qquad\text{a.e. in }\Omega
+	\end{equation*}
+	is already contained in the hybrid formulation. Moreover, since $u\in K\subset V$, we also obtain
+	\begin{equation*}
+		u=0 \text{ on }\Gamma_D
+		\qquad\text{and}\qquad
+		u_{\mathrm n}\le 0 \text{ on }\Gamma_C,
+	\end{equation*}
+	which is exactly \eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}. It remains to prove the Neumann condition on $\Gamma_N$ and the remaining contact conditions on $\Gamma_C$. We first prove the Neumann condition. Let $g_N\in H^{1/2}(\Gamma_N;\R^d)$ and choose $w\in V$ as in Lemma~\ref{lem:locboundlift}(i), i.e.
 	\begin{equation*}
 		\gamma w=g_N \text{ on }\Gamma_N,
 		\qquad
 		\gamma w=0 \text{ on }\Gamma_C.
 	\end{equation*}
-	Then $u\pm w\in K$. Applying \eqref{eq:hybrid_ineq} with $v=u+w$ and $v=u-w$, and using \eqref{eq:hybrid_eq}, we obtain
+	Since $w_{\mathrm n}=0$ on $\Gamma_C$, both $w$ and $-w$ belong to $K$. Applying the hybrid inequality to $w$ and to $-w$, we get
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
 		=
 		\int_{\Gamma_N} F\cdot \gamma w\;\ds.
 	\end{equation*}
-	Since $\gamma w=0$ on $\Gamma_C$, this yields
+	Because $\gamma w=0$ on $\Gamma_C$, this reads
 	\begin{equation*}
-		\int_{\Gamma_N} (\sigma(u)\mathrm n-F)\cdot g_N\;\ds=0
-		\qquad \forall\, g_N\in H^{1/2}(\Gamma_N;\R^d),
+		\int_{\Gamma_N} \sigma(u)\mathrm n\cdot g_N\;\ds
+		=
+		\int_{\Gamma_N} F\cdot g_N\;\ds
+		\qquad\forall\,g_N\in H^{1/2}(\Gamma_N;\R^d).
 	\end{equation*}
-	and hence \eqref{eq:strong_classical_neumann}. To prove \eqref{eq:strong_contact_tangential}, let $\zeta\in W_{C,t}$ and choose $w\in V$ according to Lemma \ref{lem:locboundlift}(ii), i.e.
+	Since both $\sigma(u)\mathrm n$ and $F$ are $L^2$-functions on $\Gamma_N$, it follows that
 	\begin{equation*}
-		\gamma w=0 \text{ on }\Gamma_N,
-		\qquad
-		w_\mathrm n=0,\quad w_t=\zeta \text{ on }\Gamma_C.
+		\sigma(u)\mathrm n = F
+		\qquad\text{a.e. on }\Gamma_N.
 	\end{equation*}
-	Again $u\pm w\in K$, and the same argument using \eqref{eq:hybrid_ineq} and \eqref{eq:hybrid_eq} gives
-	\begin{equation*}
-		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma=0.
-	\end{equation*}
-	Together with \eqref{eq:strong_classical_neumann}, this implies
-	\begin{equation*}
-		0=\int_{\Gamma_C}\sigma(u)\mathrm n\cdot \gamma w\;\ds
-		=\int_{\Gamma_C}\sigma_t(u)\cdot \zeta\;\ds
-		\qquad \forall\, \zeta\in W_{C,t},
-	\end{equation*}
-	hence \eqref{eq:strong_contact_tangential}. To prove \eqref{eq:strong_contact_sigma_n}, let $\eta\in W_{C,\mathrm n}$ satisfy $\eta\le 0$ on $\Gamma_C$, and choose $w\in V$ as in Lemma \ref{lem:locboundlift}(iii), i.e.
+	This proves the Neumann boundary condition \eqref{eq:strong_classical_neumann}. Next, we prove the tangential contact condition \eqref{eq:strong_contact_tangential}. Let $\zeta\in W_{C,t}$ and choose $w\in V$ according to Lemma~\ref{lem:locboundlift}(ii), i.e.
 	\begin{equation*}
 		\gamma w=0 \text{ on }\Gamma_N,
 		\qquad
-		w_t=0,\quad w_\mathrm n=\eta \text{ on }\Gamma_C.
+		w_{\mathrm n}=0,\quad w_t=\zeta \text{ on }\Gamma_C.
 	\end{equation*}
-	Then $u+w\in K$. Applying \eqref{eq:hybrid_ineq} with $v=u+w$, and using \eqref{eq:hybrid_eq}, \eqref{eq:strong_classical_neumann}, and \eqref{eq:strong_contact_tangential}, we obtain
+	Again, both $w$ and $-w$ belong to $K$, and therefore the hybrid inequality applied to $\pm w$ yields
 	\begin{equation*}
-		0\le \int_{\Gamma_C}\sigma_\mathrm n(u)\,\eta\;\ds
-		\qquad \forall\, \eta\in W_{C,\mathrm n},\ \eta\le 0.
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma = 0.
 	\end{equation*}
-	Hence \eqref{eq:strong_contact_sigma_n} holds. Finally, \eqref{eq:hybrid_eq}, together with \eqref{eq:strong_classical_neumann} and \eqref{eq:strong_contact_tangential}, yields
+	Because $\gamma w=0$ on $\Gamma_N$ and $w_{\mathrm n}=0$ on $\Gamma_C$, we obtain
 	\begin{equation*}
 		0
 		=
-		\int_{\Gamma_C}\sigma_\mathrm n(u)\,u_\mathrm n\;\ds.
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot w_t\;\ds
+		=
+		\int_{\Gamma_C} \sigma_t(u)\cdot \zeta\;\ds
+		\qquad\forall\,\zeta\in W_{C,t}.
 	\end{equation*}
-	Using \eqref{eq:strong_contact_sigma_n} and \eqref{eq:strong_contact_nonpen}, we conclude
+	Hence $\sigma_t(u)=0$ almost everywhere on $\Gamma_C$ which is \eqref{eq:strong_contact_tangential}. We now prove the normal sign condition \eqref{eq:strong_contact_sigma_n}. Let $\eta\in W_{C,\mathrm n}$ satisfy $\eta\le 0$ almost everywhere on $\Gamma_C$, and choose $w\in V$ as in Lemma~\ref{lem:locboundlift}(iii), i.e.
 	\begin{equation*}
-		\sigma_\mathrm n(u)\,u_\mathrm n=0
-		\qquad\text{on }\Gamma_C,
+		\gamma w=0 \text{ on }\Gamma_N,
+		\qquad
+		w_t=0,\quad w_{\mathrm n}=\eta \text{ on }\Gamma_C.
 	\end{equation*}
-	i.e.\ \eqref{eq:strong_contact_comp}. Therefore $u$ solves Problem \ref{pr:signorini6}.
+	Then $w\in K$, and the hybrid inequality gives
+	\begin{equation*}
+		0
+		\le
+		\langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+		=
+		\int_{\Gamma_C} \sigma_{\mathrm n}(u)\,\eta\;\ds
+		\qquad\forall\,\eta\in W_{C,\mathrm n},\ \eta\le 0.
+	\end{equation*}
+	Therefore, $\sigma_{\mathrm n}(u)\le 0$ almost everywhere on $\Gamma_C$ which is exactly \eqref{eq:strong_contact_sigma_n}. Finally, we prove the complementarity condition \eqref{eq:strong_contact_comp}. The hybrid equality \eqref{eq:hybrid_eq} gives
+	\begin{equation*}
+		\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+		=
+		\int_{\Gamma_N} F\cdot \gamma u\;\ds.
+	\end{equation*}
+	Using the Neumann condition \eqref{eq:strong_classical_neumann} already proved on $\Gamma_N$, we obtain
+	\begin{equation*}
+		\int_{\Gamma_C} \sigma(u)\mathrm n\cdot \gamma u\;\ds = 0.
+	\end{equation*}
+	Since $\sigma_t(u)=0$ on $\Gamma_C$ by \eqref{eq:strong_contact_tangential}, this reduces to
+	\begin{equation*}
+		\int_{\Gamma_C} \sigma_{\mathrm n}(u)\,u_{\mathrm n}\;\ds = 0.
+	\end{equation*}
+	Now by \eqref{eq:strong_contact_nonpen} and \eqref{eq:strong_contact_sigma_n} it is
+	\begin{equation*}
+		u_{\mathrm n}\le 0
+		\qquad\text{and}\qquad
+		\sigma_{\mathrm n}(u)\le 0
+		\qquad\text{a.e. on }\Gamma_C,
+	\end{equation*}
+	so the product $\sigma_{\mathrm n}(u)\,u_{\mathrm n}$ is nonnegative almost everywhere on $\Gamma_C$. Since its integral is zero, it follows that
+	\begin{equation*}
+		\sigma_{\mathrm n}(u)\,u_{\mathrm n}=0
+		\qquad\text{a.e. on }\Gamma_C.
+	\end{equation*}
+	Thus all conditions in Problem \ref{pr:signorini6} hold, and $u$ solves the classical strong formulation.
 \end{proof}
 
 \subsection{Mixed Formulation}

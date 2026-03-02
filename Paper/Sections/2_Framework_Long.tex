@@ -539,49 +539,34 @@ In the particularly important case $s=1$, the trace space $H^{1/2}(\Gamma;X)$ is
 	\begin{itemize}
 		\item[i)] There exists a bounded linear operator
 		      \begin{equation*}
-			      \cL_\Gamma:H^{1/2}(\Gamma;\R^d)\to H^1(\Omega;\R^d)
+			      \cL:H^{1/2}(\Gamma;\R^d)\to H^1(\Omega;\R^d)
 		      \end{equation*}
 		      such that
 		      \begin{equation*}
-			      \gamma(\cL_\Gamma g)=g
+			      \gamma(\cL g)=g
 			      \qquad\forall\,g\in H^{1/2}(\Gamma;\R^d),
 		      \end{equation*}
 		      and
 		      \begin{equation*}
-			      \|\cL_\Gamma g\|_{1,\Omega}\le C\|g\|_{1/2,\Gamma}.
+			      \|\cL g\|_{1,\Omega}\le C\|g\|_{1/2,\Gamma}.
 		      \end{equation*}
 
 		\item[ii)] There exists a bounded linear operator
 		      \begin{equation*}
-			      \cL_{\Gamma_0}:H^{1/2}_{00}(\Gamma_0;\R^d)\to H^1(\Omega;\R^d)
+			      \cL:H^{1/2}_{00}(\Gamma_0;\R^d)\to H^1(\Omega;\R^d)
 		      \end{equation*}
 		      such that for every $g\in H^{1/2}_{00}(\Gamma_0;\R^d)$,
 		      \begin{equation*}
-			      \gamma(\cL_{\Gamma_0}g)|_{\Gamma_0}=g
+			      \gamma(\cL g)|_{\Gamma_0}=g
 			      \qquad\text{and}\qquad
-			      \gamma(\cL_{\Gamma_0}g)=0\ \text{on }\Gamma\setminus\Gamma_0,
+			      \gamma(\cL g)=0\ \text{on }\Gamma\setminus\Gamma_0,
 		      \end{equation*}
 		      and
 		      \begin{equation*}
-			      \|\cL_{\Gamma_0}g\|_{1,\Omega}\le C\|g\|_{H^{1/2}_{00}(\Gamma_0)}.
+			      \|\cL g\|_{1,\Omega}\le C\|g\|_{H^{1/2}_{00}(\Gamma_0)}.
 		      \end{equation*}
 	\end{itemize}
 \end{theorem}
-
-\begin{proposition}[Classical Boundary Trace of More Regular Stress Fields]\label{pr:classical_stress_trace}
-	Let $r>\frac12$ and let $\tau\in H^r(\Omega;\R^{d\times d})$. Then
-	\begin{equation*}
-		\gamma\tau\in H^{r-1/2}(\Gamma;\R^{d\times d}).
-	\end{equation*}
-	In particular, if $\mathrm n$ denotes the outward unit normal on $\Gamma$, then
-	\begin{equation*}
-		(\gamma\tau)\mathrm n \in H^{r-1/2}(\Gamma;\R^d).
-	\end{equation*}
-	Therefore, if $r-1/2\ge 0$, then
-	\begin{equation*}
-		(\gamma\tau)\mathrm n\in L^2(\Gamma;\R^d).
-	\end{equation*}
-\end{proposition}
 
 \subsection{\texorpdfstring{$H(\diver;\Omega)$}{Hdiv} and Normal Traces}\label{subsec:Hdiv}
 
