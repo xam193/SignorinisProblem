@@ -285,21 +285,21 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \begin{proof}
 	Let $J:X\to X^{**}$ be the canonical embedding defined by
 	\begin{equation*}
-		(Jx)(\varphi):=\varphi(x)\qquad \forall\, \varphi\in X^*.
+		(Jx)(\varphi):=\varphi(x)\qquad \forall\, \varphi\in X^\prime.
 	\end{equation*}
 	By the Hahn--Banach theorem, $J$ is an isometry, i.e.\ $\|Jx\|_{X^{**}}=\|x\|_X$ for all $x\in X$.
 	Therefore,
 	\begin{equation*}
 		\|x\|_X
 		=\|Jx\|_{X^{**}}
-		=\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |(Jx)(\varphi)|
-		=\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |\varphi(x)|.
+		=\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |(Jx)(\varphi)|
+		=\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |\varphi(x)|.
 	\end{equation*}
-	If $x_j\rightharpoonup x$ in $X$, then $\varphi(x_j)\to\varphi(x)$ for all $\varphi\in X^*$ and hence
+	If $x_j\rightharpoonup x$ in $X$, then $\varphi(x_j)\to\varphi(x)$ for all $\varphi\in X^\prime$ and hence
 	\begin{equation*}
 		\|x\|_X
-		= \sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}} |\varphi(x)|
-		\le \liminf_{j\to\infty}\sup_{\substack{\varphi\in X^*\\ \|\varphi\|_{X^*}\le 1}}|\varphi(x_j)|
+		= \sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |\varphi(x)|
+		\le \liminf_{j\to\infty}\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}}|\varphi(x_j)|
 		= \liminf_{j\to\infty}\|x_j\|_X.
 	\end{equation*}
 \end{proof}

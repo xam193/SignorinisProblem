@@ -1,29 +1,34 @@
-\begin{tikzpicture}[line cap=round, line join=round, font=\small, scale = 0.65]
+\begin{tikzpicture}[line cap=round, line join=round, font=\small, scale = 0.7]
 	\coordinate (L1) at (-3,3);
 	\coordinate (L2) at (-3,2.5);
 	\coordinate (L3) at (-6,2.5);
 	\coordinate (L4) at (-6,2);
 	\coordinate (L5) at (0,2);
 	\coordinate (L6) at (0,3);
+
 	\coordinate (R1) at (6,3);
 	\coordinate (R2) at (6,2.5);
 	\coordinate (R3) at (3,2.5);
 	\coordinate (R4) at (3,2);
 	\coordinate (R5) at (9,2);
 	\coordinate (R6) at (9,3);
-	\coordinate (L7) at (-3,2);
-	\coordinate (R7) at (6,2);
-	\path[fill=lightgray] (L6)--(L1)--(L2)--(L3)--(L4)--(L5)--cycle; \path[fill=lightgray] (R6)--(R1)--(R2)--(R3)--(R4)--(R5)--cycle;
+
+	\path[fill=lightgray] (L6)--(L1)--(L2)--(L3)--(L4)--(L5)--cycle;
+	\path[fill=lightgray] (R6)--(R1)--(R2)--(R3)--(R4)--(R5)--cycle;
+
 	\path[fill=darkgray, pattern=north east lines, pattern color=darkgray]
 	(L6)--(L1)--(L2)--(L3)--(L4)--(L5)--cycle;
 	\path[fill=darkgray, pattern=north east lines, pattern color=darkgray]
-	(R6)--(R1)--(R2)--(R3)--(R4)--(R5)--cycle;;
+	(R6)--(R1)--(R2)--(R3)--(R4)--(R5)--cycle;
+
 	\draw[black, thin] (L3)--(L4)--(L5)--(L6);
 	\draw[black, thin] (R3)--(R4)--(R5)--(R6);
 	\draw[black, ultra thick] (L3)--(L2)--(L1)--(L6);
 	\draw[black, ultra thick] (R6)--(R1)--(R2)--(R3);
+
 	\node at (-3,5) {$\Omega$};
 	\node at (6,5) {$\varphi(\Omega)$};
+
 	\coordinate (A) at (-1,7.05);
 	\coordinate (B) at (-1,3.05);
 	\coordinate (C) at (-5,7.05);
@@ -48,26 +53,22 @@
 		parabola (K)
 		-- cycle;
 	\end{scope}
-	\draw[draw=red, ultra thick] (A) -- (B)
-	node[midway, right, text=red] {$\Gamma_D$};
-	\draw[draw=red, ultra thick] (F) -- (G)
-	node[midway, right, text=red] {$\Gamma_D$};
-	\draw[draw=blue, ultra thick] (A) -- (C)
-	node[midway, above, text=blue] {$\Gamma_N$};
-	\draw[draw=blue, ultra thick] (C) -- (D)
-	node[midway, left, text=blue] {$\Gamma_N$};
-	\draw[draw=blue, ultra thick] (G) parabola (H)
-	node[above, text=blue] at (5.5,6.9) {$\Gamma_N$};
-	\draw[draw=blue, ultra thick] (I) parabola (H)
-	node[left, text=blue] at (4.1,4.5) {$\Gamma_N$};
-	\draw[draw=teal, ultra thick] (D) -- (E)
-	node[midway, above, text=teal] {$\Gamma_C$};
-	\draw[draw=teal, ultra thick] (J) parabola (K);
-	\draw[draw=teal, ultra thick] (8,3.05) -- (6,3.05)
-	node[left, text=teal] at (6,3.05) {$\Gamma_C$};
-	\draw[draw=teal, ultra thick] (J) parabola (I);
-	\draw[draw=magenta, thick, dashed] (8,3.05) -- (6,3.05)
-	node[midway, above, text=magenta] {$\Gamma_{\mathrm{act}}(u)$};
-	\draw[draw=magenta, thick, dashed] (J) parabola (I);
+
+	\draw[black, ultra thick] (A) -- (B);
+	\draw[black, ultra thick] (F) -- (G);
+
+	\draw[black, ultra thick] (A) -- (C);
+	\draw[black, ultra thick] (C) -- (D);
+
+	\draw[black, ultra thick] (G) parabola (H);
+	\draw[black, ultra thick] (I) parabola (H);
+
+	\draw[black, ultra thick] (D) -- (E);
+	\draw[black, ultra thick] (J) parabola (K);
+	\draw[black, ultra thick] (8,3.05) -- (6,3.05);
+	\draw[black, ultra thick] (J) parabola (I);
+
+	\draw[black, thick, dashed] (8,3.05) -- (6,3.05);
+	\draw[black, thick, dashed] (J) parabola (I);
 
 \end{tikzpicture}

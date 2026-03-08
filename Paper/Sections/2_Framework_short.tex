@@ -1,19 +1,16 @@
 \section{Mathematical Framework}
-This section introduces the basic notation used throughout the mathematical framework and the later analysis of Signorini's problem. Our goal is to fix a consistent language for bulk quantities, boundary quantities, and tensor-valued fields before introducing weak derivatives and Sobolev spaces. Unless stated otherwise, let $\Omega\subset\R^d,\,d\ge 1$, be a nonempty open set. Whenever trace operators or boundary spaces are used, we additionally assume that $\Omega$ is a bounded Lipschitz domain (see e.g.\ \cite[Section 2.3]{book}) and write $\Gamma:=\partial\Omega$.
-
-\subsection{Scalars, Vectors and Matrices}\label{sec:SVM}
-The purpose of this subsection is mainly to introduce the notation used throughout this report. For $m,n\ge 1$, we write $\R^{m\times n}$ for the space of real $m\times n$ matrices and for vectors $u,v\in\R^m$, we denote by
+This section introduces the basic notation used throughout the mathematical framework and the later analysis of Signorini's problem. Our goal is to fix a consistent language for bulk quantities, boundary quantities, and tensor-valued fields before introducing weak derivatives and Sobolev spaces. Unless stated otherwise, let $\Omega\subset\R^d,\,d\ge 1$, be a nonempty open set. Whenever trace operators or boundary spaces are used, we additionally assume that $\Omega$ is a bounded Lipschitz domain (see e.g.\ \cite[Section 2.3]{book}) and write $\Gamma:=\partial\Omega$. For $m,n\ge 1$, we write $\R^{m\times n}$ for the space of real $m\times n$ matrices and for vectors $u,v\in\R^m$, we denote by
 \begin{equation*}
 	u\cdot v := \sum_{j=1}^m u_j\,v_j,
 	\qquad
 	|u| := \sqrt{u\cdot u}
 \end{equation*}
 the Euclidean inner product and norm. For matrices $A,B\in\R^{m\times n}$, we use the Frobenius product
-\begin{equation*}
+\begin{equation}\label{eq:frobeniusproduct}
 	A:B := \sum_{j=1}^m\sum_{k=1}^n A_{jk}B_{jk},
 	\qquad
 	|A| := \sqrt{A:A}.
-\end{equation*}
+\end{equation}
 The space $\mathrm{Sym}^2(\R^d)$ of symmetric second order tensors is
 \begin{equation*}
 	\mathrm{Sym}^2(\R^d):= \left\{ s\in\R^d\otimes\R^d\;\middle|\; s^\top = s\right\}.
@@ -28,85 +25,370 @@ Furthermore, if $\cA:\Omega\to\cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))$ is
 	\qquad
 	s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
 \end{equation*}
-In the remaining subsections of the mathematical framework section, we will denote by $X$ one the the spaces $\R^m$ with $m\ge 1$ or a space of real matrices $R^{n\times m},\, n,m\ge 2$ and talk about functions $u\to X$. This also covers functions with values in $\mathrm{Sym}^2(\R^d)$, which will be interesting for the main part of this report, where also $n = m = d$. The inner product on $X$ is denoted by $(\cdot,\,\cdot)_X$, i.e. Euclidean in the vector-valued and Frobenius in the matrix-valued case. When writing $(f,\,g)_X$ for functions $f,g:\Omega\to X$ or $f,g:\Gamma_0\to X$ for a relatively open boundary part $\Gamma_0$, the inner product is still assumed to be a scalar-valued function on $\Omega$ or $\Gamma_0$ without using the notation $(f(x),\, g(x))_X:\Omega\to \R$. If necessary, the target space will be explicitly specified. Finally, if $X = \R$, a space $\cX(\Omega;X)$ of functions $f:\Omega\to X$ is always abbreviated by $\cX(\Omega)$. The same notation is applied to functions on $\Gamma_0$.
+A space $\cX(\Omega;\R^m)$ of functions $f:\Omega\to \R^m,\, m\ge 1$ is in the case of $m=1$ abbreviated by $\cX(\Omega):= \cX(\Omega;\R^1)$. As the reader should know, we denote the space of functions $f:\Omega\to\R^m$ with continuous partial derivatives up to order $0\le k\le \infty$ by $\cC^k(\Omega;\R^m)$. Functions in $\cC^\infty(\Omega,\R^m)$ with compact support are called test functions and we collect them in the spaces $\cD(\Omega;\R^m)$. Distributions are now linear continuous mappings $T:\cD(\Omega;\R^m)\to\R^m$ and we assume the reader to be familiar with distributional and weak derivatives. The latter are distributional derivatives of regular distributions, i.e.\ distributions that are induced by locally integrable functions. Since every $L^p$-function is locally integrable, we use the terms weak and distributional derivative interchangeably if applied to $L^p$-functions, which dependent on the context may be understood as regular distributions or actual functions. $L^p$-spaces are denoted by $L^p(\Omega;\R^m)$ and their corresponding norm is
+\begin{equation*}
+	\|f\|_{0,p,\Omega}:= \left(\int_\Omega |f|^p\;\dx\right)^{1/p},\qquad f\in L^p(\Omega;\R^m).
+\end{equation*}
+As only the Hilbert space case $p=2$ is interesting here, we abbreviate by $\|\cdot\|_{0,\Omega} = \|\cdot\|_{0,2,\Omega}$ the induced norm of the $L^2$ inner product
+\begin{equation*}
+	(f,g)_{0,\Omega}:= \int_\Omega f\cdot g\;\dx,\qquad f,g\in L^2(\Omega;\R^m),
+\end{equation*}
+where again, $f\cdot g$ denotes the pointwise Euclidean inner product on $\R^m$. In the case of matrix-valued functions, we take the integral over the Frobenius product \eqref{eq:frobeniusproduct}. Even though we used $\Omega$ here as the domain, the above can of course be formulated canonically on the boundary $\Gamma:=\partial\Omega$ as well. By the identification $\R^{m\times n}\cong \R^{mn}$, any statement can be extended to matrix-valued functions.
 
-\subsection{Distributional Derivatives}
-We begin by fixing the basic notations for $L^p$-spaces and spaces of continuously differentiable functions, as well as test functions and distributions. On the space $L^p(\Omega;X)$ of $p$-integrable function $f:\Omega\to X$, we denote the norm by
-\begin{equation*}
-	\|f\|_{0,p,\Omega}:= \int_\Omega |f|^p\;\dx,\qquad f\in L^p(\Omega;X),\, 1\le p<\infty
-\end{equation*}
-and for the Hilbert space case $p = 2$, the inner product is denoted by
-\begin{equation*}
-	(f,\, g)_{0,\Omega}:= \int_\Omega (f,\, g)_X\;\dx,\qquad f,g\in L^2(\Omega;X).
-\end{equation*}
-Indeed, the induced norm is $\|\cdot\|_{0,\Omega} = \|\cdot\|_{0,2,\Omega}$. The space of locally integrable functions is denoted by $L^1(\Omega;X)$. A function $f:\Omega\to X$ is locally integrable on $\Omega$ if and only if $f|_K\in L^1(K;\Omega)$ for every compact subset $K\subset \Omega$. For $0\le k\le \infty$. The space of continuously differentiable functions $f:\Omega\to X$ up to order $|\alpha|\le k$ is denoted by $\cC^k(\Omega;X)$, where the differentiability condition is understood componentwise. If the support $\supp\varphi\subset \Omega$ of a function $\varphi\in\cC^\infty(\Omega;X)$ is compact, it is referred to as a test function and we collect them in the space $\cD(\Omega;X)$. Distributions are linear continuous operators $\cD(\Omega)\to X$, i.e.\ the space of scalar-valued distributions is the topological dual space $\cD^\prime(\Omega):= (\cD(\Omega))^\prime$ and we define
-\begin{equation*}
-	\cD^\prime(\Omega;\R^m):= (\cD^\prime(\Omega))^m\quad\text{and}\quad\cD^\prime(\Omega;\R^{m\times n}) := (\cD^\prime(\Omega;\R^m))^n
-\end{equation*}
-componentwise. This means a distribution $T\in\cD^\prime(\Omega;X)$ is a linear continuous operator $T:\cD(\Omega)\to X$ with and its distributional derivative $\Diff^\alpha T\in\cD^\prime(\Omega;X)$ with respect to $\alpha\in\N_0^d$ is defined via
-\begin{equation*}
-	\langle D^\alpha T,\,\varphi\rangle : = (-1)^{|\alpha|}\,\langle T,\Diff^\alpha\varphi\rangle,\qquad \forall\,\varphi\in\cD(\Omega;X),
-\end{equation*}
-where $\Diff^\alpha\varphi$ is understood in the classical sense and where $\langle T,\,\varphi\rangle$ is the duality pairing for $T\in\cD^\prime(\Omega)$ and $\varphi\in\cD(\Omega)$ which for vector-valued distributions and test functions is defined via
-\begin{equation*}
-	\langle T,\,\varphi\rangle := \sum_{j=1}^m \langle T_j,\,\varphi_j\rangle,\qquad (T,\varphi)\in\cD^\prime(\Omega;\R^m)\times\cD(\Omega;\R^m)
-\end{equation*}
-and for matrix-valued distributions and test functions is defined via
-\begin{equation*}
-	\langle T,\,\varphi\rangle := \sum_{j=1}^m\sum_{k=1}^n\langle T_{jk},\,\varphi_{jk}\rangle,\qquad (T,\varphi)\in\cD^\prime(\Omega;\R^{m\times n})\times\cD(\Omega;\R^{m\times n}).
-\end{equation*}
-Using the componentwise definition of distributional derivatives, we can extend the classical differential operators to distributions. For $1\le k\le d$, let $e_k\in\N_0^d$ denote the $k$-th unit multi-index,
-\begin{equation*}
-	e_k := (0,\ldots,0,1,0,\ldots,0)^\top,
-\end{equation*}
-where the entry $1$ is in the $k$-th position. Then $\Diff^{e_k}$ in the distributional sense corresponds to the first-order derivative in the $x_k$-direction. We thus write $\partial_{x_k} = \Diff^{e_k}$. For $T\in\cD^\prime(\Omega)$ the distributional gradient then is
-\begin{equation*}
-	\nabla T := (\partial_{x_1}T,\ldots,\partial_{x_d}T)^\top \in \cD^\prime(\Omega;\R^d),
-\end{equation*}
-For a vector-valued distribution $T\in\cD^\prime(\Omega;\R^d)$, the divergence is
-\begin{equation*}
-	\diver T := \sum_{k=1}^d \partial_{x_k} T_k \in \cD^\prime(\Omega)
-\end{equation*}
-and a matrix-valued distribution $T\in\cD^\prime(\Omega;\R^{m\times d})$ has the divergence
-\begin{equation*}
-	\diver T := \left(\sum_{k=1}^d \partial_{x_k} T_{jk}\right)_{1\le j\le m}
-	\in \cD^\prime(\Omega;\R^m)
-\end{equation*}
+\subsection{Sobolev Spaces}
 
-\subsection{Weak Derivatives}
+This report requires an introduction to the basic concepts related to Sobolev spaces. The Sobolev space $W^{k,p}(\Omega;\R^m)$ contains every $L^p(\Omega;\R^m)$-function, such that weak derivatives up to order $k\ge 0$ are again in $L^p(\Omega;\R^m)$. Here, we are only interested in the Hilbert space case $p= 2$ and we write $H^k(\Omega;\R^m):= W^{k,2}(\Omega;\R^m)$. We will repeat this introduction in the following definition and simultaneously establish a notation for the associated internal product and the norm.
 
-Here, we recall the concept of weak derivatives. This is exactly the concept of distributional derivatives applied to regular distributions. A regular distribution is a distribution $T_f\in\cD^\prime(\Omega;X)$ induced by a locally integrable function $f\in L^1_\loc(\Omega;X)$ via
-\begin{equation*}
-	\langle T_f,\,\varphi\rangle := \int_\Omega (f,\,\varphi)_X\;\dx ,\qquad \forall\,\varphi\in\cD(\Omega;X).
-\end{equation*}
-In particular, $L^1_\loc(\Omega;X)$ is embedded into $\cD^\prime(\Omega;X)$ via $f\mapsto T_f$ and its image is the space of regular distributions. Since $L^2(\Omega;X)\subset L^1_\loc(\Omega;X)$, we can understand $L^2$-functions as regular distributions as well and thus, have a concept of differentiation for such functions. The duality pairing of distributions with test functions then coincides with the $L^2$-product and the distributional derivative $\Diff^\alpha f$ of $f\in L^2(\Omega;X)$ with respect to $\alpha\in\N_0^d$ is therefore given through
-\begin{equation*}
-	(\Diff^\alpha f,\, \varphi)_{0,\Omega} = \int_\Omega (\Diff^\alpha f,\,\varphi)_X\;\dx = (-1)^{|\alpha|}\int_\Omega (f,\,\Diff^\alpha\varphi)_X\;\dx = (-1)^{|\alpha|}\,(f,\Diff^\alpha\varphi)_{0,\Omega}
-\end{equation*}
-for all $\varphi\in\cD(\Omega;X)$, where $\Diff^\alpha\varphi$ is understood in the classical sense. The usual differential operators can now accordingly accordingly formulated. For $u\in L^2(\Omega)$, the gradient of $T_u\in\cD^\prime(\Omega)$ is
-\begin{equation*}
-	\langle \nabla T_u,\, \varphi\rangle = -\langle T_u,\,\diver \varphi\rangle = -\int_\Omega u\,\diver\varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega;R^d),
-\end{equation*}
-where $\diver \varphi$ is understood in the classical sense. If the weak gradient $\nabla u$ exists in $L^2(\Omega;\R^d)$ it holds that
-\begin{equation*}
-	\nabla T_u = T_{\nabla u}\qquad\text{in }\cD^\prime(\Omega;\R^d).
-\end{equation*}
-For $F\in L^2(\Omega;\R^d)$, the divergence of $T_F\in\cD^\prime(\Omega;\R^d)$ is
-\begin{equation*}
-	\langle\diver T_F,\,\varphi\rangle = -\langle T_F,\,\nabla\varphi\rangle = -\int_\Omega F\cdot \nabla \varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega),
-\end{equation*}
-where $\nabla \varphi$ is understood in the classical sense. If in addition the weak divergence $\diver F$ exists in $L^2(\Omega)$, then
-\begin{equation*}
-	\diver T_F = T_{\diver F}\qquad\text{in }\cD^\prime(\Omega).
-\end{equation*}
-For $A\in L^2(\Omega;\R^{m\times n})$, the divergence of $T_A\in\cD^\prime(\Omega;\R^{m\times n})$ is
-\begin{equation*}
-	\langle \diver T_A,\,\varphi\rangle = -\langle T_A,\, \Diff\varphi\rangle
-	= -\int_\Omega A:\Diff \varphi\;\dx,\qquad \forall\,\varphi\in\cD(\Omega;R^d),
-\end{equation*}
-where $\Diff\varphi$ is the classical Jacobian of $\varphi$. If the weak divergence $\diver A$ exists in $L^2(\Omega;\R^d)$, then
-\begin{equation*}
-	\diver T_A = T_{\diver A}\qquad\text{in }\cD^\prime(\Omega;\R^d).
-\end{equation*}
+\begin{definition}[Sobolev Spaces of Integer Order]
+	Let $k\in\N_0$. The {\tt Sobolev space} $H^k(\Omega;\R^m)$ is defined by
+	\begin{equation*}
+		H^k(\Omega;\R^m)
+		:=
+		\left\{u\in L^2(\Omega;\R^m)\;\middle|\; \Diff^\alpha u\in L^2(\Omega;\R^m)\ \forall\,\alpha\in\N_0^d,\ |\alpha|\le k\right\},
+	\end{equation*}
+	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we equip $H^k(\Omega;\R^m)$ with the norm
+	\begin{equation*}
+		\|u\|_{k,\Omega}
+		:=
+		\left(
+		\sum_{|\alpha|\le k}\|\Diff^\alpha u\|_{0,\Omega}^2
+		\right)^{1/2},
+		\qquad u\in H^k(\Omega;\R^m).
+	\end{equation*}
+\end{definition}
 
-\subsection{Sobolev Spaces of Integer Order}
+We adopt the usual convention $H^0(\Omega;\R^m) = L^2(\Omega;\R^m)$ explaining the notion of the $L^2$-norm. Furthermore, we state that $H^k(\Omega;\R^m)$ is a Hilbert space.
+
+\begin{proposition}[$H^k(\Omega;\R^m)$ is a Hilbert Space]
+	The Sobolev space $H^k(\Omega;\R^m)$ together with the inner product
+	\begin{equation*}
+		(u,\, v)_{k,\Omega}:= \sum_{|\alpha|\le k}(\Diff^\alpha u,\, \Diff^\alpha v)_{0,\Omega},\qquad u,v\in H^k(\Omega;\R^m)
+	\end{equation*}
+	is a Hilbert space and the induced the norm $\|\cdot\|_{k,\Omega}$.
+	\eop
+\end{proposition}
+After the integer-order spaces $H^k(\Omega;\R^m)$, we also need Sobolev spaces of non-integer order. The main reason is that trace operators naturally lead to boundary spaces of fractional order. In particular, traces of $H^1(\Omega;\R^m)$-functions are, in general, not measured in another integer-order Sobolev space, but in a space of order $1/2$ on the boundary and similarly on boundary parts $\Gamma_0\subset\Gamma$. For a non-integer order $s=k+\theta$ with $\theta\in(0,1)$, the remaining fractional part $\theta$ is measured by difference quotients. More precisely, one measures how strongly a function oscillates between pairs of points $x,y\in\Omega$, with a weight that becomes singular as $|x-y|\to 0$. This leads to the following quantity.
+
+\begin{definition}[Slobodeckij Seminorm]
+	Let $m\ge 1$ and $\theta\in(0,1)$. For a measurable function $u:\Omega\to \R^m$, we define the {\tt Slobodeckij semi-norm}
+	\begin{equation*}
+		|u|_{\theta,\Omega}
+		:=
+		\left(\int_\Omega\int_\Omega \frac{|u(x)-u(y)|^2}{|x-y|^{d+2\theta}}\;\dx\;\dy\right)^{1/2},
+	\end{equation*}
+	whenever the right-hand side is finite.
+\end{definition}
+
+The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on constant functions. Combined with an $L^2$-term, however, it yields a genuine norm. With this, we can define Sobolev spaces of fractional order and just as above, state, that this provides us with a Hilbert space together with suitable inner product.
+
+\begin{definition}[Sobolev Spaces of Fractional Order]\label{def:fractionalsobolev}
+	Let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. The {\tt Sobolev space} of fractional order $s$ is defined by
+	\begin{equation*}
+		H^s(\Omega;\R^m)
+		:=
+		\left\{
+		u\in H^k(\Omega;\R^m)\;\middle|\; |\Diff^\alpha u|_{\theta,\Omega}<\infty \ \forall\,\alpha\in\N_0^d,\ |\alpha|=k
+		\right\},
+	\end{equation*}
+	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we equip $H^s(\Omega;\R^m)$ with the norm
+	\begin{equation*}
+		\|u\|_{s,\Omega}
+		:=
+		\left(
+		\|u\|_{k,\Omega}^2 + |u|_{s,\Omega}^2
+		\right)^{1/2},
+		\qquad u\in H^s(\Omega;\R^m).
+	\end{equation*}
+\end{definition}
+
+
+\begin{proposition}[$H^s(\Omega;\R^m)$ is a Hilbert Space]
+	Let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. Then $H^s(\Omega;\R^m)$ is a Hilbert space with inner product
+	\begin{equation*}
+		(u,\,v)_{s,\Omega}
+		:=
+		(u,\,v)_{k,\Omega}
+		+
+		\sum_{|\alpha|=k}
+		\int_\Omega\int_\Omega
+		\frac{\big(\Diff^\alpha u(x)-\Diff^\alpha u(y)\big)\cdot\big(\Diff^\alpha v(x)-\Diff^\alpha v(y)\big)}
+		{|x-y|^{d+2\theta}}\;\dx\;\dy
+	\end{equation*}
+	for $u,v\in H^s(\Omega;\R^m)$. The induced norm is $\|\cdot\|_{s,\Omega}$.
+	\eop
+\end{proposition}
+
+\subsection{Trace Operators and Boundary Spaces}
+
+In this subsection, we assume that $\Omega\subset\R^d$ is a bounded Lipschitz domain and write $\Gamma:=\partial\Omega$. We start with the following definition.
+
+\begin{definition}[Classical Trace on Smooth Functions]
+	We define the {\tt classical trace operator}
+	\begin{equation*}
+		\gamma_0:\cC^\infty(\overline{\Omega};\R^m)\to L^2(\Gamma;\R^m),
+		\qquad
+		\gamma_0 u:=u|_\Gamma
+	\end{equation*}
+	on the space
+	\begin{equation*}
+		\cC^\infty(\overline{\Omega};\R^m)
+		:=
+		\left\{u|_{\overline{\Omega}}\;\middle|\;u\in \cC^\infty(U;\R^m)\text{\em\enspace for some open neighborhood }U\supset\overline{\Omega}\right\}.
+	\end{equation*}
+\end{definition}
+
+In variational formulations, boundary conditions are imposed on traces of bulk functions. For $u\in H^s(\Omega;\R^m)$, pointwise boundary values are in general not defined. The trace theorem provides a canonical replacement.
+
+\begin{definition}[Boundary Sobolev Spaces]\label{def:boundary_sobolev}
+	Let $s>1/2$. We define
+	\begin{equation*}
+		H^{s-1/2}(\Gamma;\R^m):=\gamma_0\big(\cC^\infty(\overline{\Omega};\R^m)\big)
+	\end{equation*}
+	equipped with the norm
+	\begin{equation*}
+		\|g\|_{s-\tfrac12,\Gamma}
+		:=
+		\inf\left\{
+		\|u\|_{s,\Omega}
+		\;\middle|\;
+		u\in \cC^\infty(\overline{\Omega};\R^m),\ \gamma_0 u=g
+		\right\}.
+	\end{equation*}
+	The underlying set is the same for different values of $s>1/2$, but it is equipped with different norms.
+\end{definition}
+\begin{theorem}[Trace Theorem]\label{thm:trace}
+	Let $1/2< s\le 1$. Then the classical trace operator $\gamma_0$ extends uniquely to a continuous surjective linear operator
+	\begin{equation*}
+		\gamma:H^s(\Omega;\R^m)\to H^{s-1/2}(\Gamma;\R^m).
+	\end{equation*}
+	In particular, there exists a constant $C_{\tr,s}>0$ such that
+	\begin{equation*}
+		\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr,s}\|u\|_{s,\Omega}
+		\qquad\forall\,u\in H^s(\Omega;\R^m).
+	\end{equation*}
+	In the special case $s=1$, one has
+	\begin{equation*}
+		\ker(\gamma)=\overline{\cD(\Omega;\R^m)}^{\|\cdot\|_{1,\Omega}}=:H_0^1(\Omega;\R^m).
+	\end{equation*}
+\end{theorem}
+In the particularly important case $s=1$, the trace space $H^{1/2}(\Gamma;\R^m)$ is precisely the set of boundary values attained by $H^1(\Omega;\R^m)$-functions. Since $H^{1/2}(\Gamma;\R^m)\subset L^2(\Gamma;\R^m)$, the trace $\gamma u$ may be viewed as an $L^2$-boundary function, while its natural norm is the quotient norm induced by $H^1(\Omega;\R^m)$.  We want to formulate similar definitions on boundary parts $\Gamma_0\subset\Gamma$ and have a notion for their topological dual spaces.
+
+\begin{definition}[Boundary Spaces on Boundary Parts]
+	Let $\Gamma_0\subset\Gamma$ be relatively open and let $s>1/2$. We define
+	\begin{equation*}
+		H^{s-1/2}(\Gamma_0;\R^m)
+		:=
+		\left\{g:\Gamma_0\to \R^m\;\middle|\;\exists\,\widetilde g\in H^{s-1/2}(\Gamma;\R^m)\text{\em\enspace with }\widetilde g|_{\Gamma_0}=g\right\},
+	\end{equation*}
+	with norm
+	\begin{equation*}
+		\|g\|_{s-\tfrac12,\Gamma_0}
+		:=
+		\inf\left\{
+		\|\widetilde g\|_{s-\tfrac12,\Gamma}
+		\;\middle|\;
+		\widetilde g\in H^{s-1/2}(\Gamma;\R^m),\ \widetilde g|_{\Gamma_0}=g
+		\right\}.
+	\end{equation*}
+	Moreover, we define
+	\begin{equation*}
+		H^{s-1/2}_{00}(\Gamma_0;\R^m)
+		:=
+		\left\{g\in H^{s-1/2}(\Gamma_0;\R^m)\;\middle|\;\mathrm{Ext}_0(g)\in H^{s-1/2}(\Gamma;\R^m)\right\},
+	\end{equation*}
+	where $\mathrm{Ext}_0(g)$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$, i.e.
+	\begin{equation*}
+		\mathrm{Ext}_0 (g)(x)
+		=
+		\begin{cases}
+			g(x), & x\in\Gamma_0,                \\
+			0,    & x\in\Gamma\setminus\Gamma_0.
+		\end{cases}
+	\end{equation*}
+	We equip $H^{s-1/2}_{00}(\Gamma_0;\R^m)$ with the norm
+	\begin{equation*}
+		\|g\|_{s-\tfrac12,00,\Gamma_0}:=\|\mathrm{Ext}_0(g)\|_{s-\tfrac12,\Gamma}.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}[Dual Spaces on $\Gamma$ and on $\Gamma_0$]\label{def:dual_trace_spaces}
+	We define
+	\begin{equation*}
+		H^{-1/2}(\Gamma;\R^m):=\big(H^{1/2}(\Gamma;\R^m)\big)^\prime
+	\end{equation*}
+	and
+	\begin{equation*}
+		H^{-1/2}(\Gamma_0;\R^m):=\big(H^{1/2}_{00}(\Gamma_0;\R^m)\big)^\prime.
+	\end{equation*}
+	The corresponding duality pairings are denoted by $\langle\cdot,\,\cdot\rangle_\Gamma$ and $\langle\cdot,\,\cdot\rangle_{\Gamma_0}$, respectively.
+\end{definition}
+
+\begin{theorem}[Lifting Operator]\label{thm:lifting}
+	Let $\Omega\subset\R^d$ be a bounded Lipschitz domain and let $\Gamma_0\subset\Gamma$ be relatively open.
+
+	\begin{itemize}
+		\item[i)] There exists a bounded linear operator
+		      \begin{equation*}
+			      \cL:H^{1/2}(\Gamma;\R^d)\to H^1(\Omega;\R^d)
+		      \end{equation*}
+		      such that
+		      \begin{equation*}
+			      \gamma(\cL g)=g
+			      \qquad\forall\,g\in H^{1/2}(\Gamma;\R^d),
+		      \end{equation*}
+		      and
+		      \begin{equation*}
+			      \|\cL g\|_{1,\Omega}\le C\|g\|_{1/2,\Gamma}.
+		      \end{equation*}
+
+		\item[ii)] There exists a bounded linear operator
+		      \begin{equation*}
+			      \cL:H^{1/2}_{00}(\Gamma_0;\R^d)\to H^1(\Omega;\R^d)
+		      \end{equation*}
+		      such that for every $g\in H^{1/2}_{00}(\Gamma_0;\R^d)$,
+		      \begin{equation*}
+			      \gamma(\cL g)|_{\Gamma_0}=g
+			      \qquad\text{and}\qquad
+			      \gamma(\cL g)=0\ \text{on }\Gamma\setminus\Gamma_0,
+		      \end{equation*}
+		      and
+		      \begin{equation*}
+			      \|\cL g\|_{1,\Omega}\le C\|g\|_{H^{1/2}_{00}(\Gamma_0)}.
+		      \end{equation*}
+	\end{itemize}
+\end{theorem}
+
+\subsection{\texorpdfstring{$H(\diver;\Omega)$}{Hdiv} and Normal Traces}\label{subsec:Hdiv}
+
+In elasticity, stress fields are typically symmetric matrix-valued functions. While the assumption $\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))$ is sufficient to interpret volume integrals of the form
+\begin{equation*}
+	\int_\Omega \tau:\nabla v\;\dx,
+\end{equation*}
+it does not provide a meaningful boundary traction $\tau\,\mathrm n$ on $\Gamma$ in general. The reason is that for $\tau\in L^2(\Omega;\R^{d\times d})$ no pointwise boundary trace is available, so the product $\tau\,\mathrm n$ cannot be defined as an $L^2(\Gamma;\R^d)$-function in general. In contrast, for $v\in H^1(\Omega;\R^d)$ the trace $\gamma v$ is well-defined by the trace theorem, and hence the normal component
+\begin{equation*}
+	v_{\mathrm n}:=(\gamma v)\cdot \mathrm n
+\end{equation*}
+makes sense as an element of $L^2(\Gamma)$ and later on boundary parts such as $\Gamma_C\subset\Gamma$. For stresses, however, one has to proceed differently and define boundary tractions in a weak sense via integration by parts. A natural additional regularity assumption is $\tau\in H(\diver;\Omega)$, which ensures that $\diver\tau$ exists as an $L^2$-function.
+
+\begin{definition}[$H(\diver;\Omega)$]\label{def:Hdiv}
+	We define
+	\begin{equation*}
+		H(\diver;\Omega)
+		:=
+		\left\{\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
+	\end{equation*}
+	where $\diver\tau$ is understood row-wise in the weak sense.
+\end{definition}
+
+For smooth fields one has the classical Green identity. Here $\mathrm n:\Gamma\to\R^d$ denotes the outward unit normal, which exists $\ds$-almost everywhere on Lipschitz boundaries.
+
+\begin{proposition}[Integration by Parts]\label{pr:green_smooth}
+	If $\tau\in C^1(\overline{\Omega};\R^{d\times d})$ and $v\in C^1(\overline{\Omega};\R^d)$, then
+	\begin{equation}\label{eq:green_smooth}
+		\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+		= \int_\Gamma (\tau\,\mathrm{n})\cdot v\;\ds.
+	\end{equation}
+\end{proposition}
+
+The key point is that the left-hand side of \eqref{eq:green_smooth} still makes sense for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$, by interpreting $\diver\tau$ and $\nabla v$ in the weak sense. Hence, for fixed $\tau\in H(\diver;\Omega)$ we define
+\begin{equation}\label{eq:Ftau}
+	F_\tau(v)
+	:=
+	\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx,
+	\qquad v\in H^1(\Omega;\R^d).
+\end{equation}
+By Cauchy--Schwarz,
+\begin{equation*}
+	|F_\tau(v)|
+	\le
+	\left(\|\tau\|_{0,\Omega}+\|\diver\tau\|_{0,\Omega}\right)\,\|v\|_{1,\Omega}
+	\qquad\forall\,v\in H^1(\Omega;\R^d),
+\end{equation*}
+i.e.\ $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$.
+
+\begin{proposition}[Dependence of $F_\tau$ on the Trace]\label{pr:Ftau_depends_on_trace}
+	Let $\tau\in H(\diver;\Omega)$. Then $F_\tau$ vanishes on $H^1_0(\Omega;\R^d)$, i.e.
+	\begin{equation*}
+		F_\tau(w)=0
+		\qquad\forall\,w\in H^1_0(\Omega;\R^d).
+	\end{equation*}
+	Consequently, $F_\tau$ depends only on the trace $\gamma v$ in the sense that
+	\begin{equation*}
+		\gamma v_1=\gamma v_2
+		\quad\Longrightarrow\quad
+		F_\tau(v_1)=F_\tau(v_2)
+		\qquad\forall\,v_1,v_2\in H^1(\Omega;\R^d).
+	\end{equation*}
+\end{proposition}
+\begin{proof}
+	Let $w\in H^1_0(\Omega;\R^d)$. By density, there exists a sequence $(w_m)_{m\in\N}\subset \cD(\Omega;\R^d)$ such that
+	\begin{equation*}
+		w_m\to w
+		\qquad\text{in }H^1(\Omega;\R^d).
+	\end{equation*}
+	Since $\tau\in H(\diver;\Omega)$, we have for every $m\in\N$ that
+	\begin{equation*}
+		\int_\Omega (\diver\tau)\cdot w_m\;\dx
+		=
+		-\int_\Omega \tau:\nabla w_m\;\dx,
+	\end{equation*}
+	and therefore
+	\begin{equation*}
+		F_\tau(w_m)=0
+		\qquad\forall\,m\in\N.
+	\end{equation*}
+	Passing to the limit $m\to\infty$ and using the continuity of $F_\tau$ on $H^1(\Omega;\R^d)$ yields
+	\begin{equation*}
+		F_\tau(w)=\lim_{m\to\infty}F_\tau(w_m)=0.
+	\end{equation*}
+	Hence $F_\tau$ vanishes on $H^1_0(\Omega;\R^d)$. Now let $v_1,v_2\in H^1(\Omega;\R^d)$ satisfy $\gamma v_1=\gamma v_2$. Then
+	\begin{equation*}
+		\gamma(v_1-v_2)=0.
+	\end{equation*}
+	By the characterization $\ker(\gamma)=H^1_0(\Omega;\R^d)$, we obtain $v_1-v_2\in H^1_0(\Omega;\R^d)$. Therefore,
+	\begin{equation*}
+		F_\tau(v_1)-F_\tau(v_2)
+		=
+		F_\tau(v_1-v_2)
+		=
+		0,
+	\end{equation*}
+	which proves the claim.
+\end{proof}
+
+By Proposition~\ref{pr:Ftau_depends_on_trace}, the functional $F_\tau$ depends only on the trace $\gamma v$. Hence the map
+\begin{equation*}
+	\gamma v \mapsto F_\tau(v)
+\end{equation*}
+defines a well-defined continuous linear functional on $H^{1/2}(\Gamma;\R^d)$. By Definition~\ref{def:dual_trace_spaces}, there therefore exists a unique element of $H^{-1/2}(\Gamma;\R^d)$ representing this functional.
+
+\begin{definition}[Normal Trace / Boundary Traction]\label{def:normal_trace}
+	Let $\tau\in H(\diver;\Omega)$. The {\tt normal trace} (or boundary traction) of $\tau$ is the unique element
+	\begin{equation*}
+		\gamma_{\mathrm{n}}(\tau)\in H^{-1/2}(\Gamma;\R^d)
+	\end{equation*}
+	such that
+	\begin{equation}\label{eq:greenHdiv}
+		\langle \gamma_{\mathrm{n}}(\tau),\,\gamma v\rangle_{\Gamma}
+		=
+		\int_\Omega \tau:\nabla v\;\dx + \int_\Omega (\diver\tau)\cdot v\;\dx
+		\qquad\forall\,v\in H^1(\Omega;\R^d).
+	\end{equation}
+\end{definition}
+
+In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hence $\gamma_{\mathrm{n}}(\tau)$ coincides with the classical traction $\tau\,\mathrm n$. We also define the equivalent concept on a boundary part $\Gamma_0\subset\Gamma$. Using the zero extension from Definition~\ref{def:boundary_sobolev}, one obtains in the same way a well-defined functional on $H^{1/2}_{00}(\Gamma_0;\R^d)$.
+
+\begin{definition}[Normal Trace on a Boundary Part]\label{def:normal_trace_part}
+	Let $\Gamma_0\subset\Gamma$ be relatively open and let $\tau\in H(\diver;\Omega)$. The normal trace on $\Gamma_0$ is defined as the unique element
+	\begin{equation*}
+		\gamma_{\mathrm{n},\Gamma_0}(\tau)\in H^{-1/2}(\Gamma_0;\R^d)
+	\end{equation*}
+	given by
+	\begin{equation*}
+		\langle \gamma_{\mathrm{n},\Gamma_0}(\tau),\,g\rangle_{\Gamma_0}
+		:=
+		\langle \gamma_{\mathrm{n}}(\tau),\,\mathrm{Ext}_0 (g)\rangle_{\Gamma},
+		\qquad g\in H^{1/2}_{00}(\Gamma_0;\R^d),
+	\end{equation*}
+	where $\mathrm{Ext}_0 (g)$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$.
+\end{definition}
