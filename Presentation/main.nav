@@ -85,23 +85,51 @@
 \headcommand {\beamer@framepages {105}{105}}
 \headcommand {\slideentry {3}{2}{12}{106/110}{Weak Formulations}{0}}
 \headcommand {\beamer@framepages {106}{110}}
-\headcommand {\slideentry {3}{2}{13}{111/112}{Weak Formulations}{0}}
-\headcommand {\beamer@framepages {111}{112}}
-\headcommand {\beamer@subsectionpages {67}{112}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{113}{Strong Formulations}}
-\headcommand {\slideentry {3}{3}{1}{113/113}{Strong Formulations}{0}}
-\headcommand {\beamer@framepages {113}{113}}
-\headcommand {\beamer@subsectionpages {113}{113}}
-\headcommand {\beamer@subsectionentry {0}{3}{4}{114}{Mixed Formulations}}
-\headcommand {\slideentry {3}{4}{1}{114/114}{Mixed Formulations}{0}}
-\headcommand {\beamer@framepages {114}{114}}
-\headcommand {\beamer@sectionpages {55}{114}}
-\headcommand {\beamer@subsectionpages {114}{114}}
-\headcommand {\sectionentry {4}{Further Topics}{115}{Further Topics}{0}}
-\headcommand {\slideentry {4}{0}{1}{115/115}{}{0}}
-\headcommand {\beamer@framepages {115}{115}}
-\headcommand {\beamer@partpages {1}{115}}
-\headcommand {\beamer@subsectionpages {115}{115}}
-\headcommand {\beamer@sectionpages {115}{115}}
-\headcommand {\beamer@documentpages {115}}
-\headcommand {\gdef \inserttotalframenumber {37}}
+\headcommand {\slideentry {3}{2}{13}{111/116}{Weak Formulations}{0}}
+\headcommand {\beamer@framepages {111}{116}}
+\headcommand {\slideentry {3}{2}{14}{117/120}{Weak Formulations}{0}}
+\headcommand {\beamer@framepages {117}{120}}
+\headcommand {\slideentry {3}{2}{15}{121/122}{Weak Formulations}{0}}
+\headcommand {\beamer@framepages {121}{122}}
+\headcommand {\slideentry {3}{2}{16}{123/123}{Weak Formulations}{0}}
+\headcommand {\beamer@framepages {123}{123}}
+\headcommand {\beamer@subsectionpages {67}{123}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{124}{Strong Formulations}}
+\headcommand {\slideentry {3}{3}{1}{124/124}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {124}{124}}
+\headcommand {\slideentry {3}{3}{2}{125/131}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {125}{131}}
+\headcommand {\slideentry {3}{3}{3}{132/132}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {132}{132}}
+\headcommand {\slideentry {3}{3}{4}{133/133}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {133}{133}}
+\headcommand {\slideentry {3}{3}{5}{134/136}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {134}{136}}
+\headcommand {\slideentry {3}{3}{6}{137/138}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {137}{138}}
+\headcommand {\slideentry {3}{3}{7}{139/142}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {139}{142}}
+\headcommand {\slideentry {3}{3}{8}{143/145}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {143}{145}}
+\headcommand {\slideentry {3}{3}{9}{146/149}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {146}{149}}
+\headcommand {\slideentry {3}{3}{10}{150/154}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {150}{154}}
+\headcommand {\slideentry {3}{3}{11}{155/157}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {155}{157}}
+\headcommand {\slideentry {3}{3}{12}{158/160}{Strong Formulations}{0}}
+\headcommand {\beamer@framepages {158}{160}}
+\headcommand {\beamer@subsectionpages {124}{160}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{161}{Mixed Formulations}}
+\headcommand {\slideentry {3}{4}{1}{161/161}{Mixed Formulations}{0}}
+\headcommand {\beamer@framepages {161}{161}}
+\headcommand {\beamer@sectionpages {55}{161}}
+\headcommand {\beamer@subsectionpages {161}{161}}
+\headcommand {\sectionentry {4}{Further Topics}{162}{Further Topics}{0}}
+\headcommand {\slideentry {4}{0}{1}{162/162}{}{0}}
+\headcommand {\beamer@framepages {162}{162}}
+\headcommand {\beamer@partpages {1}{162}}
+\headcommand {\beamer@subsectionpages {162}{162}}
+\headcommand {\beamer@sectionpages {162}{162}}
+\headcommand {\beamer@documentpages {162}}
+\headcommand {\gdef \inserttotalframenumber {51}}

@@ -682,13 +682,13 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\end{equation*}
 	By definition of the distributional divergence, this means
 	\begin{equation*}
-		\langle-\diver\sigma(u),\varphi\rangle
+		\langle-\diver\sigma(u),\,\varphi\rangle
 		=
 		\int_\Omega \sigma(u):\nabla\varphi\;\dx
 		=
 		\int_\Omega f\cdot\varphi\;\dx
 		=
-		\langle f,\varphi\rangle
+		\langle f,\,\varphi\rangle
 		\qquad \forall\,\varphi\in\mathcal D(\Omega;\R^d).
 	\end{equation*}
 	Hence,
@@ -716,7 +716,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 		\ge
 		\int_{\Gamma_N}F\cdot\gamma w\;\ds,
 	\end{equation*}
-	i.e.
+	which with $w= v-u$ is exactly
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
 		-
@@ -725,7 +725,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 		\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
 		\qquad \forall\, v\in K.
 	\end{equation*}
-	It remains to prove \eqref{eq:hybrid_eq}. Since $0\in K$ and $2u\in K$, testing \eqref{eq:weakineq_hybrid} with $v=0$ and $v=2u$ gives
+	It thus remains to prove \eqref{eq:hybrid_eq}. Then \eqref{eq:hybrid_ineq} holds automatically. Since $0\in K$ and $2u\in K$, testing \eqref{eq:weakineq_hybrid} with $v=0$ and $v=2u$ gives
 	\begin{equation*}
 		a(u,u)=\ell(u).
 	\end{equation*}

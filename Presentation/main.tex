@@ -62,6 +62,7 @@
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{empheq}
 \usepackage{subcaption}
 \usepackage[export]{adjustbox}
 \setlength{\emergencystretch}{1em}
@@ -674,9 +675,295 @@
 			\cJ^\prime(u)[v-u]\ge 0\qquad\forall\, v\in K.
 		\end{equation*}
 	\end{proposition}
+	\textbf{\em Proof:}
+	\begin{itemize}
+		\item Let $u\in K$ minimize $\cJ$ over $K$ and let $v\in K$.
+		\item $K$ is convex and thus $u+t(v-u)\in K$ for all $t\in[0,1]$.
+		\item $\phi(t):= \cJ(u+t(v-u))$ attains minimum at $t = 0$, i.e.\ $\phi^\prime(0^+)\ge 0$.
+		\item By chainrule, $\phi'(0^+)=\cJ'(u)[v-u]\ge 0$.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Variational Inequality as an Optimality Condition}
+	\begin{itemize}
+		\item Let $u\in K$ such that  $\cJ^\prime(u)[v-u]\ge 0$ for all $v\in K$ and set $h:= v-u$.
+		\item Taylor-expansion:
+		      \begin{equation*}
+			      \cJ(u+h)-\cJ(u)=\underbrace{\cJ'(u)[h]}_{\ge 0}+\underbrace{\frac12\,a(h,h)}_{\ge 0} \ge 0.
+		      \end{equation*}
+		\item Thus, $\cJ(u+h)-\cJ(u) = \cJ(v)-\cJ(v)\ge 0$ for all $v\in K$.
+		\item $u\in K$ minimizes $\cJ$ over $K$.\eop
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Weak Formulations / Variational Inequality}
+	\begin{problem}[Signorini's Problem -- Weak Formulation]
+	Find $u\in K$ such that
+	\begin{equation*}
+		a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K.
+	\end{equation*}
+	\end{problem}
+
+	\begin{problem}[Signorini's Problem -- Weak Formulation]
+	Find $u\in K$ such that
+	\begin{equation*}
+		\begin{cases}
+			a(u,u) = \ell(u), &                   \\[2pt]
+			a(u,v)\ge \ell(v) & \forall\, v\in K.
+		\end{cases}
+	\end{equation*}
+	\end{problem}
+\end{frame}
+
+\begin{frame}{Another Stability Estimate}
+	\begin{proposition}[Lipschitz Dependence on the Data]
+		For $i\in\{1,2\}$, let $f_i\in L^2(\Omega;\mathbb R^d)$ and $F_i\in L^2(\Gamma_N;\mathbb R^d)$, and let $\ell_i\in V'$ be the corresponding load functional, i.e.
+		\begin{equation*}
+			\ell_i(v):=\int_\Omega f_i\cdot v\;\dx+\int_{\Gamma_N} F_i\cdot \gamma v\;\ds,
+			\qquad v\in V.
+		\end{equation*}
+		Moreover, let $u_i\in K$ be the unique solution of one of the weak formulations above. Then the solution depends Lipschitz continuously on the load functional, i.e.
+		\begin{equation*}
+			\|u_1-u_2\|_{1,\Omega}\le \frac{C_K^2}{\alpha_\mathcal{A}}\,\|\ell_1-\ell_2\|_{V'}.
+		\end{equation*}
+		In particular, it depends Lipschitz continuously on the data $f_i,F_i$ in the sense that
+		\begin{equation*}
+			\|u_1-u_2\|_{1,\Omega}
+			\le \frac{C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\mathcal{A}}
+			\Bigl(\|f_1-f_2\|_{0,\Omega}+\|F_1-F_2\|_{0,\Gamma_N}\Bigr).
+		\end{equation*}
+	\end{proposition}
 \end{frame}
 
 \subsection{Strong Formulations}
+
+\begin{frame}{Stress Regularity}
+	\begin{itemize}
+		\item We need equilibrium equation $-\diver \sigma(u) = f$ in $L^2(\Omega;\R^d)$.
+		\item In weak formulations $u\in K\subset H^1(\Omega;\R^d)$ and thus
+		      \begin{equation*}
+			      \varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))
+			      \qquad\text{and}\qquad
+			      \sigma(u)=\mathcal A:\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+		      \end{equation*}
+		\item This is enough for well-definedness of $a(u,v)$ but $\diver\sigma(u)\notin L^2(\Omega;\R^d)$ in general.
+		\item Thus, we assume $\sigma(u)\in H(\diver;\Omega)$.
+		\item Boundary traction $\sigma(u)\mathrm{n}:= \gamma_{\mathrm{n}}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$.
+		\item Since $\sigma(u)$ symmetric, we have
+		      \begin{equation*}
+			      \sigma(u):\nabla v = \sigma(u):\varepsilon(v)\qquad \forall\, v\in H^1(\Omega;\R^d).
+		      \end{equation*}
+		\item Therefore Green's formula is
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			      =
+			      \int_\Omega \sigma(u):\varepsilon(v)\;\dx
+			      +
+			      \int_\Omega \diver\sigma(u)\cdot v\;\dx
+			      \qquad
+			      \forall\, v\in H^1(\Omega;\R^d).
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{A Hybrid Formulation}
+	\begin{problem}[Signorini's Problem -- Hybrid Formulation]
+	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
+	\begin{subequations}\label{eq:hybrid}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			-\diver\sigma(u) &= f
+			&\qquad& \text{a.e.\ in }\Omega, \label{eq:hybrid_bulk}\\
+			\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+			&= \mathrlap{\int_{\Gamma_N} F\cdot \gamma u\;\ds,}
+			&& \label{eq:hybrid_eq}\\
+			\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			&\ge \int_{\Gamma_N} F\cdot \gamma v\;\ds
+			&\qquad& \forall\, v\in K.
+			\label{eq:hybrid_ineq}
+		\end{empheq}
+	\end{subequations}
+	\end{problem}
+\end{frame}
+
+\begin{frame}{Equivalence of Hybrid and Weak Formulation}
+	\begin{proposition}[Equivalence of Hybrid and Weak Formulation]
+		Assume $\sigma(u)\in H(\diver;\Omega)$. Then $u\in K$ solves the hybrid problem above if and only if it solves the weak problem
+		\begin{equation*}
+			\text{Find }u\in K\text{ such that}\qquad a(u,v-u)\ge\ell(v-u)\qquad \forall v\in K.
+		\end{equation*}
+	\end{proposition}
+\end{frame}
+
+
+\begin{frame}{Key Identity for Proof}
+	\begin{itemize}
+		\item Assume $\sigma(u)\in H(\diver;\Omega)$ and $-\diver\sigma(u)=f$ in $L^2(\Omega;\R^d)$.
+		\item Green's formula (previous slide) gives for all $w\in V$:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+			      =
+			      a(u,w)
+			      +
+			      \int_\Omega \diver\sigma(u)\cdot w\;\dx
+			      =
+			      a(u,w)-\int_\Omega f\cdot w\;\dx.
+		      \end{equation*}
+		\item Hence for all $w\in V$:
+		      \begin{equation*}
+			      a(u,w)-\ell(w)
+			      =
+			      \langle \sigma(u)\mathrm n,\gamma w\rangle_\Gamma
+			      -
+			      \int_{\Gamma_N}F\cdot \gamma w\;\ds.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Proof: Hybrid $\Rightarrow$ Weak}
+	\begin{itemize}
+		\item Subtract \eqref{eq:hybrid_eq} from \eqref{eq:hybrid_ineq}:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma (v-u)\rangle_\Gamma
+			      \ge
+			      \int_{\Gamma_N}F\cdot \gamma (v-u)\;\ds.
+		      \end{equation*}
+		\item Insert the key identity from the previous slide:
+		      \begin{equation*}
+			      a(u,v-u)-\ell(v-u)\ge 0
+			      \qquad\forall\,v\in K,
+		      \end{equation*}
+		      i.e.\ the weak formulation.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Proof: Weak $\Rightarrow$ Hybrid (Bulk Equation)}
+	\begin{itemize}
+		\item Let $u\in K$ solve the Hybrid Problem above and assume $\sigma(u)\in H(\diver;\Omega)$.
+		\item Let $\varphi\in \cD(\Omega;\R^d)$. Then $u\pm t\varphi\in K$ for $|t|\ll 1$, hence the weak inequality implies
+		      \begin{equation*}
+			      a(u,\varphi)=\ell(\varphi)=\int_\Omega f\cdot \varphi\;\dx = \langle f,\,\varphi\rangle.
+		      \end{equation*}
+		\item Since $\sigma(u)$ is symmetric, the left hand side is
+		      \begin{equation*}
+			      a(u,\varphi) = \int_\Omega\sigma(u):\varepsilon(\varphi) = \int_\Omega\sigma(u):\nabla\varphi\;\dx = \langle -\diver\sigma(u),\,\varphi\rangle.
+		      \end{equation*}
+		\item Thus, $-\diver\sigma(u) = f$ in $\cD^\prime(\Omega;\R^d)$ and by $\sigma(u)\in H(\diver;\Omega)$ we have
+		      \begin{equation*}
+			      -\diver\sigma(u) = f\qquad \text{a.e. in }\Omega.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Proof: Weak $\Rightarrow$ Hybrid (Hybrid Inequality)}
+	\begin{itemize}
+		\item Since $K$ is a cone, we have $0\in K$ and $2u\in K$.
+		\item Testing both in the weak inequality yields
+		      \begin{equation*}
+			      a(u,u)\le \ell(u)\quad\text{and}\quad a(u,u)\ge \ell(u)
+			      \ \Rightarrow\ a(u,u)=\ell(u).
+		      \end{equation*}
+		\item With the key identity this is exactly \eqref{eq:hybrid_eq} since
+		      \begin{equation*}
+			      0 = a(u,u)-\ell(u) = \langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma -\int_{\Gamma_N}F\cdot\gamma u\;\ds.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Proof: Weak $\Rightarrow$ Hybrid (Hybrid Equality)}
+	\begin{itemize}
+		\item Let $v\in K$. We have
+		      \begin{equation*}
+			      a(u,v-u)\ge\ell(v-u) = \int_\Omega f\cdot(v-u)\;\dx + \int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds.
+		      \end{equation*}
+		\item On the other hand, by the key identity, we have
+		      \begin{equation*}
+			      a(u,v-u) = \langle \sigma(u)\mathrm{n},\,\gamma(v-u)\rangle_\Gamma + \int_\Omega f\cdot(v-u)\;\dx.
+		      \end{equation*}
+		\item Subtracting volume term yields
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma
+			      \ge
+			      \int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds.
+		      \end{equation*}
+		\item This means
+		      \begin{equation*}
+			      \langle\sigma(u)\mathrm{n}\,\gamma v\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot \gamma v\;\ds + \underbrace{\left(\langle\sigma(u)\mathrm{n}\,\gamma u\rangle_\Gamma-\int_{\Gamma_N}F\cdot\gamma u\;\ds\right)}_{ = 0}.
+		      \end{equation*}\eop
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Normal/Tangential Splitting and Contact Trace Spaces}
+	\begin{itemize}
+		\item For {\em stronger} boundary conditions, we need to split functions into their {\em normal} and {\em tangential} component.
+		\item Contact trace space:
+		      \begin{equation*}
+			      W_C := \left\{\gamma v|_{\Gamma_C}\; \middle|\; v\in V\right\}\subset H^{1/2}(\Gamma_C;\R^d).
+		      \end{equation*}
+		\item For $w\in W_C$, we define its {\em normal} and {\em tangential} component by
+		      \begin{equation*}
+			      w_\mathrm{n} := w\cdot \mathrm n
+			      \qquad\text{and}\qquad
+			      w_t := w - (w\cdot \mathrm n)\mathrm n.
+		      \end{equation*}
+		\item Normal and tangential trace spaces:
+		      \begin{equation*}
+			      W_{C,\mathrm{n}} := \left\{w\cdot \mathrm n\; \middle|\; w\in W_C\right\}
+			      \qquad\text{and}\qquad
+			      W_{C,t} := \left\{w\in W_C\; \middle|\; w\cdot \mathrm n = 0\right\}.
+		      \end{equation*}
+		\item Every $w\in W_C$ admits the decomposition
+		      \begin{equation*}
+			      w = w_\mathrm{n}\mathrm n + w_t\in W_{C,\mathrm{n}}\,\mathrm{n}\oplus W_{C,t}
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Normal/Tangential Splitting and Contact Trace Spaces}
+	\begin{itemize}
+		\item Dual Spaces $W^\prime_C,\, W_{C,\mathrm{n}},\,W_{C,t}$ and duality pairing $\langle\cdot,\,\cdot\rangle_{\Gamma_C}$.
+		\item Nonpenetration is incorporated in the space
+		      \begin{equation*}
+			      W_{C,\mathrm{n}}^-
+			      :=
+			      \left\{\eta\in W_{C,\mathrm{n}}\; \middle|\; \eta\le 0 \text{ a.e.\ on }\Gamma_C\right\}
+		      \end{equation*}
+		      of admissible normal traces.
+		\item Dual cone of weakly nonpositive normal contact forces:
+		      \begin{equation*}
+			      \Lambda_C
+			      :=
+			      \left\{\lambda\in W_{C,\mathrm{n}}'\; \middle|\; \langle \lambda,\eta\rangle_{\Gamma_C} \ge 0 \quad \forall\,\eta\in W_{C,\mathrm{n}}^-\right\}.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Karush-Kuhn-Tucker Contact Conditions}
+	\begin{itemize}
+		\item We denote $\sigma(u)\mathrm{n} = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)\in W^\prime_{C,\mathrm{n}}\oplus W^\prime_{C,t}$.
+	\end{itemize}
+	\begin{problem}[Signorini's Problem -- Strong Formulation]
+	For given $f\in L^2(\Omega;\R^d)$, find $u\in V$ such that
+	\begin{subequations}\label{eq:strong}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			-\diver \sigma(u) &= f
+			&\qquad& \text{a.e.\ in }\Omega, \label{eq:strong_bulk}\\
+			\sigma_t(u) &= 0
+			&\qquad& \text{in }W_{C,t}^\prime, \label{eq:strong_tangential}\\
+			u_\mathrm{n} &\le 0
+			&\qquad& \text{a.e.\ on }\Gamma_C, \label{eq:strong_nonpen}\\
+			\sigma_\mathrm{n}(u) &\in \Lambda_C,
+			&& \label{eq:strong_lambda}\\
+			\langle\sigma_\mathrm{n}(u),\, u_\mathrm{n}\rangle_{\Gamma_C} &= 0.
+			&& \label{eq:strong_comp}
+		\end{empheq}
+	\end{subequations}
+	\end{problem}
+	\begin{itemize}
+		\item Assuming $|\Gamma_N|= 0$, this is equivalent to previous formulations.
+	\end{itemize}
+\end{frame}
+
+
+
 \subsection{Mixed Formulations}
 
 \section{Further Topics}
