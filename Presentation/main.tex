@@ -110,6 +110,8 @@
 \def\tr{{\mathrm{tr}}}
 \def\eop{\hfill{$\Box$}}
 
+\def\symd{{\mathrm{Sym}^2(\R^d)}}
+
 \newcommand{\diver}{\operatornamewithlimits{div}}
 
 
@@ -247,9 +249,9 @@
 		\begin{equation*}
 			\gamma:H^s(\Omega;\R^m)\to H^{s-1/2}(\Gamma;\R^m).
 		\end{equation*}
-		In particular, there exists a constant $C_{\tr,s}>0$ such that
+		In particular, there exists a constant $C_{\tr}>0$ such that
 		\begin{equation*}
-			\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr,s}\|u\|_{s,\Omega}
+			\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr}\|u\|_{s,\Omega}
 			\qquad\forall\,u\in H^s(\Omega;\R^m).
 		\end{equation*}
 		In the special case $s=1$, one has
@@ -327,19 +329,19 @@
 
 \begin{frame}{$H(\diver;\Omega)$ for Matrix-Valued Fields}
 	\begin{itemize}
-		\item The space $\mathrm{Sym}^2(\R^d)$ of symmetric second order tensors is
+		\item The space $\symd$ of symmetric second order tensors is
 		      \begin{equation*}
-			      \mathrm{Sym}^2(\R^d):= \left\{ s\in\R^d\otimes\R^d\;\middle|\; s^\top = s\right\}.
+			      \symd:= \left\{ s\in\R^d\otimes\R^d\;\middle|\; s^\top = s\right\}.
 		      \end{equation*}
-		\item We identify $\mathrm{Sym}^2(\R^d)$ with symmetric matrices in $\R^{d\times d}$.
-		\item In elasticity, stresses are fields $\tau:\Omega\to\mathrm{Sym}^2(\R^d)$.
+		\item We identify $\symd$ with symmetric matrices in $\R^{d\times d}$.
+		\item In elasticity, stresses are fields $\tau:\Omega\to\symd$.
 		\item On $\R^{d\times d}$, we use the Frobenius product
 		      \begin{equation*}
 			      A:B := \sum_{j=1}^m\sum_{k=1}^n A_{jk}B_{jk},
 			      \qquad
 			      |A| := \sqrt{A:A}.
 		      \end{equation*}
-		\item If $\cA:\Omega\to\cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))$ is a fourth order tensor and $s\in\mathrm{Sym}^2(\R^d)$, we use the {\em double contraction}
+		\item If $\cA:\Omega\to\cL(\symd;\symd)$ is a fourth order tensor and $s\in\symd$, we use the {\em double contraction}
 		      \begin{equation*}
 			      (\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)s_{kl},
 			      \qquad
@@ -349,7 +351,7 @@
 		      \begin{equation*}
 			      H(\diver;\Omega)
 			      :=
-			      \left\{\tau\in L^2(\Omega;\mathrm{Sym}^2(\R^d))\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
+			      \left\{\tau\in L^2(\Omega;\symd)\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
 		      \end{equation*}
 		      where $\diver\tau$ is understood row-wise in the weak sense.
 	\end{itemize}
@@ -469,13 +471,15 @@
 	\end{itemize}
 \end{frame}
 
+
+
 \begin{frame}{Small Strain Elasticity}
 	\begin{itemize}
 		\item {\em Small strain tensor}:
 		      \begin{equation*}
-			      \varepsilon:H^1(\Omega;\R^d)\to L^2(\Omega;\mathrm{Sym}^2(\R^d)),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
+			      \varepsilon:H^1(\Omega;\R^d)\to L^2(\Omega;\symd),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
 		      \end{equation*}
-		\item {\em Elasticity tensor field} $\cA:\Omega\to\cL(\mathrm{Sym}^2(\R^d);\mathrm{Sym}^2(\R^d))$ is of {\em fourth order} and describes {\em elasticity} of the material from which $\Omega$ is made. (Heterogeneous, depends on $x\in\Omega$)
+		\item {\em Elasticity tensor field} $\cA:\Omega\to\cL(\symd;\symd)$ is of {\em fourth order} and describes {\em elasticity} of the material from which $\Omega$ is made. (Heterogeneous, depends on $x\in\Omega$)
 		\item $\cA$ is assumed symmetric in the sense that
 		      \begin{equation*}
 			      \cA_{ijkl}(x)=\cA_{jikl}(x)=\cA_{ijlk}(x)=\cA_{klij}(x),
@@ -483,7 +487,7 @@
 		      \end{equation*}
 		\item $\cA$ is assumed uniformly elliptic, i.e.\ $\exists\,\alpha_{\cA}>0$ such that for a.e. $x\in\Omega$
 		      \begin{equation*}
-			      s:\cA(x):s \ge \alpha_\cA\, (s:s)\qquad \forall\,s\in \mathrm{Sym}^2(\R^d).
+			      s:\cA(x):s \ge \alpha_\cA\, (s:s)\qquad \forall\,s\in \symd.
 		      \end{equation*}
 		\item $\cA$ is assumed bounded, i.e.\ $\exists\,C_{\cA}>0$ such that for a.e. $x\in\Omega$
 		      \begin{equation*}
@@ -491,7 +495,7 @@
 		      \end{equation*}
 		\item {\em (Cauchy) stress tensor}:
 		      \begin{equation*}
-			      \sigma: H^1(\Omega;\R^d)\to L^2(\Omega;\mathrm{Sym}^2(\R^d)),\qquad u\mapsto \cA : \varepsilon(u).
+			      \sigma: H^1(\Omega;\R^d)\to L^2(\Omega;\symd),\qquad u\mapsto \cA : \varepsilon(u).
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -595,10 +599,10 @@
 	\begin{itemize}
 		\item For ii) we set
 		      \begin{equation*}
-			      \|s\|_{\cA}^2:= \int_\Omega s:\cA :s \;\dx,\qquad s\in L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+			      \|s\|_{\cA}^2:= \int_\Omega s:\cA :s \;\dx,\qquad s\in L^2(\Omega;\symd).
 		      \end{equation*}
-		\item This defines a norm on $L^2(\Omega;\mathrm{Sym}^2(\R^d))$ by uniform ellipticity of $\cA$.
-		\item We have $a(v,v) = \|\varepsilon(v)\|_{\cA}^2$ and $\varepsilon$ is linear and bounded on $V$, i.e.\ if $v_j\hookrightarrow v$ in $V$, then $\varepsilon(v_j)\hookrightarrow\varepsilon(v)$ in $L^2(\Omega;\mathrm{Sym}^2(\R^d))$.
+		\item This defines a norm on $L^2(\Omega;\symd)$ by uniform ellipticity of $\cA$.
+		\item We have $a(v,v) = \|\varepsilon(v)\|_{\cA}^2$ and $\varepsilon$ is linear and bounded on $V$, i.e.\ if $v_j\hookrightarrow v$ in $V$, then $\varepsilon(v_j)\hookrightarrow\varepsilon(v)$ in $L^2(\Omega;\symd)$.
 		\item Since norms are w.l.s.c., we have
 		      \begin{equation*}
 			      a(v,v)=\|\varepsilon(v)\|_\cA^2
@@ -656,7 +660,7 @@
 		\item For $u = 0$: trivial. Thus, assume $u\neq 0$.
 		\item Recall: $a$ is $V$-elliptic with $a(u,u)\ge \alpha_\cA/C_K^2\,\|u\|_{1,\Omega}^2$ and $\ell$ is bounded with
 		      \begin{equation*}
-			      |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
+			      |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}.
 		      \end{equation*}
 		\item Finally,
 		      \begin{equation*}
@@ -675,7 +679,7 @@
 			\cJ^\prime(u)[v-u]\ge 0\qquad\forall\, v\in K.
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:}
+	\textbf{\em Proof:}$\ \Longrightarrow:$
 	\begin{itemize}
 		\item Let $u\in K$ minimize $\cJ$ over $K$ and let $v\in K$.
 		\item $K$ is convex and thus $u+t(v-u)\in K$ for all $t\in[0,1]$.
@@ -683,6 +687,7 @@
 		\item By chainrule, $\phi'(0^+)=\cJ'(u)[v-u]\ge 0$.
 	\end{itemize}
 \end{frame}
+
 \begin{frame}{Variational Inequality as an Optimality Condition}
 	\begin{itemize}
 		\item Let $u\in K$ such that  $\cJ^\prime(u)[v-u]\ge 0$ for all $v\in K$ and set $h:= v-u$.
@@ -741,9 +746,9 @@
 		\item We need equilibrium equation $-\diver \sigma(u) = f$ in $L^2(\Omega;\R^d)$.
 		\item In weak formulations $u\in K\subset H^1(\Omega;\R^d)$ and thus
 		      \begin{equation*}
-			      \varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d))
+			      \varepsilon(u)\in L^2(\Omega;\symd)
 			      \qquad\text{and}\qquad
-			      \sigma(u)=\mathcal A:\varepsilon(u)\in L^2(\Omega;\mathrm{Sym}^2(\R^d)).
+			      \sigma(u)=\mathcal A:\varepsilon(u)\in L^2(\Omega;\symd).
 		      \end{equation*}
 		\item This is enough for well-definedness of $a(u,v)$ but $\diver\sigma(u)\notin L^2(\Omega;\R^d)$ in general.
 		\item Thus, we assume $\sigma(u)\in H(\diver;\Omega)$.
@@ -919,7 +924,7 @@
 
 \begin{frame}{Normal/Tangential Splitting and Contact Trace Spaces}
 	\begin{itemize}
-		\item Dual Spaces $W^\prime_C,\, W_{C,\mathrm{n}},\,W_{C,t}$ and duality pairing $\langle\cdot,\,\cdot\rangle_{\Gamma_C}$.
+		\item Dual Spaces $W^\prime_C,\, W_{C,\mathrm{n}}^\prime,\,W_{C,t}^\prime$ and duality pairing $\langle\cdot,\,\cdot\rangle_{\Gamma_C}$.
 		\item Nonpenetration is incorporated in the space
 		      \begin{equation*}
 			      W_{C,\mathrm{n}}^-
@@ -960,6 +965,38 @@
 	\begin{itemize}
 		\item Assuming $|\Gamma_N|= 0$, this is equivalent to previous formulations.
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Classical Strong Formulation under Additional Regularity}
+	\begin{problem}[Signorini's Problem -- Classical Strong Formulation]
+	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$ find $u\in H^s(\Omega;\R^d)$ with $s>3/2$ such that the small strain elasticity equations
+	\begin{subequations}\label{eq:strong_classical}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			-\diver\sigma(u) &= f
+			&\qquad& \text{in }\Omega, \label{eq:strong_classical_bulk}\\
+			\sigma(u) &= \mathcal A:\varepsilon(u)
+			&\qquad& \text{in }\Omega, \label{eq:strong_classical_constitutive}\\
+			u &= 0
+			&\qquad& \text{on }\Gamma_D, \label{eq:strong_classical_dirichlet}\\
+			\sigma(u)\mathrm n &= F
+			&\qquad& \text{on }\Gamma_N, \label{eq:strong_classical_neumann}
+		\end{empheq}
+	\end{subequations}
+	and the contact conditions
+	\begin{subequations}\label{eq:strong_contact}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			u_\mathrm{n} &\le 0
+			&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_nonpen}\\
+			\sigma_\mathrm{n}(u) &\le 0
+			&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_sigma_n}\\
+			\sigma_\mathrm{n}(u)\,u_\mathrm{n} &= 0
+			&\qquad& \text{on }\Gamma_C, \label{eq:strong_contact_comp}\\
+			\sigma_t(u) &= 0
+			&\qquad& \text{on }\Gamma_C \label{eq:strong_contact_tangential}
+		\end{empheq}
+	\end{subequations}
+	hold.
+	\end{problem}
 \end{frame}
 
 

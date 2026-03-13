@@ -119,17 +119,19 @@
 \headcommand {\beamer@framepages {155}{157}}
 \headcommand {\slideentry {3}{3}{12}{158/160}{Strong Formulations}{0}}
 \headcommand {\beamer@framepages {158}{160}}
-\headcommand {\beamer@subsectionpages {124}{160}}
-\headcommand {\beamer@subsectionentry {0}{3}{4}{161}{Mixed Formulations}}
-\headcommand {\slideentry {3}{4}{1}{161/161}{Mixed Formulations}{0}}
+\headcommand {\slideentry {3}{3}{13}{161/161}{Strong Formulations}{0}}
 \headcommand {\beamer@framepages {161}{161}}
-\headcommand {\beamer@sectionpages {55}{161}}
-\headcommand {\beamer@subsectionpages {161}{161}}
-\headcommand {\sectionentry {4}{Further Topics}{162}{Further Topics}{0}}
-\headcommand {\slideentry {4}{0}{1}{162/162}{}{0}}
+\headcommand {\beamer@subsectionpages {124}{161}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{162}{Mixed Formulations}}
+\headcommand {\slideentry {3}{4}{1}{162/162}{Mixed Formulations}{0}}
 \headcommand {\beamer@framepages {162}{162}}
-\headcommand {\beamer@partpages {1}{162}}
+\headcommand {\beamer@sectionpages {55}{162}}
 \headcommand {\beamer@subsectionpages {162}{162}}
-\headcommand {\beamer@sectionpages {162}{162}}
-\headcommand {\beamer@documentpages {162}}
-\headcommand {\gdef \inserttotalframenumber {51}}
+\headcommand {\sectionentry {4}{Further Topics}{163}{Further Topics}{0}}
+\headcommand {\slideentry {4}{0}{1}{163/163}{}{0}}
+\headcommand {\beamer@framepages {163}{163}}
+\headcommand {\beamer@partpages {1}{163}}
+\headcommand {\beamer@subsectionpages {163}{163}}
+\headcommand {\beamer@sectionpages {163}{163}}
+\headcommand {\beamer@documentpages {163}}
+\headcommand {\gdef \inserttotalframenumber {52}}
