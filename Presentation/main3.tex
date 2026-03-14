@@ -1,6 +1,5 @@
-%%%%%%%%%% Additional Regularity on \cA such that \varepsilon(u)\in H^{s-1}(\Omega;\S^d).
-%%%%%%%%%% |\Gamma_N|= 0 => W_C = H_00 => KKT
-%%%%%%%%%% 
+%%%%%%%%% Do we need \sigma(u)\in H(\diver;\Omega) for hybrid formulation????
+%%%%%%%%% main4.tex: Not deep on \cA. Not deep on constants. No proofs in weak forms. No second strong formulation. No W_C.
 
 \documentclass[10pt,aspectratio=169]{beamer}
 
@@ -277,61 +276,6 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Weak Formulations}
-
-\begin{frame}{Basic Notations on Sobolev Spaces}
-	\begin{itemize}
-		\item The standard product/norm on $H^k(\Omega;\R^d),\, k\in N_0$ is denoted by $(\cdot,\,\cdot)_{k,\Omega}$ and $\|\cdot\|_{k,\Omega}$.
-		\item $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$.
-		\item On $H^s(\Omega;\R^d)$ for $s =k+\theta$ with $k\in \N_0$ and $\theta\in(0,1)$, we use $(\cdot,\,\cdot)_{s,\Omega}$ and $\|\cdot\|_{s,\Omega}$
-		\item {\em Trace Theorem}: Restriction of smooth functions $\overline{\Omega}\to\R^d$ onto the boundary $\Gamma = \partial\Omega\in\cC^{m,1}$ extends uniquely to a continuous surjective linear trace operator
-		      \begin{equation*}
-			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s<m+1.
-		      \end{equation*}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Admissible Displacements and the Nonpenetration Constraint}
-	\begin{itemize}
-		\item {\em Homogeneous Dirichlet} boundary conditions on $\Gamma_D$ are incorporated in the underlying Hilbert space
-		      \begin{equation*}
-			      V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; (\gamma v)|_{\Gamma_D}=0\right\}\subset H^1(\Omega;\R^d).
-		      \end{equation*}
-		\item {\em Outward normal}: $\ \mathrm{n}\in L^\infty(\Gamma;\R^d)$.
-		\item {\em Normal Component}: $\ u_\mathrm{n}:= (\gamma u)\cdot \mathrm{n},\qquad u\in V$
-		\item {\em Nonpenetration constraint}:
-		      \begin{equation*}
-			      u_\mathrm{n}\le g = 0\qquad\text{a.e. on }\Gamma_C
-		      \end{equation*}
-		\item Set of {\em admissible displacements}:
-		      \begin{equation*}
-			      K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}\subset V.
-		      \end{equation*}
-		\item $K$ is closed and convex in $V$.
-		\item $K$ is a {\em cone}, i.e.\ if $v\in K$ then $\lambda v\in K$ for all $\lambda\in [0,\infty)$.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Energy Minimization}
-	\begin{itemize}
-		\item {\em Equilibrium}:
-		      \begin{equation*}
-			      a(u,v) = \int_\Omega \sigma(u):\varepsilon(v)\;\dx = \int_\Omega f\cdot v\;\dx +\int_{\Gamma_N} F\cdot(\gamma v)\;\ds,\qquad \forall\, v\in V
-		      \end{equation*}
-		\item The {\em potential energy} of the elastic body is given by the quadratic functional
-		      \begin{equation*}
-			      \cJ(v):= \frac{1}{2}a(v,v)-\ell(v),\qquad v\in V.
-		      \end{equation*}
-		\item {\em Nonpenetration}: Minimize $\cJ(v)$ over all {\em admissible} displacements $v\in K$.
-	\end{itemize}
-
-	\begin{problem}[Signorini's Problem -- Energy Minimization]
-	\begin{equation*}
-		\text{Find }u\in K\text{ such that:}\qquad u\in \argmin_{v\in K}\cJ(v)
-	\end{equation*}
-	\end{problem}
-\end{frame}
-
 \begin{frame}{Standard Properties of $a$ and $\ell$}
 	\begin{proposition}
 		The symmetric bilinear form $a:V\times V\to \R$ defined above is
@@ -352,147 +296,81 @@
 	\end{proposition}
 \end{frame}
 
-\begin{frame}{Existence of Minimizer}
-	\begin{lemma}[$\cJ$ is Coercive and w.l.s.c. on $V$]
-		\begin{itemize}
-			\item[i)] $\cJ$ is {\em coercive} on $V$, i.e.\ $\cJ(v)\to \infty$ as $\|v\|_{1,\Omega}\to\infty$.
-			\item[ii)] $\cJ$ is {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
-			      \begin{equation*}
-				      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
-			      \end{equation*}
-		\end{itemize}
-	\end{lemma}
-	\textbf{\em Proof: }
+\subsection{Energy Minimization}
+
+\begin{frame}{Basic Notations on Sobolev Spaces}
 	\begin{itemize}
-		\item By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\|v\|_{1,\Omega}$. Hence
+		\item On $H^s(\Omega;\R^d)$ for $s =k+\theta$ with $k\in \N_0$ and $\theta\in[0,1)$, we use $(\cdot,\,\cdot)_{s,\Omega}$ and $\|\cdot\|_{s,\Omega}$
+		\item $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$.
+		\item {\em Trace Theorem}: Restriction of smooth functions $\overline{\Omega}\to\R^d$ onto the boundary $\Gamma = \partial\Omega\in\cC^{m,1}$ extends uniquely to a continuous surjective linear trace operator
 		      \begin{equation*}
-			      \cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
-			      \ge \frac{\alpha}{2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}
-			      \xrightarrow{ \ \|v\|_{1,\Omega}\to\infty \ }\infty.
+			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s<=m+1.
+		      \end{equation*}
+		\item For now, $\Omega$ is Lipschitz, i.e.\ $m=0$ and we need $s = 1$, so
+		      \begin{equation*}
+			      \gamma: H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Existence of Minimizer}
-	\begin{lemma}[$\cJ$ is Coercive and w.l.s.c. on $V$]
-		\begin{itemize}
-			\item[i)] $\cJ$ is {\em coercive} on $V$, i.e.\ $\cJ(v)\to \infty$ as $\|v\|_{1,\Omega}\to\infty$.
-			\item[ii)] $\cJ$ is {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
-			      \begin{equation*}
-				      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
-			      \end{equation*}
-		\end{itemize}
-	\end{lemma}
-	\begin{lemma}[W.l.s.c. of Norms]
-		Let $(X,\|\cdot\|_X)$ be a normed space. Then $\|\cdot\|_X:X\to \R_{\ge 0}$ is a weakly lower semicontinuous functional, i.e.\ if $x_j\rightharpoonup x$ in $X$, then
-		\begin{equation*}
-			\|x\|_X \le \liminf_{j\to\infty}\|x_j\|_X.
-		\end{equation*}
-	\end{lemma}
-\end{frame}
-
-\begin{frame}{Existence of Minimizer}
-	\begin{lemma}[$\cJ$ is Coercive and w.l.s.c. on $V$]
-		\begin{itemize}
-			\item[i)] $\cJ$ is {\em coercive} on $V$, i.e.\ $\cJ(v)\to \infty$ as $\|v\|_{1,\Omega}\to\infty$.
-			\item[ii)] $\cJ$ is {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
-			      \begin{equation*}
-				      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
-			      \end{equation*}
-		\end{itemize}
-	\end{lemma}
-	\textbf{\em Proof: }
+\begin{frame}{Admissible Displacements and the Nonpenetration Constraint}
 	\begin{itemize}
-		\item On $L^2(\Omega;\S^d)$, we define the norm
+		\item {\em Homogeneous Dirichlet} boundary conditions on $\Gamma_D$ are incorporated in the underlying Hilbert space
 		      \begin{equation*}
-			      \|s\|_\cA^2:= \int_\Omega s:\cA:s\;\dx,\qquad s\in L^2(\Omega;\S^d).
+			      V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; (\gamma v)|_{\Gamma_D}=0\right\}
 		      \end{equation*}
-		\item We have $a(v,v) = \|\varepsilon(v)\|_\cA^2$.
-		\item Since $\varepsilon$ is linear and bounded, we have $\varepsilon(v_j)\rightharpoonup\varepsilon(v)$ in $L^2(\Omega;\S^d)$.
+		\item {\em Normal Component}: For $v\in V$, we define its {\em normal component} by $v_\mathrm{n}:= (\gamma u)\cdot \mathrm{n}$ with the {\em outward normal} $\mathrm{n}\in L^\infty(\Gamma;\R^d)$.
+		\item {\em Nonpenetration constraint}: $u_\mathrm{n}\le g = 0$ almost everywhere on $\Gamma_C$.
+		\item Set of {\em admissible displacements}: $K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}$.
+		\item $K$ is a closed and convex {\em cone} in $V$, i.e.\ if $v\in K$ then $\lambda v\in K$ for all $\lambda\in [0,\infty)$.
 	\end{itemize}
+	\begin{figure}[!h]
+		\centering
+		\input{Figures/setup_initial_normal.tex}
+	\end{figure}
 \end{frame}
 
-\begin{frame}{Existence of Minimizer}
-	\begin{lemma}[$\cJ$ is Coercive and w.l.s.c. on $V$]
-		\begin{itemize}
-			\item[i)] $\cJ$ is {\em coercive} on $V$, i.e.\ $\cJ(v)\to \infty$ as $\|v\|_{1,\Omega}\to\infty$.
-			\item[ii)] $\cJ$ is {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
-			      \begin{equation*}
-				      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
-			      \end{equation*}
-		\end{itemize}
-	\end{lemma}
-	\textbf{\em Proof: }
+\begin{frame}{Energy Minimization}
 	\begin{itemize}
-		\item Since norms are w.l.s.c., we have
+		\item {\em Equilibrium}:
 		      \begin{equation*}
-			      a(v,v)=\|\varepsilon(v)\|_\cA^2
-			      \le \liminf_{j\to\infty}\|\varepsilon(v_j)\|_\cA^2
-			      = \liminf_{j\to\infty} a(v_j,v_j).
+			      a(u,v) = \int_\Omega \sigma(u):\varepsilon(v)\;\dx = \int_\Omega f\cdot v\;\dx +\int_{\Gamma_N} F\cdot(\gamma v)\;\ds = \ell(v)\qquad \forall\, v\in V
 		      \end{equation*}
-		\item $\ell\in V^\prime$ and thus $\ell(v_j)\to\ell(v)$.
-		\item Therefore,
+		\item The {\em potential energy} of the elastic body is given by the quadratic functional
 		      \begin{equation*}
-			      \cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
-			      \le \frac{1}{2}\,\liminf_{j\to\infty} a(v_j,v_j) - \lim_{j\to\infty}\ell(v_j)
-			      = \liminf_{j\to\infty}\cJ(v_j).
-		      \end{equation*}\qed
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Existence of Minimizer}
-	\begin{proposition}[Existence of Minimizer of $\cJ$]
-		The functional $\cJ$ has at least one minimizer $u\in K$.
-	\end{proposition}
-	\textbf{\em Proof:}
-	\begin{itemize}
-		\item Set
-		      \begin{equation*}
-			      M := \inf_{v\in K}\cJ(v)\in[-\infty,\infty).
+			      \cJ(v):= \frac{1}{2}a(v,v)-\ell(v),\qquad v\in V.
 		      \end{equation*}
-		\item Since $0\in K$ we have $M\le \cJ(0)=0$, hence $M$ is finite from above.
-		\item Let $\{v_j\}_{j\in\N}\subset K$ such that $\cJ(v_j)\to M$ as $j\to\infty$.
-		\item $\{v_j\}_{j\in\N}\subset K$ is bounded since $\cJ$ is coercive.
-		\item Since $V$ is Hilbert space there exists subsequence $\{v_{j_k}\}_{k\in\N}$ and some $u\in V$ such that $v_{j_k} \rightharpoonup u$ in $V$.
-		\item $u\in K$ since $K$ is (weakly) closed.
-		\item By w.l.s.c. of $\cJ$, $u\in K$ is minimizer of $\cJ$ because
-		      \begin{equation*}
-			      \cJ(u)\le \liminf_{k\to\infty}\cJ(v_{j_k})=M=\inf_{v\in K}\cJ(v).
-		      \end{equation*}\eop
+		\item {\em Nonpenetration}: Minimize $\cJ(v)$ over all {\em admissible} displacements $v\in K$.
 	\end{itemize}
+
+	\begin{problem}[Signorini's Problem -- Energy Minimization]
+	\begin{equation*}
+		\text{Find }u\in K\text{ such that:}\qquad \cJ(u) = \min_{v\in K}\cJ(v).
+	\end{equation*}
+	\end{problem}
 \end{frame}
 
-\begin{frame}{Uniqueness of Minimizer}
-	\begin{proposition}[Uniqueness of a Minimizer of $\cJ$]
-		If there exists a minimizer of the functional $\cJ$, it is unique.
-	\end{proposition}
-	\textbf{\em Proof: }
-	\begin{itemize}
-		\item $\cJ$ is strictly convex on $V$ and thus on the convex set $K$. Thus, a minimizer $u\in K$ is unique.\eop
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{A-Priori Stability Bound}
-	\begin{proposition}[Stability estimate for the minimizer]
-		The Unique minimizer $u\in K$ of $\cJ$ satisfies the a-priori bound
+\begin{frame}{Well-Posedness}
+	\begin{proposition}[Well-Posedness of Signorini's Problem]
+		There exists exactly one $u\in K$ that minimizes $\cJ$ over $K$. Moreover, the unique minimizer satisfies the a-priori bound
 		\begin{equation*}
 			\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\cA}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:}
+	\textbf{\em Proof sketch:}
 	\begin{itemize}
-		\item Since $u\in K$ is the unique minimizer, we have $\cJ(u)\le\cJ(0) = 0$ and thus $\tfrac12a(u,u)\le \ell(u)$.
-		\item For $u = 0$: trivial. Thus, assume $u\neq 0$.
-		\item Recall: $a$ is $V$-elliptic with $a(u,u)\ge \alpha_\cA/C_K^2\,\|u\|_{1,\Omega}^2$ and $\ell$ is bounded with
+		\item Prove that $\cJ$ is {\em coercive}, i.e.\ $\cJ(v)\to\infty$ as $\|v\|_{1,\Omega}\to 0$.
+		\item Prove that $\cJ$ is {\em weakly lower semicontinuous}, i.e.\ if $v_j \rightharpoonup v$ in $V$ then
 		      \begin{equation*}
-			      |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}.
+			      \cJ(v)\le\liminf_{j\to\infty}\cJ(v_j).
 		      \end{equation*}
-		\item Finally,
-		      \begin{equation*}
-			      \frac{\alpha_\cA}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega}.
-		      \end{equation*}\eop
+		\item Follow existence of minimizers in $K$.
+		\item Prove that $\cJ$ is strictly convex on the convex set $K$ and follow uniqueness.
+		\item Stability bound follows from $V$-ellipticity of $a$ and boundedness of $\ell$.
 	\end{itemize}
 \end{frame}
+
+\subsection{Weak Formulations}
 
 \begin{frame}{Variational Inequality as an Optimality Condition}
 	\begin{proposition}[First-order optimality condition on convex sets]
@@ -530,62 +408,59 @@
 \end{frame}
 
 \begin{frame}{Weak Formulations / Variational Inequality}
+	\vfill
 	\begin{problem}[Signorini's Problem -- Weak Formulation 1]
 	\begin{equation*}
 		\text{Find }u\in K\text{ such that:}\qquad a(u,v-u)\ge \ell(v-u)\qquad \forall\, v\in K.
 	\end{equation*}
 	\end{problem}
-
+	\vfill
 	\begin{problem}[Signorini's Problem -- Weak Formulation 2]
-	Find $u\in K$ such that
 	\begin{equation*}
+		\text{Find }u\in K\text{ such that:}\qquad
 		\begin{cases}
 			a(u,u) = \ell(u), &                   \\[2pt]
 			a(u,v)\ge \ell(v) & \forall\, v\in K.
 		\end{cases}
 	\end{equation*}
 	\end{problem}
+	\vfill
 \end{frame}
 
 \subsection{Strong Formulations}
 
 \subsubsection{A Hybrid Formulation}
 
-\begin{frame}{Normal Traces and Boundary Tractions}
+\begin{frame}{Additional Stress Regularity}
 	\begin{itemize}
-		\item For $v\in H^1(\Omega;\R^d)$, we have $\gamma v\in H^{1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d)$.
+		\item \textbf{\em Goal}: We need a concept of normal traces $\sigma(u)\mathrm{n}$ for the stress $\sigma(u)$.
+		\item For displacements $v\in H^1(\Omega;\R^d)$, we have $\gamma v\in H^{1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d)$.
 		\item Therefore $v_\mathrm{n} = (\gamma v)\cdot \mathrm{n} \in L^2(\Gamma;\R)$.
-		\item For our $u\in V$, we have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ trace theorem does not apply to $\sigma(u)$.
-		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $\gamma\sigma(u)\in L^2(\Gamma;S^d)$ and $(\gamma\sigma(u))\cdot\mathrm{n}\in L^2(\Gamma;\R^d)$.
+		\item For our $u\in V$, we have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ the earlier trace theorem does not apply to $\sigma(u)$.
+		\item Wee need an additional assumption on the Regularity of $\sigma(u)$.
+		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $\gamma\sigma(u)\in L^2(\Gamma;S^d)$ and $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$.
 		\item This assumptions is much stronger than needed!
-		\item In strong formulations, we need an equilibrium equation $-\diver \sigma(u) = f$ in $L^2(\Omega;\R^d)$.
-		\item Therefore, we assume $\sigma(u)\in H(\diver;\Omega)$, where
+		\item Instead, we assume $\sigma(u)\in H(\diver;\Omega)$, where
 		      \begin{equation*}
 			      H(\diver;\Omega):= \left\{\tau\in L^2(\Omega;\S^d)\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
 		      \end{equation*}
 		      where $\diver \tau$ is understood row-wise in the weak sense.
+		\item Then $\diver\sigma(u)\in L^2(\Omega;\R^d)$, which is needed for strong equilibrium equations $-\diver\sigma(u) = f$ with $L^2$-source terms $f$.
 		\item Normal traces on $H(\diver;\Omega)$ are understood as follows.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Normal Traces and Boundary Tractions}
+\begin{frame}{Normal Traces on $H(\diver;\Omega)$}
 	\begin{itemize}
-		\item We denote by $H^{-1/2}(\Gamma;\R^d)$ the dual space of $H^{1/2}(\Gamma;\R^d)$.
-		\item On $H(\diver;\Omega)$, we define a normal trace $\gamma_{\mathrm n}(\tau)\in H^{-1/2}(\Gamma;\R^d)$ via integration by parts.
-		\item For smooth $\tau$, Green's identity identifies the traction $\tau\,\mathrm n$ through its boundary work:
+		\item We denote by $H^{-1/2}(\Gamma;\R^d)$ the dual space of $H^{1/2}(\Gamma;\R^d)$ with duality pairing $\langle\cdot,\,\cdot\rangle_\Gamma$.
+		\item For smooth $\tau:\overline{\Omega}\to\S^d$, {\em Green's identity} is
 		      \begin{equation*}
-			      \int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx
-			      =
-			      \int_\Gamma (\tau\,\mathrm n)\cdot (\gamma v)\;\ds,
+			      \int_\Gamma (\tau\,\mathrm n)\cdot (\gamma v)\;\ds = \underbrace{\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx}_{:= F_\tau(v)}
 		      \end{equation*}
-		      i.e.\ only via testing against $\gamma v$.
-		\item The left-hand side remains well-defined for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$.
-		\item Define the functional
-		      \begin{equation*}
-			      F_\tau(v):=\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx,
-			      \qquad v\in H^1(\Omega;\R^d).
-		      \end{equation*}
-		\item $F_\tau$ depends only on the trace $\gamma v$, since it vanishes on $H^1_0(\Omega;\R^d)$.
+		      for all smooth $v:\overline{\Omega}\to\S^d$.
+		\item This means $\tau\,\mathrm{n}$ is defined in a weak sense via Green's identity.
+		\item $F_\tau(v)$ is still well-defined for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$.
+		\item $F_\tau$ depends only on the trace $\gamma v$ and not on $v$ itself, since it vanishes on $H_0^1(\Omega;\R^d)$.
 		\item Therefore, $F_\tau$ induces a continuous linear functional on $H^{1/2}(\Gamma;\R^d)$:
 		      \begin{equation*}
 			      \langle \gamma_{\mathrm n}(\tau),\,\gamma v\rangle_\Gamma := F_\tau(v),
@@ -597,8 +472,7 @@
 
 \begin{frame}{Stress Regularity Assumption}
 	\begin{itemize}
-		\item Thus, we further assume $\sigma(u)\in H(\diver;\Omega)$.
-		\item {\em Boundary Traction}: $\ \sigma(u)\mathrm{n}:= \gamma_\mathrm{n}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$.
+		\item Thus, we further assume $\sigma(u)\in H(\diver;\Omega)$ which yields $\sigma(u)\mathrm{n}:= \gamma_\mathrm{n}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$.
 		\item Since $\sigma(u)$ is symmetric, we have
 		      \begin{equation*}
 			      \sigma(u):\nabla v = \sigma(u):\varepsilon(v) \qquad\forall\, v\in V.
@@ -613,7 +487,7 @@
 			      \qquad
 			      \forall\, v\in V.
 		      \end{equation*}
-		\item {\em Useful identity}:
+		\item {\em Useful identity}: If $-\diver \sigma(u) = f$ almost everywhere in $\Omega$, then
 		      \begin{equation*}
 			      a(u,v)-\ell(v) = \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma-\int_{\Gamma_N} F\cdot (\gamma v)\;\ds,\qquad \forall\, v\in V.
 		      \end{equation*}
@@ -732,7 +606,7 @@
 		      \begin{equation*}
 			      H^{s-1/2}(\Gamma_0;\R^m)
 			      :=
-			      \left\{g:\Gamma_0\to \R^m\;\middle|\;\exists\,\widetilde g\in H^{s-1/2}(\Gamma;\R^m)\text{\em\enspace with }\widetilde g|_{\Gamma_0}=g\right\}.
+			      \left\{g:\Gamma_0\to \R^m\;\middle|\;\exists\,\widetilde g\in H^{s-1/2}(\Gamma;\R^m)\text{ with }\widetilde g|_{\Gamma_0}=g\right\}.
 		      \end{equation*}
 		\item Moreover, we define
 		      \begin{equation*}
@@ -789,10 +663,13 @@
 		      where $\mathrm{Ext}_0 (g)$ denotes the zero extension of $g$ from $\Gamma_0$ to $\Gamma$.
 		\item If $|\Gamma_N|>0$, we have $H_{00}^{1/2}(\Gamma_C;\R^d)\subset W_C$ and if $|\Gamma_N|=0$, it is $W_C = H_{00}^{1/2}(\Gamma_C;\R^d)$.
 		\item Lets assume $|\Gamma_N|=0$.
-		\item Then the normal trace of $\tau\in H(\diver;\Omega)$ on $\Gamma_C$ is the unique element $\gamma_{\mathrm{n},C}\in W_C^\prime$ given by $\langle \gamma_{\mathrm{n},C}(\tau),\,g\rangle_{\Gamma_C}$.
+		\item Then the normal trace of $\sigma(u)\in H(\diver;\Omega)$ on $\Gamma_C$ is the unique element $\gamma_{\mathrm{n},C}(\sigma(u))\in W_C^\prime$ given by
+		      \begin{equation*}
+			      \langle \gamma_{\mathrm{n},C}(\sigma(u)),\,g\rangle_{\Gamma_C} = \langle \gamma_\mathrm{n}(\sigma(u)),\, \mathrm{Ext}_0(g)\rangle_\Gamma.
+		      \end{equation*}
 		\item For the stress $\sigma(u)\in H(\diver;\Omega)$, we denote
 		      \begin{equation*}
-			      \gamma_{\mathrm{n},C}(\sigma(u)) = \sigma(u)\mathrm{n} = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)\in W_{C,\mathrm{n}}^\prime\oplus W^\prime_{C,t}.
+			      \sigma(u)\mathrm{n}|_{\Gamma_C}:=\gamma_{\mathrm{n},C}(\sigma(u)) = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)\in W_{C,\mathrm{n}}^\prime\oplus W^\prime_{C,t}.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -821,24 +698,47 @@
 \end{frame}
 
 
-\subsubsection{Classical Strong Formulation under Additional Regularity}
+\subsubsection{Classical Strong Formulation under Additional Displacement Regularity}
 
-\begin{frame}
-
+\begin{frame}{Additional Regularity Assumptions and their Consequences}
+	\begin{itemize}
+		\item \textbf{\em Goal:} Formulate classical traces for the stress $\sigma(u)$.
+		\item Previously, $u\in V\subset H^1(\Omega;\R^d)$
+		\item In the classical strong formulation, we assume $u\in H^s(\Omega;\R^d)$ with $s>3/2$.
+		\item With $ \varepsilon(u)= \tfrac{1}{2}\left(\nabla u + \nabla u^\top\right)$, the small strain tensor is an operator $\varepsilon: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$
+		\item We further need the elasticity tensor field $\cA:\Omega\to\cL(\S^d;\S^d)$ to be {\em sufficiently} regular (e.g.\ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega;\R)$ if $3/2<s\le 2$).
+		\item With $\sigma(u) = \cA : \varepsilon(u)$., the stress tensor is now an operator $\sigma: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$.
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Classical Strong Formulation under Additional Regularity}
+\begin{frame}{Additional Regularity Assumptions and their Consequences}
+	\begin{itemize}
+		\item To apply the trace theorem on $\sigma(u)$, we further need the assumption $\Gamma\in \cC^{m,1}$ with $m\ge \lceil s-1\rceil$.
+		\item Then, by the trace theorem, $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$.
+		\item Since $\Gamma\in \mathcal C^{m,1}$, the unit outward normal satisfies $n\in \mathcal C^{m-1,1}(\Gamma;\R^d)$.
+		\item Hence the traction $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
+		\item Its normal and tangential components are given by
+		      \begin{equation*}
+			      \sigma_n(u):=t(u)\cdot n\in H^{s-3/2}(\Gamma;\R),
+			      \qquad
+			      \sigma_t(u):=t(u)-\sigma_n(u)\,n\in H^{s-3/2}(\Gamma;\R^d).
+		      \end{equation*}
+		\item Furthermore, for $u\in H^{s}(\Omega;\R^d)$ we have $\gamma u\in (H^{s-1/2}(\Gamma;\R^d))$ with normal/tangential splitting
+		      \begin{equation*}
+			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma;\R)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+\begin{frame}{Classical Strong Formulation under Additional Displacement Regularity}
 	\begin{problem}[Signorini's Problem -- Classical Strong Formulation]
 	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$ find $u\in H^s(\Omega;\R^d)$ with $s>3/2$ such that the {\em small strain elasticity equations}
 	\begin{subequations}\label{eq:strong_classical}
 		\begin{empheq}[left=\empheqlbrace]{alignat=2}
 			-\diver\sigma(u) &= f
 			&\qquad& \text{in }\Omega, \label{eq:strong_classical_bulk}\\
-			\sigma(u) &= \mathcal A:\varepsilon(u)
-			&\qquad& \text{in }\Omega, \label{eq:strong_classical_constitutive}\\
 			u &= 0
 			&\qquad& \text{on }\Gamma_D, \label{eq:strong_classical_dirichlet}\\
-			\sigma(u)\mathrm n &= F
+			t(u) &= F
 			&\qquad& \text{on }\Gamma_N, \label{eq:strong_classical_neumann}
 		\end{empheq}
 	\end{subequations}
@@ -858,5 +758,123 @@
 	hold.
 	\end{problem}
 \end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:}{\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid}:
+	\begin{problem}[Signorini's Problem -- Hybrid Formulation]
+	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
+	\begin{subequations}\label{eq:hybrid2}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			-\diver\sigma(u) &= f
+			&\qquad& \text{a.e.\ in }\Omega, \label{eq:hybrid_bulk2}\\
+			\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+			&= \mathrlap{\int_{\Gamma_N} F\cdot (\gamma u)\;\ds,}
+			&& \label{eq:hybrid_eq2}\\
+			\langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			&\ge \int_{\Gamma_N} F\cdot (\gamma v)\;\ds
+			&\qquad& \forall\, v\in K.
+			\label{eq:hybrid_ineq2}
+		\end{empheq}
+	\end{subequations}
+	\end{problem}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Bulk equation and $u\in K$ and $\sigma(u)\in H(\diver;\Omega)$):}
+	\begin{itemize}
+		\item Bulk Equation $-\diver \sigma(u) = f$ appears in both.
+		\item $u = 0$ on $\Gamma_D$ \eqref{eq:strong_classical_dirichlet} and $u_\mathrm{n}\le 0$ on $\Gamma_C$ \eqref{eq:strong_contact_nonpen} are incorporated in the requirement $u\in K$.
+		\item Since $u\in H^s(\Omega;\R^d)$ with $s>3/2$, we have
+		      \begin{equation*}
+			      \sigma(u)\in H^{s-1}(\Omega;\S^d)\subset L^2(\Omega;\S^d).
+		      \end{equation*}
+		\item Since $f\in L^2(\Omega;\R^d)$ and $-\diver\sigma(u) = f$, we have
+		      \begin{equation*}
+			      \diver\sigma(u)\in L^2(\Omega;\R^d).
+		      \end{equation*}
+		\item This means, $\sigma(u)\in H(\diver;\Omega)$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
+	\begin{itemize}
+		\item We want to show
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			      =
+			      \int_\Omega \sigma(u):\varepsilon(v)\;\dx
+			      +
+			      \int_\Omega \diver\sigma(u)\cdot v\;\dx\ge \int_\Omega F\cdot(\gamma v)\;\ds
+			      \qquad
+			      \forall\, v\in K.
+		      \end{equation*}
+		\item Here, $\sigma(u)\mathrm{n}\in H^{-1/2}(\Gamma;\R^d)$ as before since $\sigma(u)\in H(\diver;\Omega)$ still holds.
+		\item Now, $t(u):= (\gamma\sigma(u))\mathrm{n}\in H^{s-3/2}(\Gamma;\R^d)$ is smooth enough for both concepts to coincide:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle_\Gamma = \int_\Gamma t(u)\cdot(\gamma v)\;\ds\qquad \forall v\in V.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
+	\begin{itemize}
+		\item We decompose
+		      \begin{equation*}
+			      \int_\Gamma t(u)\cdot(\gamma v)\;\ds =\underbrace{\int_{\Gamma_D} t(u)\cdot(\gamma v)\;\ds}_{=0\text{ since } \gamma v= 0 \text{ on }\Gamma_D}+\int_{\Gamma_N} \underbrace{t(u)}_{= F\text{ on }\Gamma_C}\cdot(\gamma v)\;\ds+\int_{\Gamma_C} t(u)\cdot(\gamma v)\;\ds.
+		      \end{equation*}
+		\item With $t(u) = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\gamma v = v_\mathrm{n}\,\mathrm{n}+v_t$, we have
+		      \begin{equation*}
+			      t(u)\cdot(\gamma v) = \sigma_\mathrm{n}(u)\,v_\mathrm{n}+\underbrace{\sigma_t(u)\cdot v_t}_{=0\text{ on }\Gamma_C \text{ since }\sigma_t(u)=0\text{ on }\Gamma_C}.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
+	\begin{itemize}
+		\item In total:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			      = \int_{\Gamma_N}F\cdot(\gamma v)\;\ds + \int_{\Gamma_C} \sigma_\mathrm{n}(u)\, v_\mathrm{n}\;\ds
+		      \end{equation*}
+		\item Since $v\in K$, we have $v_\mathrm{n}\le 0$ on $\Gamma_C$ and by \eqref{eq:strong_contact_sigma_n}, we have $\sigma_\mathrm{n}(u)\le 0$ on $\Gamma_C$.
+		\item Thus $\sigma_\mathrm{n}(u)\, v_\mathrm{n}\ge 0$ on $\Gamma_C$ and thus
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
+			      \ge \int_{\Gamma_N}F\cdot(\gamma v)\;\ds\qquad \forall\, v\in V.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Equality):}
+	\begin{itemize}
+		\item Same as before but with $v = u$.
+		\item This is
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
+			      = \int_{\Gamma_N}F\cdot(\gamma u)\;\ds + \underbrace{\int_{\Gamma_C} \sigma_\mathrm{n}(u)\, u_\mathrm{n}\;\ds}_{=0\text{ since }\sigma_\mathrm{n}(u)\, u_\mathrm{n}=0\text{ on }\Gamma_C}.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
 
 \end{document}
