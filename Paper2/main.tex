@@ -1,0 +1,39 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{MyPackages}
+\usepackage{MyShortcuts}
+
+\begin{document}
+
+% Title and Table of Contents
+\title{Signorini's Problem}
+\author{Max Stuthmann}
+\date{\today}
+\maketitle
+\tableofcontents
+
+% Sections
+\input{Sections/0_Abstract.tex}
+\newpage
+\input{Sections/1_Introduction.tex}
+\newpage
+\input{Sections/2_Energy.tex}
+\newpage
+\input{Sections/3_Weak.tex}
+\newpage
+\input{Sections/4_Strong.tex}
+\newpage
+\input{Sections/5_Mixed.tex}
+\newpage
+\input{Sections/6_Outlook.tex}
+
+% Appendix
+\newpage
+\renewcommand{\thesection}{\Alph{section}}
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\setcounter{section}{0}
+\bibliographystyle{plain}
+\bibliography{Literature}
+\listoffigures
+
+\end{document}

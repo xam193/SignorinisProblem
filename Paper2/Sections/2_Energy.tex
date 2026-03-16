@@ -1,0 +1,180 @@
+\section{Energy Minimization and Well-Posedness}
+
+As states earlier in Section \ref{sec:elastforce}, equilibrium between the virtual work of internal and external forces suggest to look for $u\in H^1(\Omega;\R^d)$ such that $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$. Here, only the Neumann conditions are imposed. Thus, a restriction on $V$, which imposes the homogeneous Dirichlet boundary conditions on $\Gamma_D$ and further a restriction on the closed, convex cone $K$ of displacements $v\in V$ that fullfil the nonpenetration condition on $\Gamma_C$, is reasonable. Naturally, this yields the quadratic functional
+\begin{equation}\label{eq:energyfunc}
+	\cJ(v):= \frac{1}{2}a(v,v)-\ell(v) = \frac{1}{2}\int_\Omega \sigma(v):\varepsilon(v)\;\dx -\left[\int_\Omega f\cdot v\;\dx + \int_{\Gamma_N}F\cdot (\gamma v)\;\ds\right]
+\end{equation}
+on $V$ describing the {\em potential energy} of the elastic body to be minimized over $K\subset V$ to minimize the difference between $a(u,v)$ and $\ell(v)$ for all $v\in V$ under the nonpenetration constraint. This is already the first formulation of Signorini's problem as the minimization problem of $\cJ$ over $K$.
+
+\begin{problem}[Signorini's Problem -- Energy Minimization]\label{pr:signorini1}
+\begin{equation*}
+	\text{\em Find }u\in K\text{\em\enspace such that:}\qquad u\in \argmin_{v\in K}\cJ(v).
+\end{equation*}
+\end{problem}
+
+Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ over $K$. The reason for this is the lack of evidence so far of the problem's well-posedness, which includes existence and uniqueness of a minimizer and stability in the sense of a continuous dependence on the given data. Thus, we now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Every formulation of Signorini's problem, which is proven to be equivalent to the above formulation is then also proven to be well-posed. We start by the uniqueness, which follows directly by the standard arguments of strict convexity of $\cJ$ and the convexity of $K$. The latter was already proven in Proposition \ref{pr:K}.
+
+\begin{lemma}[Strict Convexity of $\cJ$]\label{lem:Jconvex}
+	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex.
+\end{lemma}
+\begin{proof}
+	For $u,v\in V$ and $t\in[0,1]$, we set $w_t:=(1-t)u+tv$. Then
+	\begin{equation*}
+		a(w_t,w_t) = (1-t)a(u,u)+ta(v,v)-t(1-t)a(u-v,u-v)
+	\end{equation*}
+	and
+	\begin{equation*}
+		\ell(w_t) = (1-t)\ell(u)+t\ell(v).
+	\end{equation*}
+	Together, we have
+	\begin{equation*}
+		\cJ(w_t) = (1-t)\cJ(u)+t\cJ(v)-\frac{1}{2}\,t(1-t)a(u-v,u-v).
+	\end{equation*}
+	If $u\neq v$ then $u-v\neq 0$ and thus by $V$-ellipticity of $a$ we have $a(u-v,u-v)>0$ and $t(1-t)>0$. This implies
+	\begin{equation*}
+		\cJ(w_t)<(1-t)\cJ(u)+t\cJ(v).
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}[Uniqueness of Minimizer of $\cJ$]\label{pr:Junique}
+	If there exists a minimizer of the functional $\cJ$ defined in \eqref{eq:energyfunc}, then it is unique.
+\end{proposition}
+\begin{proof}
+	Assume that there exist two minimizers $u_1,u_2\in K$ of $\cJ$ on $K$, i.e.
+	\begin{equation}\label{eq:u1u2min}
+		\cJ(u_1)=\min_{v\in K}\cJ(v)=\cJ(u_2).
+	\end{equation}
+	If $u_1=u_2$ there is nothing to show. Hence assume $u_1\neq u_2$.
+	Since $K$ is convex, for every $t\in(0,1)$ the convex combination
+	\begin{equation*}
+		w_t := (1-t)u_1+tu_2
+	\end{equation*}
+	belongs to $K$. By Lemma \ref{lem:Jconvex}, $\cJ$ is strictly convex and therefore we have
+	\begin{equation*}
+		\cJ(w_t) < (1-t)\cJ(u_1)+t\cJ(u_2)\qquad \forall\, t\in(0,1).
+	\end{equation*}
+	Using \eqref{eq:u1u2min}, this yields
+	\begin{equation*}
+		\cJ(w_t) < (1-t)\min_{v\in K}\cJ(v)+t\min_{v\in K}\cJ(v)=\min_{v\in K}\cJ(v).
+	\end{equation*}
+	This contradicts the definition of the minimum, since $w_t\in K$.
+	Therefore the assumption $u_1\neq u_2$ is false and we conclude $u_1=u_2$.
+\end{proof}
+
+It remains to show the existence of at least one minimizer. For this, we verify {\em coercivity} and {\em weakly lower semicontinuity} of the functional $\cJ$. The proof requires the following lemma. Weak convergence is denoted by $\rightharpoonup$.
+
+\begin{lemma}[Weak lower semicontinuity of the norm]\label{lem:normwlsc}
+	Let $(X,\|\cdot\|_X)$ be a normed space. Then $\|\cdot\|_X:X\to \R_{\ge 0}$ is a weakly lower semicontinuous functional, i.e.\ if $x_j\rightharpoonup x$ in $X$, then
+	\begin{equation*}
+		\|x\|_X \le \liminf_{j\to\infty}\|x_j\|_X.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Let $J:X\to X^{**}$ be the canonical embedding defined by
+	\begin{equation*}
+		(Jx)(\varphi):=\varphi(x)\qquad \forall\, \varphi\in X^\prime.
+	\end{equation*}
+	By the Hahn--Banach theorem, $J$ is an isometry, i.e.\ $\|Jx\|_{X^{**}}=\|x\|_X$ for all $x\in X$.
+	Therefore,
+	\begin{equation*}
+		\|x\|_X
+		=\|Jx\|_{X^{**}}
+		=\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |(Jx)(\varphi)|
+		=\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |\varphi(x)|.
+	\end{equation*}
+	If $x_j\rightharpoonup x$ in $X$, then $\varphi(x_j)\to\varphi(x)$ for all $\varphi\in X^\prime$ and hence
+	\begin{equation*}
+		\|x\|_X
+		= \sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}} |\varphi(x)|
+		\le \liminf_{j\to\infty}\sup_{\substack{\varphi\in X^\prime\\ \|\varphi\|_{X^\prime}\le 1}}|\varphi(x_j)|
+		= \liminf_{j\to\infty}\|x_j\|_X.
+	\end{equation*}
+\end{proof}
+
+\begin{lemma}[$\cJ$ is coercive and w.l.s.c.]\label{lem:Jcoercivewlsc}
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} is
+	\begin{itemize}
+		\item[i)]{\em coercive} on $V$, i.e.
+		      \begin{equation*}
+			      \cJ(v)\to\infty\qquad\text{as}\qquad\|v\|_{1,\Omega}\to\infty,
+		      \end{equation*}
+		\item[ii)] {\em weakly lower semicontinuous} on $V$, i.e.\ if $v_j\rightharpoonup v$ in $V$, then
+		      \begin{equation*}
+			      \cJ(v)\le \liminf_{j\to\infty}\cJ(v_j).
+		      \end{equation*}
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\|v\|_{1,\Omega}$. Hence
+	\begin{equation*}
+		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
+		\ge \frac{\alpha}{2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}
+		\xrightarrow{ \ \|v\|_{1,\Omega}\to\infty \ }\infty.
+	\end{equation*}
+	For $s\in L^2(\Omega;\S^d)$ set
+	\begin{equation*}
+		\|s\|_\cA^2 := \int_\Omega s:\cA:s\;\dx.
+	\end{equation*}
+	By uniform ellipticity of $\cA$, the map $\|\cdot\|_\cA$ defines a norm on $L^2(\Omega;\S^d)$
+	equivalent to $\|\cdot\|_{0,\Omega}$. Moreover, $a(v,v)=\|\varepsilon(v)\|_\cA^2$.
+	The mapping $v\mapsto \varepsilon(v)$ is linear and bounded from $V$ to
+	$L^2(\Omega;\S^d)$. Hence, if $v_j\rightharpoonup v$ in $V$, then
+	\begin{equation*}
+		\varepsilon(v_j)\rightharpoonup \varepsilon(v)
+		\qquad\text{in } L^2(\Omega;\S^d).
+	\end{equation*}
+	Since norms are weakly lower semicontinuous by Lemma \ref{lem:normwlsc}, we obtain
+	\begin{equation*}
+		a(v,v)=\|\varepsilon(v)\|_\cA^2
+		\le \liminf_{j\to\infty}\|\varepsilon(v_j)\|_\cA^2
+		= \liminf_{j\to\infty} a(v_j,v_j).
+	\end{equation*}
+	Furthermore, $\ell\in V'$ is weakly continuous, hence $\ell(v_j)\to \ell(v)$.
+	Therefore,
+	\begin{equation*}
+		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
+		\le \frac{1}{2}\,\liminf_{j\to\infty} a(v_j,v_j) - \lim_{j\to\infty}\ell(v_j)
+		= \liminf_{j\to\infty}\cJ(v_j).
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}[Existence of Minimizer of $\cJ$]\label{pr:Jex}
+	The functional $\cJ$ defined in \ref{eq:energyfunc} has at least one minimizer $u\in K$.
+\end{proposition}
+\begin{proof}
+	Set
+	\begin{equation*}
+		M := \inf_{v\in K}\cJ(v)\in[-\infty,\infty).
+	\end{equation*}
+	Since $0\in K$ we have $M\le \cJ(0)=0$, hence $M$ is finite from above.
+	Let $\{v_j\}_{j\in\N}\subset K$ be a minimizing sequence, i.e.\
+	$\cJ(v_j)\to M$ as $j\to\infty$. By Lemma \ref{lem:Jcoercivewlsc} {\em i)}, $\cJ$ is coercive and thus, the sequence $\{v_j\}_{j\in\N}$ is bounded in $V$. Since $V$ is a Hilbert space, there exist a subsequence $\{v_{j_k}\}_{k\in\N}$ and some $u\in V$ such that
+	\begin{equation*}
+		v_{j_k} \rightharpoonup u \qquad\text{in } V.
+	\end{equation*}
+	As $K\subset V$ is closed and convex, it is weakly closed in $V$. Hence $u\in K$. By Lemma \ref{lem:Jcoercivewlsc} {\em ii)}, $\cJ$ is weakly lower semicontinuity and thus we obtain
+	\begin{equation*}
+		\cJ(u)\le \liminf_{k\to\infty}\cJ(v_{j_k})=M=\inf_{v\in K}\cJ(v),
+	\end{equation*}
+	so $u$ is a minimizer of $\cJ$ on $K$.
+\end{proof}
+
+We collect the previous results in the following corollary and further give a standard stability estimation for the norm of the unique solution.
+\begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]\label{cor:wellposed}
+	The functional $\cJ$ defined in \ref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
+	\begin{equation}\label{eq:ustab}
+		\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\cA}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
+	\end{equation}
+	Consequently, Problem \ref{pr:signorini1} has a unique stable solution.
+\end{corollary}
+\begin{proof}
+	By Proposition~\ref{pr:Jex} we have existence of a solution $u\in K$ to Problem~\ref{pr:signorini1} and by Proposition~\ref{pr:Junique} it is unique. It remains to prove the a-priori bound. Since $u$ is the unique minimizer, it holds
+	\begin{equation*}
+		\cJ(u)\le \cJ(0)=0\qquad\Longrightarrow\qquad \frac{1}{2}\,a(u,u)\le \ell(u).
+	\end{equation*}
+	By Proposition~\ref{pr:aproperties} {\em ii)} we have $a(u,u)\ge \alpha_\cA / C_K^2\,\|u\|_{1,\Omega}^2$ and thus
+	\begin{equation*}
+		\frac{\alpha_\cA}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega},
+	\end{equation*}
+	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
+\end{proof}

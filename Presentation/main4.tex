@@ -153,7 +153,7 @@
 	\tableofcontents
 \end{frame}
 
-\section{Introduction}
+\section{Introduction -- What's the Problem?}
 \begin{frame}{Rough Problem Setup}
 	\begin{itemize}
 		\item {\em Body: } $\Omega\subset\R^d,\, d\in\{2,3\}$ open, bounded, connected with Lipschitz boundary $\Gamma:= \partial\Omega$.
@@ -183,9 +183,9 @@
 	\end{figure}
 \end{frame}
 
-\section{Signorini's Problem}
+\section{Geometrical and Physical Setup}
 
-\subsection{Geometrical and Physical Setup}
+\subsection{Boundary Decomposition}
 
 \begin{frame}{Boundary Decomposition and Preview on the Boundary Conditions}
 	\begin{itemize}
@@ -204,24 +204,39 @@
 	\end{figure}
 \end{frame}
 
+\subsection{Elasticity and Forces}
+
+\begin{frame}{Basic Notations on Sobolev Spaces}
+	\begin{itemize}
+		\item On $H^s(\Omega;\R^d)$ for $s =k+\theta$ with $k\in \N_0$ and $\theta\in[0,1)$, we use $(\cdot,\,\cdot)_{s,\Omega}$ and $\|\cdot\|_{s,\Omega}$
+		\item $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$.
+		\item {\em Trace Theorem}: Restriction of smooth functions $\overline{\Omega}\to\R^d$ onto the boundary $\Gamma = \partial\Omega\in\cC^{m,1}$ extends uniquely to a continuous surjective linear trace operator
+		      \begin{equation*}
+			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s<=m+1.
+		      \end{equation*}
+		\item For now, $\Omega$ is Lipschitz, i.e.\ $m=0$ and we need $s = 1$, so
+		      \begin{equation*}
+			      \gamma: H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Small Strain Elasticity}
 	\begin{itemize}
 		\item {\em Symmetric second order tensors}:
 		      \begin{equation*}
-			      \S^d:=\left\{s\in\R^d\oplus\R^d\;\middle|\;s^T = s\right\}
+			      \S^d:=\left\{s\in\R^d\otimes\R^d\;\middle|\;s^\top = s\right\}
 		      \end{equation*}
 		\item {\em Stresses} are described by fields $\tau:\Omega\to\S^d$
 		\item We identify $\S^d$ with symmetric $d\times d$ matrices.
 		\item On $\R^{d\times d}$, we use the {\em Frobenius product}
 		      \begin{equation*}
-			      A:B := \sum_{j=1}^m\sum_{k=1}^n A_{jk}B_{jk},
+			      A:B := \sum_{j=1}^d\sum_{k=1}^d A_{jk}B_{jk},
 			      \qquad
 			      |A| := \sqrt{A:A}.
 		      \end{equation*}
 		\item If $\cA:\Omega\to\cL(\S^d;\S^d)$ is a fourth order tensor and $s\in\S^d$, we use the {\em double contraction}
 		      \begin{equation*}
-			      (\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)s_{kl},
-			      \qquad
 			      s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
 		      \end{equation*}
 	\end{itemize}
@@ -229,17 +244,25 @@
 
 \begin{frame}{Small Strain Elasticity}
 	\begin{itemize}
-		\item {\em Small strain tensor}: $\ \varepsilon:H^1(\Omega;\R^d)\to L^2(\Omega;\S^d),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right)$.
+		\item Let $s\ge 1$.
+		\item {\em Small strain tensor}:
+		      \begin{equation*}
+			      \varepsilon:H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
+		      \end{equation*}
 
 		\item {\em Elasticity} of $\Omega$ is describes by a {\em fourth order tensor} $\cA:\Omega\to\cL(\S^d;\S^d)$.
-
-		\item $\cA$ is assumed symmetric and uniformly elliptic with $\cA_{ijkl}\in L^\infty(\Omega;\R)$
-
-		\item {\em (Cauchy) stress tensor}: $\ \sigma: H^1(\Omega;\R^d)\to L^2(\Omega;\S^d),\qquad u\mapsto \cA : \varepsilon(u)$.
+		\item $\cA$ is assumed {\em symmetric} and {\em uniformly elliptic} and {\em bounded}.
+		\item {\em (Cauchy) stress tensor}:
+		      \begin{equation*}
+			      \sigma: H^1(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \cA : \varepsilon(u).
+		      \end{equation*}
+		\item $\cA$ has to be {\em sufficiently smooth} for this.
+		\item For now, we need $s = 1$, i.e.\ $\varepsilon(u)\in L^2(\Omega;\S^d)$ and $\sigma(u)\in L^2(\Omega;\S^d)$.
+		\item $\cA_{ijkl}\in L^\infty(\Omega)$ is sufficient for $s = 1$. Later on, we need more.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{External and Internal Forces}
+\begin{frame}{Virtual Work of Internal and External Forces}
 	\begin{itemize}
 		\item {\em Volume force density}: $\ f\in L^2(\Omega;\R^d)$.
 		\item {\em Surface load} on Neumann part: $\ F\in L^2(\Gamma_N;\R^d)$.
@@ -284,22 +307,7 @@
 	\end{proposition}
 \end{frame}
 
-\subsection{Energy Minimization}
-
-\begin{frame}{Basic Notations on Sobolev Spaces}
-	\begin{itemize}
-		\item On $H^s(\Omega;\R^d)$ for $s =k+\theta$ with $k\in \N_0$ and $\theta\in[0,1)$, we use $(\cdot,\,\cdot)_{s,\Omega}$ and $\|\cdot\|_{s,\Omega}$
-		\item $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$.
-		\item {\em Trace Theorem}: Restriction of smooth functions $\overline{\Omega}\to\R^d$ onto the boundary $\Gamma = \partial\Omega\in\cC^{m,1}$ extends uniquely to a continuous surjective linear trace operator
-		      \begin{equation*}
-			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s<=m+1.
-		      \end{equation*}
-		\item For now, $\Omega$ is Lipschitz, i.e.\ $m=0$ and we need $s = 1$, so
-		      \begin{equation*}
-			      \gamma: H^1(\Omega;\R^d)\to H^{1/2}(\Gamma;\R^d)
-		      \end{equation*}
-	\end{itemize}
-\end{frame}
+\subsection{Admissible Displacements}
 
 \begin{frame}{Admissible Displacements and the Nonpenetration Constraint}
 	\begin{itemize}
@@ -317,6 +325,8 @@
 		\input{Figures/setup_initial_normal.tex}
 	\end{figure}
 \end{frame}
+
+\section{Energy Minimization}
 
 \begin{frame}{Energy Minimization}
 	\begin{itemize}
@@ -347,19 +357,15 @@
 	\end{proposition}
 	\textbf{\em Proof sketch:}
 	\begin{itemize}
-		\item Prove that $\cJ$ is {\em coercive}, i.e.\ $\cJ(v)\to\infty$ as $\|v\|_{1,\Omega}\to 0$.
-		\item Prove that $\cJ$ is {\em weakly lower semicontinuous}, i.e.\ if $v_j \rightharpoonup v$ in $V$ then
-		      \begin{equation*}
-			      \cJ(v)\le\liminf_{j\to\infty}\cJ(v_j).
-		      \end{equation*}
-		\item Follow existence of minimizers in $K$.
-		\item Prove that $\cJ$ is strictly convex on the convex set $K$ and follow uniqueness.
+		\item Prove that $\cJ$ is {\em coercive} and {\em weakly lower semicontinuous}.
+		\item This implies existence.
+		\item Prove that $\cJ$ is {\em strictly convex}.
+		\item With convexity of $K$, this implies uniqueness.
 		\item Stability bound follows from $V$-ellipticity of $a$ w.r.t. $C_2$ and boundedness of $\ell$ w.r.t. $C_3$.
 	\end{itemize}
 \end{frame}
 
-\subsection{Weak Formulations}
-
+\section{Weak Formulations}
 
 \begin{frame}{Weak Formulations / Variational Inequality}
 	\vfill
@@ -388,15 +394,15 @@
 	\vfill
 \end{frame}
 
-\subsection{Strong Formulations}
+\section{Strong Formulations}
 
-\subsubsection{A Hybrid Formulation}
+\subsection{A Hybrid Formulation}
 
 \begin{frame}{Additional Stress Regularity}
 	\begin{itemize}
 		\item \textbf{\em Goal}: We need a concept of normal traces $\sigma(u)\mathrm{n}$ for the stress $\sigma(u)$.
 		\item For displacements $v\in H^1(\Omega;\R^d)$, we have $\gamma v\in H^{1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d)$.
-		\item Therefore $v_\mathrm{n} = (\gamma v)\cdot \mathrm{n} \in L^2(\Gamma;\R)$.
+		\item Therefore $v_\mathrm{n} = (\gamma v)\cdot \mathrm{n} \in L^2(\Gamma)$.
 		\item For our $u\in V$, we have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ the earlier trace theorem does not apply to $\sigma(u)$.
 		\item Wee need an additional assumption on the Regularity of $\sigma(u)$.
 		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $\gamma\sigma(u)\in L^2(\Gamma;S^d)$ and $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$.
@@ -557,7 +563,7 @@
 	\end{itemize}
 \end{frame}
 
-\subsubsection{Classical Strong Formulation under Additional Displacement Regularity}
+\subsection{Classical Strong Formulation}
 
 \begin{frame}{Additional Regularity Assumptions and their Consequences}
 	\begin{itemize}
@@ -565,7 +571,7 @@
 		\item Previously, $u\in V\subset H^1(\Omega;\R^d)$
 		\item In the classical strong formulation, we assume $u\in H^s(\Omega;\R^d)$ with $s>3/2$.
 		\item With $ \varepsilon(u)= \tfrac{1}{2}\left(\nabla u + \nabla u^\top\right)$, the small strain tensor is an operator $\varepsilon: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$
-		\item We further need the elasticity tensor field $\cA:\Omega\to\cL(\S^d;\S^d)$ to be {\em sufficiently} regular (e.g.\ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega;\R)$ if $3/2<s\le 2$).
+		\item We further need the elasticity tensor field $\cA:\Omega\to\cL(\S^d;\S^d)$ to be {\em sufficiently} regular (e.g.\ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ if $3/2<s\le 2$).
 		\item With $\sigma(u) = \cA : \varepsilon(u)$., the stress tensor is now an operator $\sigma: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$.
 	\end{itemize}
 \end{frame}
@@ -575,23 +581,25 @@
 		\item To apply the trace theorem on $\sigma(u)$, we further need the assumption $\Gamma\in \cC^{m,1}$ with $m\ge \lceil s-1\rceil$.
 		\item Then, by the trace theorem, $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$.
 		\item Since $\Gamma\in \mathcal C^{m,1}$, the unit outward normal satisfies $n\in \mathcal C^{m-1,1}(\Gamma;\R^d)$.
-		\item Hence the traction $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined and if $\sigma(u)\in H(\diver;\Omega)$ we have 
-		\begin{equation*}
-            \langle \sigma(u)\mathrm{n},\, \gamma v\rangle  = \int_{\Gamma_N}t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
-        \end{equation*}
+		\item Hence the traction $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
+		\item If $\sigma(u)\in H(\diver;\Omega)$, the two concepts of normal traces coincide:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle  = \int_{\Gamma_N}t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
+		      \end{equation*}
 		\item Its normal and tangential components are given by
 		      \begin{equation*}
-			      \sigma_n(u):=t(u)\cdot n\in H^{s-3/2}(\Gamma;\R),
+			      \sigma_n(u):=t(u)\cdot n\in H^{s-3/2}(\Gamma),
 			      \qquad
 			      \sigma_t(u):=t(u)-\sigma_n(u)\,n\in H^{s-3/2}(\Gamma;\R^d).
 		      \end{equation*}
 		\item Furthermore, for $u\in H^{s}(\Omega;\R^d)$ we have $\gamma u\in (H^{s-1/2}(\Gamma;\R^d))$ with normal/tangential splitting
 		      \begin{equation*}
-			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma;\R)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
+			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
-\begin{frame}{Classical Strong Formulation under Additional Displacement Regularity}
+
+\begin{frame}{Classical Strong Formulation under Additional Regularity}
 	\begin{problem}[Signorini's Problem -- Classical Strong Formulation]
 	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$ find $u\in H^s(\Omega;\R^d)$ with $s>3/2$ such that the {\em small strain elasticity equations}
 	\begin{subequations}\label{eq:strong_classical}
@@ -621,11 +629,34 @@
 	\end{problem}
 \end{frame}
 
+\begin{frame}{Interpretation of the Classical Strong Formulation}
+	\begin{itemize}
+		\item {\em Equilibrium equation} $-\diver\sigma(u)=f$ in $\Omega$:
+		      balance of internal stresses and body forces in the bulk.
+
+		\item {\em Dirichlet condition} $u=0$ on $\Gamma_D$:
+		      the body is clamped on $\Gamma_D$.
+
+		\item {\em Neumann condition} $t(u)=F$ on $\Gamma_N$: boundary forces acting on the free part of the boundary.
+
+		\item {\em Nonpenetration} $u_\mathrm{n}\le 0$ on $\Gamma_C$:
+		      the body cannot penetrate the rigid foundation.
+
+		\item {\em Compressive contact stress} $\sigma_\mathrm{n}(u)\le 0$ on $\Gamma_C$:
+		      the foundation can exert only compressive normal forces.
+
+		\item {\em Complementarity} $\sigma_\mathrm{n}(u)\,u_\mathrm{n}=0$ on $\Gamma_C$: either there is no contact pressure, or the body is in contact, but not both effects independently.
+
+		\item {\em Frictionless contact} $\sigma_t(u)=0$ on $\Gamma_C$:
+		      Foundation does not exert any tangential force on the body.
+	\end{itemize}
+\end{frame}
+
 \begin{frame}
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid}:
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid}:}
 	\begin{problem}[Signorini's Problem -- Hybrid Formulation]
 	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
 	\begin{subequations}\label{eq:hybrid2}
@@ -648,7 +679,7 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Bulk equation and $u\in K$ and $\sigma(u)\in H(\diver;\Omega)$):}
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Bulk equation and $u\in K$ and $\sigma(u)\in H(\diver;\Omega)$):}}
 	\begin{itemize}
 		\item Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$ solve the strong problem.
 		\item Bulk Equation $-\diver \sigma(u) = f$ appears in both.
@@ -669,31 +700,16 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}}
 	\begin{itemize}
 		\item We want to show
 		      \begin{equation*}
 			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
 			      =
-			      \int_\Omega \sigma(u):\varepsilon(v)\;\dx
-			      +
-			      \int_\Omega \diver\sigma(u)\cdot v\;\dx\ge \int_\Omega F\cdot(\gamma v)\;\ds
+			      \int_{\Gamma} t(u)\cdot(\gamma v)\;\ds \ge \int_{\Gamma_N} F\cdot(\gamma v)\;\ds
 			      \qquad
 			      \forall\, v\in K.
 		      \end{equation*}
-		\item Here, $\sigma(u)\mathrm{n}\in H^{-1/2}(\Gamma;\R^d)$ as before since $\sigma(u)\in H(\diver;\Omega)$ still holds.
-		\item Now, $t(u):= (\gamma\sigma(u))\mathrm{n}\in H^{s-3/2}(\Gamma;\R^d)$ is smooth enough for both concepts to coincide:
-		      \begin{equation*}
-			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle_\Gamma = \int_\Gamma t(u)\cdot(\gamma v)\;\ds\qquad \forall v\in V.
-		      \end{equation*}
-	\end{itemize}
-\end{frame}
-\begin{frame}
-	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
-		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
-	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
-	\begin{itemize}
 		\item We decompose
 		      \begin{equation*}
 			      \int_\Gamma t(u)\cdot(\gamma v)\;\ds =\underbrace{\int_{\Gamma_D} t(u)\cdot(\gamma v)\;\ds}_{=0\text{ since } \gamma v= 0 \text{ on }\Gamma_D}+\int_{\Gamma_N} \underbrace{t(u)}_{= F\text{ on }\Gamma_C}\cdot(\gamma v)\;\ds+\int_{\Gamma_C} t(u)\cdot(\gamma v)\;\ds.
@@ -704,16 +720,17 @@
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
+
 \begin{frame}
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Inequality):}}
 	\begin{itemize}
 		\item In total:
 		      \begin{equation*}
 			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
-			      = \int_{\Gamma_N}F\cdot(\gamma v)\;\ds + \int_{\Gamma_C} \sigma_\mathrm{n}(u)\, v_\mathrm{n}\;\ds
+			      = \int_{\Gamma_N}F\cdot(\gamma v)\;\ds + \int_{\Gamma_C} \sigma_\mathrm{n}(u)\, v_\mathrm{n}\;\ds\qquad \forall\, v\in K.
 		      \end{equation*}
 		\item Since $v\in K$, we have $v_\mathrm{n}\le 0$ on $\Gamma_C$ and by \eqref{eq:strong_contact_sigma_n}, we have $\sigma_\mathrm{n}(u)\le 0$ on $\Gamma_C$.
 		\item Thus $\sigma_\mathrm{n}(u)\, v_\mathrm{n}\ge 0$ on $\Gamma_C$ and thus
@@ -728,7 +745,7 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Equality):}
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Hybrid Equality):}}
 	\begin{itemize}
 		\item Same as before but with $v = u$.
 		\item This is
@@ -743,7 +760,7 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong (Bulk Equation, $u = 0$ on $\Gamma_D$ and $u_\mathrm{n}\le 0$):}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong (Bulk Equation, $u = 0$ on $\Gamma_D$ and $u_\mathrm{n}\le 0$ on $\Gamma_C$):}}
 	\begin{itemize}
 		\item Let $u\in H^s(\Omega;\R^d),\, s>3/2$ solve the hybrid problem.
 		\item Bulk equation $-\diver \sigma(u) = f$ is contained in both problems.
@@ -756,7 +773,7 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($t(u) = F$ on $\Gamma_N$):}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($t(u) = F$ on $\Gamma_N$):}}
 	\begin{itemize}
 		\item Let $g\in H^{1/2}(\Gamma_N;\R^d)$ such that $\mathrm{Ext}_0(g)\in H^{1/2}(\Gamma;\R^d)$,i.e.\ $g\in H_{00}^{1/2}(\Gamma_N;\R^d)$. Then there exists $v\in H^1(\Omega;\R^d)$ such that
 		      \begin{equation*}
@@ -773,6 +790,59 @@
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_t(u) = 0$ on $\Gamma_C$):}}
+	\begin{itemize}
+		\item With $t(u)=F$ on $\Gamma_N$, the hybrid inequality yields $\displaystyle \int_{\Gamma_C} t(u)\cdot (\gamma v)\;\ds \ge 0$ for all $v\in K$.
+		\item Let $g_t\in H^{1/2}_{00}(\Gamma_C;\R^d)$ with $g_t\cdot \mathrm{n} = 0$, and choose $v\in H^1(\Omega;\R^d)$ with $(\gamma v)|_{\Gamma_C} = g_t$ and $(\gamma v)|_{\Gamma_N}=0$ and $(\gamma v)|_{\Gamma_D} = 0$.
+		\item Then $\pm v\in K$, hence applying hybrid inequality to $\pm v$ yields
+		      \begin{equation*}
+			      \int_{\Gamma_C} t(u)\cdot g_t\;\ds \ge 0,\qquad -\int_{\Gamma_C} t(u)\cdot g_t\;\ds \ge 0,
+		      \end{equation*}
+		\item With $t(u)=\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ this means
+		      \begin{equation*}
+			      \int_{\Gamma_C} (\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u))\cdot g_t\;\ds = \int_{\Gamma_C} \sigma_\mathrm{n}(u)\underbrace{(\mathrm{n}\cdot g_t)}_{ = 0}\;\ds + \int_{\Gamma_C}\sigma_t(u)\cdot g_t\;\ds = 0.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_\mathrm{n}(u)\le 0 = 0$ on $\Gamma_C$):}}
+	\begin{itemize}
+		\item Again, $\displaystyle \int_{\Gamma_C} t(u)\cdot (\gamma v)\;\ds \ge 0$ for all $v\in K$.
+		\item Let $\eta\in H_{00}^{1/2}(\Gamma_C)$ with $\eta\le 0$ on $\Gamma_C$ and choose $v\in H^1(\Omega;\R^d)$ with $(\gamma v)|_{\Gamma_C} = \eta\,\mathrm{n}$ and $(\gamma_v)|_{\Gamma_N} = 0$ and $(\gamma v)|_{\Gamma_D} = 0$.
+		\item Then, $v_\mathrm{n} = (\gamma v)\cdot\mathrm{n} = \eta\le 0$, i.e.\ $v\in K$ and $\displaystyle \int_{\Gamma_C}t(u)\cdot(\eta\;\mathrm{n})\;\ds\ge 0$.
+		\item With $t(u)=\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u) = 0$ on $\Gamma_C$, we have
+		      \begin{equation*}
+			      \int_{\Gamma_C}\sigma_\mathrm{n}(u)\,\eta\;\ds \ge 0\qquad \forall\,\eta\in H_{00}^{1/2}(\Gamma_C),\, \eta \le 0.
+		      \end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
+		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
+	\end{proposition}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_\mathrm{n}(u)\,u_\mathrm{n} = 0$ on $\Gamma_C$):}}
+	\begin{itemize}
+		\item Hybrid equality yields $\displaystyle \int_{\Gamma_C} t(u)\cdot\gamma u\;\ds = 0$.
+		\item With With $t(u)=\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u) = 0$ on $\Gamma_C$, we have
+		      \begin{equation*}
+			      int_{\Gamma_C} t(u)\cdot\gamma u\;\ds  = \int_{\Gamma_C} \underbrace{\sigma_\mathrm{n}(u)}_{\le 0}\underbrace{u_\mathrm{n}}_{\le 0}\;\ds = 0.
+		      \end{equation*}\eop
+	\end{itemize}
+\end{frame}
+
+\section{Mixed Formulation}
+
+\section{Outlook}
 
 
 \end{document}
