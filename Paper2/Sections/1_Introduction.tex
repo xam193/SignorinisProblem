@@ -329,9 +329,9 @@ We start by introducing the underlying Hilbert space $V$ in which homogeneous di
 	V:= \left\{v\in H^1(\Omega;\R^d)\;\middle|\; (\gamma v)|_{\Gamma_D} = 0\right\}\subset H^1(\Omega;\R^d).
 \end{equation*}
 For $v\in V$ we define the {\em normal component} of the boundary displacement on $\Gamma$ by $v_\mathrm{n}:= (\gamma v)\cdot\mathrm{n}$. Here, since $\Gamma$ is Lipschitz, $\Gamma\in \cC^{0,1}$, the outward normal $\mathrm{n}$ belongs to $L^\infty(\Omega;\R^d)$ which yields $v_\mathrm{n}\in H^{1/2}(\Gamma)$. The rigid foundation is located on the exterior side of $\Gamma_C$ in direction of $\mathrm n$. Hence the body is not allowed to move across $\Gamma_C$ into the obstacle. This yields that the solution must satisfy the {\em nonpenetration} condition
-\begin{equation*}
+\begin{equation}\label{eq:nonpenetration}
 	u_{\mathrm n}\le 0 \qquad \text{a.e.\ on }\Gamma_C.
-\end{equation*}
+\end{equation}
 This motivates the nonempty, closed and convex cone of {\em admissible displacements}
 \begin{equation}\label{eq:admissible}
 	K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}\subset V.
