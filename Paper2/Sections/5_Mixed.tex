@@ -1,1 +1,154 @@
-\section{Mixed Formulation}
+\section{Mixed Formulation}\label{sec:mixed}
+
+The KKT formulation of the previous section already separates the normal contact reaction from the displacement field. This suggests to introduce the normal contact force as an additional unknown. In other words, instead of recovering the normal contact stress $\sigma_{\mathrm n}(u)$ a posteriori from $u$, we now treat it as an independent variable
+\begin{equation*}
+	\lambda \in \Lambda_C \subset W_{C,\mathrm n}'.
+\end{equation*}
+This leads to a mixed weak formulation of Signorini's problem. The role of $\lambda$ is that of a Lagrange multiplier associated with the nonpenetration constraint $u_{\mathrm n}\le 0$ on $\Gamma_C$. In the present setting, it represents the normal contact force on the rigid foundation. This point of view is consistent with the duality principle developed in \cite[Section 7.1]{book}, where mixed formulations are obtained by introducing a multiplier for the unilateral contact constraint. We define the bilinear form
+\begin{equation*}
+	b:V\times W_{C,\mathrm n}'\to\R,
+	\qquad
+	b(v,\lambda):=\langle \lambda,v_{\mathrm n}\rangle_{\Gamma_C}
+\end{equation*}
+and recall the symmetric bilinear form
+\begin{equation*}
+	a:V\times V\to \R,\qquad a(u,v) = \int_\Omega \sigma(u):\varepsilon(u)\;\dx
+\end{equation*}
+and the linear bounded functional
+\begin{equation*}
+	\ell:V\to\R,\qquad \ell(v) = \int_\Omega f\cdot v\;\dx+\int_{\Gamma_N} F\cdot(\gamma v)\;\ds
+\end{equation*}
+with $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$.
+
+\begin{problem}[Signorini's Problem -- Mixed Weak Formulation]\label{pr:signorini7}
+For given $f\in L^2(\Omega;\R^d)$ find $(u,\lambda)\in V\times \Lambda_C$ such that
+\begin{subequations}\label{eq:mixed}
+	\begin{empheq}[left=\empheqlbrace]{alignat=2}
+		a(u,v)-\langle \lambda,\,v_\mathrm{n}\rangle_{\Gamma_C} &= \ell(v)
+		&\qquad& \forall\,v\in V, \label{eq:mixed_eq}\\
+		\langle \mu-\lambda,\,u_\mathrm{n}\rangle_{\Gamma_C} &\ge 0
+		&\qquad& \forall\,\mu\in \Lambda_C. \label{eq:mixed_ineq}
+	\end{empheq}
+\end{subequations}
+\end{problem}
+
+The first equation expresses the weak balance of forces, where the contact pressure is now represented explicitly by the multiplier $\lambda$. The second inequality is the weak counterpart of the unilateral contact conditions. It enforces compatibility between the admissible normal displacement $u_{\mathrm n}$ and the weakly nonpositive contact force $\lambda\in\Lambda_C$.
+
+\begin{proposition}[Equivalence of mixed and KKT formulation]
+	Assume $|\Gamma_N|=0$.
+	If $u$ solves Problem \ref{pr:signorini5}, then the pair $(u,\sigma_{\mathrm n}(u))\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}. Conversely, if $(u,\lambda)\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}, then $u$ solves Problem \ref{pr:signorini5} and $\lambda=\sigma_{\mathrm n}(u)$.
+\end{proposition}
+\begin{proof}
+	Assume first that $u$ solves Problem \ref{pr:signorini5}. Define $\lambda:=\sigma_{\mathrm n}(u)\in \Lambda_C$, where the inclusion in $\Lambda_C$ is exactly \eqref{eq:strong_lambda}. We show that $(u,\lambda)\in V\times \Lambda_C$ solves Problem \ref{pr:signorini7}. Since $u\in V$ and the bulk equation \eqref{eq:strong_bulk} holds with $f\in L^2(\Omega;\R^d)$, we have $\sigma(u)\in H(\diver;\Omega)$ Because $|\Gamma_N|=0$, the load functional reduces to
+	\begin{equation*}
+		\ell(v)=\int_\Omega f\cdot v\;\dx
+		\qquad\forall\,v\in V.
+	\end{equation*}
+	The identity \eqref{eq:useful} for the local normal trace on $\Gamma_C$ is
+    \begin{equation}\label{eq:usefullocal}
+        \langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C} = a(u,v)-\ell(v).
+    \end{equation}
+    Using the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{\mathrm n}(u)\mathrm{n}+\sigma_t(u)$, we further get
+	\begin{equation*}
+		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		=
+		\langle \sigma_{\mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
+		+
+		\langle \sigma_t(u),\,v_t\rangle_{\Gamma_C}.
+	\end{equation*}
+	By \eqref{eq:strong_tangential}, the tangential term vanishes, and since $\lambda=\sigma_{\mathrm n}(u)$
+	we conclude that
+	\begin{equation*}
+		a(u,v)-\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
+		=
+		\ell(v)
+		\qquad\forall\,v\in V,
+	\end{equation*}
+	which is exactly \eqref{eq:mixed_eq}. It remains to prove \eqref{eq:mixed_ineq}. Let $\mu\in \Lambda_C$ be arbitrary. Since \eqref{eq:strong_nonpen} implies $u_{\mathrm n}\in W_{C,\mathrm n}^-$, and since $\mu\in \Lambda_C$, we have $\langle \mu,\,u_{\mathrm n}\rangle_{\Gamma_C}\ge 0$. Moreover, by \eqref{eq:strong_comp},
+	\begin{equation*}
+		\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}
+		=
+		\langle \sigma_{\mathrm n}(u),\,u_{\mathrm n}\rangle_{\Gamma_C}
+		=
+		0.
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+		\langle \mu-\lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}
+		=
+		\langle \mu,\,u_{\mathrm n}\rangle_{\Gamma_C}
+		-
+		\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}
+		\ge 0,
+	\end{equation*}
+	which proves \eqref{eq:mixed_ineq}. Hence $(u,\lambda)$ solves Problem \ref{pr:signorini7}. Conversely, assume that $(u,\lambda)\in V\times \Lambda_C$ solves Problem \ref{pr:signorini7}. We first derive the bulk equation. Let $\varphi\in \mathcal D(\Omega;\R^d)$. Since $\gamma\varphi=0$ on $\Gamma$, we have $\varphi_\mathrm{n} = 0$ on $\Gamma_C$. Testing \eqref{eq:mixed_eq} with $v=\varphi$, we obtain
+	\begin{equation*}
+		a(u,\varphi)=\ell(\varphi)=\int_\Omega f\cdot\varphi\;\dx.
+	\end{equation*}
+	Using Proposition \ref{pr:symtensor}, this becomes
+	\begin{equation*}
+		\int_\Omega \sigma(u):\nabla\varphi\;\dx
+		=
+		\int_\Omega f\cdot\varphi\;\dx
+		\qquad\forall\,\varphi\in \mathcal D(\Omega;\R^d),
+	\end{equation*}
+	which is exactly
+	\begin{equation*}
+		-\diver\sigma(u)=f
+		\qquad\text{in }\mathcal D'(\Omega;\R^d).
+	\end{equation*}
+	Since $f\in L^2(\Omega;\R^d)$ and $\sigma(u)\in L^2(\Omega;\mathbb S^d)$, this implies $\sigma(u)\in H(\diver;\Omega)$ and
+	\begin{equation*}
+		-\diver\sigma(u)=f
+		\qquad\text{a.e.\ in }\Omega.
+	\end{equation*}
+	Next, we derive the complementarity relation for $\lambda$. Testing \eqref{eq:mixed_ineq} with $\mu=0$ and $\mu=2\lambda$, we get
+	\begin{equation*}
+		-\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}\ge 0
+		\qquad\text{and}\qquad
+		\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}\ge 0,
+	\end{equation*}
+	hence
+	\begin{equation}\label{eq:mixed_comp_lambda}
+		\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}=0.
+	\end{equation}
+	We now show that $u$ solves the weak formulation in Problem \ref{pr:signorini2}. Let $v\in K$ be arbitrary. Then $v_{\mathrm n}\in W_{C,\mathrm n}^-$. Since $\lambda\in \Lambda_C$, it follows that $\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}\ge 0$. Using \eqref{eq:mixed_eq} and \eqref{eq:mixed_comp_lambda}, we obtain
+	\begin{equation*}
+		a(u,v-u)-\ell(v-u)=\langle \lambda,\,(v-u)_{\mathrm n}\rangle_{\Gamma_C}=\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C} - \langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C} = \langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
+		\ge 0.
+	\end{equation*}
+	Thus $u$ solves the weak formulation in Problem \ref{pr:signorini2}. Since we have already shown that $\sigma(u)$ belongs to $H(\diver;\Omega)$, the previously established equivalence of weak and hybrid formulation implies that $u$ solves Problem \ref{pr:signorini4}. As $|\Gamma_N|=0$, the previously established equivalence of hybrid and KKT formulation shows that $u$ also solves Problem \ref{pr:signorini5}. It remains to identify the multiplier $\lambda$. Since $u$ solves Problem \ref{pr:signorini5}$,$ we know in particular that
+	\begin{equation*}
+		\sigma_t(u)=0
+		\qquad\text{in }W_{C,t}'.
+	\end{equation*}
+	On the other hand, because $|\Gamma_N|=0$ and \eqref{eq:strong_bulk} holds, the local Green formula gives
+	\begin{equation*}
+		a(u,v)-\ell(v)
+		=
+		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		\qquad\forall\,v\in V.
+	\end{equation*}
+	Comparing \eqref{eq:usefullocal} with \eqref{eq:mixed_eq}, we obtain
+	\begin{equation*}
+		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		=
+		\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
+		\qquad\forall\,v\in V.
+	\end{equation*}
+	Using again the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{\mathrm n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u)=0$ on $\Gamma_C$, this becomes
+	\begin{equation*}
+		\langle \sigma_{\mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
+		=
+		\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
+		\qquad\forall\,v\in V.
+	\end{equation*}
+	Now let $\eta\in W_{C,\mathrm n}$ be arbitrary. By definition of $W_{C,\mathrm n}$, there exists $v\in V$ such that $v_{\mathrm n}=\eta$. Hence
+	\begin{equation*}
+		\langle \sigma_{\mathrm n}(u),\,\eta\rangle_{\Gamma_C}
+		=
+		\langle \lambda,\,\eta\rangle_{\Gamma_C}
+		\qquad\forall\,\eta\in W_{C,\mathrm n},
+	\end{equation*}
+	and therefore $\lambda=\sigma_{\mathrm n}(u)$, which completes the proof.
+\end{proof}

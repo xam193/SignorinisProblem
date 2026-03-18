@@ -193,7 +193,7 @@ for real $d\times d$-matrices $A$ and $B$, while for $x,y\in \R^d$ we denote by
 \end{equation*}
 the Euclidean inner product and norm. As $\S^d$ may be identified with a subspace of $\R^{d^2}$, the above definitions of Sobolev spaces may be naturally extended to $\S^d$-valued functions on $\Omega$. We continue by defining the {\em small strain tensor} for a displacement function $u\in H^1(\Omega;\R^d)$, which is similar to the symmetric part of square matrices but for the gradient $\nabla u$ of $u$ and through which the deformation of the body $\overline{\Omega}$ by $u$ is quantified.
 
-\begin{definition}[Small Strain Tensor]
+\begin{definition}[Small Strain Tensor]\label{def:smallstraintensor}
 	The {\tt (small) strain tensor} $\varepsilon$ is defined by
 	\begin{equation*}
 		\varepsilon:H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
@@ -237,9 +237,7 @@ The {\em internal} and {\em surface forces} in the body $\overline{\Omega}$ are 
 	where $\cA$ is a sufficiently smooth elasticity tensor field, such that $\sigma$ is well-defined.
 \end{definition}
 
-In the case $s = 1$, it is sufficient to require $\cA_{ijkl}\in L^\infty(\Omega)$ for every $1\le i,j,k,l\le d$ for $\sigma(u) = \cA:\varepsilon(u)$ to be part of $L^2(\Omega;\S^d)$ for every $u\in H^1(\Omega;\R^d)$. Later on, higher order Sobolev spaces are asked for, which requires higher regularity of $\cA$. For example, for $3/2<s\le 2$ it is sufficient if $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ for every $1\le i,j,k,l\le d$, while constant $\cA$ always lead to well-defined stress tensors $\sigma$.
-
-The function $f\in L^2(\Omega;\R^d)$ may describe a {\em volume force density} and $F\in L^2(\Gamma_N;\R^d)$ may represent {\em surface loads} on the Neumann boundary $\Gamma_N$. With the basic principle that work is force times displacement, it is reasonable to define the linear functional
+In the case $s = 1$, it is sufficient to require $\cA_{ijkl}\in L^\infty(\Omega)$ for every $1\le i,j,k,l\le d$ for $\sigma(u) = \cA:\varepsilon(u)$ to be part of $L^2(\Omega;\S^d)$ for every $u\in H^1(\Omega;\R^d)$. Later on, higher order Sobolev spaces are asked for, which requires higher regularity of $\cA$. For example, for $3/2<s\le 2$ it is sufficient if $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ for every $1\le i,j,k,l\le d$, while constant $\cA$ always lead to well-defined stress tensors $\sigma$. The function $f\in L^2(\Omega;\R^d)$ may describe a {\em volume force density} and $F\in L^2(\Gamma_N;\R^d)$ may represent {\em surface loads} on the Neumann boundary $\Gamma_N$. With the basic principle that work is force times displacement, it is reasonable to define the linear functional
 \begin{equation}\label{eq:loadfunc}
 	\ell(v):= \int_\Omega f\cdot v\;\dx +\int_{\Gamma_N} F\cdot(\gamma v)\;\ds ,\qquad v\in H^1(\Omega;\R^d),
 \end{equation}

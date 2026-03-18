@@ -395,40 +395,38 @@
 
 \begin{frame}{Additional Stress Regularity}
 	\begin{itemize}
-		\item \textbf{\em Goal}: We need a concept of normal traces $\sigma(u)\mathrm{n}$ for the stress $\sigma(u)$.
-		\item For displacements $v\in H^1(\Omega;\R^d)$, we have $\gamma v\in H^{1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d)$.
-		\item Therefore $v_\mathrm{n} = (\gamma v)\cdot \mathrm{n} \in L^2(\Gamma)$.
-		\item For our $u\in V$, we have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ the earlier trace theorem does not apply to $\sigma(u)$.
-		\item Wee need an additional assumption on the Regularity of $\sigma(u)$.
-		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $\gamma\sigma(u)\in L^2(\Gamma;S^d)$ and $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$.
+		\item \textbf{\em Goal 1}: We need a concept of normal traces for the stress $\sigma(u)$.
+		\item \textbf{\em Goal 2}: For an equilibrium equation $-\diver\sigma(u) = f$ in $\Omega$ with $L^2$-source term $f$, we need $\diver\sigma(u)\in L^2(\Omega;\R^d)$.
+		\item For displacements, $v\in H^1(\Omega;\R^d)$, a normal trace $(\gamma v)\cdot\mathrm{n}\in H^{1/2}(\Gamma)$ is define by the trace theorem.
+		\item For our $u\in V$, we only have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ no trace defined.
+		\item Therefore, we need an additional assumption on $\sigma(u)$.
+		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$ is defined.
 		\item This assumptions is much stronger than needed!
 		\item Instead, we assume $\sigma(u)\in H(\diver;\Omega)$, where
 		      \begin{equation*}
 			      H(\diver;\Omega):= \left\{\tau\in L^2(\Omega;\S^d)\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
 		      \end{equation*}
 		      where $\diver \tau$ is understood row-wise in the weak sense.
-		\item Then $\diver\sigma(u)\in L^2(\Omega;\R^d)$, which is needed for strong equilibrium equations $-\diver\sigma(u) = f$ with $L^2$-source terms $f$.
-		\item Normal traces on $H(\diver;\Omega)$ are understood as follows.
+		\item Then $\diver\sigma(u)\in L^2(\Omega;\R^d)$ and we can understand normal traces on $H(\diver;\Omega)$ in the following way.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Normal Traces on $H(\diver;\Omega)$}
 	\begin{itemize}
 		\item We denote by $H^{-1/2}(\Gamma;\R^d)$ the dual space of $H^{1/2}(\Gamma;\R^d)$ with duality pairing $\langle\cdot,\,\cdot\rangle_\Gamma$.
-		\item For smooth $\tau:\overline{\Omega}\to\S^d$, {\em Green's identity} is
+		\item For smooth $\tau,v$ {\em Green's identity} is
 		      \begin{equation*}
-			      \int_\Gamma (\tau\,\mathrm n)\cdot (\gamma v)\;\ds = \underbrace{\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx}_{:= F_\tau(v)}
+			      \int_\Gamma (\gamma\tau)\,\mathrm n \cdot (\gamma v)\;\ds = \underbrace{\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx}_{:= F_\tau(v)}.
 		      \end{equation*}
-		      for all smooth $v:\overline{\Omega}\to\S^d$.
-		\item This means $\tau\,\mathrm{n}$ is defined in a weak sense via Green's identity.
+		\item This means $(\gamma\tau)\,\mathrm{n}$ is defined in a weak sense via Green's identity.
 		\item $F_\tau(v)$ is still well-defined for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$.
-		\item $F_\tau$ depends only on the trace $\gamma v$ and not on $v$ itself, since it vanishes on $H_0^1(\Omega;\R^d)$.
+		\item $F_\tau$ depends only on the trace $\gamma v\in H^{1/2}(\Gamma;\R^d)$ and not on $v$ itself.
 		\item Therefore, $F_\tau$ induces a continuous linear functional on $H^{1/2}(\Gamma;\R^d)$:
 		      \begin{equation*}
 			      \langle \gamma_{\mathrm n}(\tau),\,\gamma v\rangle_\Gamma := F_\tau(v),
 			      \qquad \gamma_{\mathrm n}(\tau)\in H^{-1/2}(\Gamma;\R^d).
 		      \end{equation*}
-		\item In the smooth case, $\gamma_{\mathrm n}(\tau)$ coincides with the classical traction $\tau\,\mathrm n$. We thus write $\tau\,\mathrm{n} = \gamma_{\mathrm n}(\tau)$.
+		\item In the smooth case, $\gamma_{\mathrm n}(\tau)$ coincides with the classical traction $(\gamma \tau)\,\mathrm n$.
 	\end{itemize}
 \end{frame}
 
@@ -454,6 +452,10 @@
 			      a(u,v)-\ell(v) = \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma-\int_{\Gamma_N} F\cdot (\gamma v)\;\ds,\qquad \forall\, v\in V.
 		      \end{equation*}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+
 \end{frame}
 
 \begin{frame}{A Hybrid Formulation}
@@ -506,7 +508,7 @@
 	\end{proposition}
 	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Bulk Equation)}$:
 	\begin{itemize}
-		\item Let $\varphi\in \cD(\Omega;\R^d)$. Then $u\pm t\varphi\in K$ for $|t|\ll 1$, hence the weak inequality implies
+		\item Let $\varphi\in \cD(\Omega;\R^d)$. Then $u\pm t\varphi\in K$ for $t\in\R$ because $\gamma\varphi = 0$, hence the weak inequality implies
 		      \begin{equation*}
 			      a(u,\varphi)=\ell(\varphi)=\int_\Omega f\cdot \varphi\;\dx = \langle f,\,\varphi\rangle\qquad \forall\,\varphi\in \cD(\Omega;\R^d).
 		      \end{equation*}
@@ -528,7 +530,10 @@
 	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Equality)}$:
 	\begin{itemize}
 		\item Since $K$ is a cone, we have $0,2u\in K$.
-		\item Testing both in the variational inequality yields $a(u,u)\le \ell(u)$ and $a(u,u)\ge \ell(u)$ and thus $a(u,u)= \ell(u)$.
+		\item Testing both in the variational inequality yields $a(u,u)\le \ell(u)$ and $a(u,u)\ge \ell(u)$ and thus
+		      \begin{equation*}
+			      a(u,u)= \ell(u).
+		      \end{equation*}
 		\item The identity earlier yields
 		      \begin{equation*}
 			      0 = a(u,u)-\ell(u) = \langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma -\int_{\Gamma_N}F\cdot\gamma u\;\ds.
@@ -546,11 +551,11 @@
 	\end{proposition}
 	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Inequality)}$:
 	\begin{itemize}
-		\item With the identity earlier, we have for all $v\in V$ that
+		\item With the identity earlier, and the variational inequality, we have for all $v\in V$ that
 		      \begin{equation*}
-			      a(u,v-u) = \langle \sigma(u)\mathrm{n},\, \gamma(v-u)\rangle_\Gamma + \int_\Omega f\cdot(v-u)\;\dx \ge \ell(v-u)=\int_\Omega f\cdot(v-u)\;\dx +\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
+			      \langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma - \int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds = a(u,v-u)-\ell(v-u)\ge 0.
 		      \end{equation*}
-		\item Subtracting volume term yields: $\ \displaystyle  \langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma \ge\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds\qquad \forall\,v\in V$.
+
 		\item This means
 		      \begin{equation*}
 			      \langle\sigma(u)\mathrm{n}\,\gamma v\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot \gamma v\;\ds + \underbrace{\left[\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma-\int_{\Gamma_N}F\cdot\gamma u\;\ds\right]}_{ = 0}\qquad \forall\,v\in V.
@@ -562,34 +567,43 @@
 
 \begin{frame}{Additional Regularity Assumptions and their Consequences}
 	\begin{itemize}
-		\item \textbf{\em Goal:} Formulate classical traces for the stress $\sigma(u)$.
+		\item \textbf{\em Goal:} Formulate classical normal traces for the stress $\sigma(u)$.
 		\item Previously, $u\in V\subset H^1(\Omega;\R^d)$
 		\item In the classical strong formulation, we assume $u\in H^s(\Omega;\R^d)$ with $s>3/2$.
-		\item With $ \varepsilon(u)= \tfrac{1}{2}\left(\nabla u + \nabla u^\top\right)$, the small strain tensor is an operator $\varepsilon: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$
-		\item We further need the elasticity tensor field $\cA:\Omega\to\cL(\S^d;\S^d)$ to be {\em sufficiently} regular (e.g.\ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ if $3/2<s\le 2$).
-		\item With $\sigma(u) = \cA : \varepsilon(u)$., the stress tensor is now an operator $\sigma: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$.
+		\item Then $\varepsilon(u)\in H^{s-1}(\Omega;\S^d)$.
+		\item If $\cA$ sufficiently regular, then $\sigma(u) = \cA:\varepsilon(u)\in H^{s-1}(\Omega;\S^d)$.
+		\item For example: $\cA$ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ if $3/2<s\le 2$.
+		\item Trace is defined: $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\S^d)$.
+		\item Here $\Gamma\in\cC^{m,1}$ with $m\ge\lceil s-1\rceil$ is required.
+		\item Then $\mathrm{n}\in \cC^{m-1,1}(\Gamma;\R^d)$.
+		\item Normal Trace: $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
+		\item If $\sigma(u)\in H(\diver;\Omega)$, the two concepts of normal traces coincide:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle_\Gamma  = \int_{\Gamma_N}t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
+		      \end{equation*}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Additional Regularity Assumptions and their Consequences}
+\begin{frame}{Noraml and Tangential Components}
 	\begin{itemize}
-		\item To apply the trace theorem on $\sigma(u)$, we further need the assumption $\Gamma\in \cC^{m,1}$ with $m\ge \lceil s-1\rceil$.
-		\item Then, by the trace theorem, $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$.
-		\item Since $\Gamma\in \mathcal C^{m,1}$, the unit outward normal satisfies $n\in \mathcal C^{m-1,1}(\Gamma;\R^d)$.
-		\item Hence the traction $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
-		\item If $\sigma(u)\in H(\diver;\Omega)$, the two concepts of normal traces coincide:
+
+		\item Normal and tangential splitting of $t(u)$ into
 		      \begin{equation*}
-			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle  = \int_{\Gamma_N}t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
-		      \end{equation*}
-		\item Its normal and tangential components are given by
-		      \begin{equation*}
-			      \sigma_n(u):=t(u)\cdot n\in H^{s-3/2}(\Gamma),
+			      \sigma_n(u):=t(u)\cdot \mathrm{n}\in H^{s-3/2}(\Gamma),
 			      \qquad
-			      \sigma_t(u):=t(u)-\sigma_n(u)\,n\in H^{s-3/2}(\Gamma;\R^d).
+			      \sigma_t(u):=t(u)-\sigma_n(u)\,\mathrm{n}\in H^{s-3/2}(\Gamma;\R^d).
+		      \end{equation*}
+		      such that
+		      \begin{equation*}
+			      t(u) = \sigma_n(u)\mathrm{n} + \sigma_t(u).
 		      \end{equation*}
 		\item Furthermore, for $u\in H^{s}(\Omega;\R^d)$ we have $\gamma u\in (H^{s-1/2}(\Gamma;\R^d))$ with normal/tangential splitting
 		      \begin{equation*}
-			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
+			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d)
+		      \end{equation*}
+		      such that
+		      \begin{equation*}
+			      \gamma u = u_\mathrm{n}\,\mathrm{n}+u_t.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -679,15 +693,6 @@
 		\item Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$ solve the strong problem.
 		\item Bulk Equation $-\diver \sigma(u) = f$ appears in both.
 		\item $u = 0$ on $\Gamma_D$ \eqref{eq:strong_classical_dirichlet} and $u_\mathrm{n}\le 0$ on $\Gamma_C$ \eqref{eq:strong_contact_nonpen} are incorporated in the requirement $u\in K$.
-		\item Since $u\in H^s(\Omega;\R^d)$ with $s>3/2$, we have
-		      \begin{equation*}
-			      \sigma(u)\in H^{s-1}(\Omega;\S^d)\subset L^2(\Omega;\S^d).
-		      \end{equation*}
-		\item Since $f\in L^2(\Omega;\R^d)$ and $-\diver\sigma(u) = f$, we have
-		      \begin{equation*}
-			      \diver\sigma(u)\in L^2(\Omega;\R^d).
-		      \end{equation*}
-		\item This means, $\sigma(u)\in H(\diver;\Omega)$.
 	\end{itemize}
 \end{frame}
 
