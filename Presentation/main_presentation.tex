@@ -43,6 +43,20 @@
 \makeatother
 \setcounter{tocdepth}{3}
 
+\AtBeginSection[]{
+  \begin{frame}{Content}
+    \DisableItemOverlays
+    \tableofcontents[
+      currentsection,
+      currentsubsection,
+      sectionstyle=show/shaded,
+      subsectionstyle=show/shaded,
+      subsubsectionstyle=show/shaded
+    ]
+    \EnableItemOverlays
+  \end{frame}
+}
+
 \AtBeginSubsection[]{
   \begin{frame}{Content}
     \DisableItemOverlays
@@ -50,8 +64,8 @@
       currentsection,
       currentsubsection,
       sectionstyle=show/shaded,
-      subsectionstyle=show/shaded/hide,
-      subsubsectionstyle=show/shaded/hide/hide
+      subsectionstyle=show/shaded,
+      subsubsectionstyle=show/shaded
     ]
     \EnableItemOverlays
   \end{frame}
@@ -64,8 +78,8 @@
       currentsection,
       currentsubsection,
       sectionstyle=show/shaded,
-      subsectionstyle=show/shaded/hide,
-      subsubsectionstyle=show/shaded/hide/hide
+      subsectionstyle=show/shaded,
+      subsubsectionstyle=show/shaded
     ]
     \EnableItemOverlays
   \end{frame}
@@ -136,12 +150,31 @@
 
 \title{Signorini's Problem}
 \author{Max Stuthmann}
-\date{\tiny \today}
+\date{\today}
 
 \begin{document}
 
-\begin{frame}[plain]
-	\titlepage
+\begin{frame}
+	\centering
+	\vspace*{0.7cm}
+
+	\setlength{\fboxsep}{0pt}
+	\colorlet{titleframeblue}{blue!70!black}
+	\fcolorbox{titleframeblue}{blue!10}{
+		\begin{minipage}{0.5\textwidth}
+			\vspace{0.22cm}
+			\centering
+			{\usebeamerfont{title}\color{titleframeblue}\LARGE Signorini's Problem\par}
+			\vspace{0.22cm}
+		\end{minipage}
+	}\par
+	\vspace{0.4cm}
+	{\large Max Stuthmann\par}
+	\vspace{0.2cm}
+	{\normalsize \today\par}
+	\vfill
+	\scalebox{0.95}{\input{Figures/title_sketch_nolabels.tex}}
+	\vspace{0.4cm}
 \end{frame}
 
 \begin{frame}{Content}
@@ -153,7 +186,7 @@
 	\begin{itemize}
 		\item {\em Body: } $\Omega\subset\R^d,\, d\in\{2,3\}$ open, bounded, connected with Lipschitz boundary $\Gamma:= \partial\Omega$.
 		\item $\Omega$ is sitting on a {\em rigid foundation}.
-		\item No frictions assumed between $\Omega$ and foundation.
+		\item No friction assumed between $\Omega$ and foundation.
 		\item $\Omega$ may be subject to elasticity properties and internal/external forces.
 		\item {\bf Not in equilibrium configuration}.
 	\end{itemize}
@@ -184,14 +217,14 @@
 
 \begin{frame}{Boundary Decomposition and Preview on the Boundary Conditions}
 	\begin{itemize}
-		\item Decompose $\Gamma = \partial\Omega$ into three relatively open and pairwise disjoint parts $\Gamma = \overline{\Gamma_D}\,\mathbin{\dot\cup}\,\overline{\Gamma_N}\,\mathbin{\dot\cup}\,\overline{\Gamma_C}$ with $|\Gamma_D|,|\Gamma_C|>0$ and $|\Gamma_N|\ge 0$.
+		\item Decompose $\Gamma = \partial\Omega$ into three relatively open and pairwise disjoint parts $\Gamma = \overline{\Gamma_D}\cup\overline{\Gamma_N}\cup\overline{\Gamma_C}$ with $|\Gamma_D|,|\Gamma_C|>0$ and $|\Gamma_N|\ge 0$.
 		\item Each part has different boundary conditions:
 		      \begin{itemize}
 			      \item $\Gamma_D$: Homogeneous Dirichlet. (Clamped boundary part).
 			      \item $\Gamma_N$: Neumann conditions. (We impose known surface force density).
 			      \item $\Gamma_C$ is the {\em potential} contact boundary, i.e. $\Gamma_C$ is prescribed a priori but the active contact zone $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown. On $\Gamma_C$: Contact conditions. (Nonpenetration, Complementarity, ...)
 		      \end{itemize}
-		\item Rigid foundation can be describe by gap-function $g:\Gamma_C\to\R$. We assume $g = 0$.
+		\item Rigid foundation can be described by gap-function $g:\Gamma_C\to\R$. We assume $g = 0$.
 	\end{itemize}
 	\begin{figure}[!h]
 		\centering
@@ -207,7 +240,7 @@
 		\item $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$.
 		\item {\em Trace Theorem}: Restriction of smooth functions $\overline{\Omega}\to\R^d$ onto the boundary $\Gamma = \partial\Omega\in\cC^{m,1}$ extends uniquely to a continuous surjective linear trace operator
 		      \begin{equation*}
-			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s<=m+1.
+			      \gamma: H^s(\Omega;\R^d)\to H^{s-1/2}(\Gamma;\R^d),\qquad \frac{1}{2}<s\le m+1.
 		      \end{equation*}
 		\item For now, $\Omega$ is Lipschitz, i.e.\ $m=0$ and we need $s = 1$, so
 		      \begin{equation*}
@@ -232,7 +265,7 @@
 		      \end{equation*}
 		\item If $\cA:\Omega\to\cL(\S^d;\S^d)$ is a fourth order tensor and $s\in\S^d$, we use the {\em double contraction}
 		      \begin{equation*}
-			      s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
+			      (\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)\,s_{kl}.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -249,7 +282,7 @@
 		\item $\cA$ is assumed {\em symmetric} and {\em uniformly elliptic} and {\em bounded}.
 		\item {\em (Cauchy) stress tensor}:
 		      \begin{equation*}
-			      \sigma: H^1(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \cA : \varepsilon(u).
+			      \sigma: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \cA : \varepsilon(u).
 		      \end{equation*}
 		\item $\cA$ has to be {\em sufficiently smooth} for this.
 		\item For now, we need $s = 1$, i.e.\ $\varepsilon(u)\in L^2(\Omega;\S^d)$ and $\sigma(u)\in L^2(\Omega;\S^d)$.
@@ -284,18 +317,18 @@
 
 \begin{frame}{Standard Properties of $a$ and $\ell$}
 	\begin{proposition}
-		The symmetric bilinear form $a:V\times V\to \R$ defined above is
+		The symmetric bilinear form $a:H^1(\Omega;\R^d)\times H^1(\Omega;\R^d)\to \R$ defined above is
 		\begin{itemize}
-			\item[i)] {\em bounded}, i.e.\ for all $v,w\in V$ there exists $C_1<\infty$ such that
+			\item[i)] {\em bounded}, i.e.\ for all $v,w\in H^1(\Omega;\R^d)$ there exists $C_1<\infty$ such that
 			      \begin{equation*}
 				      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}.
 			      \end{equation*}
-			\item[ii)] $V${\em -elliptic}, i.e.\ for all $v\in V\setminus\{0\}$ there exist $C_2>0$ such that
+			\item[ii)] $H^1(\Omega;\R^d)${\em -elliptic}, i.e.\ for all $v\in H^1(\Omega;\R^d)\setminus\{0\}$ there exist $C_2>0$ such that
 			      \begin{equation*}
 				      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2.
 			      \end{equation*}
 		\end{itemize}
-		Moreover, the linear functional $\ell$ defined above is {\em bounded}, i.e.\ for all $v\in V$ there exists $C_3>0$ such that
+		Moreover, the linear functional $\ell$ defined above is {\em bounded}, i.e.\ for all $v\in H^1(\Omega;\R^d)$ there exists $C_3>0$ such that
 		\begin{equation*}
 			|\ell (v)|\le C_3\,\|v\|_{1,\Omega}.
 		\end{equation*}
@@ -310,7 +343,7 @@
 		      \begin{equation*}
 			      V:=\left\{ v\in H^1(\Omega;\R^d)\;\middle|\; (\gamma v)|_{\Gamma_D}=0\right\}
 		      \end{equation*}
-		\item {\em Normal Component}: For $v\in V$, we define its {\em normal component} by $v_\mathrm{n}:= (\gamma u)\cdot \mathrm{n}$ with the {\em outward normal} $\mathrm{n}\in L^\infty(\Gamma;\R^d)$.
+		\item {\em Normal Component}: For $v\in V$, we define its {\em normal component} by $v_\mathrm{n}:= (\gamma v)\cdot \mathrm{n}\in L^2(\Gamma)$ with the {\em outward normal} $\mathrm{n}\in L^\infty(\Gamma;\R^d)$.
 		\item {\em Nonpenetration constraint}: $u_\mathrm{n}\le g = 0$ almost everywhere on $\Gamma_C$.
 		\item Set of {\em admissible displacements}: $K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}$.
 		\item $K$ is a closed and convex {\em cone} in $V$, i.e.\ if $v\in K$ then $\lambda v\in K$ for all $\lambda\in [0,\infty)$.
@@ -347,7 +380,7 @@
 	\begin{proposition}[Well-Posedness of Signorini's Problem]
 		There exists exactly one $u\in K$ that minimizes $\cJ$ over $K$. Moreover, the unique minimizer satisfies the a-priori bound
 		\begin{equation*}
-			\|u\|_{1,\Omega} \le \frac{2 C_3}{C_2} \|\ell\|_{V^\prime}.
+			\|u\|_{1,\Omega} \le \frac{2}{C_2} \|\ell\|_{V^\prime}.
 		\end{equation*}
 	\end{proposition}
 	\textbf{\em Proof sketch:}
@@ -356,7 +389,7 @@
 		\item This implies existence.
 		\item Prove that $\cJ$ is {\em strictly convex}.
 		\item With convexity of $K$, this implies uniqueness.
-		\item Stability bound follows from $V$-ellipticity of $a$ w.r.t. $C_2$ and boundedness of $\ell$ w.r.t. $C_3$.
+		\item Stability bound follows from $V$-ellipticity of $a$ w.r.t. $C_2$.
 	\end{itemize}
 \end{frame}
 
@@ -395,40 +428,39 @@
 
 \begin{frame}{Additional Stress Regularity}
 	\begin{itemize}
-		\item \textbf{\em Goal}: We need a concept of normal traces $\sigma(u)\mathrm{n}$ for the stress $\sigma(u)$.
-		\item For displacements $v\in H^1(\Omega;\R^d)$, we have $\gamma v\in H^{1/2}(\Gamma;\R^d)\subset L^2(\Gamma;\R^d)$.
-		\item Therefore $v_\mathrm{n} = (\gamma v)\cdot \mathrm{n} \in L^2(\Gamma)$.
-		\item For our $u\in V$, we have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ the earlier trace theorem does not apply to $\sigma(u)$.
-		\item Wee need an additional assumption on the Regularity of $\sigma(u)$.
-		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $\gamma\sigma(u)\in L^2(\Gamma;S^d)$ and $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$.
+		\item \textbf{\em Goal 1}: For a strong equilibrium equation $-\diver\sigma(u) = f$ in $\Omega$ with $L^2$-source term $f$, we need $\diver\sigma(u)\in L^2(\Omega;\R^d)$.
+		\item \textbf{\em Goal 2}: We need a concept of normal traces for the stress $\sigma(u)$ as for displacements: $v_\mathrm{n} = (\gamma v)\cdot\mathrm{n}$.
+		\item For displacements, $v\in H^1(\Omega;\R^d)$, a normal trace $(\gamma v)\cdot\mathrm{n}\in L^2(\Gamma)$ is defined by the trace theorem.
+		\item For our $u\in V$, we only have $\sigma(u)\in L^2(\Omega;\S^d)$, i.e.\ no trace defined.
+		\item Therefore, we need an additional assumption on $\sigma(u)$.
+		\item If we assume $\sigma(u)\in H^1(\Omega;\S^d)$, then $(\gamma\sigma(u))\mathrm{n}\in L^2(\Gamma;\R^d)$ is defined.
+		\item This requires $u\in H^2(\Omega;\R^d)$.
 		\item This assumptions is much stronger than needed!
 		\item Instead, we assume $\sigma(u)\in H(\diver;\Omega)$, where
 		      \begin{equation*}
 			      H(\diver;\Omega):= \left\{\tau\in L^2(\Omega;\S^d)\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\},
 		      \end{equation*}
 		      where $\diver \tau$ is understood row-wise in the weak sense.
-		\item Then $\diver\sigma(u)\in L^2(\Omega;\R^d)$, which is needed for strong equilibrium equations $-\diver\sigma(u) = f$ with $L^2$-source terms $f$.
-		\item Normal traces on $H(\diver;\Omega)$ are understood as follows.
+		\item Then $\diver\sigma(u)\in L^2(\Omega;\R^d)$ and we can understand normal traces on $H(\diver;\Omega)$ in the following way.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Normal Traces on $H(\diver;\Omega)$}
 	\begin{itemize}
 		\item We denote by $H^{-1/2}(\Gamma;\R^d)$ the dual space of $H^{1/2}(\Gamma;\R^d)$ with duality pairing $\langle\cdot,\,\cdot\rangle_\Gamma$.
-		\item For smooth $\tau:\overline{\Omega}\to\S^d$, {\em Green's identity} is
+		\item For smooth $\tau,v$ {\em Green's identity} is
 		      \begin{equation*}
-			      \int_\Gamma (\tau\,\mathrm n)\cdot (\gamma v)\;\ds = \underbrace{\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx}_{:= F_\tau(v)}
+			      \int_\Gamma (\gamma\tau)\,\mathrm n \cdot (\gamma v)\;\ds = \underbrace{\int_\Omega \tau:\nabla v\;\dx+\int_\Omega (\diver\tau)\cdot v\;\dx}_{:= F_\tau(v)}.
 		      \end{equation*}
-		      for all smooth $v:\overline{\Omega}\to\S^d$.
-		\item This means $\tau\,\mathrm{n}$ is defined in a weak sense via Green's identity.
+		\item This means $(\gamma\tau)\,\mathrm{n}$ is defined in a weak sense via Green's identity.
 		\item $F_\tau(v)$ is still well-defined for $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$.
-		\item $F_\tau$ depends only on the trace $\gamma v$ and not on $v$ itself, since it vanishes on $H_0^1(\Omega;\R^d)$.
+		\item $F_\tau$ depends only on the trace $\gamma v\in H^{1/2}(\Gamma;\R^d)$ and not on $v$ itself.
 		\item Therefore, $F_\tau$ induces a continuous linear functional on $H^{1/2}(\Gamma;\R^d)$:
 		      \begin{equation*}
 			      \langle \gamma_{\mathrm n}(\tau),\,\gamma v\rangle_\Gamma := F_\tau(v),
 			      \qquad \gamma_{\mathrm n}(\tau)\in H^{-1/2}(\Gamma;\R^d).
 		      \end{equation*}
-		\item In the smooth case, $\gamma_{\mathrm n}(\tau)$ coincides with the classical traction $\tau\,\mathrm n$. We thus write $\tau\,\mathrm{n} = \gamma_{\mathrm n}(\tau)$.
+		\item In the smooth case, $\gamma_{\mathrm n}(\tau)$ coincides with the classical traction $(\gamma \tau)\,\mathrm n$.
 	\end{itemize}
 \end{frame}
 
@@ -458,7 +490,7 @@
 
 \begin{frame}{A Hybrid Formulation}
 	\begin{problem}[Signorini's Problem -- Hybrid Formulation]
-	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
+	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that
 	\begin{subequations}\label{eq:hybrid}
 		\begin{empheq}[left=\empheqlbrace]{alignat=2}
 			-\diver\sigma(u) &= f
@@ -482,7 +514,7 @@
 			\text{Find }u\in K\text{ such that}\qquad a(u,v-u)\ge\ell(v-u)\qquad \forall v\in K.
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:} $\ \textit{Hybrid }\Rightarrow\textit{ Weak}$:
+	\underline{\textbf{\em Proof:} $\ \textit{Hybrid }\Rightarrow\textit{ Weak}$:}
 	\begin{itemize}
 		\item Subtract \eqref{eq:hybrid_eq} from \eqref{eq:hybrid_ineq}:
 		      \begin{equation*}
@@ -504,15 +536,15 @@
 			\text{Find }u\in K\text{ such that}\qquad a(u,v-u)\ge\ell(v-u)\qquad \forall v\in K.
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Bulk Equation)}$:
+	\underline{\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Bulk Equation)}$:}
 	\begin{itemize}
-		\item Let $\varphi\in \cD(\Omega;\R^d)$. Then $u\pm t\varphi\in K$ for $|t|\ll 1$, hence the weak inequality implies
+		\item Let $\varphi\in \cD(\Omega;\R^d)$. Then $u\pm t\varphi\in K$ for $t\in\R$ because $\gamma\varphi = 0$, hence the weak inequality implies
 		      \begin{equation*}
 			      a(u,\varphi)=\ell(\varphi)=\int_\Omega f\cdot \varphi\;\dx = \langle f,\,\varphi\rangle\qquad \forall\,\varphi\in \cD(\Omega;\R^d).
 		      \end{equation*}
 		\item The left hand side is
 		      \begin{equation*}
-			      a(u,\varphi) = \int_\Omega\sigma(u):\varepsilon(\varphi) = \int_\Omega\sigma(u):\nabla\varphi\;\dx = \langle -\diver\sigma(u),\,\varphi\rangle.
+			      a(u,\varphi) = \int_\Omega\sigma(u):\varepsilon(\varphi) = \int_\Omega\sigma(u):\nabla\varphi\;\dx = \langle -\diver\sigma(u),\,\varphi\rangle\qquad \forall\,\varphi\in \cD(\Omega;\R^d).
 		      \end{equation*}
 		\item Thus, $-\diver\sigma(u) = f$ in $\cD^\prime(\Omega;\R^d)$ and by $\sigma(u)\in H(\diver;\Omega)$, it holds in $L^2(\Omega;\R^d)$ as well.
 	\end{itemize}
@@ -525,10 +557,13 @@
 			\text{Find }u\in K\text{ such that}\qquad a(u,v-u)\ge\ell(v-u)\qquad \forall v\in K.
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Equality)}$:
+	\underline{\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Equality)}$:}
 	\begin{itemize}
 		\item Since $K$ is a cone, we have $0,2u\in K$.
-		\item Testing both in the variational inequality yields $a(u,u)\le \ell(u)$ and $a(u,u)\ge \ell(u)$ and thus $a(u,u)= \ell(u)$.
+		\item Testing both in the variational inequality yields $a(u,u)\le \ell(u)$ and $a(u,u)\ge \ell(u)$ and thus
+		      \begin{equation*}
+			      a(u,u)= \ell(u).
+		      \end{equation*}
 		\item The identity earlier yields
 		      \begin{equation*}
 			      0 = a(u,u)-\ell(u) = \langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma -\int_{\Gamma_N}F\cdot\gamma u\;\ds.
@@ -544,16 +579,16 @@
 			\text{Find }u\in K\text{ such that}\qquad a(u,v-u)\ge\ell(v-u)\qquad \forall v\in K.
 		\end{equation*}
 	\end{proposition}
-	\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Inequality)}$:
+	\underline{\textbf{\em Proof:} $\ \textit{Weak }\Rightarrow\textit{ Hybrid (Hybrid Inequality)}$:}
 	\begin{itemize}
-		\item With the identity earlier, we have for all $v\in V$ that
+		\item With the identity earlier, and the variational inequality, we have
 		      \begin{equation*}
-			      a(u,v-u) = \langle \sigma(u)\mathrm{n},\, \gamma(v-u)\rangle_\Gamma + \int_\Omega f\cdot(v-u)\;\dx \ge \ell(v-u)=\int_\Omega f\cdot(v-u)\;\dx +\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
+			      \langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma - \int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds = a(u,v-u)-\ell(v-u)\ge 0\qquad \forall\,v\in V.
 		      \end{equation*}
-		\item Subtracting volume term yields: $\ \displaystyle  \langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma \ge\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds\qquad \forall\,v\in V$.
+
 		\item This means
 		      \begin{equation*}
-			      \langle\sigma(u)\mathrm{n}\,\gamma v\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot \gamma v\;\ds + \underbrace{\left[\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma-\int_{\Gamma_N}F\cdot\gamma u\;\ds\right]}_{ = 0}\qquad \forall\,v\in V.
+			      \langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot \gamma v\;\ds + \underbrace{\left[\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma-\int_{\Gamma_N}F\cdot\gamma u\;\ds\right]}_{ = 0}\qquad \forall\,v\in K.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -562,34 +597,42 @@
 
 \begin{frame}{Additional Regularity Assumptions and their Consequences}
 	\begin{itemize}
-		\item \textbf{\em Goal:} Formulate classical traces for the stress $\sigma(u)$.
-		\item Previously, $u\in V\subset H^1(\Omega;\R^d)$
-		\item In the classical strong formulation, we assume $u\in H^s(\Omega;\R^d)$ with $s>3/2$.
-		\item With $ \varepsilon(u)= \tfrac{1}{2}\left(\nabla u + \nabla u^\top\right)$, the small strain tensor is an operator $\varepsilon: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$
-		\item We further need the elasticity tensor field $\cA:\Omega\to\cL(\S^d;\S^d)$ to be {\em sufficiently} regular (e.g.\ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ if $3/2<s\le 2$).
-		\item With $\sigma(u) = \cA : \varepsilon(u)$., the stress tensor is now an operator $\sigma: H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d)$.
+		\item \textbf{\em Goal:} Formulate classical normal traces for the stress $\sigma(u)$ as for displacements: $v_\mathrm{n} = (\gamma v)\cdot\mathrm{n}$.
+		\item Previously, $u\in H^1(\Omega;\R^d)$
+		\item Now we assume $u\in H^s(\Omega;\R^d)$ with $s>3/2$.
+		\item Then $\varepsilon(u)\in H^{s-1}(\Omega;\S^d)$.
+		\item If $\cA$ sufficiently regular, then $\sigma(u) = \cA:\varepsilon(u)\in H^{s-1}(\Omega;\S^d)$.
+		\item For example: $\cA$ constant or $\cA_{ijkl}\in W^{1,\infty}(\Omega)$ if $3/2<s\le 2$.
+		\item Trace is defined: $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\S^d)$.
+		\item Here $\Gamma\in\cC^{m,1}$ with $m\ge\lceil s-1\rceil$ is required.
+		\item Then $\mathrm{n}\in \cC^{m-1,1}(\Gamma;\R^d)$.
+		\item Normal Trace: $t(u):=(\gamma \sigma(u))\,\mathrm{n}\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
+		\item If $\sigma(u)\in H(\diver;\Omega)$, the two concepts of normal traces coincide:
+		      \begin{equation*}
+			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle_\Gamma  = \int_\Gamma t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
+		      \end{equation*}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Additional Regularity Assumptions and their Consequences}
+\begin{frame}{Normal and Tangential Components}
 	\begin{itemize}
-		\item To apply the trace theorem on $\sigma(u)$, we further need the assumption $\Gamma\in \cC^{m,1}$ with $m\ge \lceil s-1\rceil$.
-		\item Then, by the trace theorem, $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$.
-		\item Since $\Gamma\in \mathcal C^{m,1}$, the unit outward normal satisfies $n\in \mathcal C^{m-1,1}(\Gamma;\R^d)$.
-		\item Hence the traction $t(u):=(\gamma \sigma(u))\,n\in H^{s-3/2}(\Gamma;\R^d)$ is well-defined.
-		\item If $\sigma(u)\in H(\diver;\Omega)$, the two concepts of normal traces coincide:
+		\item Normal and tangential splitting of $t(u)$ into
 		      \begin{equation*}
-			      \langle \sigma(u)\mathrm{n},\, \gamma v\rangle  = \int_{\Gamma_N}t(u)\cdot (\gamma v)\;\ds\qquad \forall\, v\in V.
-		      \end{equation*}
-		\item Its normal and tangential components are given by
-		      \begin{equation*}
-			      \sigma_n(u):=t(u)\cdot n\in H^{s-3/2}(\Gamma),
+			      \sigma_\mathrm{n}(u):=t(u)\cdot \mathrm{n}\in H^{s-3/2}(\Gamma),
 			      \qquad
-			      \sigma_t(u):=t(u)-\sigma_n(u)\,n\in H^{s-3/2}(\Gamma;\R^d).
+			      \sigma_t(u):=t(u)-\sigma_\mathrm{n}(u)\,\mathrm{n}\in H^{s-3/2}(\Gamma;\R^d).
 		      \end{equation*}
-		\item Furthermore, for $u\in H^{s}(\Omega;\R^d)$ we have $\gamma u\in (H^{s-1/2}(\Gamma;\R^d))$ with normal/tangential splitting
+		      such that
 		      \begin{equation*}
-			      u_\mathrm{n}:= (\gamma u)\cdot n\in H^{s-1/2}(\Gamma)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
+			      t(u) = \sigma_\mathrm{n}(u)\mathrm{n} + \sigma_t(u).
+		      \end{equation*}
+		\item Furthermore, for $u\in H^{s}(\Omega;\R^d)$ we have $\gamma u\in H^{s-1/2}(\Gamma;\R^d)$ with normal/tangential splitting
+		      \begin{equation*}
+			      u_\mathrm{n}:= (\gamma u)\cdot \mathrm{n}\in H^{s-1/2}(\Gamma)\qquad\text{and}\qquad u_t:= \gamma u- u_\mathrm{n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d)
+		      \end{equation*}
+		      such that
+		      \begin{equation*}
+			      \gamma u = u_\mathrm{n}\,\mathrm{n}+u_t.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -653,7 +696,7 @@
 	\end{proposition}
 	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid}:}
 	\begin{problem}[Signorini's Problem -- Hybrid Formulation]
-	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that $\sigma(u)\in H(\diver;\Omega)$ and
+	For given $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$, find $u\in K$ such that
 	\begin{subequations}\label{eq:hybrid2}
 		\begin{empheq}[left=\empheqlbrace]{alignat=2}
 			-\diver\sigma(u) &= f
@@ -674,20 +717,11 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Bulk equation and $u\in K$ and $\sigma(u)\in H(\diver;\Omega)$):}}
+	\underline{\textbf{\em Proof:} {\em Strong\enspace}$\Longrightarrow${\em\enspace Hybrid (Bulk equation and $u\in K$):}}
 	\begin{itemize}
 		\item Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$ solve the strong problem.
 		\item Bulk Equation $-\diver \sigma(u) = f$ appears in both.
 		\item $u = 0$ on $\Gamma_D$ \eqref{eq:strong_classical_dirichlet} and $u_\mathrm{n}\le 0$ on $\Gamma_C$ \eqref{eq:strong_contact_nonpen} are incorporated in the requirement $u\in K$.
-		\item Since $u\in H^s(\Omega;\R^d)$ with $s>3/2$, we have
-		      \begin{equation*}
-			      \sigma(u)\in H^{s-1}(\Omega;\S^d)\subset L^2(\Omega;\S^d).
-		      \end{equation*}
-		\item Since $f\in L^2(\Omega;\R^d)$ and $-\diver\sigma(u) = f$, we have
-		      \begin{equation*}
-			      \diver\sigma(u)\in L^2(\Omega;\R^d).
-		      \end{equation*}
-		\item This means, $\sigma(u)\in H(\diver;\Omega)$.
 	\end{itemize}
 \end{frame}
 
@@ -707,7 +741,7 @@
 		      \end{equation*}
 		\item We decompose
 		      \begin{equation*}
-			      \int_\Gamma t(u)\cdot(\gamma v)\;\ds =\underbrace{\int_{\Gamma_D} t(u)\cdot(\gamma v)\;\ds}_{=0\text{ since } \gamma v= 0 \text{ on }\Gamma_D}+\int_{\Gamma_N} \underbrace{t(u)}_{= F\text{ on }\Gamma_C}\cdot(\gamma v)\;\ds+\int_{\Gamma_C} t(u)\cdot(\gamma v)\;\ds.
+			      \int_\Gamma t(u)\cdot(\gamma v)\;\ds =\underbrace{\int_{\Gamma_D} t(u)\cdot(\gamma v)\;\ds}_{=0\text{ since } \gamma v= 0 \text{ on }\Gamma_D}+\int_{\Gamma_N} \underbrace{t(u)}_{= F\text{ on }\Gamma_N}\cdot(\gamma v)\;\ds+\int_{\Gamma_C} t(u)\cdot(\gamma v)\;\ds.
 		      \end{equation*}
 		\item With $t(u) = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\gamma v = v_\mathrm{n}\,\mathrm{n}+v_t$, we have
 		      \begin{equation*}
@@ -731,7 +765,7 @@
 		\item Thus $\sigma_\mathrm{n}(u)\, v_\mathrm{n}\ge 0$ on $\Gamma_C$ and thus
 		      \begin{equation*}
 			      \langle \sigma(u)\mathrm n,\gamma v\rangle_\Gamma
-			      \ge \int_{\Gamma_N}F\cdot(\gamma v)\;\ds\qquad \forall\, v\in V.
+			      \ge \int_{\Gamma_N}F\cdot(\gamma v)\;\ds\qquad \forall\, v\in K.
 		      \end{equation*}
 	\end{itemize}
 \end{frame}
@@ -777,7 +811,7 @@
 		\item Then $\pm v\in K$.
 		\item Plug $\pm v$ into hybrid inequality:
 		      \begin{equation*}
-			      \int_{\Gamma_N}t(u)\cdot g\;\ds\ge \int_{\Gamma_N} F\cdot g\;\ds,\qquad -\int_{\Gamma_N}t(u)\cdot g\;\ds\ge -\int_{\Gamma_N} F\cdot f\;\ds.
+			      \int_{\Gamma_N}t(u)\cdot g\;\ds\ge \int_{\Gamma_N} F\cdot g\;\ds,\qquad -\int_{\Gamma_N}t(u)\cdot g\;\ds\ge -\int_{\Gamma_N} F\cdot g\;\ds.
 		      \end{equation*}
 		\item Therefore,
 		      \begin{equation*}
@@ -809,7 +843,7 @@
 	\begin{proposition}[Equivalence of Strong and Hybrid Formulation]
 		Let $u\in H^s(\Omega;\R^d)$ with $s>3/2$. Then $u$ solves the strong problem if and only if it solves the hybrid problem.
 	\end{proposition}
-	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_\mathrm{n}(u)\le 0 = 0$ on $\Gamma_C$):}}
+	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_\mathrm{n}(u)\le 0$ on $\Gamma_C$):}}
 	\begin{itemize}
 		\item Again, $\displaystyle \int_{\Gamma_C} t(u)\cdot (\gamma v)\;\ds \ge 0$ for all $v\in K$.
 		\item Let $\eta\in H_{00}^{1/2}(\Gamma_C)$ with $\eta\le 0$ on $\Gamma_C$ and choose $v\in H^1(\Omega;\R^d)$ with $(\gamma v)|_{\Gamma_C} = \eta\,\mathrm{n}$ and $(\gamma_v)|_{\Gamma_N} = 0$ and $(\gamma v)|_{\Gamma_D} = 0$.
@@ -827,17 +861,76 @@
 	\end{proposition}
 	\underline{\textbf{\em Proof:} {\em Hybrid\enspace}$\Longrightarrow${\em\enspace Strong ($\sigma_\mathrm{n}(u)\,u_\mathrm{n} = 0$ on $\Gamma_C$):}}
 	\begin{itemize}
-		\item Hybrid equality yields $\displaystyle \int_{\Gamma_C} t(u)\cdot\gamma u\;\ds = 0$.
-		\item With With $t(u)=\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u) = 0$ on $\Gamma_C$, we have
+		\item Hybrid equality yields $\displaystyle \int_{\Gamma_C} t(u)\cdot(\gamma u)\;\ds = 0$.
+		\item With $t(u)=\sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u) = 0$ on $\Gamma_C$, we have
 		      \begin{equation*}
-			      int_{\Gamma_C} t(u)\cdot\gamma u\;\ds  = \int_{\Gamma_C} \underbrace{\sigma_\mathrm{n}(u)}_{\le 0}\underbrace{u_\mathrm{n}}_{\le 0}\;\ds = 0.
+			      \int_{\Gamma_C} t(u)\cdot(\gamma u)\;\ds  = \int_{\Gamma_C} \underbrace{\sigma_\mathrm{n}(u)}_{\le 0}\underbrace{u_\mathrm{n}}_{\le 0}\;\ds = 0.
 		      \end{equation*}\eop
 	\end{itemize}
 \end{frame}
 
-\section{Mixed Formulation}
-
 \section{Outlook}
+
+\begin{frame}{Things that did not fit in this Presentation -- Mixed Formulation}
+	\begin{itemize}
+		\item We had  $\sigma(u)\mathrm{n} = \gamma_{\mathrm{n}}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$ for $\sigma(u)\in H(\diver;\Omega)$.
+		\item Similarly, one defines {\em local} normal traces
+		      \begin{equation*}
+			      \sigma_C(u)\mathrm{n}:= \gamma_{\mathrm{n},C}(\sigma(u))\in (H_{00}^{1/2}(\Gamma_C;\R^d))^\prime.
+		      \end{equation*}
+		      on $H(\diver;\Omega)$ by
+		      \begin{equation*}
+			      \langle \sigma_C(u)\mathrm{n},\, g\rangle_{\Gamma_C} := \langle\sigma(u)\mathrm{n},\, \mathrm{Ext}_0(g)\rangle_\Gamma,\qquad\forall\, g\in H_{00}^{1/2}(\Gamma_C;\R^d).
+		      \end{equation*}
+		\item Treat the normal component $\lambda:=\sigma_{C,\mathrm{n}}(u)\in \Lambda_C$ of $\sigma_C(u)\mathrm{n}$ as an independent variable.
+		\item $\Lambda_C$ encodes the weak condition that the normal contact force can only be compressive.
+	\end{itemize}
+	\begin{problem}[Signorini's Problem -- Mixed Weak Formulation]
+	Let $|\Gamma_N|=0$. For given $f\in L^2(\Omega;\R^d)$ find $(u,\lambda)\in V\times \Lambda_C$ such that
+	\begin{subequations}\label{eq:mixed}
+		\begin{empheq}[left=\empheqlbrace]{alignat=2}
+			a(u,v)-\langle \lambda,\,v_\mathrm{n}\rangle_{\Gamma_C} &= \ell(v)
+			&\qquad& \forall\,v\in V, \label{eq:mixed_eq}\\
+			\langle \mu-\lambda,\,u_\mathrm{n}\rangle_{\Gamma_C} &\ge 0
+			&\qquad& \forall\,\mu\in \Lambda_C. \label{eq:mixed_ineq}
+		\end{empheq}
+	\end{subequations}
+	\end{problem}
+\end{frame}
+
+\begin{frame}{Friction, Gaps and Numerical Approximations}
+	\begin{itemize}
+		\item Extension to include tangential contact effects, i.e.\ {\em friction} on the contact boundary.
+		\item Tresca friction, Coulomb friction.
+		\item Leads to an even more difficult problem.
+		\item If a gap function $g:\Gamma_C\to\R$ is present, nonpenetration becomes $u_{\mathrm n}\le g$ on $\Gamma_C$.
+		\item Complementarity: $\sigma_\mathrm{n}(u)\,(u_\mathrm{n}-g) = 0$ on $\Gamma_C$.
+		\item Where should the gap function $g$ live?
+		\item Weak Formulation: in the same space as $u_\mathrm{n}$
+		\item Strong Formulation: smooth
+		\item Variational and mixed formulations are natural starting points for finite element methods.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\vfill
+	\centering
+	\setlength{\fboxsep}{0pt}
+	\colorlet{titleframeblue}{blue!70!black}
+	\fcolorbox{titleframeblue}{blue!10}{%
+		\begin{minipage}{0.6\textwidth}
+			\vspace{0.35cm}
+			\centering
+			{\fontsize{36}{42}\selectfont\bfseries\color{titleframeblue} Thank you!\par}
+			\vspace{0.35cm}
+		\end{minipage}%
+	}\par
+	\vspace{0.8cm}
+	{\Large Questions?\par}
+	\vspace{1.6em}
+	{\normalsize Max Stuthmann\par}
+	\vfill
+\end{frame}
 
 
 \end{document}

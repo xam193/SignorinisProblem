@@ -32,11 +32,11 @@ The first equation expresses the weak balance of forces, where the contact press
 	\end{equation*}
 	The identity \eqref{eq:useful} for the local normal trace on $\Gamma_C$ is
     \begin{equation}\label{eq:usefullocal}
-        \langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C} = a(u,v)-\ell(v).
+        \langle \sigma_C(u)\mathrm n,\,\gamma_C v\rangle_{\Gamma_C} = a(u,v)-\ell(v)\qquad\forall\,v\in V.
     \end{equation}
     Using the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{C, \mathrm n}(u)\mathrm{n}+\sigma_{C,t}(u)$, we further get
 	\begin{equation*}
-		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		\langle \sigma_C(u)\mathrm n,\,\gamma_C v\rangle_{\Gamma_C}
 		=
 		\langle \sigma_{C, \mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
 		+
@@ -103,21 +103,21 @@ The first equation expresses the weak balance of forces, where the contact press
 		a(u,v-u)-\ell(v-u)=\langle \lambda,\,(v-u)_{\mathrm n}\rangle_{\Gamma_C}=\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C} - \langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C} = \langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
 		\ge 0.
 	\end{equation*}
-	Thus $u$ solves the weak formulation in Problem \ref{pr:signorini2}. Since we have already shown that $\sigma(u)$ belongs to $H(\diver;\Omega)$, the previously established equivalence of weak and hybrid formulation implies that $u$ solves Problem \ref{pr:signorini4}. As $|\Gamma_N|=0$, the previously established equivalence of hybrid and KKT formulation shows that $u$ also solves Problem \ref{pr:signorini5}. It remains to identify the multiplier $\lambda$. Since $u$ solves Problem \ref{pr:signorini5}$,$ we know in particular that
+	Thus $u$ solves the weak formulation in Problem \ref{pr:signorini2}. Since we have already shown that $\sigma(u)$ belongs to $H(\diver;\Omega)$, the previously established equivalence of weak and hybrid formulation implies that $u$ solves Problem \ref{pr:signorini4}. As $|\Gamma_N|=0$, the previously established equivalence of hybrid and KKT formulation shows that $u$ also solves Problem \ref{pr:signorini5}. It remains to identify the multiplier $\lambda$. Since $u$ solves Problem \ref{pr:signorini5}, we know in particular that
 	\begin{equation*}
 		\sigma_{C,t}(u)=0
 		\qquad\text{in }W_{C,t}'.
 	\end{equation*}
-	On the other hand, because $|\Gamma_N|=0$ and \eqref{eq:strong_bulk} holds, the local Green formula gives
+	On the other hand, because $|\Gamma_N|=0$ and \eqref{eq:strong_bulk} holds, the local Green formula \eqref{eq:usefullocal} gives
 	\begin{equation*}
 		a(u,v)-\ell(v)
 		=
-		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		\langle \sigma_C(u)\mathrm n,\,\gamma_C v\rangle_{\Gamma_C}
 		\qquad\forall\,v\in V.
 	\end{equation*}
 	Comparing \eqref{eq:usefullocal} with \eqref{eq:mixed_eq}, we obtain
 	\begin{equation*}
-		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
+		\langle \sigma_C(u)\mathrm n,\,\gamma_C v\rangle_{\Gamma_C}
 		=
 		\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
 		\qquad\forall\,v\in V.

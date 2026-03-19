@@ -1,7 +1,6 @@
 \section{Introduction}\label{sec:Introduction}
 
-
-We are given a body $\Omega\subset\R^d$. While all of the below may be formulated for arbitrary $d\ge 1$, it is of course reasonable to restrict our selfs to the real world application $d\in\{2,3\}$. Further necessary topological assumptions on $\Omega$ are introduced in the next subsection. This body may be sitting on a {\em rigid foundation}. See Figure \ref{fig:setup_plain} (left). Furthermore, let our body be made of an {\em elastic material}, allowing $\Omega$ to deform due to {\em internal} and {\em external forces}. If these forces are large enough, $\Omega$ in its initial state as in Figure \ref{fig:setup_plain} (left) is not in a {\em balanced} configuration. The internal and external forces are not in equilibrium. If we now allow all forces to act until the body is in an equilibrium configuration, this could look like Figure \ref{fig:setup_plain} (right). The body Omega in this state is designated $\varphi(\Omega)$.
+We are given a body $\Omega\subset\R^d$. While all of the below may be formulated for arbitrary $d\ge 1$, it is of course reasonable to restrict ourselves to the real world application $d\in\{2,3\}$. Further necessary topological assumptions on $\Omega$ are introduced in the next subsection. This body may be sitting on a {\em rigid foundation}. See Figure \ref{fig:setup_plain} (left). Furthermore, let our body be made of an {\em elastic material}, allowing $\Omega$ to deform due to {\em internal} and {\em external forces}. If these forces are large enough, $\Omega$ in its initial state as in Figure \ref{fig:setup_plain} (left) is not in a {\em balanced} configuration. The internal and external forces are not in equilibrium. If we now allow all forces to act until the body is in an equilibrium configuration, this could look like Figure \ref{fig:setup_plain} (right). The body $\Omega$ in this state is designated $\varphi(\Omega)$.
 
 \begin{figure}[!h]
 	\centering
@@ -16,16 +15,24 @@ The transition of $\Omega$ in its initial configuration into $\Omega$ in its equ
 \end{equation*}
 where $u: \Omega\to \R^d$ is called the {\em displacement} function. The Signorini Problem seeks precisely this function under given elasticity properties, forces, boundary conditions and other rules.
 
+A characteristic difficulty of the Signorini problem is that the contact conditions are neither purely of Dirichlet nor purely of Neumann type. Instead, they take the form of {\em unilateral} boundary conditions. The body is not allowed to {\em penetrate} the rigid foundation, contact forces may only be {\em compressive}, and both effects are coupled through a {\em complementarity} relation. In particular, the {\em effective contact zone} is not known in advance, but depends on the unknown solution itself. This makes the problem nonlinear and leads naturally to formulations in terms of variational {\em inequalities} and, later on, {\em Karush--Kuhn--Tucker} type conditions. The presentation in this report is mainly based on \cite{book}, in particular on Chapter 3 and Section 7.1, together with some Sobolev and trace theoretic material from Chapter 2.
 
-\section{Geometrical and Physical Setup}
+The aim of this report is to derive and compare several equivalent formulations of the Signorini problem in a functional analytic setting. After introducing the geometrical setup, the boundary decomposition, and the required Sobolev spaces, we model the elastic response of the body and define the admissible displacement set. Based on this, we first study an energy formulation and derive the weak formulation as a variational inequality. We then pass to stronger formulations by identifying suitable normal traces on the contact boundary and recovering the contact conditions in weak and KKT-type form. Finally, we discuss a mixed formulation involving a Lagrange multiplier for the normal contact force.
 
-Naturally, all of the above must be mathematically modeled in order to apply suitable theories and methods, e.g.\ from functional analysis. This will be covered in the following sections. Throughout, $\Omega\subset \R^d,\, d\in\{2,3\}$ denotes an open, bounded and connected domain with boundary $\Gamma:=\partial\Omega$, that is at least Lipschitz, i.e.\ $\Gamma\in \cC^{m,1},\, m\ge 0$. Among other things, this provides us with an {\em outward normal} $\mathrm{n}\in\cC^{m-1,1}(\Gamma;\R^d)$ if $m \ge 1$. For now, $m = 0$ is sufficient Then, $\mathrm{n}\in L^\infty(\Gamma;\R^d)$. Later on, higher regularity on $\Gamma$ is needed. We begin by dividing the boundary into different sub-boundaries, which will later each be subject to different boundary conditions. Then the elasticity properties of the body are appropriately modeled and we discuss how the acting forces are understood. Finally, it is defined which displacement functions are admissible at all.
+\newpage
+\section{Geometric and Physical Setup}
+
+Naturally, all of the above must be mathematically modeled in order to apply suitable theories and methods, e.g.\ from functional analysis. This will be covered in the following sections. Throughout, $\Omega\subset \R^d,\, d\in\{2,3\}$ denotes an open, bounded and connected domain with boundary $\Gamma:=\partial\Omega$, that is at least Lipschitz, i.e.\ $\Gamma\in \cC^{m,1},\, m\ge 0$. Among other things, this provides us with an {\em outward normal}
+\begin{equation*}
+	\mathrm{n}\in\cC^{m-1,1}(\Gamma;\R^d),\qquad m\ge 1.
+\end{equation*}
+For now, $m = 0$ is sufficient. Then, $\mathrm{n}\in L^\infty(\Gamma;\R^d)$. Later on, higher regularity on $\Gamma$ is needed. We begin by dividing the boundary into different sub-boundaries, which will later each be subject to different boundary conditions. Then the elasticity properties of the body are appropriately modeled and we discuss how the acting forces are understood. Finally, it is defined which displacement functions are admissible at all.
 
 \subsection{Boundary Decomposition}
 
 The boundary is decomposed into three pairwise disjoint parts
 \begin{equation*}
-	\Gamma = \overline{\Gamma_D}\,\mathbin{\dot\cup}\,\overline{\Gamma_N}\,\mathbin{\dot\cup}\,\overline{\Gamma_C},\qquad |\Gamma_C|,|\Gamma_D|>0,\;|\Gamma_N|\ge 0.
+	\Gamma = \overline{\Gamma_D}\cup\overline{\Gamma_N}\cup\overline{\Gamma_C},\qquad |\Gamma_C|,|\Gamma_D|>0,\;|\Gamma_N|\ge 0.
 \end{equation*}
 which are assumed to be open in $\Gamma$ and where each part is subject to different boundary conditions to model different physical interactions (See Figure \ref{fig:setup}).
 
@@ -36,11 +43,15 @@ which are assumed to be open in $\Gamma$ and where each part is subject to diffe
 	\label{fig:setup}
 \end{figure}
 
-While $\Gamma_C$ and $\Gamma_D$ are assumed to be of positive $(d-1)$-Lebesgue measure, $\Gamma_N$ may in some instances be a null set, or more roughly speaking, nonexistent. On $\Gamma_D$, we apply {\em homogeneous Dirichlet} boundary conditions. This forces the body to be {\em clamped} and this part, i.e.\ the displacement should not act on $\Gamma_D$. The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary.  The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral contact} through {\em nonpenetration} and {\em complementarity}. The rigid foundation can be modeled through a {\em gap-function} $g:\Gamma_C\to\R$, describing the distance between $\Gamma_C$ and the foundation. While the foundation in Figure \ref{fig:setup} suggests a piece-wise constant gap-function $g$, we will throughout the whole report assume $g = 0$.
+While $\Gamma_C$ and $\Gamma_D$ are assumed to be of positive $(d-1)$-Lebesgue measure, $\Gamma_N$ may in some instances be a null set, or more roughly speaking, nonexistent. On $\Gamma_D$, we apply {\em homogeneous Dirichlet} boundary conditions. This forces the body to be {\em clamped} and this part, i.e.\ the displacement should not act on $\Gamma_D$. The part $\Gamma_N$ may be subject to a {\em Neumann} boundary condition, which means we impose a known {\em surface force density}. $\Gamma_C$ denotes the {\em potential contact} boundary.  The rigid foundation is  positioned so that any actual contact, both initially and in the deformed equilibrium configuration, may only occur on $\Gamma_C$. While $\Gamma_C$ is prescribed a priori, the {\em active contact zone} $\Gamma_{\mathrm{act}}(u)\subset\Gamma_C$ is unknown and depends on the solution $u$. Later on, the boundary conditions imposed on $\Gamma_C$ enforce {\em unilateral contact} through {\em nonpenetration} and {\em complementarity}. The rigid foundation can be modeled through a {\em gap-function} $g:\Gamma_C\to\R$, describing the distance between $\Gamma_C$ and the foundation. While the foundation in Figure \ref{fig:setup} suggests a piecewise constant gap-function $g$, we will throughout the whole report assume $g = 0$.
 
 \subsection{Basic Notations on Sobolev Spaces}
 
-This subsection is intended to fix some of the notations used in this report. Since Signorini's problem is formulated as a search for the displacement function as a partial differential equation, Sobolev spaces are of particular importance. The Sobolev space $W^{k,p}(\Omega;\R^d)$ contains every $L^p(\Omega;\R^d)$-function, such that weak derivatives up to order $k\ge 0$ are again in $L^p(\Omega;\R^d)$. Here, we are only interested in the Hilbert space case $p= 2$ and we write $H^k(\Omega;\R^d):= W^{k,2}(\Omega;\R^d)$. The $L^2$-inner product and norm is denoted by $(\cdot,\,\cdot)_{0,\Omega}$ and $\|\cdot\|_{0,\Omega}$. We record this introduction in the following definition and simultaneously establish a notation for the associated norm.
+This subsection is intended to fix some of the notations used in this report. Since Signorini's problem can be formulated as a partial differential equation for the displacement function, Sobolev spaces are of particular importance. The Sobolev space $W^{k,p}(\Omega;\R^d)$ contains every $L^p(\Omega;\R^d)$-function, such that weak derivatives up to order $k\ge 0$ are again in $L^p(\Omega;\R^d)$. Here, we are only interested in the Hilbert space case $p= 2$ and we write
+\begin{equation*}
+	H^k(\Omega;\R^d):= W^{k,2}(\Omega;\R^d).
+\end{equation*}
+The $L^2$-inner product and norm is denoted by $(\cdot,\,\cdot)_{0,\Omega}$ and $\|\cdot\|_{0,\Omega}$. We record this introduction in the following definition and simultaneously establish a notation for the associated norm.
 
 \begin{definition}[Sobolev Spaces of Integer Order]
 	Let $k\in\N_0$. The {\tt Sobolev space} $H^k(\Omega;\R^d)$ is defined by
@@ -66,14 +77,18 @@ We adopt the usual convention $H^0(\Omega;\R^d) = L^2(\Omega;\R^d)$ explaining t
 	\begin{equation*}
 		(u,\, v)_{k,\Omega}:= \sum_{|\alpha|\le k}(\Diff^\alpha u,\, \Diff^\alpha v)_{0,\Omega},\qquad u,v\in H^k(\Omega;\R^d)
 	\end{equation*}
-	is a Hilbert space and the induced the norm $\|\cdot\|_{k,\Omega}$.
+	is a Hilbert space with induced norm $\|\cdot\|_{k,\Omega}$.
 	\eop
 \end{proposition}
 
-After the integer-order spaces $H^k(\Omega;\R^d)$, we also need Sobolev spaces of non-integer order. The main reason is that trace operators naturally lead to boundary spaces of fractional order. In particular, traces of $H^1(\Omega;\R^d)$-functions are, in general, not measured in another integer-order Sobolev space, but in a space of order $1/2$ on the boundary and similarly on boundary parts $\Gamma_0\subset\Gamma$. For a non-integer order $s=k+\theta$ with $\theta\in(0,1)$, the remaining fractional part $\theta$ is measured by difference quotients. More precisely, one measures how strongly a function oscillates between pairs of points $x,y\in\Omega$, with a weight that becomes singular as $|x-y|\to 0$. This leads to the following quantity.
+After the integer-order spaces $H^k(\Omega;\R^d)$, we also need Sobolev spaces of non-integer order. The main reason is that trace operators naturally lead to boundary spaces of fractional order. In particular, traces of $H^1(\Omega;\R^d)$-functions are, in general, not measured in another integer-order Sobolev space, but in a space of order $1/2$ on the boundary and similarly on boundary parts $\Gamma_0\subset\Gamma$. For a non-integer order
+\begin{equation*}
+	s=k+\theta,\qquad k\in \N,\;\theta\in(0,1),
+\end{equation*}
+the remaining fractional part $\theta$ is measured by difference quotients. More precisely, one measures how strongly a function oscillates between pairs of points $x,y\in\Omega$, with a weight that becomes singular as $|x-y|\to 0$. This leads to the following quantity.
 
 \begin{definition}[Slobodeckij Seminorm]
-	Let $m\ge 1$ and $\theta\in(0,1)$. For a measurable function $u:\Omega\to \R^d$, we define the {\tt Slobodeckij semi-norm}
+	Let $\theta\in(0,1)$. For a measurable function $u:\Omega\to \R^d$, we define the {\tt Slobodeckij semi-norm}
 	\begin{equation*}
 		|u|_{\theta,\Omega}
 		:=
@@ -82,7 +97,7 @@ After the integer-order spaces $H^k(\Omega;\R^d)$, we also need Sobolev spaces o
 	whenever the right-hand side is finite.
 \end{definition}
 
-The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on constant functions. Combined with an $L^2$-term, however, it yields a genuine norm. With this, we can define Sobolev spaces of fractional order and just as above, state, that this provides us with a Hilbert space together with suitable inner product.
+The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on constant functions. Combined with an $L^2$-term, however, it yields a genuine norm. This allows us to define Sobolev spaces of fractional order and, as above, to equip them with a Hilbert space structure.
 
 \begin{definition}[Sobolev Spaces of Fractional Order]\label{def:fractionalsobolev}
 	Let $s=k+\theta$ with $k\in\N_0$ and $\theta\in(0,1)$. The {\tt Sobolev space} of fractional order $s$ is defined by
@@ -93,7 +108,16 @@ The quantity $|u|_{\theta,\Omega}$ is only a semi-norm, since it vanishes on con
 		u\in H^k(\Omega;\R^d)\;\middle|\; |\Diff^\alpha u|_{\theta,\Omega}<\infty \ \forall\,\alpha\in\N_0^d,\ |\alpha|=k
 		\right\},
 	\end{equation*}
-	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we equip $H^s(\Omega;\R^d)$ with the norm
+	where $\Diff^\alpha u$ is understood in the weak sense. Moreover, we define
+	\begin{equation*}
+		|u|_{s,\Omega}
+		:=
+		\left(
+		\sum_{|\alpha|=k} |\Diff^\alpha u|_{\theta,\Omega}^2
+		\right)^{1/2},
+		\qquad u\in H^s(\Omega;\R^d),
+	\end{equation*}
+	and equip $H^s(\Omega;\R^d)$ with the norm
 	\begin{equation*}
 		\|u\|_{s,\Omega}
 		:=
@@ -154,7 +178,7 @@ For $u\in H^s(\Omega;\R^d)$, pointwise boundary values are in general not define
 	\end{equation*}
 \end{definition}
 
-Notice how the underlying set is the same for different values of $s>1/2$, but it is equipped with different norms.
+Notice how the underlying set is the same for different values of $s>1/2$, but it is equipped with different norms. The classical trace operator now extends uniquely to a continuous trace operator on $H^s(\Omega;\R^d)$.
 
 \begin{theorem}[Trace Theorem]\label{thm:trace}
 	Let $\Gamma\in \cC^{m,1},\, m\ge 0$ and $1/2< s\le m+1$. Then the classical trace operator $\gamma_0$ extends uniquely to a continuous surjective linear operator
@@ -175,7 +199,7 @@ where $\cD(\Omega;\R^d)$ denotes the space of $\R^d$-valued test functions on $\
 
 \subsection{Elasticity and Forces}\label{sec:elastforce}
 
-In Elasticity, stresses are described by {\em symmetric second order tensors},
+In elasticity, stresses are described by {\em symmetric second order tensors},
 \begin{equation*}
 	\S^d:= \left\{s\in\R^d\otimes\R^d\;\middle|\; s^\top = s\right\}.
 \end{equation*}
@@ -194,13 +218,13 @@ for real $d\times d$-matrices $A$ and $B$, while for $x,y\in \R^d$ we denote by
 the Euclidean inner product and norm. As $\S^d$ may be identified with a subspace of $\R^{d^2}$, the above definitions of Sobolev spaces may be naturally extended to $\S^d$-valued functions on $\Omega$. We continue by defining the {\em small strain tensor} for a displacement function $u\in H^1(\Omega;\R^d)$, which is similar to the symmetric part of square matrices but for the gradient $\nabla u$ of $u$ and through which the deformation of the body $\overline{\Omega}$ by $u$ is quantified.
 
 \begin{definition}[Small Strain Tensor]\label{def:smallstraintensor}
-	The {\tt (small) strain tensor} $\varepsilon$ is defined by
+	Let $s\ge 1$. The {\tt (small) strain tensor} $\varepsilon$ is defined by
 	\begin{equation*}
 		\varepsilon:H^s(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \varepsilon(u):= \frac{1}{2}\left(\nabla u + \nabla u^\top\right).
 	\end{equation*}
 \end{definition}
 
-In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $\cA$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $\cA$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body. For a fourth oder tensor $\cA:\Omega\to\cL(\S^d;\S^d)$ and $s\in \S^d$, we use the {\em double contraction}
+In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $\cA$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $\cA$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body. For a fourth order tensor $\cA:\Omega\to\cL(\S^d;\S^d)$ and $s\in \S^d$, we use the {\em double contraction}
 \begin{equation*}
 	(\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)\,s_{kl},
 	\qquad
@@ -230,7 +254,7 @@ In linear elasticity, stresses are assumed to depend linearly on strains. The ma
 The {\em internal} and {\em surface forces} in the body $\overline{\Omega}$ are described by the {\em Cauchy stress tensor}.
 
 \begin{definition}[Cauchy Stress Tensor]
-	We define the {\tt (linear) Cauchy stress tensor} by
+	Let $s\ge 1$. We define the {\tt (linear) Cauchy stress tensor} by
 	\begin{equation*}
 		\sigma: H^{s}(\Omega;\R^d)\to H^{s-1}(\Omega;\S^d),\qquad u\mapsto \cA : \varepsilon(u),
 	\end{equation*}
@@ -241,92 +265,19 @@ In the case $s = 1$, it is sufficient to require $\cA_{ijkl}\in L^\infty(\Omega)
 \begin{equation}\label{eq:loadfunc}
 	\ell(v):= \int_\Omega f\cdot v\;\dx +\int_{\Gamma_N} F\cdot(\gamma v)\;\ds ,\qquad v\in H^1(\Omega;\R^d),
 \end{equation}
-describing the {\em virtual work of external forces}. As he internal forces are described by the stress $\sigma(u)= \cA:\varepsilon(u)$, the same principle suggests the symmetric bilinear form
+describing the {\em virtual work of external forces}. As the internal forces are described by the stress $\sigma(u)= \cA:\varepsilon(u)$, the same principle suggests the symmetric bilinear form
 \begin{equation}\label{eq:symbil}
-	a(u,v):= \int_\Omega \sigma(u):\varepsilon(u)\;\dx,\,\qquad u,v\in H^1(\Omega;\R^d).
+	a(u,v):= \int_\Omega \sigma(u):\varepsilon(v)\;\dx,\,\qquad u,v\in H^1(\Omega;\R^d).
 \end{equation}
-as a representative for the {\em virtual work of internal forces}. Equilibrium between both reads $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$, which already looks like a weak formulation but at this point, only the Neumann boundary conditions on $\Gamma_N$ are imposed. In the following, we want to prove standard properties of $a$ and $\ell$ that are needed later on. For this, we will need the following inequalities. The first inequality is a result of {\em Korn's second inequality} (\cite[Theorem 3.3]{book} and \cite[Section 3.5.2]{book}) and the {\em Peetre--Tartar} Lemma~(\cite[Lemma~3.5]{book}). Therefore only the proof of the second one is given.
-\begin{lemma}\label{lem:korn}
-	There exists a constant $C_K>0$ such that
-	\begin{equation*}
-		C_K^{-1}\,\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega} \qquad \forall\, v\in H^1(\Omega;\R^d).
-	\end{equation*}
-\end{lemma}
-\begin{proof}
-	We prove the second inequality. For all $v\in H^1(\Omega;\R^d)$ we have
-	\begin{equation*}
-		|\varepsilon(v)(x)| = \left|\frac{1}{2}\left(\nabla v(x) +\nabla v^\top\right)\right|\le \frac{1}{2}\left(|\nabla v(x)|+|\nabla v(x)^\top|\right) = |\nabla v(x)|
-	\end{equation*}
-	and thus
-	\begin{equation*}
-		\|\varepsilon(v)\|_{0,\Omega}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{0,\Omega}^2\le \|v\|_{1,\Omega}^2,
-	\end{equation*}
-	where the last inequality holds due to
-	\begin{equation*}
-		\|v\|_{1,\Omega}^2 = \|v\|_{0,\Omega}^2 + \|\nabla v\|_{0,\Omega}^2.
-	\end{equation*}
-\end{proof}
-
-\begin{proposition}\label{pr:aproperties}
-	The symmetric bilinear form $a:H^1(\Omega;\R^d)\times H^1(\Omega;\R^d)\to \R$ defined in \eqref{eq:symbil} is
-	\begin{itemize}
-		\item[i)] {\em bounded}, i.e.\ for all $v,w\in H^1(\Omega;\R^d)$ there exists $C_1<\infty$ such that
-		      \begin{equation*}
-			      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}\qquad \text{with}\qquad C_1 = C_\cA,
-		      \end{equation*}
-		\item[ii)] $V${\em -elliptic}, i.e.\ for all $v\in H^1(\Omega;\R^d)\setminus\{0\}$ there exist $C_2>0$ such that
-		      \begin{equation*}
-			      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2\qquad\text{with}\qquad C_2 = \frac{\alpha_\cA}{C_K^2}.
-		      \end{equation*}
-	\end{itemize}
-	Moreover, the linear functional $\ell$ defined in \eqref{eq:loadfunc} is {\em bounded}, i.e.\ for all $v\in H^1(\Omega;\R^d)$ there exists $C_3>0$ such that
-	\begin{equation}\label{eq:ellbound}
-		|\ell (v)|\le C_3\,\|v\|_{1,\Omega}\qquad\text{with}\qquad C_3 = \max\{1,C_\mathrm{tr}\}\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)
-	\end{equation}
-\end{proposition}
-\begin{proof}
-	Let $v,w\in H^1(\Omega;\R^d)$ be arbitrary. Then
-	\begin{equation*}
-		|a(v,w)|\le \|\cA:\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}
-	\end{equation*}
-	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_\cA>0$ such that
-	\begin{equation*}
-		\|\cA:\varepsilon(v)\|_{0,\Omega}\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}.
-	\end{equation*}
-	Combining this with the second inequality form Lemma \ref{lem:korn} we have
-	\begin{equation*}
-		|a(v,w)|\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}\le C_\cA\,\|v\|_{1,\Omega}\,\|w\|_{1,\Omega}.
-	\end{equation*}
-	The ellipticity of $a$ follows by
-	\begin{equation*}
-		a(v,v) = \int_\Omega \varepsilon(v):\cA:\varepsilon(v)\;\dx \ge \alpha_\cA\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_\cA\,\|\varepsilon(v)\|^2_{0,\Omega},
-	\end{equation*}
-	where $\alpha_\cA>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
-	\begin{equation*}
-		a(v,v)\ge \alpha_\cA\,\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_\cA\,\left(C_K^{-1}\,\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_\cA}{C_K^2}\,\|v\|_{1,\Omega}^2.
-	\end{equation*}
-	Again by Cauchy--Schwarz inequality,
-	\begin{equation*}
-		|\ell(v)|\le \|f\|_{0,\Omega}\,\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}\qquad \forall\, v\in H^1(\Omega;\R^d).
-	\end{equation*}
-	By the Trace Theorem \ref{thm:trace} there exists $C_\mathrm{tr}>0$ such that
-	\begin{equation*}
-		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall\, v\in H^1(\Omega;\R^d).
-	\end{equation*}
-	Finally,
-	\begin{equation*}
-		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\,\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\le \max\{1,C_\mathrm{tr}\}\,\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}
-	\end{equation*}
-	for every $v\in H^1(\Omega;\R^d)$, which proves \eqref{eq:ellbound}.
-\end{proof}
+as a representative for the {\em virtual work of internal forces}. Equilibrium between both reads $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$, which already looks like a weak formulation but at this point, only the Neumann boundary conditions on $\Gamma_N$ are imposed.
 
 \subsection{Admissible Displacements}
 
-We start by introducing the underlying Hilbert space $V$ in which homogeneous dirichlet boundary conditions on $\Gamma_D$ are already incorporated by
+We start by introducing the underlying Hilbert space $V$ in which homogeneous Dirichlet boundary conditions on $\Gamma_D$ are already incorporated by
 \begin{equation*}
 	V:= \left\{v\in H^1(\Omega;\R^d)\;\middle|\; (\gamma v)|_{\Gamma_D} = 0\right\}\subset H^1(\Omega;\R^d).
 \end{equation*}
-For $v\in V$ we define the {\em normal component} of the boundary displacement on $\Gamma$ by $v_\mathrm{n}:= (\gamma v)\cdot\mathrm{n}$. Here, since $\Gamma$ is Lipschitz, $\Gamma\in \cC^{0,1}$, the outward normal $\mathrm{n}$ belongs to $L^\infty(\Omega;\R^d)$ which yields $v_\mathrm{n}\in H^{1/2}(\Gamma)$. The rigid foundation is located on the exterior side of $\Gamma_C$ in direction of $\mathrm n$. Hence the body is not allowed to move across $\Gamma_C$ into the obstacle. This yields that the solution must satisfy the {\em nonpenetration} condition
+For $v\in V$ we define the {\em normal component} of the boundary displacement on $\Gamma$ by $v_\mathrm{n}:= (\gamma v)\cdot\mathrm{n}$. Here, since $\Gamma$ is Lipschitz, $\Gamma\in \cC^{0,1}$, the outward normal $\mathrm{n}$ belongs to $L^\infty(\Gamma;\R^d)$ which yields $v_\mathrm{n}\in L^2(\Gamma)$. The rigid foundation is located on the exterior side of $\Gamma_C$ in direction of $\mathrm n$. Hence the body is not allowed to move across $\Gamma_C$ into the obstacle. This yields that the solution must satisfy the {\em nonpenetration} condition
 \begin{equation}\label{eq:nonpenetration}
 	u_{\mathrm n}\le 0 \qquad \text{a.e.\ on }\Gamma_C.
 \end{equation}
@@ -341,7 +292,7 @@ and motivates the nonempty, closed and convex cone of {\em admissible displaceme
 \begin{proof}
 	$K$ is nonempty, since $0\in K$. Let $\lambda\in[0,\infty)$ and $v\in K\subset V$. Since $V$ is a vector space, we have $\lambda v\in V$. Furthermore,
 	\begin{equation*}
-		(\lambda v)_\mathrm{n} = \gamma(\lambda v)\cdot \mathrm{n} = (\lambda\gamma v)\cdot \mathrm{n} = \lambda(\gamma v\cdot n) = \lambda v_\mathrm{n}.
+		(\lambda v)_\mathrm{n} = \gamma(\lambda v)\cdot \mathrm{n} = (\lambda\gamma v)\cdot \mathrm{n} = \lambda(\gamma v\cdot \mathrm{n}) = \lambda v_\mathrm{n}.
 	\end{equation*}
 	Since $v_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$ and $\lambda\ge 0$, we also have $\lambda v_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$, i.e.\ $\lambda v\in K$. Thus $K$ is a cone in $V$. Let $v,w\in K$ and $\theta\in[0,1]$ and set $u:= \theta v+(1-\theta)w\in V$. Then we have
 	\begin{equation*}
@@ -368,5 +319,81 @@ and motivates the nonempty, closed and convex cone of {\em admissible displaceme
 		T(v)(x) \le 0 \qquad \text{for a.e. } x \in \Gamma_C.
 	\end{equation*}
 	Thus $v \in K$, and therefore $K$ is closed.
+\end{proof}
+
+In the following, we want to prove standard properties of $a$ and $\ell$ on $V$ that are needed later on. For this, we will need the following inequalities. The first inequality is a result of {\em Korn's second inequality} (\cite[Theorem 3.3]{book} and \cite[Section 3.5.2]{book}) and the {\em Peetre--Tartar} Lemma~(\cite[Lemma~3.5]{book}). Therefore only the proof of the second one is given.
+\begin{lemma}\label{lem:korn}
+	There exists a constant $C_K>0$ such that
+	\begin{equation*}
+		C_K^{-1}\,\|v\|_{1,\Omega} \le \|\varepsilon(v)\|_{0,\Omega}\le \|v\|_{1,\Omega}
+		\qquad \forall\, v\in V.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	We prove the second inequality. For all $v\in V$ we have
+	\begin{equation*}
+		|\varepsilon(v)(x)| = \left|\frac{1}{2}\left(\nabla v(x) +\nabla v^\top\right)\right|\le \frac{1}{2}\left(|\nabla v(x)|+|\nabla v(x)^\top|\right) = |\nabla v(x)|
+	\end{equation*}
+	and thus
+	\begin{equation*}
+		\|\varepsilon(v)\|_{0,\Omega}^2 =\int_\Omega |\varepsilon(v)(x)|^2\;\dx \le\int_\Omega |\nabla v(x)|^2\;\dx = \|\nabla v\|_{0,\Omega}^2\le \|v\|_{1,\Omega}^2,
+	\end{equation*}
+	where the last inequality holds due to
+	\begin{equation*}
+		\|v\|_{1,\Omega}^2 = \|v\|_{0,\Omega}^2 + \|\nabla v\|_{0,\Omega}^2.
+	\end{equation*}
+\end{proof}
+
+\begin{proposition}\label{pr:aproperties}
+	The symmetric bilinear form $a:V\times V\to \R$ defined in \eqref{eq:symbil} is
+	\begin{itemize}
+		\item[i)] {\em bounded}, i.e.\ for all $u,v\in V$ there exists $C_1<\infty$ such that
+		      \begin{equation*}
+			      |a(u,v)|\le C_1\,\|u\|_{1,\Omega}\,\|v\|_{1,\Omega}\qquad \text{with}\qquad C_1 = C_\cA,
+		      \end{equation*}
+		\item[ii)] $V$-{\em elliptic}, i.e.\ for all $v\in V\setminus\{0\}$ there exist $C_2>0$ such that
+		      \begin{equation*}
+			      a(v,v)\ge C_2\,\|v\|_{1,\Omega}^2\qquad\text{with}\qquad C_2 = \frac{\alpha_\cA}{C_K^2}.
+		      \end{equation*}
+	\end{itemize}
+	Moreover, the linear functional $\ell$ defined in \eqref{eq:loadfunc} is {\em bounded}, i.e.\ for all $v\in V$ there exists $C_3>0$ such that
+	\begin{equation}\label{eq:ellbound}
+		|\ell (v)|\le C_3\,\|v\|_{1,\Omega}\qquad\text{with}\qquad C_3 = \max\{1,C_\mathrm{tr}\}\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Let $v,w\in V$ be arbitrary. Then
+	\begin{equation*}
+		|a(v,w)|\le \|\cA:\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}
+	\end{equation*}
+	by the Cauchy--Schwarz inequality. With Definition \ref{def:elastfield} there exists $C_\cA>0$ such that
+	\begin{equation*}
+		\|\cA:\varepsilon(v)\|_{0,\Omega}\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}.
+	\end{equation*}
+	Combining this with the second inequality form Lemma \ref{lem:korn} we have
+	\begin{equation*}
+		|a(v,w)|\le C_\cA\,\|\varepsilon(v)\|_{0,\Omega}\,\|\varepsilon(w)\|_{0,\Omega}\le C_\cA\,\|v\|_{1,\Omega}\,\|w\|_{1,\Omega}.
+	\end{equation*}
+	The ellipticity of $a$ follows by
+	\begin{equation*}
+		a(v,v) = \int_\Omega \varepsilon(v):\cA:\varepsilon(v)\;\dx \ge \alpha_\cA\int_\Omega\varepsilon(v):\varepsilon(v) = \alpha_\cA\,\|\varepsilon(v)\|^2_{0,\Omega},
+	\end{equation*}
+	where $\alpha_\cA>0$ exists due to Definition \ref{def:elastfield}. The first inequality of Lemma \ref{lem:korn} finally yields
+	\begin{equation*}
+		a(v,v)\ge \alpha_\cA\,\|\varepsilon(v)\|_{0,\Omega}^2\ge \alpha_\cA\,\left(C_K^{-1}\,\|v\|_{1,\Omega}\right)^2 = \frac{\alpha_\cA}{C_K^2}\,\|v\|_{1,\Omega}^2.
+	\end{equation*}
+	Again by Cauchy--Schwarz inequality,
+	\begin{equation*}
+		|\ell(v)|\le \|f\|_{0,\Omega}\,\|v\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\,\|\gamma v\|_{0,\Gamma_N}\qquad \forall\, v\in V.
+	\end{equation*}
+	By the Trace Theorem \ref{thm:trace} there exists $C_\mathrm{tr}>0$ such that
+	\begin{equation*}
+		\|\gamma v\|_{0,\Gamma_N}\le \|\gamma v\|_{0,\Gamma}\le \|\gamma v\|_{\tfrac12,\Gamma}\le C_\mathrm{tr}\,\|v\|_{1,\Omega} \qquad \forall\, v\in V.
+	\end{equation*}
+	Finally,
+	\begin{equation*}
+		|\ell(v)|\le \left(\|f\|_{0,\Omega} + C_{\mathrm{tr}}\,\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}\le \max\{1,C_\mathrm{tr}\}\,\left(\|f\|_{0,\Omega}+\|F\|_{0,\Gamma_N}\right)\|v\|_{1,\Omega}
+	\end{equation*}
+	for every $v\in V$, which proves \eqref{eq:ellbound}.
 \end{proof}
 

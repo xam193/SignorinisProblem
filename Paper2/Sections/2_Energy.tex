@@ -1,6 +1,6 @@
 \section{Energy Minimization and Well-Posedness}
 
-As stated earlier in Section \ref{sec:elastforce}, equilibrium between the virtual work of internal and external forces suggest to look for $u\in H^1(\Omega;\R^d)$ such that $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$. Here, only the Neumann conditions are imposed. Thus, a restriction on $V$, which imposes the homogeneous Dirichlet boundary conditions on $\Gamma_D$ and further a restriction on the closed, convex cone $K$ of displacements $v\in V$ that fullfil the nonpenetration condition on $\Gamma_C$, is reasonable. Naturally, this yields the quadratic functional
+As stated earlier in Section \ref{sec:elastforce}, equilibrium between the virtual work of internal and external forces suggests to look for $u\in H^1(\Omega;\R^d)$ such that $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$. Here, only the Neumann conditions are imposed. Thus, a restriction on $V$, which imposes the homogeneous Dirichlet boundary conditions on $\Gamma_D$ and further a restriction on the closed, convex cone $K$ of displacements $v\in V$ that fulfil the nonpenetration condition on $\Gamma_C$, is reasonable. Naturally, this yields the quadratic functional
 \begin{equation}\label{eq:energyfunc}
 	\cJ(v):= \frac{1}{2}\,a(v,v)-\ell(v) = \frac{1}{2}\int_\Omega \sigma(v):\varepsilon(v)\;\dx -\left[\int_\Omega f\cdot v\;\dx + \int_{\Gamma_N}F\cdot (\gamma v)\;\ds\right]
 \end{equation}
@@ -12,10 +12,10 @@ on $V$ describing the {\em potential energy} of the elastic body to be minimized
 \end{equation*}
 \end{problem}
 
-Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ over $K$. The reason for this is the lack of evidence so far of the problem's well-posedness, which includes existence and uniqueness of a minimizer and stability in the sense of a continuous dependence on the given data. Once proven, the relation can be exchanged by equality. Thus, we now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Every formulation of Signorini's problem, which is proven to be equivalent to the above formulation is then also proven to be well-posed. We start by the uniqueness, which follows directly by the standard arguments of strict convexity of $\cJ$ and the convexity of $K$. The latter was already proven in Proposition \ref{pr:K}.
+Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ over $K$. The reason for this is the lack of evidence so far of the problem's well-posedness, which includes existence and uniqueness of a minimizer and stability in the sense of a continuous dependence on the given data. Once proven, the inclusion can be replaced by an equality. Thus, we now want to prove well-posedness of the above Problem \ref{pr:signorini1}. Every formulation of Signorini's problem, which is proven to be equivalent to the above formulation is then also proven to be well-posed. We start with the uniqueness, which follows directly by the standard arguments of strict convexity of $\cJ$ and the convexity of $K$. The latter was already proven in Proposition \ref{pr:K}.
 
 \begin{lemma}[Strict Convexity of $\cJ$]\label{lem:Jconvex}
-	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex.
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex.
 \end{lemma}
 \begin{proof}
 	For $u,v\in V$ and $t\in[0,1]$, we set $w_t:=(1-t)u+tv$. Then
@@ -105,10 +105,10 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	\end{itemize}
 \end{lemma}
 \begin{proof}
-	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}$. Hence
+	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}$. Hence with the $V$-ellipticity of $a$, we have
 	\begin{equation*}
 		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
-		\ge \frac{\alpha}{2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}
+		\ge \frac{\alpha_\cA}{2C_K^2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}
 		\xrightarrow{ \ \|v\|_{1,\Omega}\to\infty \ }\infty.
 	\end{equation*}
 	For $s\in L^2(\Omega;\S^d)$ set
@@ -139,7 +139,7 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 \end{proof}
 
 \begin{proposition}[Existence of Minimizer of $\cJ$]\label{pr:Jex}
-	The functional $\cJ$ defined in \ref{eq:energyfunc} has at least one minimizer $u\in K$.
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} has at least one minimizer $u\in K$.
 \end{proposition}
 \begin{proof}
 	Set
@@ -147,21 +147,20 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 		M := \inf_{v\in K}\cJ(v)\in[-\infty,\infty).
 	\end{equation*}
 	Since $0\in K$ we have $M\le \cJ(0)=0$, hence $M$ is finite from above.
-	Let $\{v_j\}_{j\in\N}\subset K$ be a minimizing sequence, i.e.\
-	$\cJ(v_j)\to M$ as $j\to\infty$. By Lemma \ref{lem:Jcoercivewlsc} {\em i)}, $\cJ$ is coercive and thus, the sequence $\{v_j\}_{j\in\N}$ is bounded in $V$. Since $V$ is a Hilbert space, there exist a subsequence $\{v_{j_k}\}_{k\in\N}$ and some $u\in V$ such that
+	Let $\{v_j\}_{j\in\N}\subset K$ be a minimizing sequence, i.e.\ $\cJ(v_j)\to M$ as $j\to\infty$. By Lemma \ref{lem:Jcoercivewlsc} {\em i)}, $\cJ$ is coercive and thus, the sequence $\{v_j\}_{j\in\N}$ is bounded in $V$. Since $V$ is a Hilbert space, there exists a subsequence $\{v_{j_k}\}_{k\in\N}$ and an element $u\in V$ such that
 	\begin{equation*}
 		v_{j_k} \rightharpoonup u \qquad\text{in } V.
 	\end{equation*}
-	As $K\subset V$ is closed and convex, it is weakly closed in $V$. Hence $u\in K$. By Lemma \ref{lem:Jcoercivewlsc} {\em ii)}, $\cJ$ is weakly lower semicontinuity and thus we obtain
+	As $K\subset V$ is closed and convex, it is weakly closed in $V$. Hence $u\in K$. By Lemma \ref{lem:Jcoercivewlsc} {\em ii)}, $\cJ$ is weakly lower semicontinuous and thus we obtain
 	\begin{equation*}
 		\cJ(u)\le \liminf_{k\to\infty}\cJ(v_{j_k})=M=\inf_{v\in K}\cJ(v),
 	\end{equation*}
 	so $u$ is a minimizer of $\cJ$ on $K$.
 \end{proof}
 
-We collect the previous results in the following corollary and further give a standard stability estimation for the norm of the unique solution.
+We collect the previous results in the following corollary and further give a standard stability estimate for the norm of the unique solution.
 \begin{corollary}[Well-posedness of Problem \ref{pr:signorini1}]\label{cor:wellposed}
-	The functional $\cJ$ defined in \ref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
+	The functional $\cJ$ defined in \eqref{eq:energyfunc} admits a unique minimizer $u\in K$. Moreover, the minimizer satisfies the a-priori bound
 	\begin{equation}\label{eq:ustab}
 		\|u\|_{1,\Omega} \le \frac{2\,C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\cA}\,\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right).
 	\end{equation}

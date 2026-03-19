@@ -1,6 +1,6 @@
 \section{Weak Formulations}
 
-Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike the weak formulation of conventional simple boundary value problems, here we do not end up with a variational equation, but with a variational inequality. This is derived by a first-order optimality condition on the functional $\cJ$ under the constraints of $K$, i.e. a condition on the {\em Fréchet derivative} of $\cJ$. To fix notations, we start with a definition.
+Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike the weak formulation of conventional simple boundary value problems, here we do not end up with a variational equation, but with a variational inequality. This is derived by a first-order optimality condition on the functional $\cJ$ under the constraints of $K$, i.e. a condition on the {\em Fréchet derivative} of $\cJ$. To fix notation, we start with a definition.
 
 \begin{definition}[Fréchet derivative]\label{def:frechetdiff}
 	Let $X$ and $Y$ be normed vector spaces and let
@@ -8,9 +8,9 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 		f:U\subseteq X\to Y
 	\end{equation*}
 	be a function defined on an open subset $U$ of $X$. Then $f$ is called {\tt Fréchet differentiable} at $x \in U$ if there exists a bounded linear operator $A(x):X\to Y$ such that
-	\begin{equation}\label{eq:frechetquotient}
+	\begin{equation*}
 		\lim_{\|h\|_X\to 0} \frac{\|f(x+h)-f(x)-A(x)[h]\|_Y}{\|h\|_X}=0.
-	\end{equation}
+	\end{equation*}
 	If $A(x)$ exists, it is unique and is called the {\tt Fréchet derivative} of $f$ at $x$. We write
 	\begin{equation*}
 		f^\prime(x)[h]=A(x)[h]\qquad \forall\, h\in X.
@@ -25,9 +25,9 @@ and provide an explicit formula for its Fréchet derivative.
 
 \begin{lemma}[Fréchet differentiability of $\cJ$]\label{lem:Jdiff}
 	The functional $\cJ$ defined in \eqref{eq:energyfunc} is Fréchet differentiable on $V$. Its derivative at $u\in V$ is given by
-	\begin{equation}\label{eq:Jprime}
+	\begin{equation*}
 		\cJ'(u)[h] = a(u,h)-\ell(h)\qquad \forall\, h\in V.
-	\end{equation}
+	\end{equation*}
 \end{lemma}
 
 \begin{proof}
@@ -94,7 +94,7 @@ This is the first weak formulation of Signorini's problem as a variational inequ
 \end{equation*}
 \end{problem}
 
-Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} by Proposition \ref{pr:FOC} in the sense that each solution to the one of the problems is a solution to the other problem. The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another equivalent formulation is the following.
+Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} by Proposition \ref{pr:FOC} in the sense that each solution of one of the problems is also a solution of the other. The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another equivalent formulation is the following.
 
 \begin{problem}[Signorini's Problem -- Weak Formulation 2]\label{pr:signorini3}
 \begin{equation*}
@@ -105,14 +105,15 @@ Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is eq
 \end{equation*}
 \end{problem}
 
-\begin{proposition}[Equivalence of Problem \ref{pr:signorini2} and Problem \ref{pr:signorini3}]\label{pr:equivalence23} Any solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini3} and vice versa.
+\begin{proposition}[Equivalence of Problem \ref{pr:signorini2} and Problem \ref{pr:signorini3}]\label{pr:equivalence23}
+	Any solution $u\in K$ to Problem \ref{pr:signorini2} is also a solution to Problem \ref{pr:signorini3} and vice versa.
 \end{proposition}
 \begin{proof}
 	Let $u\in K$ solve Problem \ref{pr:signorini3}. Then
 	\begin{equation*}
 		a(u,v-u) = a(u,v)-a(u,u)  = a(u,v)-\ell(u)\ge \ell(v)-\ell(u) = \ell(v-u)\qquad\forall\,v\in K.
 	\end{equation*}
-	Assuming that $u\in K$ solves Problem \ref{pr:signorini2} and testing $v=0$ yields
+	Assuming that $u\in K$ solves Problem \ref{pr:signorini2} and testing $v=0\in K$ yields
 	\begin{equation*}
 		a(u,-u)\ge \ell(-u)\qquad\Longleftrightarrow\qquad -a(u,u)\ge -\ell(u),
 	\end{equation*}
@@ -120,7 +121,7 @@ Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is eq
 	\begin{equation*}
 		a(u,u)\le \ell(u).
 	\end{equation*}
-	However, testing with $v=2u$ yields $a(u,u)\ge \ell(u)$ and thus $a(u,u) = \ell(u)$. Furthermore, Problem \ref{pr:signorini2} reads
+	However, testing with $v=2u\in K$ yields $a(u,u)\ge \ell(u)$ and thus $a(u,u) = \ell(u)$. Furthermore, Problem \ref{pr:signorini2} reads
 	\begin{equation*}
 		a(u,v-u) = a(u,v)-a(u,u)\ge \ell(v-u) = \ell(v)-\ell(u)\qquad\forall\,v\in K,
 	\end{equation*}
@@ -133,7 +134,7 @@ Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is eq
 
 \subsection{Lipschitz Dependence of the Displacement on the Forces}
 
-We close this section by providing another stability result on the dependency of solutions to varying source terms as input data. This result is very similar to the stability estimate provided in Corollary \ref{cor:wellposed}. Its proof however, is way more comfortable at this point, where the weak formulations are available.
+We close this section by providing another stability result on the dependence of solutions to varying source terms as input data. This result is very similar to the stability estimate provided in Corollary \ref{cor:wellposed}. Its proof, however, is much more convenient at this point, where the weak formulations are available.
 
 \begin{proposition}[Lipschitz dependence on the data]\label{pr:lipschitz}
 	For $i\in\{1,2\}$, let $f_i\in L^2(\Omega;\mathbb R^d)$ and $F_i\in L^2(\Gamma_N;\mathbb R^d)$, and let $\ell_i\in V'$ be the corresponding load functional, i.e.
@@ -149,7 +150,7 @@ We close this section by providing another stability result on the dependency of
 	\begin{equation}\label{eq:lipschitzabstract}
 		\|u_1-u_2\|_{1,\Omega}\le \frac{C_K^2}{\alpha_\mathcal{A}}\,\|\ell_1-\ell_2\|_{V'}.
 	\end{equation}
-	In particular, it depends Lipschitz continuously on the data $(f_i,F_i)$ in the sense that
+	In particular, it depends Lipschitz continuously on the data $(f_1, F_1)$ and $(f_2, F_2)$ in the sense that
 	\begin{equation}\label{eq:lipschitzloads}
 		\|u_1-u_2\|_{1,\Omega}
 		\le \frac{C_K^2\,\max\{1,C_\mathrm{tr}\}}{\alpha_\mathcal{A}}
