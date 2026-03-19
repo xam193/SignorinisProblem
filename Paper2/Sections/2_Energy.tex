@@ -1,10 +1,10 @@
 \section{Energy Minimization and Well-Posedness}
 
-As states earlier in Section \ref{sec:elastforce}, equilibrium between the virtual work of internal and external forces suggest to look for $u\in H^1(\Omega;\R^d)$ such that $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$. Here, only the Neumann conditions are imposed. Thus, a restriction on $V$, which imposes the homogeneous Dirichlet boundary conditions on $\Gamma_D$ and further a restriction on the closed, convex cone $K$ of displacements $v\in V$ that fullfil the nonpenetration condition on $\Gamma_C$, is reasonable. Naturally, this yields the quadratic functional
+As stated earlier in Section \ref{sec:elastforce}, equilibrium between the virtual work of internal and external forces suggest to look for $u\in H^1(\Omega;\R^d)$ such that $a(u,v) = \ell(v)$ for all $v\in H^1(\Omega;\R^d)$. Here, only the Neumann conditions are imposed. Thus, a restriction on $V$, which imposes the homogeneous Dirichlet boundary conditions on $\Gamma_D$ and further a restriction on the closed, convex cone $K$ of displacements $v\in V$ that fullfil the nonpenetration condition on $\Gamma_C$, is reasonable. Naturally, this yields the quadratic functional
 \begin{equation}\label{eq:energyfunc}
-	\cJ(v):= \frac{1}{2}a(v,v)-\ell(v) = \frac{1}{2}\int_\Omega \sigma(v):\varepsilon(v)\;\dx -\left[\int_\Omega f\cdot v\;\dx + \int_{\Gamma_N}F\cdot (\gamma v)\;\ds\right]
+	\cJ(v):= \frac{1}{2}\,a(v,v)-\ell(v) = \frac{1}{2}\int_\Omega \sigma(v):\varepsilon(v)\;\dx -\left[\int_\Omega f\cdot v\;\dx + \int_{\Gamma_N}F\cdot (\gamma v)\;\ds\right]
 \end{equation}
-on $V$ describing the {\em potential energy} of the elastic body to be minimized over $K\subset V$ to minimize the difference between $a(u,v)$ and $\ell(v)$ for all $v\in V$ under the nonpenetration constraint. This is already the first formulation of Signorini's problem as the minimization problem of $\cJ$ over $K$.
+on $V$ describing the {\em potential energy} of the elastic body to be minimized over $K\subset V$ to minimize the difference between the virtual work of internal and external forces under the nonpenetration constraint. This is already the first formulation of Signorini's problem as the minimization problem of $\cJ$ over $K$.
 
 \begin{problem}[Signorini's Problem -- Energy Minimization]\label{pr:signorini1}
 \begin{equation*}
@@ -12,7 +12,7 @@ on $V$ describing the {\em potential energy} of the elastic body to be minimized
 \end{equation*}
 \end{problem}
 
-Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ over $K$. The reason for this is the lack of evidence so far of the problem's well-posedness, which includes existence and uniqueness of a minimizer and stability in the sense of a continuous dependence on the given data. Thus, we now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Every formulation of Signorini's problem, which is proven to be equivalent to the above formulation is then also proven to be well-posed. We start by the uniqueness, which follows directly by the standard arguments of strict convexity of $\cJ$ and the convexity of $K$. The latter was already proven in Proposition \ref{pr:K}.
+Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ over $K$. The reason for this is the lack of evidence so far of the problem's well-posedness, which includes existence and uniqueness of a minimizer and stability in the sense of a continuous dependence on the given data. Once proven, the relation can be exchanged by equality. Thus, we now what to prove well-posedness of the above Problem \ref{pr:signorini1}. Every formulation of Signorini's problem, which is proven to be equivalent to the above formulation is then also proven to be well-posed. We start by the uniqueness, which follows directly by the standard arguments of strict convexity of $\cJ$ and the convexity of $K$. The latter was already proven in Proposition \ref{pr:K}.
 
 \begin{lemma}[Strict Convexity of $\cJ$]\label{lem:Jconvex}
 	The Functional $\cJ$ defined in \eqref{eq:energyfunc} is strictly convex.
@@ -20,19 +20,19 @@ Here we have decided to note $u$ as an element of those $v$ that minimize $\cJ$ 
 \begin{proof}
 	For $u,v\in V$ and $t\in[0,1]$, we set $w_t:=(1-t)u+tv$. Then
 	\begin{equation*}
-		a(w_t,w_t) = (1-t)a(u,u)+ta(v,v)-t(1-t)a(u-v,u-v)
+		a(w_t,w_t) = (1-t)\,a(u,u)+t\,a(v,v)-t(1-t)\,a(u-v,u-v)
 	\end{equation*}
 	and
 	\begin{equation*}
-		\ell(w_t) = (1-t)\ell(u)+t\ell(v).
+		\ell(w_t) = (1-t)\,\ell(u)+t\,\ell(v).
 	\end{equation*}
 	Together, we have
 	\begin{equation*}
-		\cJ(w_t) = (1-t)\cJ(u)+t\cJ(v)-\frac{1}{2}\,t(1-t)a(u-v,u-v).
+		\cJ(w_t) = (1-t)\,\cJ(u)+t\,\cJ(v)-\frac{1}{2}\,t(1-t)\,a(u-v,u-v).
 	\end{equation*}
 	If $u\neq v$ then $u-v\neq 0$ and thus by $V$-ellipticity of $a$ we have $a(u-v,u-v)>0$ and $t(1-t)>0$. This implies
 	\begin{equation*}
-		\cJ(w_t)<(1-t)\cJ(u)+t\cJ(v).
+		\cJ(w_t)<(1-t)\,\cJ(u)+t\,\cJ(v).
 	\end{equation*}
 \end{proof}
 
@@ -105,7 +105,7 @@ It remains to show the existence of at least one minimizer. For this, we verify 
 	\end{itemize}
 \end{lemma}
 \begin{proof}
-	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\|v\|_{1,\Omega}$. Hence
+	By boundedness of $\ell$ we have $|\ell(v)|\le \|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}$. Hence
 	\begin{equation*}
 		\cJ(v)=\frac{1}{2}\,a(v,v)-\ell(v)
 		\ge \frac{\alpha}{2}\,\|v\|_{1,\Omega}^2-\|\ell\|_{V^\prime}\,\|v\|_{1,\Omega}
@@ -176,5 +176,5 @@ We collect the previous results in the following corollary and further give a st
 	\begin{equation*}
 		\frac{\alpha_\cA}{2\,C_K^2}\,\|u\|_{1,\Omega}^2\le \frac{1}{2}\,a(u,u)\le |\ell(u)|\le  \max\{1,C_{\mathrm{tr}}\}\left(\|f\|_{0,\Omega} +\|F\|_{0,\Gamma_N}\right)\|u\|_{1,\Omega},
 	\end{equation*}
-	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
+	where the last inequality is \eqref{eq:ellbound}. Dividing both sides by $\|u\|_{1,\Omega}$ with $u\neq 0$ yields the desired estimate \eqref{eq:ustab}. For $u=0$ the estimate is trivial.
 \end{proof}

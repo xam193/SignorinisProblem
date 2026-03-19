@@ -1,24 +1,10 @@
 \section{Mixed Formulation}\label{sec:mixed}
 
-The KKT formulation of the previous section already separates the normal contact reaction from the displacement field. This suggests to introduce the normal contact force as an additional unknown. In other words, instead of recovering the normal contact stress $\sigma_{\mathrm n}(u)$ a posteriori from $u$, we now treat it as an independent variable
+The KKT formulation of the previous section already separates the normal contact reaction from the displacement field. This suggests to introduce the normal contact force as an additional unknown. In other words, instead of recovering the normal contact stress $\sigma_{C,\mathrm n}(u)$ a posteriori from $u$, we now treat it as an independent variable
 \begin{equation*}
 	\lambda \in \Lambda_C \subset W_{C,\mathrm n}'.
 \end{equation*}
-This leads to a mixed weak formulation of Signorini's problem. The role of $\lambda$ is that of a Lagrange multiplier associated with the nonpenetration constraint $u_{\mathrm n}\le 0$ on $\Gamma_C$. In the present setting, it represents the normal contact force on the rigid foundation. This point of view is consistent with the duality principle developed in \cite[Section 7.1]{book}, where mixed formulations are obtained by introducing a multiplier for the unilateral contact constraint. We define the bilinear form
-\begin{equation*}
-	b:V\times W_{C,\mathrm n}'\to\R,
-	\qquad
-	b(v,\lambda):=\langle \lambda,v_{\mathrm n}\rangle_{\Gamma_C}
-\end{equation*}
-and recall the symmetric bilinear form
-\begin{equation*}
-	a:V\times V\to \R,\qquad a(u,v) = \int_\Omega \sigma(u):\varepsilon(u)\;\dx
-\end{equation*}
-and the linear bounded functional
-\begin{equation*}
-	\ell:V\to\R,\qquad \ell(v) = \int_\Omega f\cdot v\;\dx+\int_{\Gamma_N} F\cdot(\gamma v)\;\ds
-\end{equation*}
-with $f\in L^2(\Omega;\R^d)$ and $F\in L^2(\Gamma_N;\R^d)$.
+This leads to a mixed weak formulation of Signorini's problem. The role of $\lambda$ is that of a Lagrange multiplier associated with the nonpenetration constraint $u_{\mathrm n}\le 0$ on $\Gamma_C$. In the present setting, it represents the normal contact force on the rigid foundation. This point of view is consistent with the duality principle developed in \cite[Section 7.1]{book}, where mixed formulations are obtained by introducing a multiplier for the unilateral contact constraint.
 
 \begin{problem}[Signorini's Problem -- Mixed Weak Formulation]\label{pr:signorini7}
 For given $f\in L^2(\Omega;\R^d)$ find $(u,\lambda)\in V\times \Lambda_C$ such that
@@ -36,10 +22,10 @@ The first equation expresses the weak balance of forces, where the contact press
 
 \begin{proposition}[Equivalence of mixed and KKT formulation]
 	Assume $|\Gamma_N|=0$.
-	If $u$ solves Problem \ref{pr:signorini5}, then the pair $(u,\sigma_{\mathrm n}(u))\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}. Conversely, if $(u,\lambda)\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}, then $u$ solves Problem \ref{pr:signorini5} and $\lambda=\sigma_{\mathrm n}(u)$.
+	If $u$ solves Problem \ref{pr:signorini5}, then the pair $(u,\sigma_{C, \mathrm n}(u))\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}. Conversely, if $(u,\lambda)\in V\times \Lambda_C$ solves the mixed Problem \ref{pr:signorini7}, then $u$ solves Problem \ref{pr:signorini5} and $\lambda=\sigma_{C, \mathrm n}(u)$.
 \end{proposition}
 \begin{proof}
-	Assume first that $u$ solves Problem \ref{pr:signorini5}. Define $\lambda:=\sigma_{\mathrm n}(u)\in \Lambda_C$, where the inclusion in $\Lambda_C$ is exactly \eqref{eq:strong_lambda}. We show that $(u,\lambda)\in V\times \Lambda_C$ solves Problem \ref{pr:signorini7}. Since $u\in V$ and the bulk equation \eqref{eq:strong_bulk} holds with $f\in L^2(\Omega;\R^d)$, we have $\sigma(u)\in H(\diver;\Omega)$ Because $|\Gamma_N|=0$, the load functional reduces to
+	Assume first that $u$ solves Problem \ref{pr:signorini5}. Define $\lambda:=\sigma_{C, \mathrm n}(u)\in \Lambda_C$, where the inclusion in $\Lambda_C$ is exactly \eqref{eq:strong_lambda}. We show that $(u,\lambda)\in V\times \Lambda_C$ solves Problem \ref{pr:signorini7}. Since $u\in V$ and the bulk equation \eqref{eq:strong_bulk} holds with $f\in L^2(\Omega;\R^d)$, we have $\sigma(u)\in H(\diver;\Omega)$. Because $|\Gamma_N|=0$, the load functional reduces to
 	\begin{equation*}
 		\ell(v)=\int_\Omega f\cdot v\;\dx
 		\qquad\forall\,v\in V.
@@ -48,15 +34,15 @@ The first equation expresses the weak balance of forces, where the contact press
     \begin{equation}\label{eq:usefullocal}
         \langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C} = a(u,v)-\ell(v).
     \end{equation}
-    Using the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{\mathrm n}(u)\mathrm{n}+\sigma_t(u)$, we further get
+    Using the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{C, \mathrm n}(u)\mathrm{n}+\sigma_{C,t}(u)$, we further get
 	\begin{equation*}
 		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}
 		=
-		\langle \sigma_{\mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
+		\langle \sigma_{C, \mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
 		+
-		\langle \sigma_t(u),\,v_t\rangle_{\Gamma_C}.
+		\langle \sigma_{C,t}(u),\,v_t\rangle_{\Gamma_C}.
 	\end{equation*}
-	By \eqref{eq:strong_tangential}, the tangential term vanishes, and since $\lambda=\sigma_{\mathrm n}(u)$
+	By \eqref{eq:strong_tangential}, the tangential term vanishes, and since $\lambda=\sigma_{C, \mathrm n}(u)$
 	we conclude that
 	\begin{equation*}
 		a(u,v)-\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
@@ -68,7 +54,7 @@ The first equation expresses the weak balance of forces, where the contact press
 	\begin{equation*}
 		\langle \lambda,\,u_{\mathrm n}\rangle_{\Gamma_C}
 		=
-		\langle \sigma_{\mathrm n}(u),\,u_{\mathrm n}\rangle_{\Gamma_C}
+		\langle \sigma_{C, \mathrm n}(u),\,u_{\mathrm n}\rangle_{\Gamma_C}
 		=
 		0.
 	\end{equation*}
@@ -119,7 +105,7 @@ The first equation expresses the weak balance of forces, where the contact press
 	\end{equation*}
 	Thus $u$ solves the weak formulation in Problem \ref{pr:signorini2}. Since we have already shown that $\sigma(u)$ belongs to $H(\diver;\Omega)$, the previously established equivalence of weak and hybrid formulation implies that $u$ solves Problem \ref{pr:signorini4}. As $|\Gamma_N|=0$, the previously established equivalence of hybrid and KKT formulation shows that $u$ also solves Problem \ref{pr:signorini5}. It remains to identify the multiplier $\lambda$. Since $u$ solves Problem \ref{pr:signorini5}$,$ we know in particular that
 	\begin{equation*}
-		\sigma_t(u)=0
+		\sigma_{C,t}(u)=0
 		\qquad\text{in }W_{C,t}'.
 	\end{equation*}
 	On the other hand, because $|\Gamma_N|=0$ and \eqref{eq:strong_bulk} holds, the local Green formula gives
@@ -136,19 +122,19 @@ The first equation expresses the weak balance of forces, where the contact press
 		\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
 		\qquad\forall\,v\in V.
 	\end{equation*}
-	Using again the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{\mathrm n}(u)\mathrm{n}+\sigma_t(u)$ and $\sigma_t(u)=0$ on $\Gamma_C$, this becomes
+	Using again the decomposition $\sigma_C(u)\mathrm{n} = \sigma_{C, \mathrm n}(u)\mathrm{n}+\sigma_{C,t}(u)$ and $\sigma_{C,t}(u)=0$ on $\Gamma_C$, this becomes
 	\begin{equation*}
-		\langle \sigma_{\mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
+		\langle \sigma_{C, \mathrm n}(u),\,v_{\mathrm n}\rangle_{\Gamma_C}
 		=
 		\langle \lambda,\,v_{\mathrm n}\rangle_{\Gamma_C}
 		\qquad\forall\,v\in V.
 	\end{equation*}
 	Now let $\eta\in W_{C,\mathrm n}$ be arbitrary. By definition of $W_{C,\mathrm n}$, there exists $v\in V$ such that $v_{\mathrm n}=\eta$. Hence
 	\begin{equation*}
-		\langle \sigma_{\mathrm n}(u),\,\eta\rangle_{\Gamma_C}
+		\langle \sigma_{C, \mathrm n}(u),\,\eta\rangle_{\Gamma_C}
 		=
 		\langle \lambda,\,\eta\rangle_{\Gamma_C}
 		\qquad\forall\,\eta\in W_{C,\mathrm n},
 	\end{equation*}
-	and therefore $\lambda=\sigma_{\mathrm n}(u)$, which completes the proof.
+	and therefore $\lambda=\sigma_{C, \mathrm n}(u)$, which completes the proof.
 \end{proof}

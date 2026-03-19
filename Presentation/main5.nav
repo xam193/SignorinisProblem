@@ -5,110 +5,129 @@
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
 \headcommand {\sectionentry {1}{Introduction -- What's the Problem?}{3}{Introduction -- What's the Problem?}{0}}
-\headcommand {\slideentry {1}{0}{1}{3/7}{}{0}}
-\headcommand {\beamer@framepages {3}{7}}
-\headcommand {\slideentry {1}{0}{2}{8/10}{}{0}}
-\headcommand {\beamer@framepages {8}{10}}
-\headcommand {\beamer@sectionpages {3}{10}}
-\headcommand {\beamer@subsectionpages {3}{10}}
-\headcommand {\sectionentry {2}{Geometrical and Physical Setup}{11}{Geometrical and Physical Setup}{0}}
-\headcommand {\beamer@subsectionpages {11}{10}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{11}{Boundary Decomposition}}
-\headcommand {\slideentry {2}{1}{1}{11/11}{Boundary Decomposition}{0}}
-\headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {2}{1}{2}{12/17}{Boundary Decomposition}{0}}
-\headcommand {\beamer@framepages {12}{17}}
-\headcommand {\beamer@subsectionpages {11}{17}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{18}{Elasticity and Forces}}
-\headcommand {\slideentry {2}{2}{1}{18/18}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {2}{2}{2}{19/22}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {19}{22}}
-\headcommand {\slideentry {2}{2}{3}{23/27}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {23}{27}}
-\headcommand {\slideentry {2}{2}{4}{28/35}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {28}{35}}
-\headcommand {\slideentry {2}{2}{5}{36/41}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {36}{41}}
-\headcommand {\slideentry {2}{2}{6}{42/42}{Elasticity and Forces}{0}}
-\headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@subsectionpages {18}{42}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{43}{Admissible Displacements}}
-\headcommand {\slideentry {2}{3}{1}{43/43}{Admissible Displacements}{0}}
-\headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {2}{3}{2}{44/48}{Admissible Displacements}{0}}
-\headcommand {\beamer@framepages {44}{48}}
-\headcommand {\beamer@sectionpages {11}{48}}
-\headcommand {\beamer@subsectionpages {43}{48}}
-\headcommand {\sectionentry {3}{Energy Minimization}{49}{Energy Minimization}{0}}
-\headcommand {\slideentry {3}{0}{1}{49/52}{}{0}}
-\headcommand {\beamer@framepages {49}{52}}
-\headcommand {\slideentry {3}{0}{2}{53/58}{}{0}}
-\headcommand {\beamer@framepages {53}{58}}
-\headcommand {\beamer@sectionpages {49}{58}}
-\headcommand {\beamer@subsectionpages {49}{58}}
-\headcommand {\sectionentry {4}{Weak Formulations}{59}{Weak Formulations}{0}}
-\headcommand {\slideentry {4}{0}{1}{59/61}{}{0}}
-\headcommand {\beamer@framepages {59}{61}}
-\headcommand {\beamer@sectionpages {59}{61}}
-\headcommand {\beamer@subsectionpages {59}{61}}
-\headcommand {\sectionentry {5}{Strong Formulations}{62}{Strong Formulations}{0}}
-\headcommand {\beamer@subsectionpages {62}{61}}
-\headcommand {\beamer@subsectionentry {0}{5}{1}{62}{A Hybrid Formulation}}
-\headcommand {\slideentry {5}{1}{1}{62/62}{A Hybrid Formulation}{0}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\slideentry {1}{0}{2}{4/8}{}{0}}
+\headcommand {\beamer@framepages {4}{8}}
+\headcommand {\slideentry {1}{0}{3}{9/11}{}{0}}
+\headcommand {\beamer@framepages {9}{11}}
+\headcommand {\beamer@sectionpages {3}{11}}
+\headcommand {\beamer@subsectionpages {3}{11}}
+\headcommand {\sectionentry {2}{Geometrical and Physical Setup}{12}{Geometrical and Physical Setup}{0}}
+\headcommand {\slideentry {2}{0}{1}{12/12}{}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{13}{Boundary Decomposition}}
+\headcommand {\slideentry {2}{1}{1}{13/13}{Boundary Decomposition}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {2}{1}{2}{14/19}{Boundary Decomposition}{0}}
+\headcommand {\beamer@framepages {14}{19}}
+\headcommand {\beamer@subsectionpages {13}{19}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{20}{Elasticity and Forces}}
+\headcommand {\slideentry {2}{2}{1}{20/20}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {2}{2}{2}{21/24}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {21}{24}}
+\headcommand {\slideentry {2}{2}{3}{25/29}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {25}{29}}
+\headcommand {\slideentry {2}{2}{4}{30/37}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {30}{37}}
+\headcommand {\slideentry {2}{2}{5}{38/43}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {38}{43}}
+\headcommand {\slideentry {2}{2}{6}{44/44}{Elasticity and Forces}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\beamer@subsectionpages {20}{44}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{45}{Admissible Displacements}}
+\headcommand {\slideentry {2}{3}{1}{45/45}{Admissible Displacements}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\slideentry {2}{3}{2}{46/50}{Admissible Displacements}{0}}
+\headcommand {\beamer@framepages {46}{50}}
+\headcommand {\beamer@sectionpages {12}{50}}
+\headcommand {\beamer@subsectionpages {45}{50}}
+\headcommand {\sectionentry {3}{Energy Minimization}{51}{Energy Minimization}{0}}
+\headcommand {\slideentry {3}{0}{1}{51/51}{}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {3}{0}{2}{52/55}{}{0}}
+\headcommand {\beamer@framepages {52}{55}}
+\headcommand {\slideentry {3}{0}{3}{56/61}{}{0}}
+\headcommand {\beamer@framepages {56}{61}}
+\headcommand {\beamer@sectionpages {51}{61}}
+\headcommand {\beamer@subsectionpages {51}{61}}
+\headcommand {\sectionentry {4}{Weak Formulations}{62}{Weak Formulations}{0}}
+\headcommand {\slideentry {4}{0}{1}{62/62}{}{0}}
 \headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {5}{1}{2}{63/71}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {63}{71}}
-\headcommand {\slideentry {5}{1}{3}{72/78}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {72}{78}}
-\headcommand {\slideentry {5}{1}{4}{79/82}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {79}{82}}
-\headcommand {\slideentry {5}{1}{5}{83/83}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {83}{83}}
-\headcommand {\slideentry {5}{1}{6}{84/84}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {84}{84}}
-\headcommand {\slideentry {5}{1}{7}{85/87}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {85}{87}}
-\headcommand {\slideentry {5}{1}{8}{88/91}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {88}{91}}
-\headcommand {\slideentry {5}{1}{9}{92/96}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {92}{96}}
-\headcommand {\slideentry {5}{1}{10}{97/99}{A Hybrid Formulation}{0}}
-\headcommand {\beamer@framepages {97}{99}}
-\headcommand {\beamer@subsectionpages {62}{99}}
-\headcommand {\beamer@subsectionentry {0}{5}{2}{100}{Classical Strong Formulation}}
-\headcommand {\slideentry {5}{2}{1}{100/100}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {100}{100}}
-\headcommand {\slideentry {5}{2}{2}{101/111}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {101}{111}}
-\headcommand {\slideentry {5}{2}{3}{112/113}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {112}{113}}
-\headcommand {\slideentry {5}{2}{4}{114/114}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {114}{114}}
-\headcommand {\slideentry {5}{2}{5}{115/121}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {115}{121}}
-\headcommand {\slideentry {5}{2}{6}{122/123}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {122}{123}}
-\headcommand {\slideentry {5}{2}{7}{124/127}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {124}{127}}
-\headcommand {\slideentry {5}{2}{8}{128/131}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {128}{131}}
-\headcommand {\slideentry {5}{2}{9}{132/135}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {132}{135}}
-\headcommand {\slideentry {5}{2}{10}{136/138}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {136}{138}}
-\headcommand {\slideentry {5}{2}{11}{139/143}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {139}{143}}
-\headcommand {\slideentry {5}{2}{12}{144/148}{Classical Strong Formulation}{0}}
+\headcommand {\slideentry {4}{0}{2}{63/65}{}{0}}
+\headcommand {\beamer@framepages {63}{65}}
+\headcommand {\beamer@sectionpages {62}{65}}
+\headcommand {\beamer@subsectionpages {62}{65}}
+\headcommand {\sectionentry {5}{Strong Formulations}{66}{Strong Formulations}{0}}
+\headcommand {\slideentry {5}{0}{1}{66/66}{}{0}}
+\headcommand {\beamer@framepages {66}{66}}
+\headcommand {\beamer@subsectionpages {66}{66}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{67}{A Hybrid Formulation}}
+\headcommand {\slideentry {5}{1}{1}{67/67}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {67}{67}}
+\headcommand {\slideentry {5}{1}{2}{68/77}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {68}{77}}
+\headcommand {\slideentry {5}{1}{3}{78/84}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {78}{84}}
+\headcommand {\slideentry {5}{1}{4}{85/88}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {85}{88}}
+\headcommand {\slideentry {5}{1}{5}{89/89}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {89}{89}}
+\headcommand {\slideentry {5}{1}{6}{90/92}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {90}{92}}
+\headcommand {\slideentry {5}{1}{7}{93/96}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {93}{96}}
+\headcommand {\slideentry {5}{1}{8}{97/101}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {97}{101}}
+\headcommand {\slideentry {5}{1}{9}{102/104}{A Hybrid Formulation}{0}}
+\headcommand {\beamer@framepages {102}{104}}
+\headcommand {\beamer@subsectionpages {67}{104}}
+\headcommand {\beamer@subsectionentry {0}{5}{2}{105}{Classical Strong Formulation}}
+\headcommand {\slideentry {5}{2}{1}{105/105}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {105}{105}}
+\headcommand {\slideentry {5}{2}{2}{106/116}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {106}{116}}
+\headcommand {\slideentry {5}{2}{3}{117/118}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {117}{118}}
+\headcommand {\slideentry {5}{2}{4}{119/119}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {119}{119}}
+\headcommand {\slideentry {5}{2}{5}{120/126}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {120}{126}}
+\headcommand {\slideentry {5}{2}{6}{127/128}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {127}{128}}
+\headcommand {\slideentry {5}{2}{7}{129/132}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {129}{132}}
+\headcommand {\slideentry {5}{2}{8}{133/136}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {133}{136}}
+\headcommand {\slideentry {5}{2}{9}{137/140}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {137}{140}}
+\headcommand {\slideentry {5}{2}{10}{141/143}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {141}{143}}
+\headcommand {\slideentry {5}{2}{11}{144/148}{Classical Strong Formulation}{0}}
 \headcommand {\beamer@framepages {144}{148}}
-\headcommand {\slideentry {5}{2}{13}{149/153}{Classical Strong Formulation}{0}}
+\headcommand {\slideentry {5}{2}{12}{149/153}{Classical Strong Formulation}{0}}
 \headcommand {\beamer@framepages {149}{153}}
-\headcommand {\slideentry {5}{2}{14}{154/158}{Classical Strong Formulation}{0}}
+\headcommand {\slideentry {5}{2}{13}{154/158}{Classical Strong Formulation}{0}}
 \headcommand {\beamer@framepages {154}{158}}
-\headcommand {\slideentry {5}{2}{15}{159/161}{Classical Strong Formulation}{0}}
-\headcommand {\beamer@framepages {159}{161}}
-\headcommand {\beamer@partpages {1}{161}}
-\headcommand {\beamer@subsectionpages {162}{161}}
-\headcommand {\beamer@sectionpages {162}{161}}
-\headcommand {\beamer@documentpages {161}}
-\headcommand {\gdef \inserttotalframenumber {42}}
+\headcommand {\slideentry {5}{2}{14}{159/163}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {159}{163}}
+\headcommand {\slideentry {5}{2}{15}{164/166}{Classical Strong Formulation}{0}}
+\headcommand {\beamer@framepages {164}{166}}
+\headcommand {\beamer@sectionpages {66}{166}}
+\headcommand {\beamer@subsectionpages {105}{166}}
+\headcommand {\sectionentry {6}{Mixed Formulation}{167}{Mixed Formulation}{0}}
+\headcommand {\slideentry {6}{0}{1}{167/167}{}{0}}
+\headcommand {\beamer@framepages {167}{167}}
+\headcommand {\slideentry {6}{0}{2}{168/173}{}{0}}
+\headcommand {\beamer@framepages {168}{173}}
+\headcommand {\slideentry {6}{0}{3}{174/179}{}{0}}
+\headcommand {\beamer@framepages {174}{179}}
+\headcommand {\slideentry {6}{0}{4}{180/180}{}{0}}
+\headcommand {\beamer@framepages {180}{180}}
+\headcommand {\beamer@partpages {1}{180}}
+\headcommand {\beamer@subsectionpages {167}{180}}
+\headcommand {\beamer@sectionpages {167}{180}}
+\headcommand {\beamer@documentpages {180}}
+\headcommand {\gdef \inserttotalframenumber {50}}

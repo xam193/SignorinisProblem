@@ -1,6 +1,6 @@
 \section{Weak Formulations}
 
-Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike the weak formulation of conventional simple boundary value problems, here we do not end up with a variational equation, but with a variational inequality. This is derived by a first-order optimality condition on the functional $\cJ$ under the constraints of $K$, i.e. a condition on the {\em Fréchet derivative} of $\cJ$. Therefore to fix notations, we start with a definition.
+Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike the weak formulation of conventional simple boundary value problems, here we do not end up with a variational equation, but with a variational inequality. This is derived by a first-order optimality condition on the functional $\cJ$ under the constraints of $K$, i.e. a condition on the {\em Fréchet derivative} of $\cJ$. To fix notations, we start with a definition.
 
 \begin{definition}[Fréchet derivative]\label{def:frechetdiff}
 	Let $X$ and $Y$ be normed vector spaces and let
@@ -19,7 +19,7 @@ Finally, we turn to the {\em weak formulation} of Signorini's problem. Unlike th
 
 Finally, we prove Fréchet differentiability of the energy functional
 \begin{equation*}
-	\cJ(v) := \frac{1}{2}a(v,v)-\ell(v),\qquad v\in V
+	\cJ(v) := \frac{1}{2}\,a(v,v)-\ell(v),\qquad v\in V
 \end{equation*}
 and provide an explicit formula for its Fréchet derivative.
 
@@ -53,7 +53,7 @@ and provide an explicit formula for its Fréchet derivative.
 		=\frac{1}{2}\,\frac{|a(k,k)|}{\|k\|_{1,\Omega}}
 		\le \frac12\,C_{\mathcal A}\,\|k\|_{1,\Omega}\xrightarrow{\ \|k\|_{1,\Omega}\to 0\ }0,
 	\end{equation*}
-	by boundedness of $a$, cf.\ Proposition \ref{pr:aproperties}. Therefore, $\cJ$ is Fréchet differentiable at $u$ with
+	by boundedness of $a$, (see Proposition \ref{pr:aproperties}). Therefore, $\cJ$ is Fréchet differentiable at $u$ with
 	\begin{equation*}
 		\cJ^\prime(u)[h]=A(u)[h]=a(u,h)-\ell(h)
 		\qquad \forall\, h\in V.
@@ -79,7 +79,7 @@ and provide an explicit formula for its Fréchet derivative.
 	\begin{equation*}
 		\cJ(u+h)-\cJ(u)=\cJ'(u)[h]+\frac12\,a(h,h).
 	\end{equation*}
-	By \eqref{eq:firstorderopt}, $\cJ'(u)[h]\ge 0$, and since $a(h,h)\ge 0$ we conclude $\cJ(v)\ge \cJ(u)$ for all $v\in K$. Hence $u$ is a minimizer over $K$.
+	By \eqref{eq:firstorderopt}, $\cJ'(u)[h]\ge 0$, and since $a(h,h)\ge 0$ we conclude $\cJ(v)\ge \cJ(u)$ for all $v\in K$. Hence $u$ is a minimizer of $\cJ$ over $K$.
 \end{proof}
 
 Combining Lemma \ref{lem:Jdiff} and Proposition \ref{pr:FOC}, $u\in K$ solves Problem \ref{pr:signorini1} if and only if
@@ -94,7 +94,7 @@ This is the first weak formulation of Signorini's problem as a variational inequ
 \end{equation*}
 \end{problem}
 
-Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} by Proposition \ref{pr:FOC} in the sense that each solution to the one of the problems is a solution to the other problem. The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another useful equivalent formulation is the following.
+Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is equivalent to the minimization Problem \ref{pr:signorini1} by Proposition \ref{pr:FOC} in the sense that each solution to the one of the problems is a solution to the other problem. The solution is unique due to Corollary \ref{cor:wellposed} with the stability estimate \eqref{eq:ustab}. Another equivalent formulation is the following.
 
 \begin{problem}[Signorini's Problem -- Weak Formulation 2]\label{pr:signorini3}
 \begin{equation*}
@@ -110,7 +110,7 @@ Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is eq
 \begin{proof}
 	Let $u\in K$ solve Problem \ref{pr:signorini3}. Then
 	\begin{equation*}
-		a(u,v-u) = a(u,v)-a(u,u)  = a(u,v)-\ell(u)\ge \ell(v)-\ell(u) = \ell(v-u).
+		a(u,v-u) = a(u,v)-a(u,u)  = a(u,v)-\ell(u)\ge \ell(v)-\ell(u) = \ell(v-u)\qquad\forall\,v\in K.
 	\end{equation*}
 	Assuming that $u\in K$ solves Problem \ref{pr:signorini2} and testing $v=0$ yields
 	\begin{equation*}
@@ -122,13 +122,13 @@ Well-posedness of Problem \ref{pr:signorini2} is already ensured, since it is eq
 	\end{equation*}
 	However, testing with $v=2u$ yields $a(u,u)\ge \ell(u)$ and thus $a(u,u) = \ell(u)$. Furthermore, Problem \ref{pr:signorini2} reads
 	\begin{equation*}
-		a(u,v-u) = a(u,v)-a(u,u)\ge \ell(v-u) = \ell(v)-\ell(u),
+		a(u,v-u) = a(u,v)-a(u,u)\ge \ell(v-u) = \ell(v)-\ell(u)\qquad\forall\,v\in K,
 	\end{equation*}
 	which directly implies
 	\begin{equation*}
-		a(u,v)\ge a(u,u)+\ell(v)-\ell(u).
+		a(u,v)\ge a(u,u)+\ell(v)-\ell(u)\qquad\forall\,v\in K.
 	\end{equation*}
-	Plugging in $a(u,u) = \ell(u)$ yields $a(u,v)\ge \ell(v)$.
+	Plugging in $a(u,u) = \ell(u)$ yields $a(u,v)\ge \ell(v)$ for all $v\in K$.
 \end{proof}
 
 \subsection{Lipschitz Dependence of the Displacement on the Forces}
@@ -169,11 +169,11 @@ We close this section by providing another stability result on the dependency of
 		\le (\ell_1-\ell_2)(u_1-u_2)
 		\le \|\ell_1-\ell_2\|_{V'}\,\|u_1-u_2\|_{1,\Omega}.
 	\end{equation*}
-	If $u_1=u_2$, there is nothing to prove. Otherwise, dividing by $\|u_1-u_2\|_{1,\Omega}$ yields \eqref{eq:lipschitzabstract}. üMoreover,
+	If $u_1=u_2$, there is nothing to prove. Otherwise, dividing by $\|u_1-u_2\|_{1,\Omega}$ yields \eqref{eq:lipschitzabstract}. Moreover,
 	\begin{equation*}
 		(\ell_1-\ell_2)(v)
-		=\int_\Omega (f_1-f_2)\cdot v\;\dx+\int_{\Gamma_N} (F_1-F_2)\cdot \gamma v\;\ds
-		\qquad \forall\, v\in V.
+		=\int_\Omega (f_1-f_2)\cdot v\;\dx+\int_{\Gamma_N} (F_1-F_2)\cdot \gamma v\;\ds,
+		\qquad v\in V.
 	\end{equation*}
 	Therefore, Proposition \ref{pr:aproperties} applied to the functional $\ell_1-\ell_2$ implies
 	\begin{equation*}

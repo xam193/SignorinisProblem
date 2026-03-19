@@ -3,17 +3,17 @@
 We will now turn our attention to the stronger formulations of Signorini's Problem.
 
 
-\subsection{Stress Regularity and Normal Traces in \texorpdfstring{$H(\diver;\Omega)$}{Hdiv}}\label{sec:Hdiv}
+\subsection{Stress Regularity and Normal Traces on \texorpdfstring{$H(\diver;\Omega)$}{Hdiv}}\label{sec:Hdiv}
 
-The aim of this subsection is to develop a concept for normal traces of stress tensors $\sigma(u)$, in order to then subject them to contact conditions on $\Gamma_C$. Previously, in \eqref{eq:nonpenetration}, for $v\in H^1(\Omega;\R^d)$, we defined its normal trace $v_\mathrm{n}$ as the trace $\gamma v\in H^{1/2}(\Gamma;\R^d)$ times the normal $\mathrm{n}\in L^\infty(\Omega;\R^d)$. Now, since $u\in H^1(\Omega;\R^d)$, the stress tensor $\sigma(u)$ only belongs to $L^2(\Omega;\S^d)$. Therefore, in general, a trace operator $\gamma$ is not available for $\sigma(u)$ and further regularity assumptions have to be taken on $\sigma(u)$, to get a notion for $\gamma(\sigma(u))$. The canonical idea is to require $\sigma(u)\in H^1(\Omega;\S^d)$. In that case, $\gamma(\sigma(u))\in H^{1/2}(\Gamma;\S^d)$ which makes it possible to define a normal trace $\gamma(\sigma(u))\mathrm{n}\in H^{1/2}(\Gamma;\S^d)$. As $\sigma$ is an operator from $H^s(\Omega;\R^d)$ into $H^{s-1}(\Omega;\S^d)$, this assumption further requires $u\in H^2(\Omega;\R^d)$, which is much stronger than needed but will also be assumed later on in Section \ref{sec:classical}. A more relaxed assumption is $\sigma(u)\in H(\diver;\Omega)$, where
+The aim of this subsection is to develop a concept for normal traces of stress tensors $\sigma(u)$, in order to then subject them to contact conditions. Previously, in \eqref{eq:nonpenetration}, for $v\in H^1(\Omega;\R^d)$, we defined its classical normal trace $v_\mathrm{n}$ as the trace $\gamma v\in H^{1/2}(\Gamma;\R^d)$ times the normal $\mathrm{n}\in L^\infty(\Omega;\R^d)$. Now, since $u\in H^1(\Omega;\R^d)$, the stress tensor $\sigma(u)$ only belongs to $L^2(\Omega;\S^d)$. Therefore, in general, a trace operator $\gamma$ is not available for $\sigma(u)$ and further regularity assumptions have to be taken on $\sigma(u)$, to get a notion for its trace. The canonical idea is to require $\sigma(u)\in H^1(\Omega;\S^d)$. In that case, $\gamma(\sigma(u))\in H^{1/2}(\Gamma;\S^d)$ which makes it possible to define a classical normal trace $\gamma(\sigma(u))\mathrm{n}\in H^{1/2}(\Gamma;\S^d)$. As $\sigma$ is an operator from $H^s(\Omega;\R^d)$ into $H^{s-1}(\Omega;\S^d)$, this assumption further requires $u\in H^2(\Omega;\R^d)$, which is much stronger than needed but will also be assumed later on in Section~\ref{sec:classical}. A more relaxed assumption for now is $\sigma(u)\in H(\diver;\Omega)$, where
 \begin{equation*}
 	H(\diver;\Omega):=\left\{\tau\in L^2(\Omega;\S^d)\;\middle|\;\diver\tau\in L^2(\Omega;\R^d)\right\}
 \end{equation*}
-and derive a reasonable concept for normal traces on $H(\diver;\Omega)$. Additionally to this assumption being a lot weaker, than $u\in H^2(\Omega;\R^d)$, it provides us with $\diver\sigma(u)\in L^2(\Omega;\R^d)$, which is desired in strong formulations as strong bulk equilibrium equations $-\diver\sigma(u) = f$ for source terms $f\in L^2(\Omega;\R^d)$ are now well-defined. It remains to provide a concept for normal traces on $H(\diver;\Omega)$. For sufficiently smooth $\tau:\overline{\Omega}\to\S^d$ and all sufficiently smooth $v:\overline{\Omega}\to\S^d$, {\em Green's identity} reads
+and to derive a concept for normal traces on $H(\diver;\Omega)$. Additionally to this assumption being a lot weaker, than $u\in H^2(\Omega;\R^d)$, it provides us with $\diver\sigma(u)\in L^2(\Omega;\R^d)$, which is desired in strong formulations as strong bulk equilibrium equations $-\diver\sigma(u) = f$ for source terms $f\in L^2(\Omega;\R^d)$ are now well-defined. It remains to provide a concept for normal traces on $H(\diver;\Omega)$. For sufficiently smooth $\tau:\overline{\Omega}\to\S^d$ and all sufficiently smooth $v:\overline{\Omega}\to\S^d$, {\em Green's identity} reads
 \begin{equation}\label{eq:green_smooth}
 	\int_\Gamma (\gamma\tau)\,\mathrm{n}\cdot(\gamma v)\;\ds  = \int_\Omega \tau : \nabla v\;\dx +\int_\Omega (\diver\tau)\cdot v\;\dx
 \end{equation}
-and can be interpreted a definition of the normal trace $(\gamma\tau)\,\mathrm{n}$, i.e.\ by integration against test functions. The key point now is, that the right-hand side of \eqref{eq:green_smooth} is still well-defined if $\tau$ and $v$ are not sufficiently smooth for the left-hand side to be well-defined, such as $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$, by understanding $\diver \tau$ and $\nabla v$ is the weak sense. Hence, for fixed $\tau\in H(\diver;\Omega)$, we define
+and can be interpreted as a definition of the normal trace $(\gamma\tau)\,\mathrm{n}$ in a weak sense, i.e.\ by integration against test functions. The key point now is, that the right-hand side of \eqref{eq:green_smooth} is still well-defined if $\tau$ and $v$ are not sufficiently smooth for the left-hand side to be well-defined, such as $\tau\in H(\diver;\Omega)$ and $v\in H^1(\Omega;\R^d)$, by understanding $\diver \tau$ and $\nabla v$ is the weak sense. Hence, for fixed $\tau\in H(\diver;\Omega)$, we define
 \begin{equation}\label{eq:Ftau}
 	F_\tau(v):= \int_\Omega \tau : \nabla v\;\dx +\int_\Omega (\diver\tau)\cdot v\;\dx,\qquad v\in H^1(\Omega;\R^d).
 \end{equation}
@@ -25,7 +25,6 @@ By Cauchy--Schwarz,
 	\qquad\forall\,v\in H^1(\Omega;\R^d),
 \end{equation*}
 i.e.\ $F_\tau$ is a continuous linear functional on $H^1(\Omega;\R^d)$. Crucially, $F_\tau$ only depends on the trace $\gamma v\in H^{1/2}(\Gamma;\R^d)$ instead of the whole $v\in H^1(\Omega;\R^d)$.
-
 \begin{proposition}[Dependence of $F_\tau$ on the Trace]\label{pr:Ftau_depends_on_trace}
 	Let $\tau\in H(\diver;\Omega)$. Then, the functional $F_\tau$ defined in \eqref{eq:Ftau} vanishes on $H^1_0(\Omega;\R^d)$, i.e.
 	\begin{equation*}
@@ -128,10 +127,9 @@ In the smooth case, \eqref{eq:greenHdiv} reduces to \eqref{eq:green_smooth}, hen
 		\tau:\nabla v=\tau:\varepsilon(v)
 		\qquad \text{a.e.\ in }\Omega.
 	\end{equation*}
-	The integral identity follows immediately.
 \end{proof}
 
-By Proposition \ref{pr:symtensor}, the normal trace $\sigma(u)\mathrm{n} := \gamma_\mathrm{n}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$ of the symmetric stress tensor $\sigma(u)\in H(\diver;\Omega)$ is defined via
+By Proposition~\ref{pr:symtensor}, the normal trace $\sigma(u)\mathrm{n} := \gamma_\mathrm{n}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$ of the symmetric stress tensor $\sigma(u)\in H(\diver;\Omega)$ is defined via
 \begin{equation*}
 	\langle\sigma(u)\mathrm{n},\,\gamma v\rangle_\Gamma = \int_\Omega\sigma(u):\varepsilon(v)\;\dx +\int_\Omega\diver\sigma(u)\cdot v\;\dx\qquad\forall\,v\in H^1(\Omega;\R^d),
 \end{equation*}
@@ -168,7 +166,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 \begin{proof}
 	Using the bulk equation and the definition of $a(u,v)$, we have
 	\begin{equation*}
-		\langle\sigma(u)\mathrm{n}, \, \gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx +\int_\Omega\diver\sigma(u)\cdot v\;\dx = a(u,v) - \int_\Omega f\cdot v\;dx\qquad \forall\,v\in H^1(\Omega;\R^d).
+		\langle\sigma(u)\mathrm{n}, \, \gamma v\rangle_\Gamma = \int_\Omega \sigma(u):\varepsilon(v)\;\dx +\int_\Omega\diver\sigma(u)\cdot v\;\dx = a(u,v) - \int_\Omega f\cdot v\;\dx\qquad \forall\,v\in H^1(\Omega;\R^d).
 	\end{equation*}
 	By the definition of $\ell$, this is
 	\begin{equation*}
@@ -187,9 +185,9 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\end{equation*}
 	By \eqref{eq:hybrid_bulk}, we can directly apply the identity \eqref{eq:useful} with $v-u$ instead of $v$ to obtain
 	\begin{equation*}
-		a(u,v-u)\ge\ell(v-u)\qquad \forall\,v\in K,
+		a(u,v-u)-\ell(v-u)\ge\qquad \forall\,v\in K,
 	\end{equation*}
-	which is exactly the weak formulation \ref{pr:signorini2}. Let now $u\in K$ solve the weak problem \ref{pr:signorini2} with the additional assumption that $\sigma(u)\in H(\diver;\Omega)$. Let $\varphi\in\cD(\Omega;\R^d)$ we a vector-valued test function on $\Omega$. Since $\varphi$ has compact support in $\Omega$, we can perturb $u\in K$ by $\pm t\varphi,\,|t|\ll 1$ without leaving $K$, i.e.\ $u\pm t\varphi\in K$. Testing both, $v = u+t\varphi$ and $v = u-t\varphi$, in the variational inequality of the weak formulation yields
+	which is exactly the weak formulation \ref{pr:signorini2}. Let now $u\in K$ solve the weak problem \ref{pr:signorini2} with the additional assumption that $\sigma(u)\in H(\diver;\Omega)$. Let $\varphi\in\cD(\Omega;\R^d)$ we a vector-valued test function on $\Omega$. Since $\varphi$ has compact support in $\Omega$ and thus a vanishing trace, $\gamma\varphi = 0$, we can perturb $u\in K$ by $\pm t\varphi,t\in \R$ without leaving $K$, i.e.\ $u\pm t\varphi\in K$. Testing both, $v = u+t\varphi$ and $v = u-t\varphi$, in the variational inequality of the weak formulation yields
 	\begin{equation*}
 		a(u,t\varphi)\ge \ell(t\varphi)\qquad\text{and}\qquad a(u,-t\varphi)\ge\ell(-t\varphi).
 	\end{equation*}
@@ -209,9 +207,9 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\begin{equation*}
 		\int_\Omega f\cdot\varphi\;\dx = \langle f,\,\varphi\rangle, \qquad \forall\,\varphi\in\cD(\Omega;\R^d)
 	\end{equation*}
-	where $\langle\cdot,\,\cdot\rangle$ denotes the duality paring between vector-valued distributions and vector-valued test functions. The right-hand side of \eqref{eq:phieq} is by Proposition \ref{pr:symtensor}
+	where $\langle\cdot,\,\cdot\rangle$ denotes the duality paring between vector-valued distributions and vector-valued test functions. The right-hand side of \eqref{eq:phieq} is by Proposition~\ref{pr:symtensor}
 	\begin{equation*}
-		a(u,\varphi) = \int_\Omega\sigma(u):\varphi(\varphi)\;\dx = \int_\Omega\sigma(u):\nabla\varphi\;\dx.
+		a(u,\varphi) = \int_\Omega\sigma(u):\varepsilon(\varphi)\;\dx = \int_\Omega\sigma(u):\nabla\varphi\;\dx.
 	\end{equation*}
 	Since $\sigma(u)\in H(\diver;\Omega)\subset L^2(\Omega;\S^d)$ it may also be seen as a regular distribution and the weak divergence is exactly defined by
 	\begin{equation*}
@@ -225,7 +223,7 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\begin{equation*}
 		-\diver\sigma(u) = f\qquad\text{a.e.\ in }\Omega,
 	\end{equation*}
-	which is exactly the equilibrium bulk equation \eqref{eq:hybrid_bulk}. Next, we prove the hybrid in equality \eqref{eq:hybrid_eq}. Since $K$ is a cone, $0,2u\in K$. Testing both, $v = 0$ and $v = 2u$, in the variational inequality variational inequality of the weak formulation yields
+	which is exactly the equilibrium bulk equation \eqref{eq:hybrid_bulk}. Next, we prove the hybrid in equality \eqref{eq:hybrid_eq}. Since $K$ is a cone, $0\in K$ and $2u\in K$. Testing both, $v = 0$ and $v = 2u$, in the variational inequality of the weak formulation yields
 	\begin{equation*}
 		a(u,-u)\ge \ell(-v)\qquad\text{and}\qquad a(u,u)\ge \ell(u)
 	\end{equation*}
@@ -235,26 +233,26 @@ We close this section by showing, that the hybrid formulation above is equivalen
 	\end{equation*}
 	which directly yields the hybrid equality \eqref{eq:hybrid_eq}. Moreover, with the identity \eqref{eq:useful} and the variational inequality from the weak formulation, we have
 	\begin{equation*}
-		a(u,v-u) = \langle \sigma(u)\mathrm{n},\, \gamma(v-u)\rangle_\Gamma + \int_\Omega f\cdot(v-u)\;\dx \ge \ell(v-u)=\int_\Omega f\cdot(v-u)\;\dx +\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds
-	\end{equation*}
-	for all $v\in V$. Subtracting the volume term on both sides, yields
-	\begin{equation*}
-		\langle \sigma(u)\mathrm n,\gamma(v-u)\rangle_\Gamma \ge\int_{\Gamma_N}F\cdot\gamma(v-u)\;\ds\qquad \forall\,v\in V.
+		\langle\sigma(u)\mathrm{n},\,\gamma(v-u)\rangle_\Gamma -\int_{\Gamma_N} F\cdot\gamma(v-u)\;\ds  = a(u,v-u)-\ell(v-u)\ge 0\qquad\forall\,v\in V.
 	\end{equation*}
 	By linearity, this is
 	\begin{equation*}
 		\langle\sigma(u)\mathrm{n}\,\gamma v\rangle_\Gamma\ge \int_{\Gamma_N}F\cdot \gamma v\;\ds + \left[\langle\sigma(u)\mathrm{n},\,\gamma u\rangle_\Gamma-\int_{\Gamma_N}F\cdot\gamma u\;\ds\right]\qquad \forall\,v\in V,
 	\end{equation*}
-	where the terms in the brackets cancel by the hybrid equality \eqref{eq:hybrid_eq}. Therefore, also the hybrid inequality \eqref{eq:hybrid_ineq} holds.
+	where the terms in the brackets cancel by the hybrid equality \eqref{eq:hybrid_eq}. Therefore, also the hybrid inequality \eqref{eq:hybrid_ineq} holds and the proof is completed.
 \end{proof}
 
-\subsection{Normal/Tangential Splitting and Contact Normal Traces}
+\subsection{Normal/Tangential Splitting and Local Normal Traces on \texorpdfstring{$H(\diver;\Omega)$}{Hdiv}}
 
-In the hybrid formulation, the contact interaction is still encoded in the global normal trace
+In the hybrid formulation, the contact interaction is still encoded in the {\em global} normal trace
 \begin{equation*}
 	\sigma(u)n = \gamma_{\mathrm n}(\sigma(u)) \in H^{-1/2}(\Gamma;\R^d),
 \end{equation*}
-which acts on traces on the whole boundary. We now restrict attention to the contact boundary $\Gamma_C$ and introduce suitable contact trace spaces together with the corresponding local contact traction. Throughout this subsection and the next subsection, we assume $|\Gamma_N| = 0$. Hence $\Gamma = \overline{\Gamma_D}\,\mathbin{\dot\cup}\,\overline{\Gamma_C}$ and every function in $V$ has trace supported on $\Gamma_C$. We define the boundary space
+which acts on traces on the whole boundary. We now restrict attention to the contact boundary $\Gamma_C$ and introduce suitable contact trace spaces together with the corresponding local contact traction $\gamma_{\mathrm{n},C}$. Throughout this subsection and the next subsection, we assume $|\Gamma_N| = 0$. Hence
+\begin{equation*}
+	\Gamma = \overline{\Gamma_D}\,\mathbin{\dot\cup}\,\overline{\Gamma_C}
+\end{equation*}
+and every function in $V$ has trace supported only on $\Gamma_C$. We define the so-called {\em Lions-Magenes} space
 \begin{equation*}
 	H^{1/2}_{00}(\Gamma_C;\R^d)
 	:=
@@ -292,7 +290,7 @@ We now split contact traces into normal and tangential parts. Define
 	W_{C,\mathrm n}
 	:=
 	\left\{
-	w\cdot n
+	w\cdot \mathrm{n}
 	\;\middle|\;
 	w\in W_C
 	\right\},\qquad W_{C,t}
@@ -300,7 +298,7 @@ We now split contact traces into normal and tangential parts. Define
 	\left\{
 	w\in W_C
 	\;\middle|\;
-	w\cdot n = 0
+	w\cdot \mathrm{n} = 0
 	\right\}.
 \end{equation*}
 Their quotient norms are given by
@@ -310,7 +308,7 @@ Their quotient norms are given by
 	\inf\left\{
 	\|v\|_{1,\Omega}
 	\;\middle|\;
-	v\in V,\ (\gamma v|_{\Gamma_C})\cdot n=\eta
+	v\in V,\ (\gamma v|_{\Gamma_C})\cdot \mathrm{n}=\eta
 	\right\},
 	\qquad \eta\in W_{C,\mathrm n},
 \end{equation*}
@@ -327,7 +325,7 @@ and
 \end{equation*}
 Every $w\in W_C$ admits the decomposition $w = w_{\mathrm n} \mathrm{n} + w_t$, with $w_{\mathrm n}\in W_{C,\mathrm n}$ and $w_t\in W_{C,t}$. Hence
 \begin{equation*}
-	W_C = W_{C,\mathrm n} n \oplus W_{C,t}.
+	W_C = W_{C,\mathrm n} \mathrm{n} \oplus W_{C,t}.
 \end{equation*}
 We denote the dual spaces of $W_C$, $W_{C,\mathrm n}$, and $W_{C,t}$ by $W_C^\prime,\, W_{C,\mathrm{n}}^\prime$ and $W_{C,t}^\prime$, respectively, and use the generic notation $\langle \cdot,\,\cdot\rangle_{\Gamma_C}$ for the corresponding duality pairings.
 
@@ -354,12 +352,11 @@ Since $W_C = H^{1/2}_{00}(\Gamma_C;\R^d)$ and $\mathrm{Ext}_0(g)\in H^{1/2}(\Gam
 	+
 	\int_\Omega (\diver\tau)\cdot v\;\dx.
 \end{equation}
-In particular, the right-hand side depends only on the contact trace $g=\gamma v|_{\Gamma_C}$ and not on the chosen lift $v\in V$.
-
+In particular, the right-hand side depends only on the contact trace $g=\gamma v|_{\Gamma_C}$ and not on the chosen lift $v\in V$, similar as in Proposition~\ref{pr:Ftau_depends_on_trace}.
 \begin{definition}[Normal and tangential components of contact tractions]
-	Let $\lambda\in W_C'$. Its normal component $\lambda_{\mathrm n}\in W_{C,\mathrm n}'$ and tangential component $\lambda_t\in W_{C,t}'$ are defined by
+	Let $\lambda\in W_C'$. Its normal component $\lambda_{C,\mathrm{n}}\in W_{C,\mathrm n}'$ and tangential component $\lambda_{C,t}\in W_{C,t}'$ are defined by
 	\begin{equation*}
-		\langle \lambda_{\mathrm n},\,\eta\rangle_{\Gamma_C}
+		\langle \lambda_{C,\mathrm{n}},\,\eta\rangle_{\Gamma_C}
 		:=
 		\langle \lambda,\,\eta \,\mathrm{n}\rangle_{\Gamma_C}
 		\qquad
@@ -367,7 +364,7 @@ In particular, the right-hand side depends only on the contact trace $g=\gamma v
 	\end{equation*}
 	and
 	\begin{equation*}
-		\langle \lambda_t,\,\zeta\rangle_{\Gamma_C}
+		\langle \lambda_{C,t},\,\zeta\rangle_{\Gamma_C}
 		:=
 		\langle \lambda,\,\zeta\rangle_{\Gamma_C}
 		\qquad
@@ -389,9 +386,9 @@ Applying this construction to the stress tensor, we define the contact traction 
 	:=
 	\gamma_{\mathrm n,C}(\sigma(u))\in W_C'.
 \end{equation*}
-Its normal and tangential components are denoted by $\sigma_{\mathrm n}(u)\in W_{C,\mathrm n}'$ and $\sigma_t(u)\in W_{C,t}'$, respectively, such that
+Its normal and tangential components are denoted by $\sigma_{C,\mathrm n}(u)\in W_{C,\mathrm n}'$ and $\sigma_{C,t}(u)\in W_{C,t}'$, respectively, such that
 \begin{equation}\label{eq:sigmadecomp}
-	\sigma_C(u)\mathrm{n} = \sigma_{\mathrm n}(u)\mathrm{n}+\sigma_t(u)\in W_C'.
+	\sigma_C(u)\mathrm{n} = \sigma_{C,\mathrm n}(u)\mathrm{n}+\sigma_{C,t}(u)\in W_C'.
 \end{equation}
 To encode the Signorini conditions, we introduce the cone of weakly nonpositive normal traces
 \begin{equation*}
@@ -400,7 +397,7 @@ To encode the Signorini conditions, we introduce the cone of weakly nonpositive 
 	\left\{
 	\eta\in W_{C,\mathrm n}
 	\;\middle|\;
-	\eta\le 0 \text{ a.e. on }\Gamma_C
+	\eta\le 0 \text{ a.e.\ on }\Gamma_C
 	\right\},
 \end{equation*}
 and its dual cone of weakly nonpositive normal contact forces
@@ -410,8 +407,8 @@ and its dual cone of weakly nonpositive normal contact forces
 	\left\{
 	\lambda\in W_{C,\mathrm n}'
 	\;\middle|\;
-	\langle \lambda,\eta\rangle_{\Gamma_C}\ge 0
-	\qquad
+	\langle \lambda,\,\eta\rangle_{\Gamma_C}\ge 0
+	\;
 	\forall\,\eta\in W_{C,\mathrm n}^-
 	\right\}.
 \end{equation*}
@@ -419,26 +416,27 @@ If $\lambda$ is represented by an $L^2$-function, then the condition $\lambda\in
 
 \subsection{Formulation with KKT Contact Conditions}
 
-We now reformulate the contact conditions in a form that separates the normal and tangential contact reactions on $\Gamma_C$. This leads to a KKT-type formulation of Signorini's problem, where the contact conditions are expressed through primal feasibility, dual feasibility, and complementarity. Here, ``KKT'' refers to the Karush--Kuhn--Tucker conditions from constrained optimization. In the present setting, the nonpenetration condition $u_{\mathrm n}\le 0$ on $\Gamma_C$ plays the role of the primal inequality constraint, the condition $\sigma_{\mathrm n}(u)\in \Lambda_C$ encodes the weak nonpositivity of the normal contact force, and the complementarity relation $\langle \sigma_{\mathrm n}(u),u_{\mathrm n}\rangle_{\Gamma_C}=0$ expresses that contact pressure can occur only where the gap vanishes.
+We now reformulate the contact conditions in a form that separates the normal and tangential contact reactions on $\Gamma_C$. This leads to a {\em KKT-type formulation} of Signorini's problem, where the contact conditions are expressed through {\em primal feasibility}, {\em dual feasibility}, and {\em complementarity}. Here, ``KKT'' refers to the {\em Karush--Kuhn--Tucker} conditions from constrained optimization. In the present setting, the nonpenetration condition $u_{\mathrm n}\le 0$ on $\Gamma_C$ plays the role of the primal inequality constraint, the condition $\sigma_{\mathrm n}(u)\in \Lambda_C$ encodes the weak nonpositivity of the normal contact force, and the complementarity relation $\langle \sigma_{C,\mathrm n}(u),\,u_{\mathrm n}\rangle_{\Gamma_C}=0$ expresses that contact pressure can occur only where the gap vanishes.
+
 \begin{problem}[Signorini's Problem -- Strong Formulation with KKT Contact Conditions]\label{pr:signorini5}
 For given $f\in L^2(\Omega;\R^d)$, find $u\in V$ such that
 \begin{subequations}\label{eq:strong}
 	\begin{empheq}[left=\empheqlbrace]{alignat=2}
 		-\diver \sigma(u) &= f
 		&\qquad& \text{a.e.\ in }\Omega, \label{eq:strong_bulk}\\
-		\sigma_t(u) &= 0
+		\sigma_{C,t}(u) &= 0
 		&\qquad& \text{in }W_{C,t}^\prime, \label{eq:strong_tangential}\\
 		u_\mathrm{n} &\le 0
 		&\qquad& \text{a.e.\ on }\Gamma_C, \label{eq:strong_nonpen}\\
-		\sigma_\mathrm{n}(u) &\in \Lambda_C,
+		\sigma_{C,\mathrm{n}}(u) &\in \Lambda_C,
 		&& \label{eq:strong_lambda}\\
-		\langle\sigma_\mathrm{n}(u),\, u_\mathrm{n}\rangle_{\Gamma_C} &= 0.
+		\langle\sigma_{C,\mathrm{n}}(u),\, u_\mathrm{n}\rangle_{\Gamma_C} &= 0.
 		&& \label{eq:strong_comp}
 	\end{empheq}
 \end{subequations}
 \end{problem}
 
-Under the standing assumption $|\Gamma_N|=0$, this formulation is equivalent to the hybrid formulation introduced above. This equivalence will be proved now and will serve as the basis for the mixed formulation in Section \ref{sec:mixed}.
+Under the standing assumption $|\Gamma_N|=0$, this formulation is equivalent to the hybrid formulation introduced above. This equivalence will be proved now and will serve as the basis for the mixed formulation in Section~\ref{sec:mixed}.
 
 
 \begin{proposition}[Equivalence of KKT and Hybrid Formulation]
@@ -447,21 +445,21 @@ Under the standing assumption $|\Gamma_N|=0$, this formulation is equivalent to 
 \begin{proof}
 	Assume first that $u\in V$ solves the above KKT formulation \ref{pr:signorini5} of Signorini's Problem. The bulk equation $-\diver\sigma(u) = f$ almost everywhere in $\Omega$ is contained in both formulations and by \eqref{eq:strong_nonpen}, $v\in K$. It remains to show the hybrid equality \eqref{eq:hybrid_eq} and inequality \eqref{eq:hybrid_ineq}, where in each the right-hand sides vanish, due to $|\Gamma_N| = 0$. Let $v\in K$ be arbitrary. Since $|\Gamma_N| = 0$ and $(\gamma v)|_{\Gamma_D} = 0$ on, we have
 	\begin{equation*}
-		\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma = \langle \sigma(u)_C\mathrm n,\,\gamma v\rangle_{\Gamma_C}.
+		\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma = \langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}.
 	\end{equation*}
-	Using the decomposition \eqref{eq:sigmadecomp} of $\sigma_C(u)\mathrm{n}$ into normal and tangential components together with Definition \ref{def:normtang}, we get
+	Using the decomposition \eqref{eq:sigmadecomp} of $\sigma_C(u)\mathrm{n}$ into normal and tangential components together with Definition~\ref{def:normtang}, we get
 	\begin{equation*}
-		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C} = \langle \sigma_\mathrm n(u),\,v_\mathrm n\rangle_{\Gamma_C} + \langle \sigma_t(u),\,v_t\rangle_{\Gamma_C}.
+		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C} = \langle \sigma_{C,\mathrm n}(u),\,v_\mathrm n\rangle_{\Gamma_C} + \langle \sigma_{C,t}(u),\,v_t\rangle_{\Gamma_C}.
 	\end{equation*}
-	By \eqref{eq:strong_tangential}, the second term vanishes. Therefore, $\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma=\langle \sigma_\mathrm n(u),\,v_\mathrm n\rangle_{\Gamma_C}$. Since $v\in K$, we have $v_\mathrm{n}\le 0$ almost everywhere on $\Gamma_C$, and by \eqref{eq:strong_lambda} we know that $\sigma_\mathrm{n}(u)\in\Lambda_C$. Hence
+	By \eqref{eq:strong_tangential}, the second term vanishes. Therefore, $\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma=\langle \sigma_{C,\mathrm{n}},\,v_\mathrm n\rangle_{\Gamma_C}$. Since $v\in K$, we have $v_\mathrm{n}\le 0$ almost everywhere on $\Gamma_C$, and by \eqref{eq:strong_lambda} we know that $\sigma_{C,\mathrm{n}}(u)\in\Lambda_C$. Hence
 	\begin{equation*}
-		\langle \sigma_\mathrm n(u),\,v_\mathrm n\rangle_{\Gamma_C}\ge 0,
+		\langle \sigma_C(u)\mathrm n,\,\gamma v\rangle_{\Gamma_C}=\langle \sigma_{C,\mathrm{n}}(u),\,v_\mathrm n\rangle_{\Gamma_C}\ge 0,
 	\end{equation*}
 	which proves the inequality \eqref{eq:hybrid_ineq}. Taking $v=u$ and using \eqref{eq:strong_comp}, we similarly obtain
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\,\gamma u\rangle_\Gamma
 		=
-		\langle \sigma_\mathrm n(u),\,u_\mathrm n\rangle_{\Gamma_C}
+		\langle \sigma_{C,\mathrm{n}}(u),\,u_\mathrm n\rangle_{\Gamma_C}
 		=0,
 	\end{equation*}
 	which is exactly the hybrid equality \eqref{eq:hybrid_eq}. Thus $u$ solves Problem \ref{pr:signorini4}. Conversely, assume that $u\in K$ solves Problem \ref{pr:signorini4}. Then $u\in V$, and \eqref{eq:strong_nonpen} is already contained in the definition of $K$. Moreover, \eqref{eq:hybrid_bulk} is exactly \eqref{eq:strong_bulk}. We next prove \eqref{eq:strong_tangential}. Let $w_t\in W_{C,t}$. Then there exists $w\in V$ such that
@@ -470,7 +468,7 @@ Under the standing assumption $|\Gamma_N|=0$, this formulation is equivalent to 
 		\qquad\text{and}\qquad
 		w_\mathrm n=0\text{ on }\Gamma_C.
 	\end{equation*}
-	Since $u\in K$ and $w_\mathrm n=0$, we have $u\pm w\in K$. Hence, the hybrid inequality \eqref{eq:hybrid_ineq} applied to $v=u+w$ and $v=u-w$, together with the hybrid equality \eqref{eq:hybrid_eq}, yields
+	Since $u\in K$ and $w_\mathrm n=0$ on $\Gamma_C$, we have $u\pm w\in K$. Hence, the hybrid inequality \eqref{eq:hybrid_ineq} applied to $v=u+w$ and $v=u-w$, together with the hybrid equality \eqref{eq:hybrid_eq}, yields
 	\begin{equation*}
 		\langle \sigma(u)\mathrm n,\,\gamma w\rangle_\Gamma\ge 0
 		\qquad\text{and}\qquad
@@ -478,35 +476,35 @@ Under the standing assumption $|\Gamma_N|=0$, this formulation is equivalent to 
 	\end{equation*}
 	Therefore, $\langle \sigma(u)\mathrm n,\,\gamma w\rangle_\Gamma=0$. Again using $|\Gamma_N| = 0$ and $\gamma w = 0$ on $\Gamma_D$, we obtain
 	\begin{equation*}
-		0 = \langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma_C(u)\mathrm{n},\,\gamma w\rangle_{\Gamma_C} = \langle \sigma_\mathrm n(u),\,w_\mathrm n\rangle_{\Gamma_C}+\langle \sigma_t(u),\,w_t\rangle_{\Gamma_C}=\langle \sigma_t(u),\,w_t\rangle_{\Gamma_C},
+		0 = \langle\sigma(u)\mathrm{n},\,\gamma w\rangle_\Gamma = \langle\sigma_C(u)\mathrm{n},\,\gamma w\rangle_{\Gamma_C} = \langle \sigma_{C,\mathrm{n}}(u),\,w_\mathrm n\rangle_{\Gamma_C}+\langle \sigma_{C,t}(u),\,w_t\rangle_{\Gamma_C}=\langle \sigma_{C,t}(u),\,w_t\rangle_{\Gamma_C},
 	\end{equation*}
 	since $w_\mathrm{n} = 0$ on $\Gamma_C$. Since $w_t\in W_{C,t}$ was arbitrary, this proves \eqref{eq:strong_tangential}. We now prove \eqref{eq:strong_lambda}. Let $\eta\in W_C$ satisfy $\eta\le 0$ a.e.\ on $\Gamma_C$. Then there exists $v\in V$ such that $v_\mathrm n=\eta$. Because $\eta\le 0$, we have $v\in K$. Hence the hybrid inequality \eqref{eq:hybrid_ineq} gives $\langle \sigma(u)\mathrm n,\,\gamma v\rangle_\Gamma\ge 0$. Using $|\Gamma_N|=0$, $\gamma v=0$ on $\Gamma_D$, and \eqref{eq:strong_tangential}, we infer
 	\begin{equation*}
 		0\le \langle \sigma_C(u)\mathrm n,\gamma v\rangle_{\Gamma_C}
-		=\langle \sigma_\mathrm n(u),v_\mathrm n\rangle_{\Gamma_C}
-		+\langle \sigma_t(u),v_t\rangle_{\Gamma_C}
-		=\langle \sigma_\mathrm n(u),\eta\rangle_{\Gamma_C},
+		=\langle \sigma_{C,\mathrm{n}}(u),v_\mathrm n\rangle_{\Gamma_C}
+		+\langle \sigma_{C,t}(u),v_t\rangle_{\Gamma_C}
+		=\langle \sigma_{C,\mathrm{n}}(u),\eta\rangle_{\Gamma_C},
 	\end{equation*}
 	which proves $\sigma_\mathrm n(u)\in\Lambda_C$, i.e.\ \eqref{eq:strong_lambda}. Finally, the hybrid equality \eqref{eq:hybrid_eq}, together with $|\Gamma_N|=0$, $\gamma u=0$ on $\Gamma_D$, and \eqref{eq:strong_tangential}, yields
 	\begin{equation*}
 		0=\langle \sigma(u)\mathrm n,\gamma u\rangle_\Gamma
-		=\langle \sigma(u)_C\mathrm n,\gamma u\rangle_{\Gamma_C}
-		=\langle \sigma_\mathrm n(u),u_\mathrm n\rangle_{\Gamma_C}
-		+\langle \sigma_t(u),u_t\rangle_{\Gamma_C}
-		=\langle \sigma_\mathrm n(u),u_\mathrm n\rangle_{\Gamma_C},
+		=\langle \sigma_C(u)\mathrm n,\gamma u\rangle_{\Gamma_C}
+		=\langle \sigma_{C,\mathrm{n}}(u),u_\mathrm n\rangle_{\Gamma_C}
+		+\langle \sigma_{C,t}(u),u_t\rangle_{\Gamma_C}
+		=\langle \sigma_{C,\mathrm{n}}(u),u_\mathrm n\rangle_{\Gamma_C},
 	\end{equation*}
 	which is exactly \eqref{eq:strong_comp}. Hence $u$ solves Problem \ref{pr:signorini5}.
 \end{proof}
 
 \subsection{Classical Strong Formulation under Additional Regularity}\label{sec:classical}
 
-So far, the displacement field was sought only in $u\in V\subset H^1(\Omega;\R^d)$. Accordingly, the stress tensor satisfies only $\sigma(u)\in L^2(\Omega;\mathbb S^d)$ or, under the additional assumption discussed in Section \ref{sec:Hdiv}, $\sigma(u)\in H(\diver;\Omega)$, so that no classical boundary trace of $\sigma(u)$ is available in general but only the weak concept of normal traces $\gamma_{\mathrm{n}}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$. In order to formulate the boundary traction and the contact conditions pointwise on $\Gamma_N$ and $\Gamma_C$, we now impose additional regularity on the displacement. Assume that
+So far, the displacement field was sought only in $u\in V\subset H^1(\Omega;\R^d)$. Accordingly, the stress tensor satisfies only $\sigma(u)\in L^2(\Omega;\mathbb S^d)$ or, under the additional assumption discussed in Section~\ref{sec:Hdiv}, $\sigma(u)\in H(\diver;\Omega)$, so that no classical boundary trace of $\sigma(u)$ is available in general but only the weak concept of normal traces $\gamma_{\mathrm{n}}(\sigma(u))\in H^{-1/2}(\Gamma;\R^d)$ on $H(\diver;\Omega)$. In order to formulate the boundary traction and the contact conditions pointwise on $\Gamma_N$ and $\Gamma_C$, we now impose additional regularity on the displacement. We assume that
 \begin{equation*}
 	u\in H^s(\Omega;\R^d)
 	\qquad\text{with}\qquad
 	s>\frac32.
 \end{equation*}
-According to Definition \ref{def:smallstraintensor}, the strain $\varepsilon(u)$ imposed by $u\in H^s(\Omega;\R^d)$ is now a function in $H^{s-1}(\Omega;\S^d)$. We further assume that the elasticity tensor field $\mathcal A:\Omega\to\mathcal L(\mathbb S^d;\mathbb S^d)$ is sufficiently regular so that
+According to Definition~\ref{def:smallstraintensor}, the strain $\varepsilon(u)$ imposed by $u\in H^s(\Omega;\R^d)$ is now a function in $H^{s-1}(\Omega;\S^d)$. We further assume that the elasticity tensor field $\mathcal A:\Omega\to\mathcal L(\mathbb S^d;\mathbb S^d)$ is sufficiently regular so that
 \begin{equation*}
 	\sigma(u)=\mathcal A:\varepsilon(u)\in H^{s-1}(\Omega;\mathbb S^d).
 \end{equation*}
@@ -521,7 +519,7 @@ In order to apply the trace theorem to $\sigma(u)$, we additionally assume
 	\qquad\text{with}\qquad
 	m\ge \lceil s-1\rceil.
 \end{equation*}
-Then $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$, and, since the unit outward normal satisfies $\mathrm{n}\in \mathcal C^{m-1,1}(\Gamma;\R^d)$, the classical boundary traction
+Then $\gamma(\sigma(u))\in H^{s-3/2}(\Gamma;\mathbb S^d)$, and, since now the unit outward normal satisfies $\mathrm{n}\in \mathcal C^{m-1,1}(\Gamma;\R^d)$, the classical boundary traction
 \begin{equation*}
 	t(u):=(\gamma\sigma(u))\,\mathrm{n}
 \end{equation*}
@@ -537,7 +535,7 @@ Likewise, the displacement trace satisfies $\gamma u\in H^{s-1/2}(\Gamma;\R^d)$,
 	\qquad
 	u_t:=\gamma u-u_{\mathrm n}\,\mathrm{n}\in H^{s-1/2}(\Gamma;\R^d).
 \end{equation*}
-If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then the generalized normal trace and the classical traction coincide in the sense that
+If, in addition, $\sigma(u)\in H(\diver;\Omega)$, then the normal trace on $H(\diver;\Omega)$ and the classical normal trace on $H^s(\Omega;\S^d)$ coincide in the sense that
 \begin{equation}\label{eq:coincide}
 	\langle \sigma(u)n,\gamma v\rangle_\Gamma
 	=
@@ -589,7 +587,7 @@ The classical strong formulation admits a direct mechanical interpretation. The 
 	\begin{equation}\label{eq:hybeq}
 		\int_\Gamma t(u)\cdot(\gamma u)\;\ds = \int_{\Gamma_N} F\cdot(\gamma u)\;\ds,
 	\end{equation}
-	due to the sufficient regularity of $u$ such that the generalized normal trace $\sigma(u)\mathrm{n}$ and the classical traction $t(u)$ coincide in the sense of \eqref{eq:coincide}. We decompose the left-hand side of \eqref{eq:hybineq} into
+	due to the sufficient regularity of $u$ such that the normal trace $\sigma(u)\mathrm{n}$ and the classical traction $t(u)$ coincide in the sense of \eqref{eq:coincide}. We decompose
 	\begin{equation}\label{eq:decompint}
 		\int_\Gamma t(u)\cdot(\gamma v) \;\ds = \int_{\Gamma_D}t(u)\cdot(\gamma v) \;\ds+\int_{\Gamma_N}t(u)\cdot(\gamma v) \;\ds+\int_{\Gamma_C}t(u)\cdot(\gamma v) \;\ds.
 	\end{equation}
@@ -597,7 +595,7 @@ The classical strong formulation admits a direct mechanical interpretation. The 
 	\begin{equation*}
 		\int_\Gamma t(u)\cdot(\gamma v)\;\ds = \int_{\Gamma_N}F\cdot(\gamma v)\;\ds + \int_{\Gamma_C} t(u)\cdot(\gamma v)\;\ds.
 	\end{equation*}
-	With the splittings $t(u) = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\gamma v = v_\mathrm{n}\mathrm{n}+v_t$ in their normal and tangential components, the integrand of the right term is on $\Gamma_C$ given by
+	With the splittings $t(u) = \sigma_\mathrm{n}(u)\mathrm{n}+\sigma_t(u)$ and $\gamma v = v_\mathrm{n}\mathrm{n}+v_t$ in their normal and tangential components, the integrand of the right term is, on $\Gamma_C$, given by
 	\begin{equation*}
 		t(u) \cdot(\gamma v) = \sigma_\mathrm{n}(u)\,v_\mathrm{n} + \sigma_t(u)\cdot v_t = \sigma_\mathrm{n}(u)\,v_\mathrm{n},
 	\end{equation*}
@@ -609,11 +607,11 @@ The classical strong formulation admits a direct mechanical interpretation. The 
 	\begin{equation*}
 		\int_\Gamma t(u)\cdot(\gamma u)\;\ds = \int_{\Gamma_N}F\cdot(\gamma u)\;\ds +\int_{\Gamma_C}\sigma_\mathrm{n}(u)\,u_{\mathrm{n}} = \int_{\Gamma_N}F\cdot(\gamma u)\;\ds,
 	\end{equation*}
-	where the $\Gamma_C$-term vanishes due to \eqref{eq:strong_contact_comp}. This proves the hybrid equality \eqref{eq:hybeq}. Therefore, $u$ is also a solution to Problem \ref{pr:signorini4}. Now, let $u\in K\cap H^s(\Omega;\R^d)$ with $s>3/2$ solve Problem \ref{pr:signorini4}. The requirement $u\in K$ immediately implies \eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}. We now prove the Neumann condition \eqref{eq:strong_classical_neumann} $t(u) = F$ on $\Gamma_N$. For some $g\in H_{00}^{1/2}(\Gamma_N;\R^d)$ choose $v\in H^1(\Omega;\R^d)$ such that
+	where the $\Gamma_C$-term vanishes due to the complementarity condition \eqref{eq:strong_contact_comp}. This proves the hybrid equality \eqref{eq:hybeq}. Therefore, $u$ is also a solution to Problem \ref{pr:signorini4}. Now, let $u\in K\cap H^s(\Omega;\R^d)$ with $s>3/2$ solve Problem \ref{pr:signorini4}. The requirement $u\in K$ immediately implies \eqref{eq:strong_classical_dirichlet} and \eqref{eq:strong_contact_nonpen}. We now prove the Neumann condition $t(u) = F$ on $\Gamma_N$, i.e.\ \eqref{eq:strong_classical_neumann}. For some $g\in H_{00}^{1/2}(\Gamma_N;\R^d)$ choose $v\in H^1(\Omega;\R^d)$ such that
 	\begin{equation*}
 		(\gamma v)|_{\Gamma_N} = g,\qquad (\gamma v)|_{\Gamma_C} = 0,\qquad (\gamma v)|_{\Gamma_D} = 0.
 	\end{equation*}
-	Since $v_\mathrm{n}\le 0$ on $\Gamma_C$ and $\gamma v = 0$ on $\Gamma_D$, we have $v\in K$ and also $-v\in K$ since $K$ is a cone. Thus, we can test $\pm v$ in the hybrid inequality \eqref{eq:hybineq} to obtain
+	Since $v_\mathrm{n}= 0$ on $\Gamma_C$ and $\gamma v = 0$ on $\Gamma_D$, we have $v\in K$ and also $-v\in K$. Thus, we can test $\pm v$ in the hybrid inequality \eqref{eq:hybineq} to obtain
 	\begin{equation*}
 		\int_{\Gamma_N}t(u)\cdot g\;\ds\ge \int_{\Gamma_N} F\cdot g\;\ds,\qquad\text{and}\qquad -\int_{\Gamma_N}t(u)\cdot g\;\ds\ge -\int_{\Gamma_N} F\cdot g\;\ds
 	\end{equation*}

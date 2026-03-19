@@ -1,7 +1,7 @@
 \section{Introduction}\label{sec:Introduction}
 
 
-We are given a body $\Omega\subset\R^d$. While all of the below may be formulated for arbitrary $d\ge 1$, it is of course reasonable to restrict our selfs to the real world application $d\in\{2,3\}$. Further necessary topological assumptions on $\Omega$ are introduced in the next subsection. This body may be sitting on a {\em rigid foundation}. See Figure \ref{fig:setup_plain} (left). Furthermore, let our body be made of an {\em elastic material}, allowing $\Omega$ to deform due to {\em internal} and external {\em forces}. If these forces are large enough, $\Omega$ in its initial state as in Figure \ref{fig:setup_plain} (left) is not in a {\em balanced} configuration. The internal and external forces are not in equilibrium. If we now allow all forces to act until the body is in an equilibrium configuration, this could look like Figure \ref{fig:setup_plain} (right). The body Omega in this state is designated $\varphi(\Omega)$.
+We are given a body $\Omega\subset\R^d$. While all of the below may be formulated for arbitrary $d\ge 1$, it is of course reasonable to restrict our selfs to the real world application $d\in\{2,3\}$. Further necessary topological assumptions on $\Omega$ are introduced in the next subsection. This body may be sitting on a {\em rigid foundation}. See Figure \ref{fig:setup_plain} (left). Furthermore, let our body be made of an {\em elastic material}, allowing $\Omega$ to deform due to {\em internal} and {\em external forces}. If these forces are large enough, $\Omega$ in its initial state as in Figure \ref{fig:setup_plain} (left) is not in a {\em balanced} configuration. The internal and external forces are not in equilibrium. If we now allow all forces to act until the body is in an equilibrium configuration, this could look like Figure \ref{fig:setup_plain} (right). The body Omega in this state is designated $\varphi(\Omega)$.
 
 \begin{figure}[!h]
 	\centering
@@ -10,7 +10,7 @@ We are given a body $\Omega\subset\R^d$. While all of the below may be formulate
 	\label{fig:setup_plain}
 \end{figure}
 
-The transition of $\Omega$ in its initial configuration into the $\Omega$ in its equilibrium configuration under prescribed internal and external forces defines the map
+The transition of $\Omega$ in its initial configuration into $\Omega$ in its equilibrium configuration $\varphi(\Omega)$ under prescribed internal and external forces defines the map
 \begin{equation*}
 	\varphi:\Omega\to \R^d,\qquad \varphi(x) = x+ u(x),
 \end{equation*}
@@ -19,7 +19,7 @@ where $u: \Omega\to \R^d$ is called the {\em displacement} function. The Signori
 
 \section{Geometrical and Physical Setup}
 
-Naturally, all of the above must be mathematically modeled in order to apply suitable theories and methods, e.g.\ from functional analysis. This will be covered in the following sections. Throughout, $\Omega\subset \R^d,\, d\in\{2,3\}$ denotes an open, bounded and connected domain with boundary $\Gamma:=\partial\Omega$, that is at least Lipschitz, i.e.\ $\Gamma\in \cC^{m,1},\, m\ge 0$. Among other things, this provides us with an {\em outward normal} $\mathrm{n}\in\cC^{m-1,1}(\Gamma;\R^d)$ if $m = 1$. For now, $m = 0$ is sufficient Then, $\mathrm{n}\in L^\infty(\Omega;\R^d)$. Later on, higher regularity on $\Gamma$ is needed. We begin by dividing the boundary into different sub-boundaries, which will later each be subject to different boundary conditions. Then the elasticity properties of the body are appropriately modeled and we discuss how the acting forces are understood. Finally, it is defined which shift functions are admissible at all.
+Naturally, all of the above must be mathematically modeled in order to apply suitable theories and methods, e.g.\ from functional analysis. This will be covered in the following sections. Throughout, $\Omega\subset \R^d,\, d\in\{2,3\}$ denotes an open, bounded and connected domain with boundary $\Gamma:=\partial\Omega$, that is at least Lipschitz, i.e.\ $\Gamma\in \cC^{m,1},\, m\ge 0$. Among other things, this provides us with an {\em outward normal} $\mathrm{n}\in\cC^{m-1,1}(\Gamma;\R^d)$ if $m \ge 1$. For now, $m = 0$ is sufficient Then, $\mathrm{n}\in L^\infty(\Gamma;\R^d)$. Later on, higher regularity on $\Gamma$ is needed. We begin by dividing the boundary into different sub-boundaries, which will later each be subject to different boundary conditions. Then the elasticity properties of the body are appropriately modeled and we discuss how the acting forces are understood. Finally, it is defined which displacement functions are admissible at all.
 
 \subsection{Boundary Decomposition}
 
@@ -163,7 +163,7 @@ Notice how the underlying set is the same for different values of $s>1/2$, but i
 	\end{equation*}
 	In particular, there exists a constant $C_{\tr}>0$ such that
 	\begin{equation*}
-		\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr}\|u\|_{s,\Omega}
+		\|\gamma u\|_{s-\tfrac12,\Gamma}\le C_{\tr}\,\|u\|_{s,\Omega}
 		\qquad\forall\,u\in H^s(\Omega;\R^d).
 	\end{equation*}\eop
 \end{theorem}
@@ -202,9 +202,9 @@ the Euclidean inner product and norm. As $\S^d$ may be identified with a subspac
 
 In linear elasticity, stresses are assumed to depend linearly on strains. The material response is encoded in the fourth order {\em elasticity tensor} $\cA$, which maps a symmetric strain tensor to the corresponding {\em Cauchy stress tensor}. The tensor field $\cA$ is prescribed by the material and may vary in space, describing a {\em heterogeneous} body. For a fourth oder tensor $\cA:\Omega\to\cL(\S^d;\S^d)$ and $s\in \S^d$, we use the {\em double contraction}
 \begin{equation*}
-	(\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)s_{kl},
+	(\cA(x):s)_{ij}:=\sum_{k = 1}^d \sum_{l = 1}^d \cA_{ijkl}(x)\,s_{kl},
 	\qquad
-	s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)s_{ij}s_{kl}.
+	s:\cA(x):s:=\sum_{i = 1}^d \sum_{j = 1}^d \sum_{k = 1}^d \sum_{l = 1}^d\cA_{ijkl}(x)\,s_{ij}\,s_{kl}.
 \end{equation*}
 
 \begin{definition}[Elasticity Tensor Field]\label{def:elastfield}
@@ -217,7 +217,7 @@ In linear elasticity, stresses are assumed to depend linearly on strains. The ma
 		\cA_{ijkl}(x)=\cA_{jikl}(x)=\cA_{ijlk}(x)=\cA_{klij}(x),
 		\qquad \forall\,1\le i,j,k,l\le d,
 	\end{equation*}
-	and the uniform ellipticity condition, i.e.\ there exists $\alpha_\cA>0$ such that for a.e.\ $x\in\Omega$
+	and the uniform ellipticity condition, i.e.\ there exists $\alpha_\cA>0$ such that for almost every $x\in\Omega$
 	\begin{equation*}
 		s:\cA(x):s \ge \alpha_\cA\, (s:s)\qquad \forall\,s\in \S^d.
 	\end{equation*}
@@ -330,7 +330,7 @@ For $v\in V$ we define the {\em normal component} of the boundary displacement o
 \begin{equation}\label{eq:nonpenetration}
 	u_{\mathrm n}\le 0 \qquad \text{a.e.\ on }\Gamma_C.
 \end{equation}
-This motivates the nonempty, closed and convex cone of {\em admissible displacements}
+and motivates the nonempty, closed and convex cone of {\em admissible displacements}
 \begin{equation}\label{eq:admissible}
 	K := \left\{ v\in V\;\middle|\; v_{\mathrm n}\le 0 \text{ a.e.\ on }\Gamma_C\right\}\subset V.
 \end{equation}
@@ -351,28 +351,22 @@ This motivates the nonempty, closed and convex cone of {\em admissible displacem
 	\begin{equation*}
 		\theta v_\mathrm{n}+(1-\theta)w_\mathrm{n}\le 0\qquad\text{a.e.\ on }\Gamma_C,
 	\end{equation*}
-	i.e.\ $u\in K$, which makes $K$ convex. To prove that $K$ is closed, let $(v_k)_{k\in\mathbb{N}}\subset K$ with
-	$v_k\to v$ in $V$. Since the trace operator $\gamma:V\to H^{1/2}(\Gamma;\Omega)$
-	is continuous, the mapping
+	i.e.\ $u\in K$, which makes $K$ convex. To prove that $K$ is closed, let $v_k \in K$ and assume that $v_k \to v$ in $V$. Since the trace operator $\gamma : V \to H^{1/2}(\Gamma;\mathbb{R}^d)$ is continuous and $\mathrm{n} \in L^\infty(\Gamma;\mathbb{R}^d)$, the mapping
 	\begin{equation*}
-		T:V\to L^2(\Gamma_C),\qquad T(w):=((\gamma w)\cdot \mathrm{n})|_{\Gamma_C}=w_\mathrm{n}|_{\Gamma_C},
+		T : V \to L^2(\Gamma_C), \qquad T(w) := ((\gamma w)\cdot \mathrm{n})|_{\Gamma_C},
 	\end{equation*}
-	is continuous as well. Hence,
+	is continuous. Hence,
 	\begin{equation*}
-		(v_k)_\mathrm{n}=T(v_k)\to T(v)=v_\mathrm{n}
-		\qquad\text{in }L^2(\Gamma_C).
+		T(v_k) \to T(v) \qquad \text{in } L^2(\Gamma_C).
 	\end{equation*}
-	Since $(v_k)_\mathrm{n}\le 0$ a.e.\ on $\Gamma_C$ for all $k$, there exists a
-	subsequence $((v_{k_j})_\mathrm{n})_{j\in\mathbb{N}}$ such that
+	Since $T(v_k) \le 0$ almost everywhere on $\Gamma_C$ for all $k$, there exists a subsequence $T(v_{k_j})$ such that
 	\begin{equation*}
-		(v_{k_j})_\mathrm{n}(x)\to v_\mathrm{n}(x)
-		\qquad\text{for a.e. }x\in\Gamma_C.
+		T(v_{k_j})(x) \to T(v)(x) \qquad \text{for a.e. } x \in \Gamma_C.
 	\end{equation*}
-	Passing to the limit in the inequality $(v_{k_j})_\mathrm{n}(x)\le 0$, we obtain
+	Passing to the limit in the inequality $T(v_{k_j})(x) \le 0$, we obtain
 	\begin{equation*}
-		v_\mathrm{n}(x)\le 0
-		\qquad\text{for a.e. }x\in\Gamma_C.
+		T(v)(x) \le 0 \qquad \text{for a.e. } x \in \Gamma_C.
 	\end{equation*}
-	Thus $v\in K$, so $K$ is closed.
+	Thus $v \in K$, and therefore $K$ is closed.
 \end{proof}
 
